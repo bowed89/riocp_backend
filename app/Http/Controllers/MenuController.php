@@ -1,0 +1,144 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\Menu;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+
+class MenuController extends Controller
+{
+
+    public function index()
+    {
+        $roles = Menu::all();
+
+        if ($roles->isEmpty()) {
+            return response()->json([
+                'status' => false,
+                'message' => 'No hay listado de menú.',
+            ], 200);
+        }
+
+        return response()->json([
+            'status' => true,
+            'data' => $roles,
+        ], 200);
+    }
+
+    public function store(Request $request)
+    {
+        $rules = [
+            'nombre' => 'required|string|min:4|max:50',
+            'url' => 'required|string',
+            'icono' => 'required|string',
+            'rol' => 'required|integer',
+            'estado' => 'required|boolean'
+        ];
+
+        $validator = Validator::make($request->input(), $rules);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'status' => false,
+                'errors' => $validator->errors()->all()
+            ], 400);
+        }
+
+        $rol = new Menu($request->input());
+        $rol->save();
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Menú Creado.'
+        ], 200);
+    }
+
+    /*     public function show(Menu $menu)
+    {
+        return response()->json([
+            'status' => true,
+            'data' => $menu
+        ]);
+    } */
+
+    public function show($id)
+    {
+        $menu = Menu::find($id);
+
+        if (!$menu) {
+            return response()->json([
+                'status' => false,
+                'message' => 'Menu no encontrado.'
+            ], 404);
+        }
+
+        return response()->json([
+            'status' => true,
+            'data' => $menu
+        ]);
+    }
+
+    public function update(Request $request, $id)
+    {
+        $menu = Menu::find($id);
+
+        if (!$menu) {
+            return response()->json([
+                'status' => false,
+                'message' => 'Menú no encontrado.',
+            ], 404);
+        }
+
+        $rules = [
+            'nombre' => 'required|string|min:4|max:50',
+            'url' => 'required|string',
+            'icono' => 'required|string',
+            'rol' => 'required|integer',
+            'estado' => 'required|boolean'
+        ];
+
+        $validator = Validator::make($request->all(), $rules);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'status' => false,
+                'errors' => $validator->errors()->all()
+            ], 400);
+        }
+
+        $menu->update($request->all());
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Menú actualizado correctamente.',
+            'data' => $menu
+        ], 200);
+    }
+
+    public function deleteRol($id)
+    {
+        $menu = Menu::find($id);
+
+        if (!$menu) {
+            return response()->json([
+                'status' => false,
+                'message' => 'Menú no encontrado.'
+            ], 404);
+        }
+
+        $menu->estado = 0;
+        $menu->save();
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Menú desactivado correctamente.',
+            'data' => $menu
+        ], 200);
+    }
+
+    public function destroy(Menu $menu)
+    {
+        //
+    }
+}
