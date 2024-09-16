@@ -28,6 +28,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('roles/show/{id}', [RolController::class, 'showById']);
 
     Route::resource('menu', MenuController::class);
+    Route::get('menu/rol/user', [MenuController::class, 'selectMenuByRol']);
 
     Route::get('auth/logout', [AuthController::class, 'logout']);
 });

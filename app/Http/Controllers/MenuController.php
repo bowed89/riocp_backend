@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Menu;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 class MenuController extends Controller
@@ -53,14 +54,6 @@ class MenuController extends Controller
             'message' => 'Menú Creado.'
         ], 200);
     }
-
-    /*     public function show(Menu $menu)
-    {
-        return response()->json([
-            'status' => true,
-            'data' => $menu
-        ]);
-    } */
 
     public function show($id)
     {
@@ -137,8 +130,31 @@ class MenuController extends Controller
         ], 200);
     }
 
-    public function destroy(Menu $menu)
+    public function selectMenuByRol()
     {
-        //
+        $user = Auth::user();
+
+        if ($user && $user->rol_id) {        
+            $menu = Menu::where('rol', $user->rol_id)->get();
+
+            if ($menu->isEmpty()) {
+                return response()->json([
+                    'status' => false,
+                    'message' => 'Menú Rol no encontrado.'
+                ], 404);
+            }
+
+            return response()->json([
+                'status' => true,
+                'message' => 'Menú rol',
+                'data' => $menu
+            ], 200);
+        }
+
+        return response()->json([
+            'status' => false,
+            'message' => 'Usuario no autorizado o sin rol asignado.'
+        ], 403);
     }
+
 }

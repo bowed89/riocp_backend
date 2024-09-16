@@ -68,7 +68,7 @@ class AuthController extends Controller
         if (!$auth) {
             return response()->json([
                 'status' => false,
-                'errors' => 'No esta autorizado.'
+                'errors' => 'Error al autenticarse. Por favor verifique sus datos.'
             ], 401);
         }
 
