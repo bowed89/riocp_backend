@@ -90,4 +90,17 @@ class AuthController extends Controller
             'errors' => 'Se cerro sesión.'
         ], 200);
     }
+
+    public function allUsers()
+    {
+        $users = Usuario::select('usuarios.nombre', 'usuarios.apellido', 'roles.rol', 'roles.estado', 'usuarios.rol_id')
+                        ->join('roles', 'usuarios.rol_id', '=', 'roles.id')
+                        ->get();
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Listado de Usuarios.',
+            'data' => $users,
+        ], 200);
+    }
 }

@@ -30,5 +30,6 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::resource('menu', MenuController::class);
     Route::get('menu/rol/user', [MenuController::class, 'selectMenuByRol']);
 
+    Route::get('usuarios', [AuthController::class, 'allUsers']);
     Route::get('auth/logout', [AuthController::class, 'logout']);
 });

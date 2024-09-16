@@ -18,7 +18,7 @@ class UsuarioSeeder extends Seeder
                 'nombre' => 'Juan',
                 'apellido' => 'Olguin',
                 'correo' => 'solicitante@gmail.com',
-                'password' => Hash::make('juan12345'), 
+                'password' => Hash::make('solicitante123'), 
                 'estado' => true,
                 'rol_id' => 1
             ],
@@ -26,7 +26,7 @@ class UsuarioSeeder extends Seeder
                 'nombre' => 'Maria',
                 'apellido' => 'Perez',
                 'correo' => 'administrador@gmail.com',
-                'password' => Hash::make('maria12345'), 
+                'password' => Hash::make('administrador123'), 
                 'estado' => true,
                 'rol_id' => 2
             ],
@@ -34,9 +34,25 @@ class UsuarioSeeder extends Seeder
                 'nombre' => 'Ana',
                 'apellido' => 'Gutierrez',
                 'correo' => 'operador@gmail.com',
-                'password' => Hash::make('ana12345'),
+                'password' => Hash::make('operador123'),
                 'estado' => true,
                 'rol_id' => 3
+            ],
+            [
+                'nombre' => 'Fabio',
+                'apellido' => 'Zenteno',
+                'correo' => 'seguimiento@gmail.com',
+                'password' => Hash::make('seguimiento123'),
+                'estado' => true,
+                'rol_id' => 4
+            ],
+            [
+                'nombre' => 'Wendy',
+                'apellido' => 'Ticona',
+                'correo' => 'administrador2@gmail.com',
+                'password' => Hash::make('administrador123'),
+                'estado' => true,
+                'rol_id' => 2
             ]
         ]);
     }
