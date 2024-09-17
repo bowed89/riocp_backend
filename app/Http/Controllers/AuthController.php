@@ -11,15 +11,18 @@ use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
 {
-    public function create(Request $request)
+    public function store(Request $request)
     {
         $rules = [
             'nombre' => 'required|string|max:100',
             'apellido' => 'required|string|max:100',
             'correo' => 'required|string|email|max:100|unique:usuarios',
+            'nombre_usuario' => 'required|string|max:50|unique:usuarios',
+            'ci' => 'required|integer|unique:usuarios',
             'password' => 'required|string|min:5',
             'estado' => 'required|boolean',
             'rol_id' => 'required|integer',
+            'entidad_id' => 'nullable|integer',
         ];
 
         $validator = Validator::make($request->input(), $rules);
@@ -35,9 +38,12 @@ class AuthController extends Controller
             'nombre' => $request->nombre,
             'apellido' => $request->apellido,
             'correo' => $request->correo,
+            'nombre_usuario' => $request->nombre_usuario,
+            'ci' => $request->ci,
             'password' => Hash::make($request->password),
             'estado' => $request->estado,
             'rol_id' => $request->rol_id,
+            'entidad_id' => $request->entidad_id,
         ]);
 
         return response()->json([
@@ -93,9 +99,19 @@ class AuthController extends Controller
 
     public function allUsers()
     {
-        $users = Usuario::select('usuarios.nombre', 'usuarios.apellido', 'roles.rol', 'roles.estado', 'usuarios.rol_id')
-                        ->join('roles', 'usuarios.rol_id', '=', 'roles.id')
-                        ->get();
+        $users = Usuario::select(
+            'usuarios.id',
+            'usuarios.nombre',
+            'usuarios.apellido',
+            'usuarios.correo',
+            'usuarios.nombre_usuario',
+            'roles.rol',
+            'usuarios.estado',
+            'usuarios.rol_id',
+            'usuarios.entidad_id'
+        )
+            ->join('roles', 'usuarios.rol_id', '=', 'roles.id')
+            ->get();
 
         return response()->json([
             'status' => true,

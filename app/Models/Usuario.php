@@ -17,9 +17,12 @@ class Usuario extends Authenticatable
         'nombre',
         'apellido',
         'correo',
+        'nombre_usuario',
+        'ci',
         'password',
         'estado',
         'rol_id',
+        'entidad_id'
     ];
 
 
