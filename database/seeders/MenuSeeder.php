@@ -248,6 +248,14 @@ class MenuSeeder extends Seeder
                 'estado' => 1,
             ],
             [
+                'nombre' => 'Asignación Menú Permiso',
+                'tipo' => 'administracion',
+                'url' => '/admin/menu-permisos',
+                'icono' => 'pi pi-check-circle',
+                'rol' => 2,
+                'estado' => 1,
+            ],
+            [
                 'nombre' => 'Requisitos Certificación',
                 'tipo' => 'administracion',
                 'url' => '/admin/requisito-certificacion',

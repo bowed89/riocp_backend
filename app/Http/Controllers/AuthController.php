@@ -8,6 +8,7 @@ use App\Models\Usuario;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Carbon;
 
 class AuthController extends Controller
 {
@@ -44,6 +45,7 @@ class AuthController extends Controller
             'estado' => $request->estado,
             'rol_id' => $request->rol_id,
             'entidad_id' => $request->entidad_id,
+            'created_at' => Carbon::now()
         ]);
 
         return response()->json([
@@ -53,7 +55,88 @@ class AuthController extends Controller
         ], 200);
     }
 
-    public function login(Request $request)
+    public function show($id)
+    {
+        $usuario = Usuario::find($id);
+
+        if (!$usuario) {
+            return response()->json([
+                'status' => false,
+                'message' => 'Usuario no encontrado.'
+            ], 404);
+        }
+
+        return response()->json([
+            'status' => true,
+            'data' => $usuario
+        ]);
+    }
+
+    public function update(Request $request, $id)
+    {
+        $usuario = Usuario::find($id);
+
+        if (!$usuario) {
+            return response()->json([
+                'status' => false,
+                'message' => 'Usuario no encontrado.',
+            ], 404);
+        }
+
+        $rules = [
+            'nombre' => 'string|max:100',
+            'apellido' => 'string|max:100',
+            'correo' => [
+                'string',
+                'email',
+                'max:100',
+                // Excluir el usuario actual de la validación de unicidad
+                'unique:usuarios,correo,' . $id,
+            ],
+            'nombre_usuario' => [
+                'string',
+                'max:50',
+                // Excluir el usuario actual de la validación de unicidad
+                'unique:usuarios,nombre_usuario,' . $id,
+            ],
+            'ci' => [
+                'integer',
+                // Excluir el usuario actual de la validación de unicidad
+                'unique:usuarios,ci,' . $id,
+            ],
+            'password' => 'nullable|string|min:5',
+            'estado' => 'boolean',
+            'rol_id' => 'integer',
+            'entidad_id' => 'nullable|integer',
+        ];
+
+        $validator = Validator::make($request->all(), $rules);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'status' => false,
+                'errors' => $validator->errors()->all()
+            ], 400);
+        }
+
+        $data = $request->only(['nombre', 'apellido', 'correo', 'nombre_usuario', 'ci', 'estado', 'rol_id', 'entidad_id', 'updated_at']);
+        // Verifica si se ha proporcionado una nueva contraseña
+        if ($request->filled('password')) {
+            $data['password'] = Hash::make($request->input('password')); // Encripta la contraseña
+        }
+
+        $data['updated_at'] = Carbon::now();
+
+        $usuario->update($data);
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Usuario actualizado correctamente.',
+            'data' => $usuario
+        ], 200);
+    }
+
+    /*    public function login(Request $request)
     {
         $rules = [
             'correo' => 'required|string|email|max:100',
@@ -86,7 +169,58 @@ class AuthController extends Controller
             'data' => $user,
             'token' => $user->createtoken('API TOKEN')->plainTextToken
         ], 200);
+    } */
+
+    public function login(Request $request)
+    {
+        // Validación de los datos de entrada
+        $rules = [
+            'correo' => 'required|string|email|max:100',
+            'password' => 'required|string|min:5',
+        ];
+
+        $validator = Validator::make($request->input(), $rules);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'status' => false,
+                'errors' => $validator->errors()->all()
+            ], 400);
+        }
+
+        // Intento de autenticación
+        $auth = Auth::attempt($request->only('correo', 'password'));
+
+        if (!$auth) {
+            return response()->json([
+                'status' => false,
+                'errors' => 'Error al autenticarse. Por favor verifique sus datos.'
+            ], 401);
+        }
+
+        // Obtención del usuario autenticado
+        $user = Usuario::where('correo', $request->correo)->first();
+
+        // Verificación del estado del usuario
+        if ($user->estado === false) {
+            // Opcional: Puedes cerrar la sesión aquí si el usuario está autenticado pero su estado es false
+            Auth::logout();
+
+            return response()->json([
+                'status' => false,
+                'errors' => 'El usuario está inactivo. No puede iniciar sesión.'
+            ], 403);
+        }
+
+        // Generación del token y respuesta de éxito
+        return response()->json([
+            'status' => true,
+            'message' => 'Usuario Autenticado correctamente.',
+            'data' => $user,
+            'token' => $user->createtoken('API TOKEN')->plainTextToken
+        ], 200);
     }
+
 
     public function logout(Request $request)
     {
