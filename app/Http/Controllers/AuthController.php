@@ -136,44 +136,8 @@ class AuthController extends Controller
         ], 200);
     }
 
-    /*    public function login(Request $request)
-    {
-        $rules = [
-            'correo' => 'required|string|email|max:100',
-            'password' => 'required|string|min:5',
-        ];
-
-        $validator = Validator::make($request->input(), $rules);
-
-        if ($validator->fails()) {
-            return response()->json([
-                'status' => false,
-                'errors' => $validator->errors()->all()
-            ], 400);
-        }
-
-        $auth = Auth::attempt($request->only('correo', 'password'));
-
-        if (!$auth) {
-            return response()->json([
-                'status' => false,
-                'errors' => 'Error al autenticarse. Por favor verifique sus datos.'
-            ], 401);
-        }
-
-        $user = Usuario::where('correo', $request->correo)->first();
-
-        return response()->json([
-            'status' => true,
-            'message' => 'Usuario Autenticado correctamente.',
-            'data' => $user,
-            'token' => $user->createtoken('API TOKEN')->plainTextToken
-        ], 200);
-    } */
-
     public function login(Request $request)
     {
-        // Validación de los datos de entrada
         $rules = [
             'correo' => 'required|string|email|max:100',
             'password' => 'required|string|min:5',
@@ -188,7 +152,6 @@ class AuthController extends Controller
             ], 400);
         }
 
-        // Intento de autenticación
         $auth = Auth::attempt($request->only('correo', 'password'));
 
         if (!$auth) {
@@ -198,21 +161,16 @@ class AuthController extends Controller
             ], 401);
         }
 
-        // Obtención del usuario autenticado
         $user = Usuario::where('correo', $request->correo)->first();
-
-        // Verificación del estado del usuario
+ 
+        
         if ($user->estado === false) {
-            // Opcional: Puedes cerrar la sesión aquí si el usuario está autenticado pero su estado es false
-            Auth::logout();
-
             return response()->json([
                 'status' => false,
-                'errors' => 'El usuario está inactivo. No puede iniciar sesión.'
-            ], 403);
+                'errors' => 'El usuario está inhabilitado. Contacte al administrador.'
+            ], 403); 
         }
 
-        // Generación del token y respuesta de éxito
         return response()->json([
             'status' => true,
             'message' => 'Usuario Autenticado correctamente.',
@@ -220,7 +178,6 @@ class AuthController extends Controller
             'token' => $user->createtoken('API TOKEN')->plainTextToken
         ], 200);
     }
-
 
     public function logout(Request $request)
     {

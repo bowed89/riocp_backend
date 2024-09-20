@@ -153,7 +153,7 @@ class MenuSeeder extends Seeder
             ],
             [
                 'nombre' => 'Todos los Certificados',
-                'tipo' => 'certificados',
+                'tipo' => 'certificados', 
                 'url' => '/operador/ver-certificados',
                 'icono' => 'pi pi-check-circle',
                 'rol' => 3,
@@ -255,7 +255,7 @@ class MenuSeeder extends Seeder
                 'rol' => 2,
                 'estado' => 1,
             ],
-            [
+           /*  [
                 'nombre' => 'Requisitos Certificación',
                 'tipo' => 'administracion',
                 'url' => '/admin/requisito-certificacion',
@@ -270,7 +270,7 @@ class MenuSeeder extends Seeder
                 'icono' => 'pi pi-check-circle',
                 'rol' => 2,
                 'estado' => 1,
-            ],
+            ], */
             [
                 'nombre' => 'Mis Tramites',
                 'tipo' => 'tramites',

@@ -59,4 +59,33 @@ class EntidadesController extends Controller
     {
         //
     }
+
+    public function getEntidadByUser($id)
+    {
+
+        $entidades = Entidad::select(
+            'entidades.denominacion',
+            'usuarios.entidad_id',
+            'usuarios.nombre',
+            'usuarios.apellido',
+            'usuarios.correo',
+            'usuarios.nombre_usuario'
+        )
+            ->join('usuarios', 'usuarios.entidad_id', '=', 'entidades.id')
+            ->where('usuarios.id', $id)
+            ->get();
+
+        if ($entidades->isEmpty()) {
+            return response()->json([
+                'status' => false,
+                'message' => 'No existe rol Solicitante.'
+            ], 400);
+        }
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Listado de usario por rol solicitante.',
+            'data' => $entidades,
+        ], 200);
+    }
 }

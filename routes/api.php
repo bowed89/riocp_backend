@@ -36,5 +36,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('auth/logout', [AuthController::class, 'logout']);
 
     Route::resource('entidades', EntidadesController::class);
+    Route::get('entidades/solicitante/{id}', [EntidadesController::class, 'getEntidadByUser']);
+
 
 });
