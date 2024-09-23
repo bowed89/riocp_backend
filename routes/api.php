@@ -24,19 +24,19 @@ Route::post('auth/register', [AuthController::class, 'create']);
 Route::post('auth/login', [AuthController::class, 'login']);
 
 Route::middleware(['auth:sanctum'])->group(function () {
-    Route::resource('roles', RolController::class);
-    Route::put('roles/delete/{id}', [RolController::class, 'deleteRol']);
-    Route::get('roles/show/{id}', [RolController::class, 'showById']);
 
-    Route::resource('menu', MenuController::class);
+    Route::middleware('rol:2')->group(function () {
+        Route::resource('roles', RolController::class);
+        Route::put('roles/delete/{id}', [RolController::class, 'deleteRol']);
+        Route::get('roles/show/{id}', [RolController::class, 'showById']);
+        Route::resource('menu', MenuController::class);
+        Route::resource('usuarios', AuthController::class);
+    });
+
     Route::get('menu/rol/user', [MenuController::class, 'selectMenuByRol']);
-
-    Route::resource('usuarios', AuthController::class);
     Route::get('usuarios', [AuthController::class, 'allUsers']);
     Route::get('auth/logout', [AuthController::class, 'logout']);
 
     Route::resource('entidades', EntidadesController::class);
-    Route::get('entidades/solicitante/{id}', [EntidadesController::class, 'getEntidadByUser']);
-
-
+    Route::get('entidades/usuario/rol', [EntidadesController::class, 'getEntidadByUser']);
 });

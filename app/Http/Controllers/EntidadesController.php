@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Entidad;
-use App\Models\entidades;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class EntidadesController extends Controller
 {
@@ -24,6 +24,7 @@ class EntidadesController extends Controller
 
         return response()->json([
             'status' => true,
+            'message' => 'Listado de Entidades.',
             'data' => $entidades,
         ], 200);
     }
@@ -60,32 +61,45 @@ class EntidadesController extends Controller
         //
     }
 
-    public function getEntidadByUser($id)
+    public function getEntidadByUser()
     {
+        $user = Auth::user();
+        
+        if ($user) {
+            if ($user->rol_id == 1) { // rol solicitante
+                $entidades = Entidad::select(
+                    'entidades.denominacion',
+                    'usuarios.entidad_id',
+                    'usuarios.nombre',
+                    'usuarios.apellido',
+                    'usuarios.correo',
+                    'usuarios.nombre_usuario'
+                )
+                    ->join('usuarios', 'usuarios.entidad_id', '=', 'entidades.id')
+                    ->where('usuarios.id', $user->id)
+                    ->get();
 
-        $entidades = Entidad::select(
-            'entidades.denominacion',
-            'usuarios.entidad_id',
-            'usuarios.nombre',
-            'usuarios.apellido',
-            'usuarios.correo',
-            'usuarios.nombre_usuario'
-        )
-            ->join('usuarios', 'usuarios.entidad_id', '=', 'entidades.id')
-            ->where('usuarios.id', $id)
-            ->get();
+                return response()->json([
+                    'status' => true,
+                    'message' => 'Listado de usario por rol solicitante.',
+                    'data' => $entidades,
+                ], 200);
 
-        if ($entidades->isEmpty()) {
-            return response()->json([
-                'status' => false,
-                'message' => 'No existe rol Solicitante.'
-            ], 400);
+            } else { // sino es rol solicitante...
+                return response()->json([
+                    'status' => true,
+                    'message' => 'Rol de usuario.',
+                    'data' => [$user],
+                ], 200);
+            }
         }
 
         return response()->json([
-            'status' => true,
-            'message' => 'Listado de usario por rol solicitante.',
-            'data' => $entidades,
-        ], 200);
+            'status' => false,
+            'message' => 'Usuario no autorizado.'
+        ], 403);
+
+        
     }
+    
 }

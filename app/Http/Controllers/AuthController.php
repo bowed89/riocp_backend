@@ -19,7 +19,7 @@ class AuthController extends Controller
             'apellido' => 'required|string|max:100',
             'correo' => 'required|string|email|max:100|unique:usuarios',
             'nombre_usuario' => 'required|string|max:50|unique:usuarios',
-            'ci' => 'required|integer|unique:usuarios',
+            'ci' => 'required|integer|min:5|unique:usuarios',
             'password' => 'required|string|min:5',
             'estado' => 'required|boolean',
             'rol_id' => 'required|integer',
@@ -47,6 +47,7 @@ class AuthController extends Controller
             'entidad_id' => $request->entidad_id,
             'created_at' => Carbon::now()
         ]);
+        
 
         return response()->json([
             'status' => true,

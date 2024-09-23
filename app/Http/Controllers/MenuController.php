@@ -134,8 +134,22 @@ class MenuController extends Controller
     {
         $user = Auth::user();
 
-        if ($user && $user->rol_id) {        
-            $menu = Menu::where('rol', $user->rol_id)->get();
+        if ($user && $user->rol_id) {
+            $menu = Menu::select(
+                'menus.id',
+                'menus.nombre',
+                'menus.url',
+                'menus.icono',
+                'menus.rol_id',
+                'menus.tipo_id',
+                'roles.rol',
+                'tipos.tipo'
+            )
+                ->where('menus.estado', true)
+                ->where('menus.rol_id', $user->rol_id) 
+                ->join('roles', 'menus.rol_id', '=', 'roles.id')
+                ->join('tipos', 'menus.tipo_id', '=', 'tipos.id')
+                ->get();
 
             if ($menu->isEmpty()) {
                 return response()->json([
@@ -156,5 +170,4 @@ class MenuController extends Controller
             'message' => 'Usuario no autorizado o sin rol asignado.'
         ], 403);
     }
-
 }

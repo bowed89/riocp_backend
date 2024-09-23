@@ -7,9 +7,12 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
-class Usuario extends Authenticatable
+
+
+class Usuario extends Authenticatable 
 {
     use HasApiTokens, HasFactory, Notifiable;
+
     protected $table = 'usuarios';
     protected $primaryKey = 'id';
 
@@ -25,5 +28,11 @@ class Usuario extends Authenticatable
         'entidad_id'
     ];
 
+    // ocultar el campo 'password' en las auditorías
+    protected $hidden = [
+        'password',
+    ];
+
+    protected static $auditEvents = ['created', 'updated', 'deleted'];
 
 }

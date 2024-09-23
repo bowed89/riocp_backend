@@ -5,19 +5,19 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Rol extends Model
+use OwenIt\Auditing\Contracts\Auditable;
+
+
+class Rol extends Model 
 {
     use HasFactory;
     protected $table = 'roles';
-    
+
     protected $fillable = [
         'rol',
         'descripcion',
         'estado'
     ];
 
-/*     public function users() {
-        return $this->hasMany(Usuario::class, 'rol_id');
-    } */
-
+   
 }

@@ -44,7 +44,7 @@ class RolController extends Controller
 
         $rol = new Rol($request->input());
         $rol->save();
-
+        
         return response()->json([
             'status' => true,
             'message' => 'Rol Creado.'
@@ -80,6 +80,7 @@ class RolController extends Controller
 
         $rol->update($request->all());
 
+
         return response()->json([
             'status' => true,
             'message' => 'Rol actualizado correctamente.',
@@ -88,10 +89,7 @@ class RolController extends Controller
     }
 
 
-    public function destroy(Rol $rol)
-    {
-        //
-    }
+    public function destroy(Rol $rol) {}
 
     public function deleteRol($id)
     {

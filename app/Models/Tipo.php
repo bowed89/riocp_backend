@@ -5,19 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Menu extends Model
+use OwenIt\Auditing\Contracts\Auditable; 
+use OwenIt\Auditing\Auditable as AuditableTrait;
+
+class tipos extends Model implements Auditable
 {
-    use HasFactory;
-    protected $table = 'menus';
-
-
+    use HasFactory, AuditableTrait;
+    protected $table = 'tipos';
+    
     protected $fillable = [
-        'nombre',
-        'url',
-        'icono',
-        'estado',
-        'rol_id',
-        'tipo_id'
+        'tipo'
     ];
 
     protected static $auditEvents = ['created', 'updated', 'deleted'];

@@ -23,6 +23,7 @@ return new class extends Migration
             $table->foreignId('rol_id')->constrained('roles')->onDelete('cascade');
             $table->foreignId('entidad_id')->nullable()->constrained('entidades')->onDelete('cascade');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
