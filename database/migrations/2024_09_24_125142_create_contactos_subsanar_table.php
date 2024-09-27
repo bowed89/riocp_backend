@@ -11,15 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('menus', function (Blueprint $table) {
+        Schema::create('contactos_subsanar', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre');
-            $table->string('url');
-            $table->string('icono');
-            $table->boolean('show_menu')->default(true);
+            $table->string('nombre_completo');
+            $table->string('cargo');
+            $table->string('correo_electronico');
             $table->boolean('estado');
-            $table->foreignId('rol_id')->constrained('roles')->onDelete('cascade');
-            $table->foreignId('tipo_id')->constrained('tipos')->onDelete('cascade');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -30,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('menus');
+        Schema::dropIfExists('contactos');
     }
 };

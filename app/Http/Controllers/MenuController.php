@@ -34,6 +34,7 @@ class MenuController extends Controller
             'url' => 'required|string',
             'icono' => 'required|string',
             'rol' => 'required|integer',
+            'show_menu' => 'required|boolean',
             'estado' => 'required|boolean'
         ];
 
@@ -88,6 +89,7 @@ class MenuController extends Controller
             'url' => 'required|string',
             'icono' => 'required|string',
             'rol' => 'required|integer',
+            'show_menu' => 'required|boolean',
             'estado' => 'required|boolean'
         ];
 
@@ -112,7 +114,6 @@ class MenuController extends Controller
     public function deleteRol($id)
     {
         $menu = Menu::find($id);
-
         if (!$menu) {
             return response()->json([
                 'status' => false,
@@ -142,6 +143,7 @@ class MenuController extends Controller
                 'menus.icono',
                 'menus.rol_id',
                 'menus.tipo_id',
+                'menus.show_menu',
                 'roles.rol',
                 'tipos.tipo'
             )

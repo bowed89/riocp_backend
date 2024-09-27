@@ -14,11 +14,16 @@ class RoleMiddleware
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-    public function handle(Request $request, Closure $next, $rol): Response
+
+    public function handle(Request $request, Closure $next, $roles): Response
     {
         $user = Auth::user();
 
-        if (!$user || $user->rol_id !== (int)$rol) {
+        // obtengo roles '1.2' y los convierto en array separando con puntos
+        $allowedRoles = array_map('intval', explode('.', $roles));
+        
+        // Verifica si el rol del usuario está dentro de los roles permitidos
+        if (!$user || !in_array($user->rol_id, $allowedRoles)) {
             return response()->json([
                 'status' => false,
                 'message' => 'El rol no tiene acceso a esta consulta.'

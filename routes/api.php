@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\EntidadesController;
+use App\Http\Controllers\FormularioCorrespondenciaController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\RolController;
 
@@ -24,7 +25,7 @@ Route::post('auth/register', [AuthController::class, 'create']);
 Route::post('auth/login', [AuthController::class, 'login']);
 
 Route::middleware(['auth:sanctum'])->group(function () {
-
+    // Admistrador
     Route::middleware('rol:2')->group(function () {
         Route::resource('roles', RolController::class);
         Route::put('roles/delete/{id}', [RolController::class, 'deleteRol']);
@@ -33,6 +34,11 @@ Route::middleware(['auth:sanctum'])->group(function () {
         Route::resource('usuarios', AuthController::class);
     });
 
+    // Admistrador y solicitante
+    Route::middleware('rol:1.2')->group(function () {
+        Route::resource('solicitante', FormularioCorrespondenciaController::class);
+    });
+    
     Route::get('menu/rol/user', [MenuController::class, 'selectMenuByRol']);
     Route::get('usuarios', [AuthController::class, 'allUsers']);
     Route::get('auth/logout', [AuthController::class, 'logout']);

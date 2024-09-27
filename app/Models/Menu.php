@@ -15,6 +15,7 @@ class Menu extends Model
         'nombre',
         'url',
         'icono',
+        'show_menu',
         'estado',
         'rol_id',
         'tipo_id'

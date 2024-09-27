@@ -18,6 +18,7 @@ class MenuSeeder extends Seeder
                 'rol_id' => 1,
                 'tipo_id' => 1,
                 'estado' => 1,
+                'show_menu' => 1,
             ],
             [
                 'nombre' => 'Notificaciones',
@@ -26,6 +27,7 @@ class MenuSeeder extends Seeder
                 'rol_id' => 1,
                 'tipo_id' => 2,
                 'estado' => 1,
+                'show_menu' => 1,
             ],
             [
                 'nombre' => 'Mis Tramites',
@@ -34,6 +36,7 @@ class MenuSeeder extends Seeder
                 'rol_id' => 1,
                 'tipo_id' => 3,
                 'estado' => 1,
+                'show_menu' => 1,
             ],
             [
                 'nombre' => 'Nuevo',
@@ -42,6 +45,53 @@ class MenuSeeder extends Seeder
                 'rol_id' => 1,
                 'tipo_id' => 3,
                 'estado' => 1,
+                'show_menu' => 1,
+            ],
+            /* sub componentes de nuevo tramite */
+            [
+                'nombre' => 'Nuevo',
+                'url' => '/solicitante/nuevo-tramite/correspondencia',
+                'icono' => 'pi pi-check-circle',
+                'rol_id' => 1,
+                'tipo_id' => 3,
+                'estado' => 1,
+                'show_menu' => 0,
+            ],
+            [
+                'nombre' => 'Nuevo',
+                'url' => '/solicitante/nuevo-tramite/formulario-uno',
+                'icono' => 'pi pi-check-circle',
+                'rol_id' => 1,
+                'tipo_id' => 3,
+                'estado' => 1,
+                'show_menu' => 0,
+            ],
+            [
+                'nombre' => 'Nuevo',
+                'url' => '/solicitante/nuevo-tramite/formulario-dos',
+                'icono' => 'pi pi-check-circle',
+                'rol_id' => 1,
+                'tipo_id' => 3,
+                'estado' => 1,
+                'show_menu' => 0,
+            ],
+            [
+                'nombre' => 'Nuevo',
+                'url' => '/solicitante/nuevo-tramite/formulario-tres',
+                'icono' => 'pi pi-check-circle',
+                'rol_id' => 1,
+                'tipo_id' => 3,
+                'estado' => 1,
+                'show_menu' => 0,
+            ],
+            [
+                'nombre' => 'Nuevo',
+                'url' => '/solicitante/nuevo-tramite/formulario-cuatro',
+                'icono' => 'pi pi-check-circle',
+                'rol_id' => 1,
+                'tipo_id' => 3,
+                'estado' => 1,
+                'show_menu' => 0,
             ],
             [
                 'nombre' => 'Mis tramites',
@@ -50,6 +100,7 @@ class MenuSeeder extends Seeder
                 'rol_id' => 1,
                 'tipo_id' => 4,
                 'estado' => 1,
+                'show_menu' => 1,
             ],
             [
                 'nombre' => 'Nuevo',
@@ -58,6 +109,7 @@ class MenuSeeder extends Seeder
                 'rol_id' => 1,
                 'tipo_id' => 4,
                 'estado' => 1,
+                'show_menu' => 1,
             ],
             [
                 'nombre' => 'Solicitudes Realizadas',
@@ -66,6 +118,7 @@ class MenuSeeder extends Seeder
                 'rol_id' => 1,
                 'tipo_id' => 5,
                 'estado' => 1,
+                'show_menu' => 1,
             ],
             [
                 'nombre' => 'Tramites Observados',
@@ -74,6 +127,7 @@ class MenuSeeder extends Seeder
                 'rol_id' => 1,
                 'tipo_id' => 5,
                 'estado' => 1,
+                'show_menu' => 1,
             ],
             [
                 'nombre' => 'Tramites Inhabilitados',
@@ -82,6 +136,7 @@ class MenuSeeder extends Seeder
                 'rol_id' => 1,
                 'tipo_id' => 5,
                 'estado' => 1,
+                'show_menu' => 1,
             ],
             [
                 'nombre' => 'Certificados Emitidos',
@@ -90,6 +145,7 @@ class MenuSeeder extends Seeder
                 'rol_id' => 1,
                 'tipo_id' => 5,
                 'estado' => 1,
+                'show_menu' => 1,
             ],
             [
                 'nombre' => 'Ayuda',
@@ -98,6 +154,7 @@ class MenuSeeder extends Seeder
                 'rol_id' => 1,
                 'tipo_id' => 6,
                 'estado' => 1,
+                'show_menu' => 1,
             ],
             [
                 'nombre' => 'Inicio',
@@ -106,6 +163,7 @@ class MenuSeeder extends Seeder
                 'rol_id' => 3,
                 'tipo_id' => 1,
                 'estado' => 1,
+                'show_menu' => 1,
             ],
             [
                 'nombre' => 'Notificaciones',
@@ -114,6 +172,7 @@ class MenuSeeder extends Seeder
                 'rol_id' => 3,
                 'tipo_id' => 2,
                 'estado' => 1,
+                'show_menu' => 1,
             ],
             [
                 'nombre' => 'Mis Tramites',
@@ -122,6 +181,7 @@ class MenuSeeder extends Seeder
                 'rol_id' => 3,
                 'tipo_id' => 3,
                 'estado' => 1,
+                'show_menu' => 1,
             ],
             [
                 'nombre' => 'Revisar Requisito',
@@ -130,6 +190,7 @@ class MenuSeeder extends Seeder
                 'rol_id' => 3,
                 'tipo_id' => 3,
                 'estado' => 1,
+                'show_menu' => 1,
             ],
             [
                 'nombre' => 'Elaborar Certificado',
@@ -138,6 +199,7 @@ class MenuSeeder extends Seeder
                 'rol_id' => 3,
                 'tipo_id' => 3,
                 'estado' => 1,
+                'show_menu' => 1,
             ],
             [
                 'nombre' => 'Elaborar Informe',
@@ -146,6 +208,7 @@ class MenuSeeder extends Seeder
                 'rol_id' => 3,
                 'tipo_id' => 3,
                 'estado' => 1,
+                'show_menu' => 1,
             ],
             [
                 'nombre' => 'Todos los Certificados',
@@ -154,6 +217,7 @@ class MenuSeeder extends Seeder
                 'rol_id' => 3,
                 'tipo_id' => 4,
                 'estado' => 1,
+                'show_menu' => 1,
             ],
             [
                 'nombre' => 'Requisitos',
@@ -162,6 +226,7 @@ class MenuSeeder extends Seeder
                 'rol_id' => 3,
                 'tipo_id' => 4,
                 'estado' => 1,
+                'show_menu' => 1,
             ],
             [
                 'nombre' => 'Informe',
@@ -170,6 +235,7 @@ class MenuSeeder extends Seeder
                 'rol_id' => 3,
                 'tipo_id' => 4,
                 'estado' => 1,
+                'show_menu' => 1,
             ],
             [
                 'nombre' => 'Solicitudes Realizadas',
@@ -178,6 +244,7 @@ class MenuSeeder extends Seeder
                 'rol_id' => 3,
                 'tipo_id' => 5,
                 'estado' => 1,
+                'show_menu' => 1,
             ],
             [
                 'nombre' => 'Tramites Observados',
@@ -186,6 +253,7 @@ class MenuSeeder extends Seeder
                 'rol_id' => 3,
                 'tipo_id' => 5,
                 'estado' => 1,
+                'show_menu' => 1,
             ],
             [
                 'nombre' => 'Tramites Inhabilitados',
@@ -194,6 +262,7 @@ class MenuSeeder extends Seeder
                 'rol_id' => 3,
                 'tipo_id' => 5,
                 'estado' => 1,
+                'show_menu' => 1,
             ],
             [
                 'nombre' => 'Certificados Emitidos',
@@ -202,6 +271,7 @@ class MenuSeeder extends Seeder
                 'rol_id' => 3,
                 'tipo_id' => 5,
                 'estado' => 1,
+                'show_menu' => 1,
             ],
             [
                 'nombre' => 'Ayuda',
@@ -210,6 +280,7 @@ class MenuSeeder extends Seeder
                 'rol_id' => 3,
                 'tipo_id' => 6,
                 'estado' => 1,
+                'show_menu' => 1,
             ],
             [
                 'nombre' => 'Inicio',
@@ -218,6 +289,7 @@ class MenuSeeder extends Seeder
                 'rol_id' => 2,
                 'tipo_id' => 1,
                 'estado' => 1,
+                'show_menu' => 1,
             ],
             [
                 'nombre' => 'Usuarios',
@@ -226,6 +298,7 @@ class MenuSeeder extends Seeder
                 'rol_id' => 2,
                 'tipo_id' => 7,
                 'estado' => 1,
+                'show_menu' => 1,
             ],
             [
                 'nombre' => 'Roles',
@@ -234,6 +307,7 @@ class MenuSeeder extends Seeder
                 'rol_id' => 2,
                 'tipo_id' => 7,
                 'estado' => 1,
+                'show_menu' => 1,
             ],
             [
                 'nombre' => 'Asignación Roles y Permisos',
@@ -242,6 +316,7 @@ class MenuSeeder extends Seeder
                 'rol_id' => 2,
                 'tipo_id' => 7,
                 'estado' => 1,
+                'show_menu' => 1,
             ],
             [
                 'nombre' => 'Asignación Menú Permiso',
@@ -250,6 +325,7 @@ class MenuSeeder extends Seeder
                 'rol_id' => 2,
                 'tipo_id' => 7,
                 'estado' => 1,
+                'show_menu' => 1,
             ],
             [
                 'nombre' => 'Mis Tramites',
@@ -258,6 +334,7 @@ class MenuSeeder extends Seeder
                 'rol_id' => 2,
                 'tipo_id' => 3,
                 'estado' => 1,
+                'show_menu' => 1,
             ],
             [
                 'nombre' => 'Requisitos',
@@ -266,6 +343,7 @@ class MenuSeeder extends Seeder
                 'rol_id' => 2,
                 'tipo_id' => 3,
                 'estado' => 1,
+                'show_menu' => 1,
             ],
             [
                 'nombre' => 'Notificaciones',
@@ -274,6 +352,7 @@ class MenuSeeder extends Seeder
                 'rol_id' => 2,
                 'tipo_id' => 2,
                 'estado' => 1,
+                'show_menu' => 1,
             ],
             [
                 'nombre' => 'Solicitudes Realizadas',
@@ -282,6 +361,7 @@ class MenuSeeder extends Seeder
                 'rol_id' => 2,
                 'tipo_id' => 5,
                 'estado' => 1,
+                'show_menu' => 1,
             ],
             [
                 'nombre' => 'Tramites Observados',
@@ -290,6 +370,7 @@ class MenuSeeder extends Seeder
                 'rol_id' => 2,
                 'tipo_id' => 5,
                 'estado' => 1,
+                'show_menu' => 1,
             ],
             [
                 'nombre' => 'Tramites Inhabilitado',
@@ -298,6 +379,7 @@ class MenuSeeder extends Seeder
                 'rol_id' => 2,
                 'tipo_id' => 5,
                 'estado' => 1,
+                'show_menu' => 1,
             ],
             [
                 'nombre' => 'Certificados Emitidos',
@@ -306,6 +388,7 @@ class MenuSeeder extends Seeder
                 'rol_id' => 2,
                 'tipo_id' => 5,
                 'estado' => 1,
+                'show_menu' => 1,
             ],
             [
                 'nombre' => 'Certificados Vencidos',
@@ -314,6 +397,7 @@ class MenuSeeder extends Seeder
                 'rol_id' => 2,
                 'tipo_id' => 5,
                 'estado' => 1,
+                'show_menu' => 1,
             ],
             [
                 'nombre' => 'Por Acreedor',
@@ -322,6 +406,7 @@ class MenuSeeder extends Seeder
                 'rol_id' => 2,
                 'tipo_id' => 5,
                 'estado' => 1,
+                'show_menu' => 1,
             ],
             [
                 'nombre' => 'Por Moneda',
@@ -330,6 +415,7 @@ class MenuSeeder extends Seeder
                 'rol_id' => 2,
                 'tipo_id' => 5,
                 'estado' => 1,
+                'show_menu' => 1,
             ],
             [
                 'nombre' => 'Ayuda',
@@ -338,6 +424,7 @@ class MenuSeeder extends Seeder
                 'rol_id' => 2,
                 'tipo_id' => 6,
                 'estado' => 1,
+                'show_menu' => 1,
             ],
             [
                 'nombre' => 'Inicio',
@@ -346,6 +433,7 @@ class MenuSeeder extends Seeder
                 'rol_id' => 4,
                 'tipo_id' => 1,
                 'estado' => 1,
+                'show_menu' => 1,
             ],
             [
                 'nombre' => 'Mis Tramites',
@@ -354,6 +442,7 @@ class MenuSeeder extends Seeder
                 'rol_id' => 4,
                 'tipo_id' => 3,
                 'estado' => 1,
+                'show_menu' => 1,
             ],
             [
                 'nombre' => 'Certificado',
@@ -362,6 +451,7 @@ class MenuSeeder extends Seeder
                 'rol_id' => 4,
                 'tipo_id' => 4,
                 'estado' => 1,
+                'show_menu' => 1,
             ],
             [
                 'nombre' => 'Requisitos',
@@ -370,6 +460,7 @@ class MenuSeeder extends Seeder
                 'rol_id' => 4,
                 'tipo_id' => 4,
                 'estado' => 1,
+                'show_menu' => 1,
             ],
             [
                 'nombre' => 'Informe',
@@ -378,6 +469,7 @@ class MenuSeeder extends Seeder
                 'rol_id' => 4,
                 'tipo_id' => 4,
                 'estado' => 1,
+                'show_menu' => 1,
             ],
             [
                 'nombre' => 'Solicitudes Realizadas',
@@ -386,6 +478,7 @@ class MenuSeeder extends Seeder
                 'rol_id' => 4,
                 'tipo_id' => 5,
                 'estado' => 1,
+                'show_menu' => 1,
             ],
             [
                 'nombre' => 'Tramites Observados',
@@ -394,6 +487,7 @@ class MenuSeeder extends Seeder
                 'rol_id' => 4,
                 'tipo_id' => 5,
                 'estado' => 1,
+                'show_menu' => 1,
             ],
             [
                 'nombre' => 'Tramites Inhabilitados',
@@ -402,6 +496,7 @@ class MenuSeeder extends Seeder
                 'rol_id' => 4,
                 'tipo_id' => 5,
                 'estado' => 1,
+                'show_menu' => 1,
             ],
             [
                 'nombre' => 'Certificados Emitidos',
@@ -410,6 +505,7 @@ class MenuSeeder extends Seeder
                 'rol_id' => 4,
                 'tipo_id' => 5,
                 'estado' => 1,
+                'show_menu' => 1,
             ],
             [
                 'nombre' => 'Ayuda',
@@ -418,8 +514,8 @@ class MenuSeeder extends Seeder
                 'rol_id' => 4,
                 'tipo_id' => 6,
                 'estado' => 1,
+                'show_menu' => 1,
             ],
         ]);
-
     }
 }
