@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('cite_documento')->nullable();
             $table->string('referencia');
             $table->string('ruta_documento')->nullable(); // Columna para almacenar la ruta del documento
-            $table->boolean('documento_firmado')->default(false); // Indica si el documento fue cargado
+            $table->boolean('firma_digital')->default(false); // Indica si el documento fue cargado
             $table->boolean('estado')->default(true);
             $table->foreignId('solicitud_id')->constrained('solicitudes')->onDelete('cascade')->unique();
             $table->timestamps();

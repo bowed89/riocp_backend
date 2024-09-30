@@ -33,8 +33,9 @@ class FormularioCorrespondenciaController extends Controller
             'nombre_entidad' => 'required|string|max:255',
             'cite_documento' => 'string|max:255',
             'referencia' => 'string|max:255',
+            'documento' => 'file|mimes:pdf|max:20240', // Validar archivo PDF, máximo 10MB
             'ruta_documento' => 'string|max:255',
-            'documento_firmado' => 'required|boolean',
+            'firma_digital' => 'required|boolean',
             'estado' => 'required|boolean',
             'solicitud_id' => 'required|integer'
         ];
@@ -48,7 +49,15 @@ class FormularioCorrespondenciaController extends Controller
             ], 400);
         }
 
-        $formulario = new FormularioCorrespondencia($request->input());
+        // Manejo de la subida del archivo
+        if ($request->hasFile('documento')) {
+            $file = $request->file('documento');
+            // Guardar el archivo en el almacenamiento local y obtener la ruta
+            $filePath = $file->store('documentos', 'public'); // Guardar en 'storage/app/public/documentos'
+        }
+
+        $formulario = new FormularioCorrespondencia($request->except('documento'));
+        $formulario->ruta_documento = $filePath ?? null; // se guarda la ruta del archivo subido
         $formulario->save();
 
         return response()->json([
@@ -92,8 +101,9 @@ class FormularioCorrespondenciaController extends Controller
             'nombre_entidad' => 'string|max:255',
             'cite_documento' => 'string|max:255',
             'referencia' => 'string|max:255',
+            'documento' => 'required|file|mimes:pdf|max:10240', // Validar archivo PDF, máximo 10MB
             'ruta_documento' => 'string|max:255',
-            'documento_firmado' => 'required|boolean',
+            'firma_digital' => 'required|boolean',
             'estado' => 'boolean',
             'solicitud_id' => 'integer'
         ];

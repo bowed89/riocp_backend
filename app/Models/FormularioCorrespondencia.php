@@ -16,7 +16,7 @@ class FormularioCorrespondencia extends Model
         'cite_documento',
         'referencia',
         'ruta_documento',
-        'documento_firmado',
+        'firma_digital',
         'estado',
         'solicitud_id',
     ];

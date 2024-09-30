@@ -8,6 +8,7 @@ use App\Http\Controllers\EntidadesController;
 use App\Http\Controllers\FormularioCorrespondenciaController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\RolController;
+use App\Http\Controllers\SolicitudController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,9 +37,10 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
     // Admistrador y solicitante
     Route::middleware('rol:1.2')->group(function () {
-        Route::resource('solicitante', FormularioCorrespondenciaController::class);
+        Route::resource('formulario-correspondencia', FormularioCorrespondenciaController::class);
+        Route::resource('solicitud', SolicitudController::class);
     });
-    
+
     Route::get('menu/rol/user', [MenuController::class, 'selectMenuByRol']);
     Route::get('usuarios', [AuthController::class, 'allUsers']);
     Route::get('auth/logout', [AuthController::class, 'logout']);
