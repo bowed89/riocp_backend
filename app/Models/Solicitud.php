@@ -10,14 +10,13 @@ class Solicitud extends Model
     use HasFactory;
     protected $table = 'solicitudes';
     protected $fillable = [
-        'cite',
         'nro_solicitud',
         'estado',
         'usuario_id',
         'estado_solicitud_id',
     ];
 
-    public function Solicitud()
+    public function Formulario()
     {
         return $this->belongsTo(FormularioCorrespondencia::class);
     }

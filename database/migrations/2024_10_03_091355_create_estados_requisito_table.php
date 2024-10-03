@@ -11,15 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('entidades', function (Blueprint $table) {
+        Schema::create('estados_requisito', function (Blueprint $table) {
             $table->id();
-            $table->integer('entidad_id');
-            $table->integer('par_tipo_institucion');
-            $table->integer('par_departamento');
-            $table->string('denominacion');
-            $table->string('sigla')->nullable();
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 
@@ -28,6 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('entidades');
+        Schema::dropIfExists('estados_requisito');
     }
 };

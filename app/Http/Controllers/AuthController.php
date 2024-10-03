@@ -47,7 +47,7 @@ class AuthController extends Controller
             'entidad_id' => $request->entidad_id,
             'created_at' => Carbon::now()
         ]);
-        
+
 
         return response()->json([
             'status' => true,
@@ -162,14 +162,14 @@ class AuthController extends Controller
             ], 401);
         }
 
-        $user = Usuario::where('correo', $request->correo)->first();
- 
-        
+        //$user = Usuario::where('correo', $request->correo)->first();
+        $user = Usuario::with('entidad')->where('correo', $request->correo)->first();
+
         if ($user->estado === false) {
             return response()->json([
                 'status' => false,
                 'errors' => 'El usuario está inhabilitado. Contacte al administrador.'
-            ], 403); 
+            ], 403);
         }
 
         return response()->json([

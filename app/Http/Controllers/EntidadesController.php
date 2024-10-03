@@ -69,6 +69,7 @@ class EntidadesController extends Controller
             if ($user->rol_id == 1) { // rol solicitante
                 $entidades = Entidad::select(
                     'entidades.denominacion',
+                    'entidades.entidad_id as num_entidad',
                     'usuarios.entidad_id',
                     'usuarios.nombre',
                     'usuarios.apellido',

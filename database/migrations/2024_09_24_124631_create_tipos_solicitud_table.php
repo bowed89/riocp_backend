@@ -6,22 +6,25 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-
+    /**
+     * Run the migrations.
+     */
     public function up(): void
     {
-        Schema::create('solicitudes', function (Blueprint $table) {
+        Schema::create('tipos_solicitud', function (Blueprint $table) {
             $table->id();
-            $table->string('nro_solicitud');
+            $table->string('tipo');
             $table->boolean('estado')->default(true);
-            $table->foreignId('usuario_id')->constrained('usuarios')->onDelete('cascade');
-            $table->foreignId('estado_solicitud_id')->constrained('estados_solicitud')->onDelete('cascade');
             $table->timestamps();
             $table->softDeletes();
         });
     }
 
+    /**
+     * Reverse the migrations.
+     */
     public function down(): void
     {
-        Schema::dropIfExists('solicitudes');
+        Schema::dropIfExists('tipo_solicitud');
     }
 };

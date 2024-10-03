@@ -5,12 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-use OwenIt\Auditing\Contracts\Auditable; 
-use OwenIt\Auditing\Auditable as AuditableTrait;
 
-class tipos extends Model implements Auditable
+class tipos extends Model
 {
-    use HasFactory, AuditableTrait;
+    use HasFactory;
     protected $table = 'tipos';
     
     protected $fillable = [

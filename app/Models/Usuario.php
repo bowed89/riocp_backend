@@ -9,7 +9,7 @@ use Laravel\Sanctum\HasApiTokens;
 
 
 
-class Usuario extends Authenticatable 
+class Usuario extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
@@ -35,4 +35,10 @@ class Usuario extends Authenticatable
 
     protected static $auditEvents = ['created', 'updated', 'deleted'];
 
+
+    // Relación con el modelo Entidad
+    public function entidad()
+    {
+        return $this->belongsTo(Entidad::class);
+    }
 }

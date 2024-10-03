@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\FormularioCorrespondencia;
+use App\Models\Solicitud;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 
 class FormularioCorrespondenciaController extends Controller
@@ -27,44 +30,136 @@ class FormularioCorrespondenciaController extends Controller
 
     public function store(Request $request)
     {
-        $rules = [
-            'nombre_completo' => 'required|string|min:5',
-            'correo_electronico' => 'required|email|max:255',
-            'nombre_entidad' => 'required|string|max:255',
-            'cite_documento' => 'string|max:255',
-            'referencia' => 'string|max:255',
-            'documento' => 'file|mimes:pdf|max:20240', // Validar archivo PDF, máximo 10MB
-            'ruta_documento' => 'string|max:255',
-            'firma_digital' => 'required|boolean',
-            'estado' => 'required|boolean',
-            'solicitud_id' => 'required|integer'
-        ];
+        $user = Auth::user();
 
-        $validator = Validator::make($request->input(), $rules);
+        if ($user) {
+            $rules = [
+                'nombre_completo' => 'required|string|min:5',
+                'correo_electronico' => 'required|email|max:255',
+                'nombre_entidad' => 'required|string|max:255',
+                'cite_documento' => 'string|max:255',
+                'referencia' => 'string|max:255',
+                'documento' => 'required|file|mimes:pdf|max:10240', // Validar archivo PDF, máximo 10MB
+                'ruta_documento' => 'string|max:255',
+                'firma_digital' => 'required|boolean',
+                'estado' => 'required|boolean',
+                'solicitud_id' => 'required|integer'
+            ];
 
-        if ($validator->fails()) {
+            $validator = Validator::make($request->all(), $rules);
+
+            if ($validator->fails()) {
+                return response()->json([
+                    'status' => false,
+                    'errors' => $validator->errors()->all()
+                ], 400);
+            }
+
+
+            // Manejo de la subida del archivo
+            if ($request->hasFile('documento')) {
+                $file = $request->file('documento');
+                $nombres = $user->nombre . ' ' .  $user->apellido;
+                $entidad = $user->entidad->denominacion;
+                $fechaActual = now()->format('Y-m-d');
+                // Guardar el archivo en el almacenamiento local y obtener la ruta
+                $filePath = $file->store('correspondencia/' . $fechaActual . '/' . $entidad . '/' . $nombres, 'public');
+            }
+
+            $formulario = new FormularioCorrespondencia($request->except('documento'));
+            $formulario->ruta_documento = $filePath ?? null; // se guarda la ruta del archivo subido
+            $formulario->save();
+
             return response()->json([
-                'status' => false,
-                'errors' => $validator->errors()->all()
-            ], 400);
+                'status' => true,
+                'message' => 'Formulario Creado.',
+                'data' => $formulario
+            ], 200);
         }
-
-        // Manejo de la subida del archivo
-        if ($request->hasFile('documento')) {
-            $file = $request->file('documento');
-            // Guardar el archivo en el almacenamiento local y obtener la ruta
-            $filePath = $file->store('documentos', 'public'); // Guardar en 'storage/app/public/documentos'
-        }
-
-        $formulario = new FormularioCorrespondencia($request->except('documento'));
-        $formulario->ruta_documento = $filePath ?? null; // se guarda la ruta del archivo subido
-        $formulario->save();
 
         return response()->json([
-            'status' => true,
-            'message' => 'Formulario Creado.'
-        ], 200);
+            'status' => false,
+            'message' => 'Usuario no autorizado o sin rol asignado.'
+        ], 403);
     }
+
+    public function storeSolicitudFormulario(Request $request)
+    {
+
+        Log::info('Datos recibidos:', $request->all());
+
+        $user = Auth::user();
+
+        if ($user) {
+            $solicitudRules = [
+                'nro_solicitud' => 'required|string',
+                'estado_solicitud_id' => 'required|integer',
+            ];
+
+            $solicitudValidator = Validator::make($request->only('nro_solicitud', 'estado_solicitud_id'), $solicitudRules);
+
+            if ($solicitudValidator->fails()) {
+                return response()->json([
+                    'status' => false,
+                    'errors' => $solicitudValidator->errors()->all()
+                ], 400);
+            }
+
+            // Crear la solicitud
+            $solicitud = new Solicitud($request->only('nro_solicitud', 'estado_solicitud_id', 'estado'));
+            $solicitud->usuario_id = $user->id; // Asigna el usuario autenticado
+            $solicitud->save();
+
+            $formularioRules = [
+                'nombre_completo' => 'required|string|min:5',
+                'correo_electronico' => 'required|email|max:255',
+                'nombre_entidad' => 'required|string|max:255',
+                'cite_documento' => 'string|max:255',
+                'referencia' => 'string|max:255',
+                'documento' => 'required|file|mimes:pdf|max:10240', // Validar archivo PDF, máximo 10MB
+                'ruta_documento' => 'string|max:255',
+                'firma_digital' => 'required|boolean',
+                'solicitud_id' => 'required|integer'
+            ];
+
+            $formularioValidator = Validator::make($request->all(), $formularioRules);
+
+            if ($formularioValidator->fails()) {
+                return response()->json([
+                    'status' => false,
+                    'errors' => $formularioValidator->errors()->all()
+                ], 400);
+            }
+
+            // Manejo de la subida del archivo
+            $filePath = null;
+            if ($request->hasFile('documento')) {
+                $file = $request->file('documento');
+                $nombres = $user->nombre . ' ' . $user->apellido;
+                $entidad = $user->entidad->denominacion;
+                $fechaActual = now()->format('Y-m-d');
+                $filePath = $file->store('correspondencia/' . $fechaActual . '/' . $entidad . '/' . $nombres, 'public');
+            }
+
+            // Crear el formulario de correspondencia
+            $formulario = new FormularioCorrespondencia($request->except('documento'));
+            $formulario->solicitud_id = $solicitud->id; 
+            $formulario->ruta_documento = $filePath; 
+            $formulario->save();
+
+            return response()->json([
+                'status' => true,
+                'message' => 'Tramite registro correctamente.',
+                'data' => $formulario
+            ], 200);
+        }
+
+        return response()->json([
+            'status' => false,
+            'message' => 'Usuario no autorizado o sin rol asignado.'
+        ], 403);
+    }
+
 
 
     public function show($id)
@@ -104,7 +199,6 @@ class FormularioCorrespondenciaController extends Controller
             'documento' => 'required|file|mimes:pdf|max:10240', // Validar archivo PDF, máximo 10MB
             'ruta_documento' => 'string|max:255',
             'firma_digital' => 'required|boolean',
-            'estado' => 'boolean',
             'solicitud_id' => 'integer'
         ];
 

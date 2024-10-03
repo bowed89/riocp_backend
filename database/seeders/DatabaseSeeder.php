@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
+use App\Models\SolicitudTemporal;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -14,6 +16,7 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(RolSeeder::class);
         $this->call(TipoSeeder::class);
+        $this->call(TipoSolicitudSeeder::class);
         $this->call(EstadoSolicitudSeeder::class);
         $this->call(EntidadSeeder::class);
         $this->call(UsuarioSeeder::class);

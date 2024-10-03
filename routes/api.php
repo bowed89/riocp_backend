@@ -38,6 +38,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     // Admistrador y solicitante
     Route::middleware('rol:1.2')->group(function () {
         Route::resource('formulario-correspondencia', FormularioCorrespondenciaController::class);
+        Route::post('/formulario-correspondencia/formulario-solicitud', [FormularioCorrespondenciaController::class, 'storeSolicitudFormulario']);
         Route::resource('solicitud', SolicitudController::class);
     });
 

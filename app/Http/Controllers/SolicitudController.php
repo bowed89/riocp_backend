@@ -28,11 +28,9 @@ class SolicitudController extends Controller
     public function store(Request $request)
     {
         $rules = [
-            'cite' => 'required|string',
             'nro_solicitud' => 'required|string',
             'usuario_id' => 'required|integer',
             'estado_solicitud_id' => 'required|integer',
-            'estado' => 'required|boolean'
         ];
 
         $validator = Validator::make($request->input(), $rules);
@@ -49,7 +47,8 @@ class SolicitudController extends Controller
 
         return response()->json([
             'status' => true,
-            'message' => 'Solicitud Creada.'
+            'message' => 'Solicitud Creada.',
+            'data' => $solicitud
         ], 200);
     }
 }
