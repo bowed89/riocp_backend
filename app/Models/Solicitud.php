@@ -14,6 +14,7 @@ class Solicitud extends Model
         'estado',
         'usuario_id',
         'estado_solicitud_id',
+        'estado_requisito_id',
     ];
 
     public function Formulario()

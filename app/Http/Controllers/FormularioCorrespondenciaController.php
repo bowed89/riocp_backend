@@ -6,7 +6,6 @@ use App\Models\FormularioCorrespondencia;
 use App\Models\Solicitud;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 
 class FormularioCorrespondenciaController extends Controller
@@ -85,28 +84,11 @@ class FormularioCorrespondenciaController extends Controller
 
     public function storeSolicitudFormulario(Request $request)
     {
-
-        Log::info('Datos recibidos:', $request->all());
-
         $user = Auth::user();
 
         if ($user) {
-            $solicitudRules = [
-                'nro_solicitud' => 'required|string',
-                'estado_solicitud_id' => 'required|integer',
-            ];
-
-            $solicitudValidator = Validator::make($request->only('nro_solicitud', 'estado_solicitud_id'), $solicitudRules);
-
-            if ($solicitudValidator->fails()) {
-                return response()->json([
-                    'status' => false,
-                    'errors' => $solicitudValidator->errors()->all()
-                ], 400);
-            }
-
             // Crear la solicitud
-            $solicitud = new Solicitud($request->only('nro_solicitud', 'estado_solicitud_id', 'estado'));
+            $solicitud = new Solicitud();
             $solicitud->usuario_id = $user->id; // Asigna el usuario autenticado
             $solicitud->save();
 

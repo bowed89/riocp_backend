@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('monedas', function (Blueprint $table) {
+        Schema::create('estados_requisito', function (Blueprint $table) {
             $table->id();
             $table->string('tipo');
             $table->boolean('estado');
@@ -25,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('moneda');
+        Schema::dropIfExists('estados_requisito');
     }
 };

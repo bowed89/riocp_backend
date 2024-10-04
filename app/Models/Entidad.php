@@ -10,7 +10,6 @@ class Entidad extends Model
     use HasFactory;
     protected $table = 'entidades';
 
-
     protected $fillable = [
         'entidad_id',
         'par_tipo_institucion',

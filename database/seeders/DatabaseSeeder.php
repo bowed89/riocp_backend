@@ -16,7 +16,12 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(RolSeeder::class);
         $this->call(TipoSeeder::class);
+        $this->call(AcreedoresSeeder::class);
+        $this->call(IdentificadorCreditoSeeder::class);
+        $this->call(MonedaSeeder::class);
+        $this->call(PeriodoSeeder::class);
         $this->call(TipoSolicitudSeeder::class);
+        $this->call(EstadoRequisitoSeeder::class);
         $this->call(EstadoSolicitudSeeder::class);
         $this->call(EntidadSeeder::class);
         $this->call(UsuarioSeeder::class);

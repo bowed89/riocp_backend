@@ -15,19 +15,19 @@ return new class extends Migration
             $table->id();
             $table->string('monto_total');
             $table->integer('plazo');
-            $table->string('interes_anual');
+            $table->integer('interes_anual');
             $table->string('comisiones');
             $table->integer('periodo_gracia');
-            $table->integer('objeto_operacion_credito');
+            $table->string('objeto_operacion_credito');
             $table->boolean('firma_digital')->default(false); // si el formulario tiene firma digital..
-            $table->foreignId('solicitud_id')->constrained('solicitudes')->onDelete('cascade');
+            $table->foreignId('solicitud_id')->nullable()->constrained('solicitudes')->onDelete('cascade');
             $table->foreignId('acreedor_id')->constrained('acreedores')->onDelete('cascade');
             $table->foreignId('moneda_id')->constrained('monedas')->onDelete('cascade');
             $table->foreignId('entidad_id')->constrained('entidades')->onDelete('cascade');
             $table->foreignId('identificador_id')->constrained('identificadores_credito')->onDelete('cascade'); 
             $table->foreignId('periodo_id')->constrained('periodos')->onDelete('cascade'); 
             $table->foreignId('contacto_id')->constrained('contactos_subsanar')->onDelete('cascade'); 
-            $table->boolean('estado');
+            $table->boolean('estado')->default(true);
             $table->timestamps();
             $table->softDeletes();
         });

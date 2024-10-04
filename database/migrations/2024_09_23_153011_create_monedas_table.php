@@ -11,9 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('estados_requisito', function (Blueprint $table) {
+        Schema::create('monedas', function (Blueprint $table) {
             $table->id();
+            $table->string('tipo');
+            $table->string('sigla');
+            $table->boolean('estado')->default(true);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -22,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('estados_requisito');
+        Schema::dropIfExists('moneda');
     }
 };

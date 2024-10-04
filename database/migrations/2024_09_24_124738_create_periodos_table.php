@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('periodos', function (Blueprint $table) {
             $table->id();
             $table->string('tipo');
-            $table->boolean('estado');
+            $table->boolean('estado')->default(true);
             $table->timestamps();
             $table->softDeletes();
         });

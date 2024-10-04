@@ -13,8 +13,9 @@ return new class extends Migration
     {
         Schema::create('identificadores_credito', function (Blueprint $table) {
             $table->id();
-            $table->string('tipo');
-            $table->boolean('estado');
+            $table->string('nombre');
+            $table->string('sigla');
+            $table->boolean('estado')->default(true);
             $table->timestamps();
             $table->softDeletes();
         });

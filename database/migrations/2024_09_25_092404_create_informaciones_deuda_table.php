@@ -14,8 +14,8 @@ return new class extends Migration
             $table->boolean('pregunta_2')->nullable();
             $table->boolean('pregunta_3')->nullable();
             $table->boolean('pregunta_4')->nullable();
-            $table->boolean('estado');
-            $table->foreignId('solicitud_id')->constrained('solicitudes')->onDelete('cascade');
+            $table->boolean('estado')->default(true);
+            $table->foreignId('solicitud_id')->nullable()->constrained('solicitudes')->onDelete('cascade');
             $table->timestamps();
             $table->softDeletes();
         });

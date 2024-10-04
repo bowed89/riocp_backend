@@ -4,11 +4,14 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CronogramaServicioDeudaController;
 use App\Http\Controllers\EntidadesController;
 use App\Http\Controllers\FormularioCorrespondenciaController;
+use App\Http\Controllers\InformacionDeudaController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\RolController;
 use App\Http\Controllers\SolicitudController;
+use App\Http\Controllers\SolicitudRiocpController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,8 +41,20 @@ Route::middleware(['auth:sanctum'])->group(function () {
     // Admistrador y solicitante
     Route::middleware('rol:1.2')->group(function () {
         Route::resource('formulario-correspondencia', FormularioCorrespondenciaController::class);
-        Route::post('/formulario-correspondencia/formulario-solicitud', [FormularioCorrespondenciaController::class, 'storeSolicitudFormulario']);
+        Route::post('/formulario-correspondencia/formulario', [FormularioCorrespondenciaController::class, 'storeSolicitudFormulario']);
         Route::resource('solicitud', SolicitudController::class);
+        // Formulario 1
+        Route::resource('solicitud-riocp', SolicitudRiocpController::class);
+        Route::post('/solicitud-riocp/formulario', [SolicitudRiocpController::class, 'storeSolicitudFormularioRiocp']);
+
+        // Formulario 2
+        Route::resource('informacion-deuda', InformacionDeudaController::class);
+        Route::post('/informacion-deuda/formulario', [InformacionDeudaController::class, 'storeSolicitudInformacionDeuda']);
+
+        // Formulario 3
+        Route::post('/cronograma-deuda/formulario', [CronogramaServicioDeudaController::class, 'storeSolicitudCronogramaServicioDeuda']);
+   
+   
     });
 
     Route::get('menu/rol/user', [MenuController::class, 'selectMenuByRol']);

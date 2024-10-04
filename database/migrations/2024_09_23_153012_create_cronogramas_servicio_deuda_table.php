@@ -12,14 +12,13 @@ return new class extends Migration
         Schema::create('cronogramas_servicio_deuda', function (Blueprint $table) {
             $table->id();
             $table->string('objeto_deuda');
-            $table->string('total_capital');
-            $table->string('total_interes');
-            $table->string('total_comisiones');
-            $table->string('total');
-            $table->foreignId('cuadro_pago_id')->nullable()->constrained('cuadros_pagos')->onDelete('cascade');
+            $table->decimal('total_capital', 10, 2)->nullable(); // $table->decimal('interes', 10, 2);
+            $table->decimal('total_interes', 10, 2)->nullable();
+            $table->decimal('total_comisiones', 10, 2)->nullable();
+            $table->decimal('total_sum', 10, 2)->nullable();
             $table->foreignId('acreedor_id')->constrained('acreedores')->onDelete('cascade');
             $table->foreignId('moneda_id')->constrained('monedas')->onDelete('cascade');
-            $table->boolean('estado');
+            $table->boolean('estado')->default(true);
             $table->timestamps();
             $table->softDeletes();
         });

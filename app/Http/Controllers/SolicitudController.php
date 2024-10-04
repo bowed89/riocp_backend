@@ -28,9 +28,8 @@ class SolicitudController extends Controller
     public function store(Request $request)
     {
         $rules = [
-            'nro_solicitud' => 'required|string',
-            'usuario_id' => 'required|integer',
-            'estado_solicitud_id' => 'required|integer',
+            'nro_solicitud' => 'string',
+            'usuario_id' => 'required|integer'
         ];
 
         $validator = Validator::make($request->input(), $rules);
