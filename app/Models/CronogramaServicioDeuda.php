@@ -15,6 +15,7 @@ class CronogramaServicioDeuda extends Model
         'total_interes',
         'total_comisiones',
         'total_sum',
+        'solicitud_id',
         'acreedor_id',
         'moneda_id',
         'estado'

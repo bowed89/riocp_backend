@@ -5,16 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class ContactoSubsanar extends Model
+class Acreedor extends Model
 {
     use HasFactory;
-    protected $table = 'contactos_subsanar';
+    protected $table = 'acreedores';
 
     protected $fillable = [
-        'nombre_completo',
-        'cargo',
-        'correo_electronico',
-        'telefono',
+        'nombre',
+        'codigo',
         'estado'
     ];
 }

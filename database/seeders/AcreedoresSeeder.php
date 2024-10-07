@@ -14,7 +14,9 @@ class AcreedoresSeeder extends Seeder
     public function run(): void
     {
         DB::table('acreedores')->insert([
-            ['nombre' => 'FONDO NACIONAL DE DESARROLLO  REGIONAL', 'codigo' => 'FNDR']
+            ['nombre' => 'FONDO NACIONAL DE DESARROLLO  REGIONAL', 'codigo' => 'FNDR'],
+            ['nombre' => 'BANCO UNIÓN S.A.', 'codigo' => '']
+
         ]);
     }
 }

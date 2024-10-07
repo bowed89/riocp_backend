@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('nombre_completo');
             $table->string('cargo');
             $table->string('correo_electronico');
+            $table->integer('telefono');
             $table->boolean('estado')->default(true);
             $table->timestamps();
             $table->softDeletes();

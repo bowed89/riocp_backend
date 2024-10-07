@@ -29,69 +29,6 @@ class SolicitudRiocpController extends Controller
         ], 200);
     }
 
-    /*   public function storeSolicitudFormularioRiocp(Request $request)
-    {
-        $user = Auth::user();
-
-        if ($user) {
-            // Crear la solicitud
-            $solicitud = new Solicitud();
-            $solicitud->usuario_id = $user->id; // Asigna el usuario autenticado
-            $solicitud->save();
-
-            $formularioRules = [
-                'monto_total' => 'required|string|max:255',
-                'plazo' => 'required|integer|min:1',
-                'interes_anual' => 'required|integer|min:1',
-                'comisiones' => 'required|string|max:255',
-                'periodo_gracia' => 'required|integer|min:0',
-                'objeto_operacion_credito' => 'required|string|max:255',
-                'firma_digital' => 'boolean',
-                'solicitud_id' => 'required|exists:solicitudes,id',
-                'acreedor_id' => 'required|exists:acreedores,id',
-                'moneda_id' => 'required|exists:monedas,id',
-                'entidad_id' => 'required|exists:entidades,id',
-                'identificador_id' => 'required|exists:identificadores_credito,id',
-                'periodo_id' => 'required|exists:periodos,id',
-                'contacto_id' => 'required|exists:contactos_subsanar,id',
-                //contactos subsanar
-                'nombre_completo' => 'required|string|max:255',
-                'correo_electronico' => 'required|email|max:255',
-                'cargo' => 'required|string'
-            ];
-
-            $formularioValidator = Validator::make($request->all(), $formularioRules);
-
-            if ($formularioValidator->fails()) {
-                return response()->json([
-                    'status' => false,
-                    'errors' => $formularioValidator->errors()->all()
-                ], 400);
-            }
-            // Crear Contacto Subsanar
-            $contactoRules = 
-            $contactoValidator = Validator::make($request->except('nombre_completo', 'correo_electronico', 'cargo'), $formularioRules);
-
-
-
-            // Crear el Solicitud RIOCP
-            $solicitudRiocp = new SolicitudRiocp($request->input());
-            $solicitudRiocp->solicitud_id = $solicitud->id;
-            $solicitudRiocp->save();
-
-            return response()->json([
-                'status' => true,
-                'message' => 'Formulario registrado correctamente.',
-                'data' => $solicitudRiocp
-            ], 200);
-        }
-
-        return response()->json([
-            'status' => false,
-            'message' => 'Usuario no autorizado o sin rol asignado.'
-        ], 403);
-    } */
-
     public function storeSolicitudFormularioRiocp(Request $request)
     {
         $user = Auth::user();
@@ -103,20 +40,17 @@ class SolicitudRiocpController extends Controller
                 ->get();
 
             if ($solicitudFaltante->isEmpty()) {
-                // Crear la solicitud
-                $solicitud = new Solicitud();
-                $solicitud->usuario_id = $user->id; // Asigna el usuario autenticado
-                $solicitud->save();
-
                 // Reglas de validación para el formulario
                 $formularioRules = [
-                    'monto_total' => 'required|string|max:255',
+                    'monto_total' => 'required|numeric',
                     'plazo' => 'required|integer|min:1',
-                    'interes_anual' => 'required|integer|min:1',
-                    'comisiones' => 'required|string|max:255',
+                    'interes_anual' => 'required|numeric',
+                    'comisiones' => 'max:255',
                     'periodo_gracia' => 'required|integer|min:0',
                     'objeto_operacion_credito' => 'required|string|max:255',
-                    'firma_digital' => 'boolean',
+                    'firma_digital' => 'required|boolean', //*
+                    'ruta_documento' => 'string|max:255', //*
+                    'documento' => 'required|file|mimes:pdf|max:10240', //** */ Validar archivo PDF, máximo 10MB
                     'acreedor_id' => 'required|exists:acreedores,id',
                     'moneda_id' => 'required|exists:monedas,id',
                     'entidad_id' => 'required|exists:entidades,id',
@@ -126,7 +60,7 @@ class SolicitudRiocpController extends Controller
                     'nombre_completo' => 'required|string|max:255',
                     'correo_electronico' => 'required|email|max:255',
                     'cargo' => 'required|string|max:255',
-                    'estado' => 'required|boolean'
+                    'telefono' => 'required|integer'
                 ];
 
                 // Validar los datos del formulario
@@ -135,20 +69,45 @@ class SolicitudRiocpController extends Controller
                 if ($formularioValidator->fails()) {
                     return response()->json([
                         'status' => false,
-                        'errors' => $formularioValidator->errors()->all()
+                        'message' => $formularioValidator->errors()->all()
                     ], 400);
                 }
+
+                // Validar que firma_digital sea TRUE 
+                if (!$request->input('firma_digital')) {
+                    return response()->json([
+                        'status' => false,
+                        'message' => 'El formulario PDF no tiene firma digital.'
+                    ], 400);
+                }
+
+                // Crear la solicitud
+                $solicitud = new Solicitud();
+                $solicitud->usuario_id = $user->id; // Asigna el usuario autenticado
+                $solicitud->save();
 
                 // Crear Contacto Subsanar
                 $contacto = new ContactoSubsanar();
                 $contacto->nombre_completo = $request->input('nombre_completo');
                 $contacto->correo_electronico = $request->input('correo_electronico');
                 $contacto->cargo = $request->input('cargo');
-                $contacto->estado = $request->input('estado');
+                $contacto->telefono = $request->input('telefono');
                 $contacto->save();
 
+                // Manejo de la subida del archivo
+                $filePath = null;
+                if ($request->hasFile('documento')) {
+                    $file = $request->file('documento');
+                    $nombres = $user->nombre . ' ' . $user->apellido;
+                    $entidad = $user->entidad->denominacion;
+                    $fechaActual = now()->format('Y-m-d');
+                    $filePath = $file->store('formularios-riocp/' . $fechaActual . '/' . $entidad . '/' . $nombres, 'public');
+                }
+
+
                 // Crear el Solicitud RIOCP
-                $solicitudRiocp = new SolicitudRiocp($request->except('nombre_completo', 'correo_electronico', 'cargo', 'estado'));
+                $solicitudRiocp = new SolicitudRiocp($request->except('nombre_completo', 'correo_electronico', 'cargo', 'telefono', 'documento'));
+                $solicitudRiocp->ruta_documento = $filePath;
                 $solicitudRiocp->solicitud_id = $solicitud->id;
                 $solicitudRiocp->contacto_id = $contacto->id;
                 $solicitudRiocp->save();

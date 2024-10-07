@@ -23,7 +23,7 @@ class InformacionDeudaController extends Controller
             if (!$solicitud) {
                 return response()->json([
                     'status' => false,
-                    'message' => 'No se encontró una solicitud del usuario en proceso.'
+                    'message' => 'No se encontró una solicitud del usuario en proceso. Primero debe completar el FORMULARIO 1 SOLICITUD RIOCP.'
                 ], 404);
             }
 

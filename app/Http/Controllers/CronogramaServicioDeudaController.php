@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\CronogramaServicioDeuda;
 use App\Models\CuadroPago;
+use App\Models\Solicitud;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -17,44 +18,51 @@ class CronogramaServicioDeudaController extends Controller
         $user = Auth::user();
 
         if ($user) {
-            // Verifico si esta habilitado el formulario 3
-            $verifico = DB::table('informaciones_deuda as a')
+            // obtengo el id de la solicitud incompleta del usuario 
+            $solicitud = Solicitud::where('usuario_id', $user->id)
+                ->where('estado_requisito_id', 1) // 1 es incompleto
+                ->first();
+
+            if (!$solicitud) {
+                return response()->json([
+                    'status' => false,
+                    'message' => 'No se encontró una solicitud del usuario en proceso. Primero debe completar el FORMULARIO 1 SOLICITUD RIOCP.'
+                ], 404);
+            }
+
+            // verifico que no exista un formulario creado anteriormente con la misma solicitud_id
+            $formularioDuplicado = CronogramaServicioDeuda::where('solicitud_id', $solicitud->id)->first();
+
+            if ($formularioDuplicado) {
+                return response()->json([
+                    'status' => false,
+                    'message' => 'Ya se registro un formulario con una solicitud pendiente.'
+                ], 404);
+            }
+
+            // Verifico si esta habilitado el formulario 3 segun la pregunta 2 y 3 del formulario 2
+            $formulariHabilitado = DB::table('informaciones_deuda as a')
                 ->join('solicitudes as s', 'a.solicitud_id', '=', 's.id')
                 ->where('s.usuario_id', $user->id)
                 ->where('s.estado_requisito_id', 1)
                 ->select(DB::raw('CASE WHEN a.pregunta_2 = true OR a.pregunta_3 = true THEN true ELSE false END as resultado'))
                 ->get();
 
-            // Si tiene mas de dos tramites pendientes '1'
-            if (count($verifico) > 1) {
-                return response()->json([
-                    'status' => false,
-                    'message' => 'Existen más de 2 trámites abiertos. Complete o elimine sus trámites anteriores.',
-                    'data' => $verifico
-                ], 400);
-            }
-
             // Si en el formulario 2 la pregunta_2 o pregunta_3 es true, se habilita el formulario 3
-            if ($verifico[0]->resultado) {
+            if ($formulariHabilitado[0]->resultado) {
                 //convierto mis numero de formato 100.098,00 a decimales => 100098.00
                 $requestData = $request->all();
                 $convertedData = convertirNumerosEnArray($requestData);
 
-                return response()->json([
-                    'status' => true,
-                    'data' => $convertedData
-                ], 400);
-
-
                 $formularioRules = [
                     'acreedor_id' => 'required|integer',
+                    'solicitud_id' => 'required|integer',
                     'objeto_deuda' => 'required|string',
                     'moneda_id' => 'required|integer',
-                    'total_capital' => 'required|string',
-                    'total_interes' => 'required|string',
-                    'total_comisiones' => 'required|string',
-                    'total_sum' => 'required|string',
-                    // cuadros_pagos
+                    'total_capital' => 'required|numeric',
+                    'total_interes' => 'required|numeric',
+                    'total_comisiones' => 'required|numeric',
+                    'total_sum' => 'required|numeric',
                     // cuadros_pagos: valido un array de objetos
                     'cuadro_pagos' => 'required|array',
                     'cuadro_pagos.*.fecha_vencimiento' => 'required|date',
@@ -65,7 +73,7 @@ class CronogramaServicioDeudaController extends Controller
                     'cuadro_pagos.*.saldo' => 'required|numeric',
                 ];
 
-                $formularioValidator = Validator::make($request->all(), $formularioRules);
+                $formularioValidator = Validator::make($convertedData, $formularioRules);
 
                 if ($formularioValidator->fails()) {
                     return response()->json([
@@ -74,43 +82,63 @@ class CronogramaServicioDeudaController extends Controller
                     ], 400);
                 }
 
-                // Primero registrar cronograma_servicio_deudas
+                // Realizo sumatoria del array cuadro_pago de los campos: capital, interes, comisiones, total
+                $total_capital = 0;
+                $total_interes = 0;
+                $total_comisiones = 0;
+                $total_sum = 0;
+
+                foreach ($convertedData['cuadro_pagos'] as $pago) {
+                    $total_capital += (float) $pago['capital'];
+                    $total_interes += (float) $pago['interes'];
+                    $total_comisiones += (float) $pago['comisiones'];
+                    $total_sum += (float) $pago['total'];
+                }
+
+                $total_capital = number_format($total_capital, 2, '.', '');
+                $total_interes = number_format($total_interes, 2, '.', '');
+                $total_comisiones = number_format($total_comisiones, 2, '.', '');
+                $total_sum = number_format($total_sum, 2, '.', '');
+
+                // registro datos en la tabla cronograma_servicio_deudas
                 $registroDeudas = new CronogramaServicioDeuda();
-                $registroDeudas = $request->input('acreedor_id');
-                $registroDeudas = $request->input('objeto_deuda');
-                $registroDeudas = $request->input('moneda_id');
+
+                $registroDeudas->solicitud_id = $solicitud->id;
+                $registroDeudas->acreedor_id = $request->input('acreedor_id');
+                $registroDeudas->objeto_deuda = $request->input('objeto_deuda');
+                $registroDeudas->moneda_id = $request->input('moneda_id');
+
+                $registroDeudas->total_capital =  $total_capital;
+                $registroDeudas->total_interes =  $total_interes;
+                $registroDeudas->total_comisiones =  $total_comisiones;
+                $registroDeudas->total_sum =  $total_sum;
                 $registroDeudas->save();
 
-                // Agrego la tabla cuadro_pago
-                $cuadroPago = new CuadroPago();
+                // registro el array cuadros_pago en su tabla 
+                $idRegistroDeuda = $registroDeudas->id;
 
-
+                foreach ($convertedData['cuadro_pagos'] as $pago) {
+                    $cuadrosPago = new CuadroPago();
+                    $cuadrosPago->fecha_vencimiento = $pago['fecha_vencimiento'];
+                    $cuadrosPago->capital = $pago['capital'];
+                    $cuadrosPago->interes = $pago['interes'];
+                    $cuadrosPago->comisiones = $pago['comisiones'];
+                    $cuadrosPago->total = $pago['total'];
+                    $cuadrosPago->saldo = $pago['saldo'];
+                    $cuadrosPago->cronograma_servicio_id = $idRegistroDeuda;
+                    $cuadrosPago->save();
+                }
 
                 return response()->json([
                     'status' => true,
-                    'message' => 'un tramite y es true.',
-                    'data' => $verifico[0]->resultado
-                ], 400);
+                    'message' => 'Se agrego los datos del formulario CRONOGRAMA DEL SERVICIO DE LA DEUDA correctamente.',
+                ], 200);
             }
-
 
             return response()->json([
                 'status' => false,
                 'message' => 'No puede completar el formulario CRONOGRAMA DE SERVICIO DE LA DEUDA, porque en su formulario INFORMACIÓN DE DEUDA selecciono NO en las preguntas 2 o 3.',
             ], 400);
-
-
-
-
-
-
-            /*   if ($formularioValidator->fails()) {
-                return response()->json([
-                    'status' => false,
-                    'errors' => $formularioValidator->errors()->all()
-                ], 400);
-            }
-             */
         }
 
         return response()->json([

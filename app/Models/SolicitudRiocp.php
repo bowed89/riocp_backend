@@ -18,6 +18,7 @@ class SolicitudRiocp extends Model
         'periodo_gracia',
         'objeto_operacion_credito',
         'firma_digital',
+        'ruta_documento',
         'solicitud_id',
         'acreedor_id',
         'moneda_id',
