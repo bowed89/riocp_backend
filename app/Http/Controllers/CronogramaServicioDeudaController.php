@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Validator;
 class CronogramaServicioDeudaController extends Controller
 {
 
-    public function storeSolicitudCronogramaServicioDeuda(Request $request)
+    public function storeCronogramaServicioDeuda(Request $request)
     {
         $user = Auth::user();
 
@@ -48,7 +48,7 @@ class CronogramaServicioDeudaController extends Controller
                 ->select(DB::raw('CASE WHEN a.pregunta_2 = true OR a.pregunta_3 = true THEN true ELSE false END as resultado'))
                 ->get();
 
-            // Si en el formulario 2 la pregunta_2 o pregunta_3 es true, se habilita el formulario 3
+            // Si en el formulario 2 la pregunta_2 o pregunta_3 es true, puedo registrar en el formulario 3
             if ($formulariHabilitado[0]->resultado) {
                 //convierto mis numero de formato 100.098,00 a decimales => 100098.00
                 $requestData = $request->all();
@@ -56,13 +56,13 @@ class CronogramaServicioDeudaController extends Controller
 
                 $formularioRules = [
                     'acreedor_id' => 'required|integer',
-                    'solicitud_id' => 'required|integer',
                     'objeto_deuda' => 'required|string',
                     'moneda_id' => 'required|integer',
                     'total_capital' => 'required|numeric',
                     'total_interes' => 'required|numeric',
                     'total_comisiones' => 'required|numeric',
                     'total_sum' => 'required|numeric',
+
                     // cuadros_pagos: valido un array de objetos
                     'cuadro_pagos' => 'required|array',
                     'cuadro_pagos.*.fecha_vencimiento' => 'required|date',
@@ -73,7 +73,9 @@ class CronogramaServicioDeudaController extends Controller
                     'cuadro_pagos.*.saldo' => 'required|numeric',
                 ];
 
-                $formularioValidator = Validator::make($convertedData, $formularioRules);
+                //$formularioValidator = Validator::make($convertedData, $formularioRules);
+                $formularioValidator = Validator::make($request->all(), $formularioRules);
+
 
                 if ($formularioValidator->fails()) {
                     return response()->json([
@@ -83,7 +85,7 @@ class CronogramaServicioDeudaController extends Controller
                 }
 
                 // Realizo sumatoria del array cuadro_pago de los campos: capital, interes, comisiones, total
-                $total_capital = 0;
+                /* $total_capital = 0;
                 $total_interes = 0;
                 $total_comisiones = 0;
                 $total_sum = 0;
@@ -99,7 +101,7 @@ class CronogramaServicioDeudaController extends Controller
                 $total_interes = number_format($total_interes, 2, '.', '');
                 $total_comisiones = number_format($total_comisiones, 2, '.', '');
                 $total_sum = number_format($total_sum, 2, '.', '');
-
+ */
                 // registro datos en la tabla cronograma_servicio_deudas
                 $registroDeudas = new CronogramaServicioDeuda();
 
@@ -108,16 +110,16 @@ class CronogramaServicioDeudaController extends Controller
                 $registroDeudas->objeto_deuda = $request->input('objeto_deuda');
                 $registroDeudas->moneda_id = $request->input('moneda_id');
 
-                $registroDeudas->total_capital =  $total_capital;
-                $registroDeudas->total_interes =  $total_interes;
-                $registroDeudas->total_comisiones =  $total_comisiones;
-                $registroDeudas->total_sum =  $total_sum;
+                $registroDeudas->total_capital =  $request->input('total_capital');
+                $registroDeudas->total_interes =  $request->input('total_interes');
+                $registroDeudas->total_comisiones =  $request->input('total_comisiones');
+                $registroDeudas->total_sum =  $request->input('total_sum');
                 $registroDeudas->save();
 
                 // registro el array cuadros_pago en su tabla 
                 $idRegistroDeuda = $registroDeudas->id;
 
-                foreach ($convertedData['cuadro_pagos'] as $pago) {
+                foreach ($request['cuadro_pagos'] as $pago) {
                     $cuadrosPago = new CuadroPago();
                     $cuadrosPago->fecha_vencimiento = $pago['fecha_vencimiento'];
                     $cuadrosPago->capital = $pago['capital'];
@@ -131,7 +133,7 @@ class CronogramaServicioDeudaController extends Controller
 
                 return response()->json([
                     'status' => true,
-                    'message' => 'Se agrego los datos del formulario CRONOGRAMA DEL SERVICIO DE LA DEUDA correctamente.',
+                    'message' => 'Se agrego los datos del formulario.',
                 ], 200);
             }
 

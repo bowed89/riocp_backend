@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
         $this->call(AcreedoresSeeder::class);
         $this->call(IdentificadorCreditoSeeder::class);
         $this->call(MonedaSeeder::class);
+        $this->call(TipoDocumentoAdjuntoSeeder::class);
         $this->call(PeriodoSeeder::class);
         $this->call(TipoSolicitudSeeder::class);
         $this->call(EstadoRequisitoSeeder::class);

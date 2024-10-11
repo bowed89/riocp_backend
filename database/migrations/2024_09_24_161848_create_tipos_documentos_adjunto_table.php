@@ -11,14 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('desembolsos_programado', function (Blueprint $table) {
+        Schema::create('tipos_documentos_adjunto', function (Blueprint $table) {
             $table->id();
-            $table->string('fecha');
-            $table->string('monto');
-            $table->string('total');
-            $table->boolean('estado');
+            $table->string('tipo');
+            $table->boolean('obligatorio');
+            $table->boolean('estado')->default(true);
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 
@@ -27,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('desembolsos_programado');
+        Schema::dropIfExists('tipos_documentos_adjunto');
     }
 };

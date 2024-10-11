@@ -5,7 +5,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CronogramaDesembolsoProgramadoController;
 use App\Http\Controllers\CronogramaServicioDeudaController;
+use App\Http\Controllers\DocumentoAdjuntoController;
 use App\Http\Controllers\EntidadesController;
 use App\Http\Controllers\FirmadigitalController;
 use App\Http\Controllers\FormularioCorrespondenciaController;
@@ -16,6 +18,7 @@ use App\Http\Controllers\PeriodoController;
 use App\Http\Controllers\RolController;
 use App\Http\Controllers\SolicitudController;
 use App\Http\Controllers\SolicitudRiocpController;
+use App\Http\Controllers\TipoDocumentoAdjuntoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -47,11 +50,11 @@ Route::middleware(['auth:sanctum'])->group(function () {
         Route::resource('formulario-correspondencia', FormularioCorrespondenciaController::class);
         Route::post('/formulario-correspondencia/formulario', [FormularioCorrespondenciaController::class, 'storeSolicitudFormulario']);
         Route::resource('solicitud', SolicitudController::class);
-        
+
         // Firma Digital
         Route::post('/validar-firma', [FirmadigitalController::class, 'validarFirmaDigital']);
 
-        
+
         // Formulario 1
         Route::resource('solicitud-riocp', SolicitudRiocpController::class);
         Route::post('/solicitud-riocp/formulario', [SolicitudRiocpController::class, 'storeSolicitudFormularioRiocp']);
@@ -62,8 +65,12 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
         // Formulario 3
         Route::post('/cronograma-deuda/formulario', [CronogramaServicioDeudaController::class, 'storeSolicitudCronogramaServicioDeuda']);
-        
-   
+
+        // Formulario 4
+        Route::post('/cronograma-desembolso-deuda/formulario', [CronogramaDesembolsoProgramadoController::class, 'storeCronogramaDesembolso']);
+
+        // Documentos Adjuntos
+        Route::post('/documento-adjunto/formulario', [DocumentoAdjuntoController::class, 'storeDocumentoAdjunto']);
     });
 
     Route::get('menu/rol/user', [MenuController::class, 'selectMenuByRol']);
@@ -74,6 +81,8 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::resource('acreedores', AcreedorController::class);
     Route::resource('monedas', MonedaController::class);
     Route::resource('periodos', PeriodoController::class);
+    Route::resource('tipos-documento', TipoDocumentoAdjuntoController::class);
+
 
 
     Route::get('entidades/usuario/rol', [EntidadesController::class, 'getEntidadByUser']);

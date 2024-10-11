@@ -11,14 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('documentos_adjunto', function (Blueprint $table) {
+        Schema::create('cronogramas_desembolso_programado_main', function (Blueprint $table) {
             $table->id();
-            $table->string('ruta_documento')->nullable(); // Columna para almacenar la ruta del documento
-            $table->boolean('estado')->default(true);
             $table->foreignId('solicitud_id')->constrained('solicitudes')->onDelete('cascade');
-            $table->foreignId('tipo_documento_id')->constrained('tipos_documentos_adjunto')->onDelete('cascade');
+            $table->boolean('estado')->default(true);
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 
@@ -27,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('documentos_adjunto');
+        Schema::dropIfExists('cronogramas_desembolso_programado_main');
     }
 };
