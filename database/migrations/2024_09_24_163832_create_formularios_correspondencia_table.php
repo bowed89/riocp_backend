@@ -19,9 +19,8 @@ return new class extends Migration
             $table->string('ruta_documento')->nullable(); // Columna para almacenar la ruta del documento
             $table->boolean('firma_digital')->default(false); // Indica si el documento fue cargado
             $table->boolean('estado')->default(true);
-            $table->foreignId('solicitud_id')->nullable()->constrained('solicitudes')->onDelete('cascade')->unique();
-            $table->foreignId('tipo_solicitud_id')->constrained('tipos_solicitud')->onDelete('cascade')->unique();
-            $table->foreignId('usuario_id')->constrained('usuarios')->onDelete('cascade')->unique();
+            $table->foreignId('solicitud_id')->constrained('solicitudes')->onDelete('cascade')->unique();
+            $table->foreignId('tipo_solicitud_id')->nullable()->constrained('tipos_solicitud')->onDelete('cascade')->unique();
             $table->timestamps();
             $table->softDeletes();
         });

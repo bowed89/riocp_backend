@@ -20,7 +20,6 @@ class FormularioCorrespondencia extends Model
         'estado',
         'solicitud_id',
         'tipo_solicitud_id',
-        'usuario_id'
     ];
 
     public function Solicitud()

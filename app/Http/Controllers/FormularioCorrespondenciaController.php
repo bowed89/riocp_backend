@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\MenuUpdated;
 use App\Models\FormularioCorrespondencia;
+use App\Models\MenuPestaniasSolicitante;
+use App\Models\Seguimientos;
 use App\Models\Solicitud;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -87,10 +90,26 @@ class FormularioCorrespondenciaController extends Controller
         $user = Auth::user();
 
         if ($user) {
-            // Crear la solicitud
-            $solicitud = new Solicitud();
-            $solicitud->usuario_id = $user->id; // Asigna el usuario autenticado
-            $solicitud->save();
+            // obtengo el id de la solicitud incompleta del usuario 
+            $solicitud = Solicitud::where('usuario_id', $user->id)
+                ->where('estado_requisito_id', 1) // 1 es incompleto
+                ->first();
+
+            if (!$solicitud) {
+                return response()->json([
+                    'status' => false,
+                    'message' => 'No se encontró una solicitud del usuario en proceso. Primero debe completar el FORMULARIO 1 SOLICITUD RIOCP.'
+                ], 404);
+            }
+            // verifico que no exista un formulario creado anteriormente con la misma solicitud_id
+            $formularioDuplicado = FormularioCorrespondencia::where('solicitud_id', $solicitud->id)->first();
+
+            if ($formularioDuplicado) {
+                return response()->json([
+                    'status' => false,
+                    'message' => 'Ya se registro un formulario con una solicitud pendiente.'
+                ], 404);
+            }
 
             $formularioRules = [
                 'nombre_completo' => 'required|string|min:5',
@@ -99,9 +118,7 @@ class FormularioCorrespondenciaController extends Controller
                 'cite_documento' => 'string|max:255',
                 'referencia' => 'string|max:255',
                 'documento' => 'required|file|mimes:pdf|max:10240', // Validar archivo PDF, máximo 10MB
-                'ruta_documento' => 'string|max:255',
                 'firma_digital' => 'required|boolean',
-                'solicitud_id' => 'required|integer'
             ];
 
             $formularioValidator = Validator::make($request->all(), $formularioRules);
@@ -112,6 +129,21 @@ class FormularioCorrespondenciaController extends Controller
                     'errors' => $formularioValidator->errors()->all()
                 ], 400);
             }
+
+            // verifico que no exista un seguimiento creado anteriormente con la misma solicitud_id
+            $seguimientoDuplicado = Seguimientos::where('solicitud_id', $solicitud->id)->first();
+            if ($seguimientoDuplicado) {
+                return response()->json([
+                    'status' => false,
+                    'message' => 'Ya se registro un seguimiento con una solicitud pendiente.'
+                ], 404);
+            }
+            // Realizar registro de seguimiento
+            $seguimiento = new Seguimientos();
+            $seguimiento->usuario_origen_id = $user->id;
+            $seguimiento->usuario_destino_id = 2; // usuario 2 administrador
+            $seguimiento->solicitud_id = $solicitud->id;
+            $seguimiento->save();
 
             // Manejo de la subida del archivo
             $filePath = null;
@@ -125,13 +157,37 @@ class FormularioCorrespondenciaController extends Controller
 
             // Crear el formulario de correspondencia
             $formulario = new FormularioCorrespondencia($request->except('documento'));
-            $formulario->solicitud_id = $solicitud->id; 
-            $formulario->ruta_documento = $filePath; 
+            $formulario->solicitud_id = $solicitud->id;
+            $formulario->ruta_documento = $filePath;
             $formulario->save();
 
+            // crear nro_solicitud fecha y num aleatorio y actualizar
+            $fecha = date("dmy");
+            $numerosAleatorios = mt_rand(100, 999);
+            $numeroGenerado = $fecha . '' . $numerosAleatorios;
+            $solicitud->nro_solicitud = $numeroGenerado;
+            $solicitud->save();
+
+            // Actualizo mi menu pestania para habilitar formulario_2
+            $menu = MenuPestaniasSolicitante::where('solicitud_id', $solicitud->id)->first();
+            $menu->registro = true;
+            $menu->sigep_anexo = true;
+            $menu->save();
+            $menu->refresh(); // devuelve todos los campos no solo created_at y updated_at
+            // Iterar y ajustar el estado `disabled` basado en la clave del array
+            $items = config('menu_pestanias');
+            foreach ($items as &$item) {
+                $key = $item['disabled'];
+                if (isset($menu->$key)) {
+                    $item['disabled'] = $menu->$key;
+                }
+            }
+
+            // evento con los datos del menu
+            event(new MenuUpdated($items));
             return response()->json([
                 'status' => true,
-                'message' => 'Tramite registro correctamente.',
+                'message' => 'Formulario registrado correctamente.',
                 'data' => $formulario
             ], 200);
         }

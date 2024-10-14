@@ -73,6 +73,23 @@ class AuthController extends Controller
         ]);
     }
 
+    public function getTecnicos()
+    {
+        $usuarios = Usuario::where('rol_id', 3)->get();
+
+        if (!$usuarios) {
+            return response()->json([
+                'status' => false,
+                'message' => 'Usuario técnico no encontrado.'
+            ], 404);
+        }
+
+        return response()->json([
+            'status' => true,
+            'data' => $usuarios
+        ]);
+    }
+
     public function update(Request $request, $id)
     {
         $usuario = Usuario::find($id);

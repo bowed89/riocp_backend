@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\MenuUpdated;
 use App\Models\InformacionDeuda;
+use App\Models\MenuPestaniasSolicitante;
 use App\Models\Solicitud;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -59,6 +61,36 @@ class InformacionDeudaController extends Controller
             $informacion = new InformacionDeuda($request->input());
             $informacion->solicitud_id = $solicitud->id;
             $informacion->save();
+
+            // Actualizo mi menu pestania para habilitar formulario_2
+            $menu = MenuPestaniasSolicitante::where('solicitud_id', $solicitud->id)->first();
+            $menu->formulario_1_anexo = false;
+            $menu->formulario_2_anexo = false;
+            $menu->sigep_anexo = false;
+            $menu->formulario_2 = true;
+            
+            // si la pregunta 1 es si deshabilito pestaña formulario 4
+            if ($informacion->pregunta_1) {
+                $menu->formulario_4 = false;
+            }
+            // si la pregunta 2 o pregunta 3 es si deshabilito pestaña formulario 3
+            if ($informacion->pregunta_2  || $informacion->pregunta_3) {
+                $menu->formulario_3 = false;
+            }
+            
+            $menu->save();
+            $menu->refresh(); // devuelve todos los campos no solo created_at y updated_at
+            // Iterar y ajustar el estado `disabled` basado en la clave del array
+            $items = config('menu_pestanias');
+            foreach ($items as &$item) {
+                $key = $item['disabled'];
+                if (isset($menu->$key)) {
+                    $item['disabled'] = $menu->$key;
+                }
+            }
+
+            // evento con los datos del menu
+            event(new MenuUpdated($items));
 
             return response()->json([
                 'status' => true,

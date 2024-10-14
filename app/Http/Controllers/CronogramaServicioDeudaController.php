@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\MenuUpdated;
 use App\Models\CronogramaServicioDeuda;
 use App\Models\CuadroPago;
+use App\Models\MenuPestaniasSolicitante;
 use App\Models\Solicitud;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -52,8 +54,6 @@ class CronogramaServicioDeudaController extends Controller
             if ($formulariHabilitado[0]->resultado) {
                 //convierto mis numero de formato 100.098,00 a decimales => 100098.00
                 $requestData = $request->all();
-                $convertedData = convertirNumerosEnArray($requestData);
-
                 $formularioRules = [
                     'acreedor_id' => 'required|integer',
                     'objeto_deuda' => 'required|string',
@@ -84,24 +84,6 @@ class CronogramaServicioDeudaController extends Controller
                     ], 400);
                 }
 
-                // Realizo sumatoria del array cuadro_pago de los campos: capital, interes, comisiones, total
-                /* $total_capital = 0;
-                $total_interes = 0;
-                $total_comisiones = 0;
-                $total_sum = 0;
-
-                foreach ($convertedData['cuadro_pagos'] as $pago) {
-                    $total_capital += (float) $pago['capital'];
-                    $total_interes += (float) $pago['interes'];
-                    $total_comisiones += (float) $pago['comisiones'];
-                    $total_sum += (float) $pago['total'];
-                }
-
-                $total_capital = number_format($total_capital, 2, '.', '');
-                $total_interes = number_format($total_interes, 2, '.', '');
-                $total_comisiones = number_format($total_comisiones, 2, '.', '');
-                $total_sum = number_format($total_sum, 2, '.', '');
- */
                 // registro datos en la tabla cronograma_servicio_deudas
                 $registroDeudas = new CronogramaServicioDeuda();
 
@@ -130,6 +112,22 @@ class CronogramaServicioDeudaController extends Controller
                     $cuadrosPago->cronograma_servicio_id = $idRegistroDeuda;
                     $cuadrosPago->save();
                 }
+
+                // Actualizo mi menu pestania 
+                $menu = MenuPestaniasSolicitante::where('solicitud_id', $solicitud->id)->first();
+                $menu->formulario_3 = true;
+                $menu->save();
+                $menu->refresh(); // devuelve todos los campos no solo created_at y updated_at
+                // Iterar y ajustar el estado `disabled` basado en la clave del array
+                $items = config('menu_pestanias');
+                foreach ($items as &$item) {
+                    $key = $item['disabled'];
+                    if (isset($menu->$key)) {
+                        $item['disabled'] = $menu->$key;
+                    }
+                }
+                // evento con los datos del menu
+                event(new MenuUpdated($items));
 
                 return response()->json([
                     'status' => true,

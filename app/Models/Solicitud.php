@@ -11,6 +11,7 @@ class Solicitud extends Model
     protected $table = 'solicitudes';
     protected $fillable = [
         'nro_solicitud',
+        'nro_hoja_ruta',
         'estado',
         'usuario_id',
         'estado_solicitud_id',

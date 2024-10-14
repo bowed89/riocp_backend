@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\MenuUpdated;
 use App\Models\ContactoSubsanar;
+use App\Models\MenuPestaniasSolicitante;
 use App\Models\Solicitud;
 use App\Models\SolicitudRiocp;
 use Illuminate\Http\Request;
@@ -111,6 +113,25 @@ class SolicitudRiocpController extends Controller
                 $solicitudRiocp->solicitud_id = $solicitud->id;
                 $solicitudRiocp->contacto_id = $contacto->id;
                 $solicitudRiocp->save();
+
+                // Actualizo mi menu pestania para habilitar formulario_2
+                $menu = MenuPestaniasSolicitante::where('solicitud_id', null)->first();
+                $menu->solicitud_id = $solicitud->id;
+                $menu->formulario_1 = true;
+                $menu->formulario_2 = false;
+                $menu->save();
+                $menu->refresh(); // devuelve todos los campos no solo created_at y updated_at
+                // Iterar y ajustar el estado `disabled` basado en la clave del array
+                $items = config('menu_pestanias');
+                foreach ($items as &$item) {
+                    $key = $item['disabled'];
+                    if (isset($menu->$key)) {
+                        $item['disabled'] = $menu->$key;
+                    }
+                }
+
+                // evento con los datos del menu
+                event(new MenuUpdated($items));
 
                 return response()->json([
                     'status' => true,

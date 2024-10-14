@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\MenuUpdated;
 use App\Models\CronogramaDesembolsoProgramado;
 use App\Models\CronogramaDesembolsoProgramadoMain;
 use App\Models\FechaDesembolsoProgramado;
+use App\Models\MenuPestaniasSolicitante;
 use App\Models\Solicitud;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -133,6 +135,22 @@ class CronogramaDesembolsoProgramadoController extends Controller
                         }
                     }
                 }
+
+                // Actualizo mi menu pestania para habilitar formulario_2
+                $menu = MenuPestaniasSolicitante::where('solicitud_id', $solicitud->id)->first();
+                $menu->formulario_4 = true;
+                $menu->save();
+                $menu->refresh(); // devuelve todos los campos no solo created_at y updated_at
+                // Iterar y ajustar el estado `disabled` basado en la clave del array
+                $items = config('menu_pestanias');
+                foreach ($items as &$item) {
+                    $key = $item['disabled'];
+                    if (isset($menu->$key)) {
+                        $item['disabled'] = $menu->$key;
+                    }
+                }
+                // evento con los datos del menu
+                event(new MenuUpdated($items));
 
                 return response()->json([
                     'status' => true,

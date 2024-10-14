@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
         $this->call(RolSeeder::class);
         $this->call(TipoSeeder::class);
         $this->call(AcreedoresSeeder::class);
+        $this->call(EstadoDerivadoSeeder::class);
         $this->call(IdentificadorCreditoSeeder::class);
         $this->call(MonedaSeeder::class);
         $this->call(TipoDocumentoAdjuntoSeeder::class);
