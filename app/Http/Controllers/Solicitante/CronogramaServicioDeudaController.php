@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Solicitante;
 
 use App\Events\MenuUpdated;
+use App\Http\Controllers\Controller;
 use App\Models\CronogramaServicioDeuda;
 use App\Models\CuadroPago;
 use App\Models\MenuPestaniasSolicitante;

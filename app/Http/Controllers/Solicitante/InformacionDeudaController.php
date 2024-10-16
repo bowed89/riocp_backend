@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Solicitante;
 
 use App\Events\MenuUpdated;
+use App\Http\Controllers\Controller;
 use App\Models\InformacionDeuda;
 use App\Models\MenuPestaniasSolicitante;
 use App\Models\Solicitud;
@@ -64,11 +65,11 @@ class InformacionDeudaController extends Controller
 
             // Actualizo mi menu pestania para habilitar formulario_2
             $menu = MenuPestaniasSolicitante::where('solicitud_id', $solicitud->id)->first();
-            $menu->formulario_1_anexo = false;
-            $menu->formulario_2_anexo = false;
             $menu->sigep_anexo = false;
             $menu->formulario_2 = true;
-            
+            $menu->registro = false;
+
+
             // si la pregunta 1 es si deshabilito pestaña formulario 4
             if ($informacion->pregunta_1) {
                 $menu->formulario_4 = false;
@@ -77,7 +78,10 @@ class InformacionDeudaController extends Controller
             if ($informacion->pregunta_2  || $informacion->pregunta_3) {
                 $menu->formulario_3 = false;
             }
-            
+       
+
+
+
             $menu->save();
             $menu->refresh(); // devuelve todos los campos no solo created_at y updated_at
             // Iterar y ajustar el estado `disabled` basado en la clave del array

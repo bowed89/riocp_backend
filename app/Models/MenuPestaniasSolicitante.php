@@ -15,7 +15,6 @@ class MenuPestaniasSolicitante extends Model
         'formulario_3',
         'formulario_4',
         'formulario_1_anexo',
-        'formulario_2_anexo',
         'sigep_anexo',
         'registro',
         'solicitud_id',

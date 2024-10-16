@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Solicitante;
 
 use App\Events\MenuUpdated;
+use App\Http\Controllers\Controller;
 use App\Models\DocumentoAdjunto;
 use App\Models\MenuPestaniasSolicitante;
 use App\Models\Solicitud;
@@ -14,7 +15,7 @@ use Illuminate\Support\Facades\Validator;
 class DocumentoAdjuntoController extends Controller
 {
 
-    public function storeDocumentoForm1(Request $request)
+    public function storeDocumentosFormulario1(Request $request)
     {
         $user = Auth::user();
 
@@ -32,20 +33,32 @@ class DocumentoAdjuntoController extends Controller
             }
 
             // verifico que no exista un documento creado anteriormente con la misma solicitud_id 
-            $anexos_duplicado_1 = DocumentoAdjunto::where('solicitud_id', $solicitud->id)
-                ->where('tipo_documento_id', 1)
-                ->first();
+            $anexos_duplicados = DocumentoAdjunto::where('solicitud_id', $solicitud->id)
+                ->whereIn('tipo_documento_id', [1, 2])
+                ->get();
 
-            if ($anexos_duplicado_1) {
-                return response()->json([
-                    'status' => false,
-                    'message' => 'Ya se adjunto un cronograma de pagos.'
-                ], 404);
+            if ($anexos_duplicados->isNotEmpty()) {
+                // procesar el caso de duplicado según el tipo de documento
+                foreach ($anexos_duplicados as $anexo) {
+                    if ($anexo->tipo_documento_id == 1) {
+                        return response()->json([
+                            'status' => false,
+                            'message' => 'Ya se adjunto un cronograma de pagos.'
+                        ], 404);
+                    } elseif ($anexo->tipo_documento_id == 2) {
+                        return response()->json([
+                            'status' => false,
+                            'message' => 'Ya se adjunto un cronograma de desembolsos.'
+                        ], 404);
+                    }
+                }
             }
 
             $formularioRules = [
-                'documento' => 'required|file|mimes:pdf,xlsx,xls|max:10240', // max 10mb
-                'tipo_documento_id' => 'required|integer'
+                'documento_cronograma' => 'required|file|mimes:pdf,xlsx,xls|max:10240',
+                'documento_desembolso' => 'required|file|mimes:pdf,xlsx,xls|max:10240',
+                'tipo_documento_id_cronograma' => 'required|integer',
+                'tipo_documento_id_desembolso' => 'required|integer',
             ];
 
             // Validar los datos del formulario...
@@ -54,35 +67,41 @@ class DocumentoAdjuntoController extends Controller
             if ($formularioValidator->fails()) {
                 return response()->json([
                     'status' => false,
-                    'errors' => $formularioValidator->errors()->all()
+                    'message' => $formularioValidator->errors()->all()
                 ], 400);
             }
 
-            // Manejo de la subida del archivo
-            if ($request->hasFile('documento')) {
-                $file = $request->file('documento');
+            // Manejo de la subida de cronograma de pagos
+            if ($request->hasFile('documento_cronograma')) {
+                $fileCronograma = $request->file('documento_cronograma');
                 $nombres = $user->nombre . ' ' .  $user->apellido;
                 $entidad = $user->entidad->denominacion;
                 $fechaActual = now()->format('Y-m-d');
-                $filePath = null;
-                $filePath = $file->store('cronograma-pagos' . '/' . $fechaActual . '/' . $entidad . '/' . $nombres, 'public');
-            }
+                $filePathCronograma = $fileCronograma->store('cronograma-pagos/' . $fechaActual . '/' . $entidad . '/' . $nombres, 'public');
 
-            // Crear documento adjunto con los datos
-            $documentoAdjunto = new DocumentoAdjunto();
-            $documentoAdjunto->ruta_documento = $filePath;
-            $documentoAdjunto->solicitud_id = $solicitud->id;
-            $documentoAdjunto->tipo_documento_id = $request->tipo_documento_id;
-            $documentoAdjunto->save();
+                $documentoAdjuntoCronograma = new DocumentoAdjunto();
+                $documentoAdjuntoCronograma->ruta_documento = $filePathCronograma;
+                $documentoAdjuntoCronograma->solicitud_id = $solicitud->id;
+                $documentoAdjuntoCronograma->tipo_documento_id = $request->tipo_documento_id_cronograma;
+                $documentoAdjuntoCronograma->save();
+            }
+            // Manejo de la subida de desembolso de pagos
+            if ($request->hasFile('documento_desembolso')) {
+                $fileDesembolso = $request->file('documento_desembolso');
+                $filePathDesembolso = $fileDesembolso->store('desembolsos/' . $fechaActual . '/' . $entidad . '/' . $nombres, 'public');
+
+                $documentoAdjuntoDesembolso = new DocumentoAdjunto();
+                $documentoAdjuntoDesembolso->ruta_documento = $filePathDesembolso;
+                $documentoAdjuntoDesembolso->solicitud_id = $solicitud->id;
+                $documentoAdjuntoDesembolso->tipo_documento_id = $request->tipo_documento_id_desembolso;
+                $documentoAdjuntoDesembolso->save();
+            }
 
             // Actualizo mi menu pestania 
             $menu = MenuPestaniasSolicitante::where('solicitud_id', $solicitud->id)->first();
-
-            if ($request->tipo_documento_id == 1) {
-                $menu->formulario_1_anexo = true;
-                $menu->save();
-                $menu->refresh();
-            }
+            $menu->formulario_1_anexo = true;
+            $menu->save();
+            $menu->refresh();
 
             $items = config('menu_pestanias');
             foreach ($items as &$item) {
@@ -117,15 +136,15 @@ class DocumentoAdjuntoController extends Controller
                 ], 404);
             }
 
-            // verifico que no exista un documento creado anteriormente con la misma solicitud_id 
-            $anexos_duplicado_2 = DocumentoAdjunto::where('solicitud_id', $solicitud->id)
-                ->where('tipo_documento_id', 2)
+            // verifico que no exista un documento creado anteriormente con la misma solicitud_id
+            $anexos_duplicado_4 = DocumentoAdjunto::where('solicitud_id', $solicitud->id)
+                ->where('tipo_documento_id', 4)
                 ->first();
 
-            if ($anexos_duplicado_2) {
+            if ($anexos_duplicado_4) {
                 return response()->json([
                     'status' => false,
-                    'message' => 'Ya se adjunto un desmebolso.'
+                    'message' => 'Ya se adjunto un certificado RIOCP no vigente.'
                 ], 404);
             }
 
@@ -152,39 +171,14 @@ class DocumentoAdjuntoController extends Controller
                 $fechaActual = now()->format('Y-m-d');
                 $filePath = null;
                 // Guardar el archivo en el almacenamiento local y obtener la ruta
-                $filePath = $file->store('desembolsos' . '/' . $fechaActual . '/' . $entidad . '/' . $nombres, 'public');
+                $filePath = $file->store('certificado-riocp-no-vigente' . '/' . $fechaActual . '/' . $entidad . '/' . $nombres, 'public');
             }
-
             // Crear documento adjunto con los datos
             $documentoAdjunto = new DocumentoAdjunto();
             $documentoAdjunto->ruta_documento = $filePath;
             $documentoAdjunto->solicitud_id = $solicitud->id;
             $documentoAdjunto->tipo_documento_id = $request->tipo_documento_id;
             $documentoAdjunto->save();
-
-            // Actualizo mi menu pestania 
-            $menu = MenuPestaniasSolicitante::where('solicitud_id', $solicitud->id)->first();
-
-            if ($request->tipo_documento_id == 2) {
-                $menu->formulario_2_anexo = true;
-                $menu->registro = false;
-                $menu->save();
-                $menu->refresh();
-            }
-            $items = config('menu_pestanias');
-            foreach ($items as &$item) {
-                $key = $item['disabled'];
-                if (isset($menu->$key)) {
-                    $item['disabled'] = $menu->$key;
-                }
-            }
-            // evento con los datos del menu
-            event(new MenuUpdated($items));
-
-            return response()->json([
-                'status' => true,
-                'message' => 'Anexo agregado correctamente.'
-            ], 200);
         }
     }
 

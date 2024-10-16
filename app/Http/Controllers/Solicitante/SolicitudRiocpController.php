@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Solicitante;
 
 use App\Events\MenuUpdated;
+use App\Http\Controllers\Controller;
 use App\Models\ContactoSubsanar;
 use App\Models\MenuPestaniasSolicitante;
 use App\Models\Solicitud;
@@ -47,6 +48,7 @@ class SolicitudRiocpController extends Controller
                     'monto_total' => 'required|numeric',
                     'plazo' => 'required|integer|min:1',
                     'interes_anual' => 'required|numeric',
+                    'declaracion_jurada' => 'required|string',
                     'comisiones' => 'max:255',
                     'periodo_gracia' => 'required|integer|min:0',
                     'objeto_operacion_credito' => 'required|string|max:255',
@@ -118,6 +120,7 @@ class SolicitudRiocpController extends Controller
                 $menu = MenuPestaniasSolicitante::where('solicitud_id', null)->first();
                 $menu->solicitud_id = $solicitud->id;
                 $menu->formulario_1 = true;
+                $menu->formulario_1_anexo = false;
                 $menu->formulario_2 = false;
                 $menu->save();
                 $menu->refresh(); // devuelve todos los campos no solo created_at y updated_at

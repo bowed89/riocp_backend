@@ -42,7 +42,7 @@ return [
                 'port' => env('SOCKET_PORT', 6001), // Cambia esto si has configurado un puerto diferente
                 'scheme' => 'http',
                 'encrypted' => false,
-               
+
             ],
         ],
         'ably' => [

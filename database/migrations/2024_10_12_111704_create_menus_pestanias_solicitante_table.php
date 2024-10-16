@@ -18,7 +18,6 @@ return new class extends Migration
             $table->boolean('formulario_3')->default(true);
             $table->boolean('formulario_4')->default(true);
             $table->boolean('formulario_1_anexo')->default(true);
-            $table->boolean('formulario_2_anexo')->default(true);
             $table->boolean('sigep_anexo')->default(true);
             $table->boolean('registro')->default(true);
             $table->foreignId('solicitud_id')->nullable()->constrained('solicitudes')->onDelete('cascade');

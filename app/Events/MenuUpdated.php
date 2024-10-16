@@ -27,6 +27,6 @@ class MenuUpdated implements ShouldBroadcast
 
     public function broadcastAs()
     {
-        return 'App\\Events\\MenuUpdated'; 
+        return 'App\\Events\\MenuUpdated';
     }
 }

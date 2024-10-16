@@ -15,6 +15,7 @@ class SolicitudRiocp extends Model
         'plazo',
         'interes_anual',
         'comisiones',
+        'declaracion_jurada',
         'periodo_gracia',
         'objeto_operacion_credito',
         'firma_digital',

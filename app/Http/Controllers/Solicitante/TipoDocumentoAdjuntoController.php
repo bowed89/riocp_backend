@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Solicitante;
 
+use App\Http\Controllers\Controller;
 use App\Models\TipoDocumentoAdjunto;
 use Illuminate\Http\Request;
 

@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Solicitante;
 
 use App\Events\MenuUpdated;
+use App\Http\Controllers\Controller;
 use App\Models\CronogramaDesembolsoProgramado;
 use App\Models\CronogramaDesembolsoProgramadoMain;
 use App\Models\FechaDesembolsoProgramado;

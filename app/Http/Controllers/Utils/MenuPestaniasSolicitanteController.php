@@ -1,17 +1,15 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Utils;
 
 use App\Events\MenuUpdated;
+use App\Http\Controllers\Controller;
 use App\Models\MenuPestaniasSolicitante;
 use App\Models\Solicitud;
-use App\Models\SolicitudRiocp;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class MenuPestaniasSolicitanteController extends Controller
-{  //             event(new MenuUpdated($items));
-
+{
     public function index()
     {
         $user = Auth::user();
@@ -33,7 +31,7 @@ class MenuPestaniasSolicitanteController extends Controller
                     }
                 }
 
-                // evento con los datos del menu
+                // websocket
                 event(new MenuUpdated($items));
 
                 return response()->json([

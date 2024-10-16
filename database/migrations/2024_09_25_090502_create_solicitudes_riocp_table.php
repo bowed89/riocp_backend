@@ -17,6 +17,7 @@ return new class extends Migration
             $table->integer('plazo');
             $table->decimal('interes_anual', 10, 2);
             $table->string('comisiones')->nullable();
+            $table->string('declaracion_jurada');
             $table->integer('periodo_gracia');
             $table->string('objeto_operacion_credito');
             $table->boolean('firma_digital')->default(false); // si el formulario valida la firma..

@@ -1,26 +1,26 @@
 <?php
 
-use App\Http\Controllers\AcreedorController;
-use Illuminate\Http\Request;
+use App\Http\Controllers\Utils\AcreedorController;
+use App\Http\Controllers\Administrador\SeguimientoController;
 use Illuminate\Support\Facades\Route;
 
-use App\Http\Controllers\AuthController;
-use App\Http\Controllers\CronogramaDesembolsoProgramadoController;
-use App\Http\Controllers\CronogramaServicioDeudaController;
-use App\Http\Controllers\DocumentoAdjuntoController;
-use App\Http\Controllers\EntidadesController;
-use App\Http\Controllers\FirmadigitalController;
-use App\Http\Controllers\FormularioCorrespondenciaController;
-use App\Http\Controllers\InformacionDeudaController;
-use App\Http\Controllers\MenuController;
-use App\Http\Controllers\MenuPestaniasSolicitanteController;
-use App\Http\Controllers\MonedaController;
-use App\Http\Controllers\PeriodoController;
-use App\Http\Controllers\RolController;
-use App\Http\Controllers\SeguimientoController;
-use App\Http\Controllers\SolicitudController;
-use App\Http\Controllers\SolicitudRiocpController;
-use App\Http\Controllers\TipoDocumentoAdjuntoController;
+use App\Http\Controllers\Usuario\AuthController;
+use App\Http\Controllers\Solicitante\CronogramaDesembolsoProgramadoController;
+use App\Http\Controllers\Solicitante\CronogramaServicioDeudaController;
+use App\Http\Controllers\Solicitante\DocumentoAdjuntoController;
+use App\Http\Controllers\Utils\EntidadesController;
+use App\Http\Controllers\Utils\FirmadigitalController;
+use App\Http\Controllers\Solicitante\FormularioCorrespondenciaController;
+use App\Http\Controllers\Solicitante\InformacionDeudaController;
+use App\Http\Controllers\Utils\MenuController;
+use App\Http\Controllers\Utils\MenuPestaniasSolicitanteController;
+use App\Http\Controllers\Utils\MonedaController;
+use App\Http\Controllers\Utils\PeriodoController;
+use App\Http\Controllers\Usuario\RolController;
+use App\Http\Controllers\Solicitante\SolicitudController;
+use App\Http\Controllers\Solicitante\SolicitudRiocpController;
+use App\Http\Controllers\Solicitante\TipoDocumentoAdjuntoController;
+use App\Http\Controllers\Solicitante\TramitesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -83,9 +83,13 @@ Route::middleware(['auth:sanctum'])->group(function () {
         Route::post('/cronograma-desembolso-deuda/formulario', [CronogramaDesembolsoProgramadoController::class, 'storeCronogramaDesembolso']);
 
         // Documentos Adjuntos
-        Route::post('/documento-adjunto-1/formulario', [DocumentoAdjuntoController::class, 'storeDocumentoForm1']);
+        Route::post('/documento-adjunto-1-2/formulario', [DocumentoAdjuntoController::class, 'storeDocumentosFormulario1']);
         Route::post('/documento-adjunto-2/formulario', [DocumentoAdjuntoController::class, 'storeDocumentoForm2']);
         Route::post('/documento-adjunto-3/formulario', [DocumentoAdjuntoController::class, 'storeDocumentoForm3']);
+   
+        // Tramites Solicitante
+        Route::resource('tramite-solicitante', TramitesController::class);
+
     });
 
     Route::get('menu/rol/user', [MenuController::class, 'selectMenuByRol']);

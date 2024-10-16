@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Utils;
 
+use App\Http\Controllers\Controller;
 use App\Models\Periodo;
 use Illuminate\Http\Request;
 

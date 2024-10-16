@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Solicitante;
 
 use App\Events\MenuUpdated;
+use App\Http\Controllers\Controller;
 use App\Models\FormularioCorrespondencia;
 use App\Models\MenuPestaniasSolicitante;
 use App\Models\Seguimientos;
@@ -130,21 +131,7 @@ class FormularioCorrespondenciaController extends Controller
                 ], 400);
             }
 
-            // verifico que no exista un seguimiento creado anteriormente con la misma solicitud_id
-            $seguimientoDuplicado = Seguimientos::where('solicitud_id', $solicitud->id)->first();
-            if ($seguimientoDuplicado) {
-                return response()->json([
-                    'status' => false,
-                    'message' => 'Ya se registro un seguimiento con una solicitud pendiente.'
-                ], 404);
-            }
-            // Realizar registro de seguimiento
-            $seguimiento = new Seguimientos();
-            $seguimiento->usuario_origen_id = $user->id;
-            $seguimiento->usuario_destino_id = 2; // usuario 2 administrador
-            $seguimiento->solicitud_id = $solicitud->id;
-            $seguimiento->save();
-
+            
             // Manejo de la subida del archivo
             $filePath = null;
             if ($request->hasFile('documento')) {
@@ -168,10 +155,16 @@ class FormularioCorrespondenciaController extends Controller
             $solicitud->nro_solicitud = $numeroGenerado;
             $solicitud->save();
 
-            // Actualizo mi menu pestania para habilitar formulario_2
+            // Actualizo mi menu pestania 
             $menu = MenuPestaniasSolicitante::where('solicitud_id', $solicitud->id)->first();
-            $menu->registro = true;
+            $menu->formulario_1 = true;
+            $menu->formulario_2 = true;
+            $menu->formulario_3 = true;
+            $menu->formulario_4 = true;
+            $menu->formulario_1_anexo = true;
             $menu->sigep_anexo = true;
+            $menu->registro = true;
+
             $menu->save();
             $menu->refresh(); // devuelve todos los campos no solo created_at y updated_at
             // Iterar y ajustar el estado `disabled` basado en la clave del array
