@@ -131,7 +131,23 @@ class FormularioCorrespondenciaController extends Controller
                 ], 400);
             }
 
+            // verifico que no exista un seguimiento creado anteriormente con la misma solicitud_id
+            $seguimientoDuplicado = Seguimientos::where('solicitud_id', $solicitud->id)->first();
             
+            if ($seguimientoDuplicado) {
+                return response()->json([
+                    'status' => false,
+                    'message' => 'Ya se registro un seguimiento con una solicitud pendiente.'
+                ], 404);
+            }
+            // Realizar registro de seguimiento
+            $seguimiento = new Seguimientos();
+            $seguimiento->usuario_origen_id = $user->id;
+            $seguimiento->usuario_destino_id = 2; // usuario 2 administrador
+            $seguimiento->observacion = 'Derivación por defecto a Jefe de Unidad'; 
+            $seguimiento->solicitud_id = $solicitud->id;
+            $seguimiento->save();
+
             // Manejo de la subida del archivo
             $filePath = null;
             if ($request->hasFile('documento')) {

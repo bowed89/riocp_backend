@@ -428,7 +428,7 @@ class MenuSeeder extends Seeder
             ],
             [
                 'nombre' => 'Inicio',
-                'url' => '/seguimiento/inicio',
+                'url' => '/revisor/inicio',
                 'icono' => 'pi pi-check-circle',
                 'rol_id' => 4,
                 'tipo_id' => 1,
@@ -437,7 +437,7 @@ class MenuSeeder extends Seeder
             ],
             [
                 'nombre' => 'Mis Tramites',
-                'url' => '/seguimiento/ver-tramite',
+                'url' => '/revisor/ver-tramite',
                 'icono' => 'pi pi-check-circle',
                 'rol_id' => 4,
                 'tipo_id' => 3,
@@ -446,7 +446,7 @@ class MenuSeeder extends Seeder
             ],
             [
                 'nombre' => 'Certificado',
-                'url' => '/seguimiento/certificado',
+                'url' => '/revisor/certificado',
                 'icono' => 'pi pi-check-circle',
                 'rol_id' => 4,
                 'tipo_id' => 4,
@@ -455,7 +455,7 @@ class MenuSeeder extends Seeder
             ],
             [
                 'nombre' => 'Requisitos',
-                'url' => '/seguimiento/requisito',
+                'url' => '/revisor/requisito',
                 'icono' => 'pi pi-check-circle',
                 'rol_id' => 4,
                 'tipo_id' => 4,
@@ -464,7 +464,7 @@ class MenuSeeder extends Seeder
             ],
             [
                 'nombre' => 'Informe',
-                'url' => '/seguimiento/informe',
+                'url' => '/revisor/informe',
                 'icono' => 'pi pi-check-circle',
                 'rol_id' => 4,
                 'tipo_id' => 4,
@@ -473,7 +473,7 @@ class MenuSeeder extends Seeder
             ],
             [
                 'nombre' => 'Solicitudes Realizadas',
-                'url' => '/seguimiento/solicitudes-realizadas',
+                'url' => '/revisor/solicitudes-realizadas',
                 'icono' => 'pi pi-check-circle',
                 'rol_id' => 4,
                 'tipo_id' => 5,
@@ -482,7 +482,7 @@ class MenuSeeder extends Seeder
             ],
             [
                 'nombre' => 'Tramites Observados',
-                'url' => '/seguimiento/tramites-observados',
+                'url' => '/revisor/tramites-observados',
                 'icono' => 'pi pi-check-circle',
                 'rol_id' => 4,
                 'tipo_id' => 5,
@@ -491,7 +491,7 @@ class MenuSeeder extends Seeder
             ],
             [
                 'nombre' => 'Tramites Inhabilitados',
-                'url' => '/seguimiento/tramites-inhabilitados',
+                'url' => '/revisor/tramites-inhabilitados',
                 'icono' => 'pi pi-check-circle',
                 'rol_id' => 4,
                 'tipo_id' => 5,
@@ -500,7 +500,7 @@ class MenuSeeder extends Seeder
             ],
             [
                 'nombre' => 'Certificados Emitidos',
-                'url' => '/seguimiento/certificados-emitidos',
+                'url' => '/revisor/certificados-emitidos',
                 'icono' => 'pi pi-check-circle',
                 'rol_id' => 4,
                 'tipo_id' => 5,
@@ -509,7 +509,7 @@ class MenuSeeder extends Seeder
             ],
             [
                 'nombre' => 'Ayuda',
-                'url' => '/seguimiento/ayuda',
+                'url' => '/revisor/ayuda',
                 'icono' => 'pi pi-check-circle',
                 'rol_id' => 4,
                 'tipo_id' => 6,

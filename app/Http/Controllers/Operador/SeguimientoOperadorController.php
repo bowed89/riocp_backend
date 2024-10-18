@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Administrador;
+namespace App\Http\Controllers\Operador;
 
 use App\Http\Controllers\Controller;
 use App\Models\Seguimientos;
@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
-class SeguimientoController extends Controller
+class SeguimientoOperadorController extends Controller
 {
     public function index()
     {
@@ -27,6 +27,15 @@ class SeguimientoController extends Controller
                 DB::raw('COALESCE(s.observacion, \'SIN DATOS\') AS observacion'),
                 DB::raw('so.id as solicitud_id'),
 
+
+                DB::raw('u_origen.nombre AS nombre_origen'),
+                DB::raw('u_origen.apellido AS apellido_origen'),
+
+                DB::raw('u_destino.nombre AS nombre_destino'),
+                DB::raw('u_destino.apellido AS apellido_destino'),
+
+                DB::raw('so.id as solicitud_id'),
+
                 DB::raw('COALESCE(so.nro_hoja_ruta, \'SIN DATOS\') AS nro_hoja_ruta'),
                 DB::raw('COALESCE(r_origen.rol, \'SIN DATOS\') AS rol_origen'),
                 DB::raw('COALESCE(r_destino.rol, \'SIN DATOS\') AS rol_destino'),
@@ -40,15 +49,15 @@ class SeguimientoController extends Controller
                 ->join('roles AS r_origen', 'r_origen.id', '=', 'u_origen.rol_id')
                 ->join('usuarios AS u_destino', 'u_destino.id', '=', 's.usuario_destino_id')
                 ->join('roles AS r_destino', 'r_destino.id', '=', 'u_destino.rol_id')
-                ->where('s.usuario_destino_id', $user->id)
+                ->where('u_destino.rol_id', $user->rol_id)
+                ->where('u_destino.id', $user->id)
                 ->get();
 
             if ($resultados->isEmpty()) {
                 return response()->json([
                     'status' => false,
-                    'message' => 'No se encontraron seguimientos.',
-                    'message22' => $user->id,
-                ], 404);
+                    'message' => 'No se encontraron seguimientos.'
+                ], 200);
             }
 
             return response()->json([
@@ -64,14 +73,13 @@ class SeguimientoController extends Controller
         ], 403);
     }
 
-    public function storeAdministrador(Request $request)
+    public function asignardeOperadoraRevisor(Request $request)
     {
         $user = Auth::user();
         if ($user) {
             $rules = [
                 'id_seguimiento' => 'required|integer',
                 'observacion' => 'required|string',
-                'nro_hoja_ruta' => 'required|string',
                 'solicitud_id' => 'required|integer',
                 'usuario_destino_id' => 'required|integer'
             ];
@@ -115,11 +123,6 @@ class SeguimientoController extends Controller
             $seguimiento->usuario_destino_id = $request->usuario_destino_id;
             $seguimiento->estado_derivado_id = 1;
             $seguimiento->save();
-
-            // actualizar solicitud 
-            $solicitud->nro_hoja_ruta = $request->nro_hoja_ruta;
-            $solicitud->estado_requisito_id = 2;
-            $solicitud->save();
 
             return response()->json([
                 'status' => true,

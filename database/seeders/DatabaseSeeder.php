@@ -9,9 +9,6 @@ use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
-    /**
-     * Seed the application's database.
-     */
     public function run(): void
     {
         $this->call(RolSeeder::class);
@@ -20,6 +17,7 @@ class DatabaseSeeder extends Seeder
         $this->call(EstadoDerivadoSeeder::class);
         $this->call(IdentificadorCreditoSeeder::class);
         $this->call(MonedaSeeder::class);
+        $this->call(TipoObservacionSeeder::class);
         $this->call(TipoDocumentoAdjuntoSeeder::class);
         $this->call(PeriodoSeeder::class);
         $this->call(TipoSolicitudSeeder::class);

@@ -58,7 +58,6 @@ class CronogramaDesembolsoProgramadoController extends Controller
                 ], 400);
             }
 
-
             $formularioRules = [
                 // Reglas para cronograma_desembolsos
                 'cronograma_desembolsos' => 'required|array',
@@ -108,6 +107,7 @@ class CronogramaDesembolsoProgramadoController extends Controller
                     'status' => false,
                     'message' => 'Verifique que la sumatoria de los desembolsos programados y/o estimados sean igual al Saldo por desembolso(A-B)',
                 ], 403);
+
             } else {
                 // agrego a la tabla de registro desembolsos main
                 $registroCronogramaMain = new CronogramaDesembolsoProgramadoMain();
@@ -125,6 +125,7 @@ class CronogramaDesembolsoProgramadoController extends Controller
                     $registroCronograma->acreedor_id = $bodyDesembolso['acreedor_id'];
                     $registroCronograma->cronograma_main_id = $registroCronogramaMain->id;
                     $registroCronograma->save();
+                    
 
                     if (count($bodyDesembolso['fecha_desembolsos']) > 0) {
                         foreach ($bodyDesembolso['fecha_desembolsos'] as $bodyFecha) {
@@ -150,6 +151,7 @@ class CronogramaDesembolsoProgramadoController extends Controller
                         $item['disabled'] = $menu->$key;
                     }
                 }
+                
                 // evento con los datos del menu
                 event(new MenuUpdated($items));
 

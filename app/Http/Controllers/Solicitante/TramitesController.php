@@ -3,8 +3,6 @@
 namespace App\Http\Controllers\Solicitante;
 
 use App\Http\Controllers\Controller;
-use App\Models\Moneda;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 

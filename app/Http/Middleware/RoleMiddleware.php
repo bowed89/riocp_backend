@@ -26,7 +26,8 @@ class RoleMiddleware
         if (!$user || !in_array($user->rol_id, $allowedRoles)) {
             return response()->json([
                 'status' => false,
-                'message' => 'El rol no tiene acceso a esta consulta.'
+                'message' => 'El rol no tiene acceso a esta consulta.',
+                'message22' => $user->rol_id,
             ], 403);
         }
 

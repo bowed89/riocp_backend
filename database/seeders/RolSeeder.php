@@ -12,10 +12,10 @@ class RolSeeder extends Seeder
     public function run(): void
     {
         DB::table('roles')->insert([
-            ['rol' => 'solicitante', 'descripcion' => 'Entidad solicitante', 'estado' => 1],
-            ['rol' => 'administrador', 'descripcion' => 'Usuario que gestiona todo el sistema', 'estado' => 1],
-            ['rol' => 'tecnico', 'descripcion' => 'Gestor para realizar operaciones de aprobacion de creditos', 'estado' => 1],
-            ['rol' => 'revisor', 'descripcion' => 'Encargado de verificar el estado de las solicitudes', 'estado' => 1],
+            ['rol' => 'Entidad Solicitante', 'descripcion' => 'Entidad solicitante', 'estado' => 1],
+            ['rol' => 'Jefe de Unidad', 'descripcion' => 'Usuario que gestiona todo el sistema', 'estado' => 1],
+            ['rol' => 'Tècnico', 'descripcion' => 'Gestor para realizar operaciones de aprobacion de creditos', 'estado' => 1],
+            ['rol' => 'Revisor', 'descripcion' => 'Encargado de verificar el estado de las solicitudes', 'estado' => 1],
         ]);
     }
 }

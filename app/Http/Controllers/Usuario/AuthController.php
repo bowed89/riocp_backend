@@ -91,6 +91,42 @@ class AuthController extends Controller
         ]);
     }
 
+    public function getRevisores()
+    {
+        $usuarios = Usuario::where('rol_id', 4)->get();
+
+        if (!$usuarios) {
+            return response()->json([
+                'status' => false,
+                'message' => 'Usuario revisor no encontrado.'
+            ], 404);
+        }
+
+        return response()->json([
+            'status' => true,
+            'data' => $usuarios
+        ]);
+    }
+
+
+    public function getJefeUnidad()
+    {
+        $usuarios = Usuario::where('rol_id', 2)->get();
+
+        if (!$usuarios) {
+            return response()->json([
+                'status' => false,
+                'message' => 'Usuario jefe de unidad no encontrado.'
+            ], 404);
+        }
+
+        return response()->json([
+            'status' => true,
+            'data' => $usuarios
+        ]);
+    }
+
+
     public function update(Request $request, $id)
     {
         $usuario = Usuario::find($id);

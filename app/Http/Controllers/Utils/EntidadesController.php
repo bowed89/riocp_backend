@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Utils;
 
 use App\Http\Controllers\Controller;
 use App\Models\Entidad;
+use App\Models\Rol;
+use App\Models\Usuario;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -54,9 +56,7 @@ class EntidadesController extends Controller
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+
     public function destroy(Entidad $entidades)
     {
         //
@@ -65,33 +65,48 @@ class EntidadesController extends Controller
     public function getEntidadByUser()
     {
         $user = Auth::user();
-        
+
         if ($user) {
+            $roles = Usuario::select(
+                'usuarios.nombre',
+                'usuarios.apellido',
+                'usuarios.ci',
+                'usuarios.correo',
+                'usuarios.nombre_usuario',
+                'usuarios.id',
+                'usuarios.rol_id',
+                'roles.rol'
+            )
+                ->join('roles', 'roles.id', '=', 'usuarios.rol_id')
+                ->where('usuarios.id', $user->id)
+                ->get();
+
             if ($user->rol_id == 1) { // rol solicitante
                 $entidades = Entidad::select(
                     'entidades.denominacion',
-                    'entidades.entidad_id as num_entidad',
+                    'entidades.id as num_entidad',
                     'usuarios.entidad_id',
                     'usuarios.nombre',
                     'usuarios.apellido',
                     'usuarios.correo',
-                    'usuarios.nombre_usuario'
+                    'usuarios.nombre_usuario',
+                    'roles.rol'
                 )
                     ->join('usuarios', 'usuarios.entidad_id', '=', 'entidades.id')
+                    ->join('roles', 'roles.id', '=', 'usuarios.rol_id')
                     ->where('usuarios.id', $user->id)
                     ->get();
 
                 return response()->json([
                     'status' => true,
-                    'message' => 'Listado de usario por rol solicitante.',
+                    'message' => 'Listado de usuario por rol solicitante.',
                     'data' => $entidades,
                 ], 200);
-
             } else { // sino es rol solicitante...
                 return response()->json([
                     'status' => true,
                     'message' => 'Rol de usuario.',
-                    'data' => [$user],
+                    'data' => $roles,
                 ], 200);
             }
         }
@@ -100,8 +115,5 @@ class EntidadesController extends Controller
             'status' => false,
             'message' => 'Usuario no autorizado.'
         ], 403);
-
-        
     }
-    
 }

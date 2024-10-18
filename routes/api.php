@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\Utils\AcreedorController;
-use App\Http\Controllers\Administrador\SeguimientoController;
+use App\Http\Controllers\Administrador\SeguimientoJefeUnidadController;
+use App\Http\Controllers\Operador\SeguimientoOperadorController;
+use App\Http\Controllers\Revisor\SeguimientoRevisorController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Usuario\AuthController;
@@ -22,17 +24,6 @@ use App\Http\Controllers\Solicitante\SolicitudRiocpController;
 use App\Http\Controllers\Solicitante\TipoDocumentoAdjuntoController;
 use App\Http\Controllers\Solicitante\TramitesController;
 
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "api" middleware group. Make something great!
-|
-*/
-
 
 Route::post('auth/register', [AuthController::class, 'create']);
 Route::post('auth/login', [AuthController::class, 'login']);
@@ -44,19 +35,20 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
         Route::put('roles/delete/{id}', [RolController::class, 'deleteRol']);
         Route::get('roles/show/{id}', [RolController::class, 'showById']);
-        
+
         Route::resource('menu', MenuController::class);
         Route::resource('usuarios', AuthController::class);
         Route::get('usuario/tecnico', [AuthController::class, 'getTecnicos']);
+        Route::get('usuario/revisor', [AuthController::class, 'getRevisores']);
 
-        // Seguimiento
-        Route::post('/seguimiento/administrador/store', [SeguimientoController::class, 'storeAdministrador']);
-
+        // Seguimiento Jefe Unidad
+        Route::post('/seguimiento/administrador/store', [SeguimientoJefeUnidadController::class, 'asignarTecnicoRevisor']);
+        Route::resource('seguimiento', SeguimientoJefeUnidadController::class);
     });
 
     // Admistrador y solicitante
     Route::middleware('rol:1.2')->group(function () {
-        
+
         Route::resource('formulario-correspondencia', FormularioCorrespondenciaController::class);
         Route::post('/formulario-correspondencia/formulario', [FormularioCorrespondenciaController::class, 'storeSolicitudFormulario']);
         Route::resource('solicitud', SolicitudController::class);
@@ -86,9 +78,24 @@ Route::middleware(['auth:sanctum'])->group(function () {
         Route::post('/documento-adjunto-1-2/formulario', [DocumentoAdjuntoController::class, 'storeDocumentosFormulario1']);
         Route::post('/documento-adjunto-2/formulario', [DocumentoAdjuntoController::class, 'storeDocumentoForm2']);
         Route::post('/documento-adjunto-3/formulario', [DocumentoAdjuntoController::class, 'storeDocumentoForm3']);
-   
+
         // Tramites Solicitante
         Route::resource('tramite-solicitante', TramitesController::class);
+    });
+
+    // Operador (Tecnico)
+    Route::middleware('rol:3.2')->group(function () {
+        Route::resource('seguimiento/operador/main', SeguimientoOperadorController::class);
+        Route::post('/seguimiento/operador/store', [SeguimientoOperadorController::class, 'asignardeOperadoraRevisor']);
+        Route::get('usuario/revisor', [AuthController::class, 'getRevisores']);
+
+    });
+
+    // Revisor 
+    Route::middleware('rol:4.2')->group(function () {
+        Route::post('/seguimiento/revisor/store', [SeguimientoRevisorController::class, 'asignardeRevisoraJefeUnidad']);
+        Route::resource('seguimiento/revisor/main', SeguimientoRevisorController::class);
+        Route::get('usuario/jefe-unidad', [AuthController::class, 'getJefeUnidad']);
 
     });
 
@@ -102,6 +109,4 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::resource('periodos', PeriodoController::class);
     Route::resource('tipos-documento', TipoDocumentoAdjuntoController::class);
     Route::get('entidades/usuario/rol', [EntidadesController::class, 'getEntidadByUser']);
-
-    Route::resource('seguimiento', SeguimientoController::class);
 });
