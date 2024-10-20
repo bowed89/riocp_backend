@@ -9,9 +9,11 @@ services:
       - '9601:9601'
     environment:
       - SOKETI_DEBUG=${SOKETI_DEBUG}
+
       - DEFAULT_APP_ID=${DEFAULT_APP_ID}
       - DEFAULT_APP_KEY=${DEFAULT_APP_KEY}
       - DEFAULT_APP_SECRET=${DEFAULT_APP_SECRET}
+      
       - PUSHER_HOST=${PUSHER_HOST}
       - PUSHER_PORT=${PUSHER_PORT}
       - PUSHER_SCHEME=${PUSHER_SCHEME}

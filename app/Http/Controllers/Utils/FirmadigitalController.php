@@ -8,10 +8,18 @@ use Illuminate\Support\Facades\Http;
 
 class FirmadigitalController extends Controller
 {
-    public function validarFirmaDigital(Request $request)
+    /*    public function validarFirmaDigital(Request $request)
     {
         $body = $request->all();
         $response = Http::post('https://validar.firmadigital.bo/rest/validar/', $body);
+        return response()->json($response->json(), $response->status());
+    } */
+
+    public function validarFirmaDigital(Request $request)
+    {
+        $body = $request->all();
+        $response = Http::withOptions(['verify' => false])
+            ->post('https://validar.firmadigital.bo/rest/validar/', $body);
         return response()->json($response->json(), $response->status());
     }
 }
