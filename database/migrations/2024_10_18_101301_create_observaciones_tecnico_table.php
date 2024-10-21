@@ -12,6 +12,7 @@ return new class extends Migration
         Schema::create('observaciones_tecnico', function (Blueprint $table) {
             $table->id();
             $table->boolean('cumple');
+            $table->text('observacion');
             $table->foreignId('tipo_observacion_id')->constrained('tipos_observaciones_tecnico')->onDelete('cascade');
             $table->foreignId('solicitud_id')->constrained('solicitudes')->onDelete('cascade');
             $table->foreignId('usuario_id')->constrained('usuarios')->onDelete('cascade');

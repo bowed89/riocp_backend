@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Utils\AcreedorController;
 use App\Http\Controllers\Administrador\SeguimientoJefeUnidadController;
+use App\Http\Controllers\Operador\ObservacionTecnicoController;
 use App\Http\Controllers\Operador\SeguimientoOperadorController;
 use App\Http\Controllers\Revisor\SeguimientoRevisorController;
 use Illuminate\Support\Facades\Route;
@@ -86,6 +87,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     // Operador (Tecnico)
     Route::middleware('rol:3.2')->group(function () {
         Route::resource('seguimiento/operador/main', SeguimientoOperadorController::class);
+        Route::resource('operador/tipo-observacion', ObservacionTecnicoController::class);
         Route::post('/seguimiento/operador/store', [SeguimientoOperadorController::class, 'asignardeOperadoraRevisor']);
         Route::get('usuario/revisor', [AuthController::class, 'getRevisores']);
 
