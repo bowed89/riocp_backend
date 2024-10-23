@@ -20,10 +20,15 @@ class SolicitudRiocpController extends Controller
         return $this->solicitudRiocpService->getAllSolicitudes();
     }
 
+    public function getAllSolicitudesById($id)
+    {
+        return $this->solicitudRiocpService->getSolicitudesById($id);
+    }
+
     public function storeSolicitudFormularioRiocp(SolicitudRiocpRequest $request)
     {
         $result = $this->solicitudRiocpService->createSolicitudRiocp($request->validated());
-        
+
         return response()->json([
             'status' => $result['status'],
             'message' => $result['message'],

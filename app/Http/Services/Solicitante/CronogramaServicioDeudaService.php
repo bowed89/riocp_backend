@@ -92,7 +92,7 @@ class CronogramaServicioDeudaService
         $menu->formulario_3 = true;
         $menu->save();
         $items = config('menu_pestanias');
-        
+
         foreach ($items as &$item) {
             $key = $item['disabled'];
             if (isset($menu->$key)) {
@@ -100,5 +100,48 @@ class CronogramaServicioDeudaService
             }
         }
         event(new MenuUpdated($items));
+    }
+
+    public function getCronogramaCuadrosById($id)
+    {
+        $user = Auth::user();
+
+        if (!$user) {
+            return [
+                'status' => false,
+                'message' => 'Usuario no autorizado o sin rol asignado.'
+            ];
+        }
+
+        $cronograma = CronogramaServicioDeuda::where('solicitud_id', $id)->first();
+
+        if (!$cronograma) {
+            return [
+                'status' => false,
+                'message' => 'No se encontro un cronograma con el número de solicitud.',
+                'code' => 404
+            ];
+        }
+
+        $cuadroPagos = CuadroPago::where('cronograma_servicio_id', $cronograma->id)->get();
+
+        if ($cuadroPagos->count() == 0) {
+            return [
+                'status' => false,
+                'message' => 'No existen cuadro de pagos en el número de cronograma.',
+                'code' => 404
+            ];
+        }
+
+        $cronograma->cuadro_pagos = $cuadroPagos;
+
+        return [
+            'status' => 200,
+            'data' => [
+                'status' => true,
+                'message' => 'Listado de cronogramas y cuadro de pagos.',
+                'data' => $cronograma
+            ]
+        ];
     }
 }

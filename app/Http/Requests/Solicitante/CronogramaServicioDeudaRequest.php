@@ -13,6 +13,7 @@ class CronogramaServicioDeudaRequest extends FormRequest
             'objeto_deuda' => 'required|string',
             'moneda_id' => 'required|integer',
             'total_capital' => 'required|numeric',
+            'total_saldo' => 'required|numeric',
             'total_interes' => 'required|numeric',
             'total_comisiones' => 'required|numeric',
             'total_sum' => 'required|numeric',

@@ -24,7 +24,7 @@ use App\Http\Controllers\Solicitante\SolicitudController;
 use App\Http\Controllers\Solicitante\SolicitudRiocpController;
 use App\Http\Controllers\Solicitante\TipoDocumentoAdjuntoController;
 use App\Http\Controllers\Solicitante\TramitesController;
-
+use App\Http\Controllers\Utils\AbrirDocumentoController;
 
 Route::post('auth/register', [AuthController::class, 'create']);
 Route::post('auth/login', [AuthController::class, 'login']);
@@ -84,13 +84,17 @@ Route::middleware(['auth:sanctum'])->group(function () {
         Route::resource('tramite-solicitante', TramitesController::class);
     });
 
-    // Operador (Tecnico)
+    // Operador (Tecnico) y Administrador
     Route::middleware('rol:3.2')->group(function () {
         Route::resource('seguimiento/operador/main', SeguimientoOperadorController::class);
         Route::resource('operador/tipo-observacion', ObservacionTecnicoController::class);
         Route::post('/seguimiento/operador/store', [SeguimientoOperadorController::class, 'asignardeOperadoraRevisor']);
         Route::get('usuario/revisor', [AuthController::class, 'getRevisores']);
-
+        Route::get('/solicitud-riocp/id/{id}', [SolicitudRiocpController::class, 'getAllSolicitudesById']);
+        Route::get('/informacion-deuda/id/{id}', [InformacionDeudaController::class, 'getInformacionById']);
+        Route::get('/abrir-documento/{id}/{idTipo}', [AbrirDocumentoController::class, 'abrirAllDocumentos']);
+        Route::get('/abrir-documento-riocp/{id}', [AbrirDocumentoController::class, 'abrirDocumentoRiocp']);
+        Route::get('/cronograma-deuda/formulario/{id}', [CronogramaServicioDeudaController::class, 'getCronogramaById']);
     });
 
     // Revisor 
@@ -98,9 +102,8 @@ Route::middleware(['auth:sanctum'])->group(function () {
         Route::post('/seguimiento/revisor/store', [SeguimientoRevisorController::class, 'asignardeRevisoraJefeUnidad']);
         Route::resource('seguimiento/revisor/main', SeguimientoRevisorController::class);
         Route::get('usuario/jefe-unidad', [AuthController::class, 'getJefeUnidad']);
-
     });
-
+    // todos roles
     Route::get('menu/rol/user', [MenuController::class, 'selectMenuByRol']);
     Route::get('usuarios', [AuthController::class, 'allUsers']);
     Route::get('auth/logout', [AuthController::class, 'logout']);

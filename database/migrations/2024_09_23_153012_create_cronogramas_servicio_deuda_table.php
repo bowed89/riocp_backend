@@ -12,6 +12,7 @@ return new class extends Migration
         Schema::create('cronogramas_servicio_deuda', function (Blueprint $table) {
             $table->id();
             $table->string('objeto_deuda');
+            $table->decimal('total_saldo', 13, 2);
             $table->decimal('total_capital', 13, 2)->nullable();
             $table->decimal('total_interes', 13, 2)->nullable();
             $table->decimal('total_comisiones', 13, 2)->nullable();

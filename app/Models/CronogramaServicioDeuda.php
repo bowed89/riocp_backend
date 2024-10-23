@@ -11,6 +11,7 @@ class CronogramaServicioDeuda extends Model
     protected $table = 'cronogramas_servicio_deuda';
     protected $fillable = [
         'objeto_deuda',
+        'total_saldo',
         'total_capital',
         'total_interes',
         'total_comisiones',

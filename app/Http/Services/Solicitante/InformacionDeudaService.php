@@ -62,6 +62,37 @@ class InformacionDeudaService
         ];
     }
 
+    public function getInformacionDeudaById($id)
+    {
+        $user = Auth::user();
+
+        if (!$user) {
+            return [
+                'status' => false,
+                'message' => 'Usuario no autorizado o sin rol asignado.',
+                'code' => 403
+            ];
+        }
+
+        $informacionDeuda = InformacionDeuda::where('solicitud_id', $id)->get();
+
+        if (!$informacionDeuda) {
+            return [
+                'status' => false,
+                'message' => 'Solicitud no encontrada',
+                'code' => 400,
+            ];
+        }
+
+        return [
+            'status' => true,
+            'message' => 'Listado de Información Deuda por id',
+            'data' => $informacionDeuda,
+            'code' => 200
+        ];
+    }
+
+
     protected function updateMenu($solicitud, $informacion)
     {
         $menu = MenuPestaniasSolicitante::where('solicitud_id', $solicitud->id)->first();

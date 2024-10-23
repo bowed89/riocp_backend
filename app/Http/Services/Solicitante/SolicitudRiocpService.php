@@ -8,6 +8,7 @@ use App\Models\MenuPestaniasSolicitante;
 use App\Models\Solicitud;
 use App\Models\SolicitudRiocp;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class SolicitudRiocpService
 {
@@ -18,6 +19,69 @@ class SolicitudRiocpService
         return [
             'status' => !$solicitud->isEmpty(),
             'message' => $solicitud->isEmpty() ? 'No hay solicitudes registrados.' : '',
+            'data' => $solicitud,
+            'code' => 200
+        ];
+    }
+    /* POR ID */
+    public function getSolicitudesById($id)
+    {
+        $user = Auth::user();
+
+        if (!$user) {
+            return [
+                'status' => false,
+                'message' => 'Usuario no autorizado o sin rol asignado.',
+                'code' => 403
+            ];
+        }
+
+        $solicitud = DB::table('solicitudes_riocp as sr')
+            ->join('contactos_subsanar as cs', 'sr.contacto_id', '=', 'cs.id')
+            ->join('entidades as e', 'sr.entidad_id', '=', 'e.id')
+            ->where('sr.solicitud_id', $id)
+            ->select(
+                'sr.id',
+                'sr.monto_total',
+                'sr.plazo',
+                'sr.interes_anual',
+                'sr.comision_concepto',
+                'sr.comision_tasa',
+                'sr.declaracion_jurada',
+                'sr.periodo_gracia',
+                'sr.objeto_operacion_credito',
+                'sr.firma_digital',
+                'sr.ruta_documento',
+                'sr.solicitud_id',
+                'sr.acreedor_id',
+                'sr.moneda_id',
+                'sr.entidad_id',
+                'sr.identificador_id',
+                'sr.periodo_id',
+                'sr.contacto_id',
+                'sr.estado',
+                'sr.created_at',
+                'sr.updated_at',
+                'cs.nombre_completo',
+                'cs.cargo',
+                'cs.correo_electronico',
+                'cs.telefono',
+                'e.denominacion',
+                'e.entidad_id'
+            )
+            ->get();
+
+        if (!$solicitud) {
+            return [
+                'status' => false,
+                'message' => 'Solicitud no encontrada',
+                'code' => 400,
+            ];
+        }
+
+        return [
+            'status' => true,
+            'message' => 'Listado de Solicitud RICOP por id',
             'data' => $solicitud,
             'code' => 200
         ];

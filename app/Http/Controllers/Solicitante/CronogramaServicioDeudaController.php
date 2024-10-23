@@ -19,11 +19,13 @@ class CronogramaServicioDeudaController extends Controller
     public function storeCronogramaServicioDeuda(CronogramaServicioDeudaRequest $request)
     {
         $result = $this->cronogramaServicioDeudaService->createCronogramaServicioDeuda($request->validated());
+        return response()->json($result, $result['status'] ? 200 : 400);
+    }
 
-        return response()->json([
-            'status' => $result['status'],
-            'message' => $result['message'],
-            'errors' => $result['errors'] ?? [],
-        ], $result['code']);
+
+    public function getCronogramaById($id)
+    {
+        $result = $this->cronogramaServicioDeudaService->getCronogramaCuadrosById($id);
+        return response()->json($result, $result['status'] ? 200 : 400);
     }
 }

@@ -27,4 +27,14 @@ class InformacionDeudaController extends Controller
         ], $result['code']);
     }
 
+    public function getInformacionById($id)
+    {
+        $result = $this->informacionDeudaService->getInformacionDeudaById($id);
+        return response()->json([
+            'status' => $result['status'],
+            'message' => $result['message'],
+            'data' => $result['data'] ?? [],
+            'errors' => $result['errors'] ?? []
+        ], $result['code']);
+    }
 }

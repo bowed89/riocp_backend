@@ -6,9 +6,6 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
         Schema::create('solicitudes_riocp', function (Blueprint $table) {
@@ -16,7 +13,8 @@ return new class extends Migration
             $table->decimal('monto_total', 10, 2);
             $table->integer('plazo');
             $table->decimal('interes_anual', 10, 2);
-            $table->string('comisiones')->nullable();
+            $table->string('comision_concepto')->nullable();
+            $table->decimal('comision_tasa', 10, 2)->nullable();
             $table->string('declaracion_jurada');
             $table->integer('periodo_gracia');
             $table->string('objeto_operacion_credito');
