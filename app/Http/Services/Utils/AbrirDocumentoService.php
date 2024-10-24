@@ -4,6 +4,7 @@
 namespace App\Http\Services\Utils;
 
 use App\Models\DocumentoAdjunto;
+use App\Models\FormularioCorrespondencia;
 use App\Models\SolicitudRiocp;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -34,7 +35,7 @@ class AbrirDocumentoService
         }
 
         $rutaArchivo = 'public/' . $documento->ruta_documento;
-
+        
         if (!Storage::exists($rutaArchivo)) {
             return [
                 'status' => false,
@@ -66,9 +67,42 @@ class AbrirDocumentoService
                 'code' => 400,
             ];
         }
-        
+
         $rutaArchivo = 'public/' . $documento->ruta_documento;
 
+        if (!Storage::exists($rutaArchivo)) {
+            return [
+                'status' => false,
+                'message' => 'Archivo no encontrado.',
+                'code' => 400,
+            ];
+        }
+
+        return Storage::download($rutaArchivo);
+    }
+
+    public function abrirFormularioCorrespondencia($id)
+    {
+        $user = Auth::user();
+
+        if (!$user) {
+            return [
+                'status' => false,
+                'message' => 'Usuario no autorizado o sin rol asignado.'
+            ];
+        }
+
+        $documento = FormularioCorrespondencia::where('solicitud_id', $id)->first();
+        if (!$documento) {
+            return [
+                'status' => false,
+                'message' => 'Solicitud no encontrada.',
+                'code' => 400,
+            ];
+        }
+
+        $rutaArchivo = 'public/' . $documento->ruta_documento;
+        
         if (!Storage::exists($rutaArchivo)) {
             return [
                 'status' => false,

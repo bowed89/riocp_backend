@@ -17,10 +17,18 @@ class AbrirDocumentoController extends Controller
     public function abrirAllDocumentos($id, $idTipo)
     {
         return $this->abrirDocumentoService->abrirDocumento($id, $idTipo);
+        // return response()->json($response, $response['status'] ? 200 : 403);
     }
 
     public function abrirDocumentoRiocp($id)
     {
         return $this->abrirDocumentoService->abrirDocumentoRiocp($id);
+        // return response()->json($response, $response['status'] ? 200 : 403);
+    }
+
+    public function abrirFormularioCorrespondencia($id)
+    {
+        return $this->abrirDocumentoService->abrirFormularioCorrespondencia($id);
+        //return response()->json($response, $response['status'] ? 200 : 403);
     }
 }

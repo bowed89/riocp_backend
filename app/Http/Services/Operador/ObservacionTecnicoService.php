@@ -47,6 +47,7 @@ class ObservacionTecnicoService
             ];
         }
 
+        // registro las observaciones
         foreach ($request['observaciones'] as $observacion) {
             $newObservacion = new ObservacionTecnico();
             $newObservacion->cumple = $observacion['cumple'];
@@ -56,6 +57,8 @@ class ObservacionTecnicoService
             $newObservacion->usuario_id = $user->id;
             $newObservacion->save();
         }
+
+        // almaceno
 
         return [
             'status' => 200,

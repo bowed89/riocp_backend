@@ -36,6 +36,22 @@ class TipoObservacionSeeder extends Seeder
                 'observacion' =>
                 'Formulario 4 de “Cronograma de Desembolsos Programados y/o Estimados”.',
             ],
+            [
+                'observacion' =>
+                'Anexo: Cronograma de Pagos.',
+            ],
+            [
+                'observacion' =>
+                'Anexo: Cronograma de Desembolsos.',
+            ],
+            [
+                'observacion' =>
+                'Anexo: Información Financiera.',
+            ],
+            [
+                'observacion' =>
+                'Anexo: Certificado RIOCP no Vigente.',
+            ],
         ]);
     }
 }

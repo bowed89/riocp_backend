@@ -18,11 +18,11 @@ class CronogramaDesembolsoProgramadoController extends Controller
     public function storeCronogramaDesembolso(CronogramaDesembolsoRequest $request)
     {
         $result = $this->cronogramaDesembolsoProgramadoService->createCronogramaDesembolso($request->validated());
+        return response()->json($result, $result['status'] ? 200 : 400);
+    }
 
-        return response()->json([
-            'status' => $result['status'],
-            'message' => $result['message'],
-            'errors' => $result['errors'] ?? [],
-        ], $result['code']);
+    public function getCronogramaDesembolso($id) {
+        $result = $this->cronogramaDesembolsoProgramadoService->getCronogramaDesembolsoById($id);
+        return response()->json($result, $result['status'] ? 200 : 400);
     }
 }

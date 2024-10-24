@@ -94,7 +94,9 @@ Route::middleware(['auth:sanctum'])->group(function () {
         Route::get('/informacion-deuda/id/{id}', [InformacionDeudaController::class, 'getInformacionById']);
         Route::get('/abrir-documento/{id}/{idTipo}', [AbrirDocumentoController::class, 'abrirAllDocumentos']);
         Route::get('/abrir-documento-riocp/{id}', [AbrirDocumentoController::class, 'abrirDocumentoRiocp']);
+        Route::get('/abrir-formulario-correspondencia/{id}', [AbrirDocumentoController::class, 'abrirFormularioCorrespondencia']);
         Route::get('/cronograma-deuda/formulario/{id}', [CronogramaServicioDeudaController::class, 'getCronogramaById']);
+        Route::get('/cronograma-desembolso-deuda/formulario/{id}', [CronogramaDesembolsoProgramadoController::class, 'getCronogramaDesembolso']);
     });
 
     // Revisor 
@@ -103,6 +105,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
         Route::resource('seguimiento/revisor/main', SeguimientoRevisorController::class);
         Route::get('usuario/jefe-unidad', [AuthController::class, 'getJefeUnidad']);
     });
+
     // todos roles
     Route::get('menu/rol/user', [MenuController::class, 'selectMenuByRol']);
     Route::get('usuarios', [AuthController::class, 'allUsers']);

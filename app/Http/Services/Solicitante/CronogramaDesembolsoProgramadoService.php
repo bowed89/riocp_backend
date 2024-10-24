@@ -84,7 +84,7 @@ class CronogramaDesembolsoProgramadoService
 
         // Actualizo mi menu pestania para habilitar formulario_2
         $this->updateMenu($solicitud);
-        
+
         return [
             'status' => true,
             'message' => 'Se agregó los datos del formulario.',
@@ -131,13 +131,62 @@ class CronogramaDesembolsoProgramadoService
         }
     }
 
+    public function getCronogramaDesembolsoById($id)
+    {
+        $user = Auth::user();
+
+        if (!$user) {
+            return [
+                'status' => false,
+                'message' => 'Usuario no autorizado o sin rol asignado.'
+            ];
+        }
+
+        $cronogramaMain = CronogramaDesembolsoProgramadoMain::where('solicitud_id', $id)->first();
+        if (!$cronogramaMain) {
+            return [
+                'status' => false,
+                'message' => 'No se encontro un cronograma de desembolso con el número de solicitud.',
+                'code' => 404
+            ];
+        }
+
+        $cronogramaDesembolso = CronogramaDesembolsoProgramado::where('cronograma_main_id', $cronogramaMain->id)->get();
+
+        if ($cronogramaDesembolso->count() == 0) {
+            return [
+                'status' => false,
+                'message' => 'No existen cronogramas de desembolso con el número de cronograma principal.',
+                'code' => 404
+            ];
+        }
+
+        foreach ($cronogramaDesembolso as $cd) {
+            // Pregunto si en cada cronogramas_desembolso_programado existe array de fechas_desembolsos_programado
+            $fechaDesembolso = FechaDesembolsoProgramado::where('cronograma_id', $cd->id)
+                ->get();
+
+            $cd->cronograma_desembolsos = $fechaDesembolso;
+
+        }
+
+        return [
+            'status' => 200,
+            'data' => [
+                'status' => true,
+                'message' => 'Listado de cronogramas de desembolsos.',
+                'data' => $cronogramaDesembolso
+            ]
+        ];
+    }
+
     protected function updateMenu($solicitud)
     {
         $menu = MenuPestaniasSolicitante::where('solicitud_id', $solicitud->id)->first();
         $menu->formulario_4 = true;
         $menu->save();
         $items = config('menu_pestanias');
-        
+
         foreach ($items as &$item) {
             $key = $item['disabled'];
             if (isset($menu->$key)) {
