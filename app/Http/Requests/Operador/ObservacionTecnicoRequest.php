@@ -13,7 +13,6 @@ class ObservacionTecnicoRequest extends FormRequest
             'observaciones.*.cumple' => 'required|boolean',
             'observaciones.*.observacion' => 'required|string',
             'observaciones.*.tipo_observacion_id' => 'required|integer',
-            'observaciones.*.solicitud_id' => 'required|integer'
         ];
     }
 

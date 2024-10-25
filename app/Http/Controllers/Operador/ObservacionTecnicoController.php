@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Operador;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Operador\ObservacionTecnicoRequest;
 use App\Http\Services\Operador\ObservacionTecnicoService;
-use Illuminate\Support\Facades\Auth;
 
 class ObservacionTecnicoController extends Controller
 {

@@ -3,8 +3,10 @@
 namespace App\Http\Services\Operador;
 
 use App\Models\ObservacionTecnico;
+use App\Models\Seguimientos;
 use App\Models\Solicitud;
 use App\Models\TipoObservacionesTecnico;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 
 class ObservacionTecnicoService
@@ -20,7 +22,7 @@ class ObservacionTecnicoService
         }
 
         // Obtengo el id de la solicitud incompleta del usuario
-        $solicitud = Solicitud::where('usuario_id', $user->id)
+        $solicitud = Solicitud::where('id', $request->solicitud_id)
             ->where('estado_requisito_id', 1) // 1 es incompleto
             ->first();
 
@@ -53,12 +55,13 @@ class ObservacionTecnicoService
             $newObservacion->cumple = $observacion['cumple'];
             $newObservacion->observacion = $observacion['observacion'];
             $newObservacion->tipo_observacion_id = $observacion['tipo_observacion_id'];
-            $newObservacion->solicitud_id = $observacion['solicitud_id'];
+            $newObservacion->solicitud_id = $solicitud->id;
             $newObservacion->usuario_id = $user->id;
             $newObservacion->save();
         }
 
-        // almaceno
+        // Actualizo segumiento y agrego nuevo seguimiento para el siguiente rol
+        $this->asignarSeguimiento($request, $user);
 
         return [
             'status' => 200,
@@ -67,6 +70,32 @@ class ObservacionTecnicoService
                 'message' => 'Se registraron las observaciones correctamente.'
             ]
         ];
+    }
+
+    private function asignarSeguimiento($data, $user)
+    {
+        // actualizar seguimiento 
+        $seguimientoOrigen = Seguimientos::where('id', $data->id_seguimiento)->first();
+
+        if (!$seguimientoOrigen) {
+            return [
+                'status' => false,
+                'message' => 'No existe un seguimiento origen.'
+            ];
+        }
+
+        $seguimientoOrigen->estado_derivado_id = 2;
+        $seguimientoOrigen->observacion = $data['observacion'];
+        $seguimientoOrigen->fecha_derivacion = Carbon::now();
+        $seguimientoOrigen->save();
+
+        // agregar seguimiento para la proxima unidad
+        $seguimiento = new Seguimientos();
+        $seguimiento->solicitud_id = $data['solicitud_id'];
+        $seguimiento->usuario_origen_id = $user->id;
+        $seguimiento->usuario_destino_id = $data['usuario_destino_id'];
+        $seguimiento->estado_derivado_id = 1;
+        $seguimiento->save();
     }
 
     public function verTipoObservaciones()
