@@ -1,0 +1,202 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    background-color: #f4f4f4;
+    padding: 20px;
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    background: #fff;
+    padding: 20px;
+    border: 1px solid #ddd;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+header h1 {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+header h2,
+header h3,
+header h4 {
+    font-size: 12px;
+    margin-bottom: 5px;
+}
+
+.fecha {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 10px;
+
+}
+
+.seccion-uno {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+
+}
+
+.section {
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+.section h3 {
+    font-size: 11px;
+    margin-bottom: 10px;
+    background-color: #cfcfcf;
+    padding: 5px;
+}
+
+.subsanar {
+    display: flex;
+    justify-content: space-around;
+    margin-left: 15px;
+    margin-bottom: 3px;
+    gap: 12rem;
+}
+
+.field {
+    margin-bottom: 15px;
+}
+
+.field h4 {
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.field label {
+    display: block;
+    font-size: 13px;
+    margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="email"],
+textarea,
+select {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+textarea {
+    height: 80px;
+}
+
+input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+input[type="date"] {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* ESTILOS DE RADIO BUTTONS */
+.radio-group {
+    display: flex;
+    justify-content: center;
+    margin-top: 20PX;
+    gap: 8rem;
+}
+
+/* Oculta el radio button por defecto */
+.radio-group input[type="radio"] {
+    display: none;
+}
+
+/* Estilo para el label del radio */
+.radio-label {
+    display: inline-block;
+    padding-left: 35px;
+    position: relative;
+    cursor: pointer;
+    font-size: 9px;
+    user-select: none;
+}
+
+/* Estilo del cuadrado */
+.radio-label::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 17px;
+    height: 17px;
+    border: 2px solid black;
+    background-color: white;
+    box-sizing: border-box;
+}
+
+/* Estilo para la X cuando está seleccionada */
+.radio-group input[type="radio"]:checked+.radio-label::after {
+    content: 'X';
+    position: absolute;
+    left: 5px;
+    top: 0;
+    font-size: 17px;
+    color: black;
+}
+
+/* TABLA
+2.3 CARACTERÍSTICAS DE LA OPERACIÓN DE CRÉDITO PÚBLICO
+*/
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 10px;
+
+}
+
+th,
+td {
+    border: 1px solid rgb(176, 170, 170);
+    padding: 8px;
+    /* Agrega espacio dentro de las celdas */
+    text-align: left;
+    /* Alinea el texto a la izquierda */
+}
+
+th {
+    background-color: #f2f2f2;
+    /* Color de fondo para los encabezados */
+}
+
+/* Opcional: Bordes específicos para los lados de la tabla */
+table,
+th,
+td {
+    border: 1px solid black;
+}
+
+.declaracion-jurada {
+    border: 1px solid rgb(176, 170, 170);
+    padding: 40px 20px 40px 20px;
+    font-weight: normal;
+    line-height: 1.5;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    text-align: justify;
+}

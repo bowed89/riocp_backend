@@ -23,7 +23,7 @@ class ObservacionTecnicoService
 
         // Obtengo el id de la solicitud incompleta del usuario
         $solicitud = Solicitud::where('id', $request->solicitud_id)
-            ->where('estado_requisito_id', 1) // 1 es incompleto
+            ->where('estado_solicitud_id', 1) // 1 es incompleto
             ->first();
 
         if (!$solicitud) {
@@ -31,7 +31,7 @@ class ObservacionTecnicoService
                 'status' => 404,
                 'data' => [
                     'status' => false,
-                    'message' => 'No se encontró una solicitud del usuario en proceso. Primero debe completar el FORMULARIO 1 SOLICITUD RIOCP.'
+                    'message' => 'No se encontro una solicitud del usuario en proceso. Primero debe completar el FORMULARIO 1 SOLICITUD RIOCP.'
                 ]
             ];
         }

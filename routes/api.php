@@ -25,6 +25,7 @@ use App\Http\Controllers\Solicitante\SolicitudRiocpController;
 use App\Http\Controllers\Solicitante\TipoDocumentoAdjuntoController;
 use App\Http\Controllers\Solicitante\TramitesController;
 use App\Http\Controllers\Utils\AbrirDocumentoController;
+use App\Http\Controllers\Utils\PdfController;
 
 Route::post('auth/register', [AuthController::class, 'create']);
 Route::post('auth/login', [AuthController::class, 'login']);
@@ -117,4 +118,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::resource('periodos', PeriodoController::class);
     Route::resource('tipos-documento', TipoDocumentoAdjuntoController::class);
     Route::get('entidades/usuario/rol', [EntidadesController::class, 'getEntidadByUser']);
+
+    Route::post('/generar-pdf', [PdfController::class, 'generarPDF']);
+
 });
