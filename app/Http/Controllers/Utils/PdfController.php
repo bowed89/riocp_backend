@@ -4,11 +4,43 @@ namespace App\Http\Controllers\Utils;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Mpdf\Mpdf;
+use Spatie\Browsershot\Browsershot;
+use Illuminate\Support\Facades\View;
+
 
 class PdfController extends Controller
 {
-/*     public function generarPDF(Request $request)
+
+    /* 
+    public function generarPDF()
+    {
+        Browsershot::html('<h1>Hello world!!</h1>')
+            ->setOption('args', ['--no-sandbox', '--disable-setuid-sandbox'])
+            ->save('example.pdf');
+
+        return response()->json(['message' => 'PDF generado exitosamente', 'file' => url('example.pdf')]);
+    } */
+
+
+
+    public function generarPDF(Request $request)
+    {
+        $datos = $request->all();
+
+        // Renderizar la vista Blade sin datos
+        $html = View::make('pdf.formulario1', compact('datos'))->render();
+
+        // Generar el PDF usando Browsershot
+        Browsershot::html($html)
+            ->setOption('args', ['--no-sandbox', '--disable-setuid-sandbox'])
+            ->showBackground() // Asegura que los fondos de color se muestren
+            ->margins(0, 0, 0, 0) // Eliminar márgenes
+            ->save('formulario1.pdf');
+
+        return response()->download(public_path('formulario1.pdf'));
+    }
+
+    /*     public function generarPDF(Request $request)
     {
         // Asegúrate de que se estén recibiendo datos
         $data = $request->all();

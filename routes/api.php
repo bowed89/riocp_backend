@@ -119,6 +119,5 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::resource('tipos-documento', TipoDocumentoAdjuntoController::class);
     Route::get('entidades/usuario/rol', [EntidadesController::class, 'getEntidadByUser']);
 
-    Route::post('/generar-pdf', [PdfController::class, 'generarPDF']);
-
+    Route::post('/generar-pdf', [PdfController::class, 'generarPDF'])->name('generar.pdf');
 });

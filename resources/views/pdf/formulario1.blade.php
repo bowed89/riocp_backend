@@ -14,10 +14,32 @@
             padding: 0;
         }
 
+        @media print {
+
+            body,
+            html {
+                margin: 0;
+                /* Elimina márgenes del body y html */
+                padding: 0;
+                /* Elimina padding del body y html */
+                width: 100%;
+                /* Asegúrate de que ocupe todo el ancho */
+                height: auto;
+                /* Asegúrate de que ocupe toda la altura */
+            }
+
+            .section {
+                margin: 0;
+                /* Ajusta los márgenes internos de la sección si es necesario */
+                padding: 0;
+                /* Evita padding si no lo deseas */
+            }
+        }
+
         body {
             font-family: Arial, sans-serif;
             font-size: 14px;
-            background-color: #f4f4f4;
+            background-color: #fff;
             padding: 20px;
         }
 
@@ -35,23 +57,23 @@
         }
 
         header h1 {
-            font-size: 20px;
+            font-size: 15px;
             font-weight: bold;
-            margin-bottom: 10px;
+            margin-bottom: 2px;
         }
 
         header h2,
         header h3,
         header h4 {
-            font-size: 12px;
-            margin-bottom: 5px;
+            font-size: 9px;
+            margin-bottom: 2px;
         }
 
         .fecha {
             display: flex;
             justify-content: flex-end;
             align-items: center;
-            gap: 10px;
+            gap: 7px;
 
         }
 
@@ -64,14 +86,11 @@
         }
 
         .section {
-            border: 1px solid #ddd;
-            padding: 15px;
-            margin-bottom: 20px;
+            padding: 10px;
         }
 
         .section h3 {
-            font-size: 11px;
-            margin-bottom: 10px;
+            font-size: 9px;
             background-color: #cfcfcf;
             padding: 5px;
         }
@@ -95,8 +114,17 @@
 
         .field label {
             display: block;
-            font-size: 13px;
+            font-size: 10px;
             margin-bottom: 5px;
+        }
+
+        .date {
+            padding: 6px;
+            width: 13%;
+            font-size: 9px;
+            margin-bottom: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
         }
 
         input[type="text"],
@@ -105,6 +133,7 @@
         select {
             width: 100%;
             padding: 8px;
+            font-size: 9px;
             margin-bottom: 10px;
             border: 1px solid #ccc;
             border-radius: 4px;
@@ -118,11 +147,7 @@
             margin-right: 10px;
         }
 
-        input[type="date"] {
-            padding: 8px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
+
 
         /* ESTILOS DE RADIO BUTTONS */
         .radio-group {
@@ -166,7 +191,8 @@
             position: absolute;
             left: 5px;
             top: 0;
-            font-size: 17px;
+            font-size: 14px;
+            font-weight: 600;
             color: black;
         }
 
@@ -182,15 +208,14 @@
 
         th,
         td {
-            border: 1px solid rgb(176, 170, 170);
             padding: 8px;
             /* Agrega espacio dentro de las celdas */
             text-align: left;
+            font-size: 9px;
             /* Alinea el texto a la izquierda */
         }
 
         th {
-            background-color: #f2f2f2;
             /* Color de fondo para los encabezados */
         }
 
@@ -198,15 +223,14 @@
         table,
         th,
         td {
-            border: 1px solid black;
+            border: 1px solid #ddd;
         }
 
         .declaracion-jurada {
             border: 1px solid rgb(176, 170, 170);
-            padding: 40px 20px 40px 20px;
-            font-weight: normal;
+            padding: 5px 5px 5px 5px;
             line-height: 1.5;
-            font-size: 0.8rem;
+            font-size: 0.5rem;
             text-transform: uppercase;
             text-align: justify;
         }
@@ -224,35 +248,36 @@
 <body>
     <div class="container">
         <header>
-            <h1>FORMULARIO 1</h1>
             <h2>Viceministerio del Tesoro y Crédito Público</h2>
-            <h3>Dirección General de Administración y Finanzas Territoriales</h3>
-            <h4>Solicitud de Registro de Inicio de Operaciones de Crédito Público</h4>
+            <h2>Dirección General de Administración y Finanzas Territoriales</h2>
+            <h1>SOLICITUD DE REGISTRO DE INICIO DE OPERACIONES</h1>
+            <h1> DE CRÉDITO PÚBLICO</h1>
         </header>
 
         <div class="fecha">
-            <label>Fecha:</label>
-            <input type="date" value="2024-10-25">
+            <input class="date" value="FECHA {{ $datos['fecha_actual'] ?? '' }}">
         </div>
 
         <div class="section">
             <h3>SECCIÓN 1: ENTIDAD SOLICITANTE</h3>
             <div class="seccion-uno">
-                <input type="text" placeholder="1234">
-                <input type="text" placeholder="Gobierno Autónomo Municipal de Tarvita (Villa Orías)">
+                <input type="text" value="{{ $datos['entidad'] ?? '' }}">
+                <input type="text" value="{{ $datos['nombre_entidad'] ?? '' }}">
             </div>
         </div>
 
         <section class="section">
-            <h3>SECCIÓN 2: INFORMACIÓN GENERAL</h3>
+            <h3 style="margin-bottom: 5px">SECCIÓN 2: INFORMACIÓN GENERAL</h3>
 
             <div class="field">
                 <h3>2.1 INDENTIFICACIÓN DE LA OPERACIÓN DE CRÉDITO PÚBLICO (Marcar con una X)</h3>
                 <div class="radio-group">
-                    <input type="radio" id="credito-interno" name="credito" checked>
+                    <input type="radio" id="credito-interno" value="1" name="credito"
+                        {{ $datos['identificador_id'] == '1' ? 'checked' : '' }}>
                     <label class="radio-label" for="credito-interno">Crédito Público Interno</label>
 
-                    <input type="radio" id="credito-externo" name="credito">
+                    <input type="radio" id="credito-externo" value="2" name="credito"
+                        {{ $datos['identificador_id'] == '2' ? 'checked' : '' }}>
                     <label class="radio-label" for="credito-externo">Crédito Público Externo</label>
                 </div>
 
@@ -261,7 +286,7 @@
 
             <div class="field">
                 <h3>2.2 ACREEDOR</h3>
-                <input type="text" name="" placeholder="ENTIDAD" id="">
+                <input type="text" value="{{ $datos['nombre_acreedor'] ?? '' }}">
             </div>
 
             <div class="field">
@@ -271,31 +296,37 @@
                     <tbody>
                         <tr>
                             <td>2.3.1 Monto a ser contratado</td>
-                            <td>XXXXXXXX</td>
+                            <td>{{ isset($datos['monto_total']) ? number_format($datos['monto_total'], 2, ',', '.') : '' }}
+                            </td>
                         </tr>
                         <tr>
                             <td>2.3.2 Moneda de Origen:</td>
-                            <td>XXXXXXXXXXX</td>
+                            <td>{{ $datos['moneda_origen'] ?? '' }}</td>
                         </tr>
                         <tr>
                             <td>2.3.3 Plazo (Expresado en años):</td>
-                            <td>XXXXXXXXXXX</td>
+                            <td>{{ $datos['plazo'] ?? '' }} años</td>
                         </tr>
                         <tr>
                             <td>2.3.4 Tasa de interés (Anual):</td>
-                            <td>XXXXXXXXXXX</td>
+                            <td>{{ isset($datos['interes_anual']) ? number_format($datos['interes_anual'], 2, ',', '.') : '' }}
+                                %
+                            </td>
                         </tr>
                         <tr>
                             <td>2.3.5 Comisiones:</td>
-                            <td>XXXXXXXXXXX</td>
+                            <td>
+                                Concepto: {{ $datos['comision_concepto'] ?? '__________' }} Tasa:
+                                {{ $datos['comision_tasa'] ? number_format($datos['comision_tasa'], 2, ',', '.') . '%' : '__________' }}
+                            </td>
                         </tr>
                         <tr>
                             <td>2.3.6 Periodicidad de Pago:</td>
-                            <td>XXXXXXXXXXX</td>
+                            <td>{{ $datos['nombre_periodo'] ?? '' }}</td>
                         </tr>
                         <tr>
                             <td>2.3.7 Periodo de Gracia (Expresado en años):</td>
-                            <td>XXXXXXXXXXX</td>
+                            <td>{{ $datos['periodo_gracia'] ?? '' }} años</td>
                         </tr>
                     </tbody>
                 </table>
@@ -307,8 +338,10 @@
                 <h3>
                     2.4 OBJETO DE LA OPERACIÒN DE CRÈDITO PÙBLICO
                 </h3>
-                <textarea placeholder="Describa el objeto de la operación"></textarea>
-                <label style="font-size: 11px; text-align: center;">
+                {{-- <input type="text" value="{{ $datos['objeto_operacion_credito'] ?? '' }}"> --}}
+
+                <textarea>{{ $datos['objeto_operacion_credito'] ?? '' }}</textarea>
+                <label style="font-size: 9px; text-align: center;">
                     (Cuando el financiamiento esté destinado a varios proyectos de inversión, se deberá adjuntar los
                     nombres, montos y aclarar si los recursos cubrirán contrapartes locales)
                 </label>
@@ -319,22 +352,23 @@
                 <div style="border: 1px solid rgb(176, 170, 170); padding-top: 10px;">
 
                     <div class="subsanar">
-                        <label style="width: 40%; font-size: 11px;"> 1. Nombre Completo:</label>
-                        <label style="width: 60%; font-size: 11px;"> JUAN PEREZasassasasa</label>
+                        <label style="width: 40%; font-size: 9px;"> 1. Nombre Completo:</label>
+                        <label style="width: 60%; font-size: 9px;"> {{ $datos['nombre_completo'] ?? '' }}</label>
                     </div>
                     <div class="subsanar">
-                        <label style="width: 40%; font-size: 11px;"> 2. Cargo:</label>
-                        <label style="width: 60%; font-size: 11px;"> JUAN PEREZasassasasa</label>
+                        <label style="width: 40%; font-size: 9px;"> 2. Cargo:</label>
+                        <label style="width: 60%; font-size: 9px;">{{ $datos['cargo'] ?? '' }}</label>
                     </div>
                     <div class="subsanar">
-                        <label style="width: 40%; font-size: 11px;"> 3. Correo Electrónico:</label>
-                        <label style="width: 60%; font-size: 11px;"> JUAN PEREZasassasasa</label>
+                        <label style="width: 40%; font-size: 9px;"> 3. Correo Electrónico:</label>
+                        <label style="width: 60%; font-size: 9px;"> {{ $datos['correo_electronico'] ?? '' }}</label>
                     </div>
                     <div class="subsanar">
-                        <label style="width: 40%; font-size: 11px;"> 4. Número de Teléfono / Celular:</label>
-                        <label style="width: 60%; font-size: 11px;"> JUAN PEREZasassasasa</label>
+                        <label style="width: 40%; font-size: 9px;"> 4. Número de Teléfono / Celular:</label>
+                        <label style="width: 60%; font-size: 9px;"> {{ $datos['telefono'] ?? '' }}</label>
                     </div>
-                    <label style="margin-top: 10px; text-align: justify; font-size: 12px; margin-left: 10px; margin-right: 10px;">
+                    <label
+                        style="margin-top: 10px; text-align: justify; font-size: 8px; margin-left: 10px; margin-right: 10px;">
                         Nota: De no tener los datos del contacto y en caso de presentarse observaciones
                         a la información presentada por la entidad, se procederá a la devolución del trámite.
                     </label>
@@ -344,8 +378,8 @@
             <div class="field">
                 <h3>SECCIÓN 3 DELCARACIÓN JURADA Y COMPROMISO DE USO DE RECURSOS</h3>
                 <p class="declaracion-jurada">
-                    YO XXXXXXXXX
-                    EN MI CALIDAD DE MÁXIMA AUTORIDAD EJECUTIVA DE XXXXX
+                    YO  {{ $datos['declaracion_jurada'] ?? '' }}
+                    EN MI CALIDAD DE MÁXIMA AUTORIDAD EJECUTIVA DE {{ $datos['nombre_entidad'] ?? '' }}
                     DECLARO HABER EVALUADO DIFERENTES FUENTES DE FINANCIAMIENTO, ELIGIENDO EL CRÉDITO
                     CON LAS CONDICIONES FINANCIERAS MAS VENTAJOSAS DISPONIBLES EN EL MERCADO Y ME COMPROMETO
                     A UTILIZAR LOS RECURSOS PROVENIENTES DE LA OPERACIÓN DE CRÉDITO PÚBLICO SOLICITADA PARA

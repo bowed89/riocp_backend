@@ -85,6 +85,7 @@ class EntidadesController extends Controller
                 $entidades = Entidad::select(
                     'entidades.denominacion',
                     'entidades.id as num_entidad',
+                    'entidades.entidad_id as entidad',
                     'usuarios.entidad_id',
                     'usuarios.nombre',
                     'usuarios.apellido',
