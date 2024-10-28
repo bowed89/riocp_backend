@@ -56,52 +56,56 @@ class TipoObservacionSeeder extends Seeder
 
         DB::table('tipos_observaciones_tecnico')->insert([
             [
+                'enumeracion' => '1',
                 'observacion' =>
-                '1. Carta de solicitud dirigida a la Viceministra
+                'Carta de solicitud dirigida a la Viceministra
                 del Tesoro y Crédito Público, suscrita por la Maxima 
                 Autoridad Ejecutiva (MAE).',
             ],
             [
+                'enumeracion' => '2',
                 'observacion' =>
-                '2. Formulario 1 de “Solicitud de Registro de Inicio de 
+                'Formulario 1 de “Solicitud de Registro de Inicio de 
                 Operaciones de Crédito Público”, en el que se describen 
                 las características principales de la operación de crédito 
-                público que se solicita iniciar (uno por acreedor),
-                 así como el respectivo Cronograma de Pagos y Desembolsos.',
+                público que se solicita iniciar (uno por acreedor).',
             ],
             [
+                'enumeracion' => '2.1',
                 'observacion' =>
-                '2.1 Anexo: Cronograma de Pagos y Desembolsos.',
+                'Anexo: Cronograma de Pagos.',
             ],
             [
+                'enumeracion' => '2.2',
                 'observacion' =>
-                '2.2 Anexo: Cronograma de Desembolsos.',
+                'Anexo: Cronograma de Desembolsos.',
             ],
-            
+
             [
+                'enumeracion' => '3',
                 'observacion' =>
-                '3. Formulario 2 de “Información de Deuda”.',
+                'Formulario 2 de “Información de Deuda”.',
             ],
             [
+                'enumeracion' => '3.1',
                 'observacion' =>
-                '3.1 Anexo: Certificado no Vigente.(es del anexo del formulario 2 de la pregunta 4 xsi)',
+                'Anexo: Certificado no Vigente.(es del anexo del formulario 2 de la pregunta 4 xsi)',
             ],
             [
+                'enumeracion' => '4',
                 'observacion' =>
-                '4. Formulario 3 de “Cronograma del Servicio de la Deuda”.',
+                'Formulario 3 de “Cronograma del Servicio de la Deuda”.',
             ],
             [
+                'enumeracion' => '5',
                 'observacion' =>
-                '5. Formulario 4 de “Cronograma de Desembolsos Programados y/o Estimados”.',
+                'Formulario 4 de “Cronograma de Desembolsos Programados y/o Estimados”.',
             ],
             [
+                'enumeracion' => '6',
                 'observacion' =>
                 'Anexo: Segip Móvil. Información Financiera.',
-            ],
-            [
-                'observacion' =>
-                'Anexo: Certificado RIOCP no Vigente. (este ya no va esta arriba, me confundi)',
-            ],
+            ]
         ]);
     }
 }

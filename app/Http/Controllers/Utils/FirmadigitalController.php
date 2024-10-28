@@ -18,7 +18,8 @@ class FirmadigitalController extends Controller
     public function validarFirmaDigital(Request $request)
     {
         $body = $request->all();
-        $response = Http::withOptions(['verify' => false])
+        $response = Http::timeout(30)
+            ->withOptions(['verify' => false])
             ->post('https://validar.firmadigital.bo/rest/validar/', $body);
         return response()->json($response->json(), $response->status());
     }

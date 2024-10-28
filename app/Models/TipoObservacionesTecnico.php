@@ -11,6 +11,7 @@ class TipoObservacionesTecnico extends Model
     protected $table = 'tipos_observaciones_tecnico';
 
     protected $fillable = [
+        'enumeracion',
         'observacion',
         'estado'
     ];

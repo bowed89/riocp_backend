@@ -111,7 +111,7 @@ class ObservacionTecnicoService
             ];
         }
 
-        $tipoObservaciones = TipoObservacionesTecnico::orderBy('id', 'asc')->get();
+        $tipoObservaciones = TipoObservacionesTecnico::orderBy('enumeracion', 'asc')->get();
 
         if ($tipoObservaciones->isEmpty()) {
             return [

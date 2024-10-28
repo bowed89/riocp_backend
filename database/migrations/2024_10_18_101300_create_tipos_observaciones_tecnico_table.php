@@ -11,6 +11,7 @@ return new class extends Migration
     {
         Schema::create('tipos_observaciones_tecnico', function (Blueprint $table) {
             $table->id();
+            $table->string('enumeracion');
             $table->text('observacion');
             $table->boolean('estado')->default(true);
             $table->timestamps();
