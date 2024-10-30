@@ -11,11 +11,11 @@ return new class extends Migration
         Schema::create('cuadros_pagos', function (Blueprint $table) {
             $table->id();
             $table->string('fecha_vencimiento');
-            $table->decimal('capital', 10, 2); 
-            $table->decimal('interes', 10, 2);
-            $table->decimal('comisiones', 10, 2);
-            $table->decimal('total', 10, 2);
-            $table->decimal('saldo', 10, 2);
+            $table->decimal('capital', 15, 2); 
+            $table->decimal('interes', 15, 2);
+            $table->decimal('comisiones', 15, 2);
+            $table->decimal('total', 15, 2);
+            $table->decimal('saldo', 15, 2);
             $table->boolean('estado')->default(true);
             $table->foreignId('cronograma_servicio_id')->nullable()->constrained('cronogramas_servicio_deuda')->onDelete('cascade');
             $table->timestamps();

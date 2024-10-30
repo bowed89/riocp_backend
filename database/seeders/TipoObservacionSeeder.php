@@ -54,7 +54,7 @@ class TipoObservacionSeeder extends Seeder
             ],
         ]); */
 
-        DB::table('tipos_observaciones_tecnico')->insert([
+        DB::table('tipos_observaciones')->insert([
             [
                 'enumeracion' => '1',
                 'observacion' =>

@@ -5,16 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class ObservacionTecnico extends Model
+class TipoObservaciones extends Model
 {
     use HasFactory;
-    protected $table = 'observaciones_tecnico';
+    protected $table = 'tipos_observaciones';
 
     protected $fillable = [
-        'cumple',
+        'enumeracion',
         'observacion',
-        'tipo_observacion_id',
-        'solicitud_id',
-        'usuario_id',
+        'estado'
     ];
 }

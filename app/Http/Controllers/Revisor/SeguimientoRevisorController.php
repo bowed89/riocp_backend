@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Revisor;
 
 use App\Http\Controllers\Controller;
+use App\Models\Observacion;
 use App\Models\Seguimientos;
 use App\Models\Solicitud;
 use Carbon\Carbon;
@@ -27,13 +28,13 @@ class SeguimientoRevisorController extends Controller
                 DB::raw('COALESCE(s.observacion, \'SIN DATOS\') AS observacion'),
                 DB::raw('so.id as solicitud_id'),
 
-            
+
                 DB::raw('u_origen.nombre AS nombre_origen'),
                 DB::raw('u_origen.apellido AS apellido_origen'),
 
                 DB::raw('u_destino.nombre AS nombre_destino'),
                 DB::raw('u_destino.apellido AS apellido_destino'),
-                
+
                 DB::raw('so.id as solicitud_id'),
 
                 DB::raw('COALESCE(so.nro_hoja_ruta, \'SIN DATOS\') AS nro_hoja_ruta'),
@@ -81,7 +82,12 @@ class SeguimientoRevisorController extends Controller
                 'id_seguimiento' => 'required|integer',
                 'observacion' => 'required|string',
                 'solicitud_id' => 'required|integer',
-                'usuario_destino_id' => 'required|integer'
+                'usuario_destino_id' => 'required|integer',
+                // observaciones
+                'observaciones' => 'required|array',
+                'observaciones.*.cumple' => 'required|boolean',
+                'observaciones.*.observacion' => 'required|string',
+                'observaciones.*.tipo_observacion_id' => 'required|integer',
             ];
 
             $validator = Validator::make($request->all(), $rules);
@@ -101,7 +107,7 @@ class SeguimientoRevisorController extends Controller
                     'message' => 'No existe una solicitud.'
                 ], 400);
             }
-            // actualizar seguimiento 
+            // actualizar seguimiento de jefe de unidad a revisor
             $seguimientoOrigen = Seguimientos::where('id', $request->id_seguimiento)->first();
 
             if (!$solicitud) {
@@ -116,6 +122,8 @@ class SeguimientoRevisorController extends Controller
             $seguimientoOrigen->fecha_derivacion = Carbon::now();
             $seguimientoOrigen->save();
 
+            // actualizar seguimiento de jefe de unidad a tecnico
+
             // agregar seguimiento para la proxima unidad
             $seguimiento = new Seguimientos();
             $seguimiento->solicitud_id = $request->solicitud_id;
@@ -123,6 +131,18 @@ class SeguimientoRevisorController extends Controller
             $seguimiento->usuario_destino_id = $request->usuario_destino_id;
             $seguimiento->estado_derivado_id = 1;
             $seguimiento->save();
+
+            // agregar observaciones
+            foreach ($request['observaciones'] as $observacion) {
+                $newObservacion = new Observacion();
+                $newObservacion->cumple = $observacion['cumple'];
+                $newObservacion->observacion = $observacion['observacion'];
+                $newObservacion->tipo_observacion_id = $observacion['tipo_observacion_id'];
+                $newObservacion->solicitud_id = $solicitud->id;
+                $newObservacion->usuario_id = $user->id;
+                $newObservacion->rol_id = $user->rol_id;
+                $newObservacion->save();
+            }
 
             return response()->json([
                 'status' => true,

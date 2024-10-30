@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('fechas_desembolsos_programado', function (Blueprint $table) {
             $table->id();
             $table->string('fecha');
-            $table->decimal('monto', 13, 2);
+            $table->decimal('monto', 15, 2);
             $table->boolean('estado')->default(true);
             $table->foreignId('cronograma_id')->constrained('cronogramas_desembolso_programado')->onDelete('cascade');
             $table->timestamps();

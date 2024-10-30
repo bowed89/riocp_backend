@@ -9,7 +9,7 @@ return new class extends Migration
 
     public function up(): void
     {
-        Schema::create('tipos_observaciones_tecnico', function (Blueprint $table) {
+        Schema::create('tipos_observaciones', function (Blueprint $table) {
             $table->id();
             $table->string('enumeracion');
             $table->text('observacion');
@@ -20,6 +20,6 @@ return new class extends Migration
 
     public function down(): void
     {
-        Schema::dropIfExists('tipos_observaciones_tecnico');
+        Schema::dropIfExists('tipos_observaciones');
     }
 };

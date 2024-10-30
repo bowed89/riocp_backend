@@ -2,10 +2,10 @@
 
 namespace App\Http\Services\Operador;
 
-use App\Models\ObservacionTecnico;
+use App\Models\Observacion;
 use App\Models\Seguimientos;
 use App\Models\Solicitud;
-use App\Models\TipoObservacionesTecnico;
+use App\Models\TipoObservaciones;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 
@@ -37,7 +37,7 @@ class ObservacionTecnicoService
         }
 
         // Verifico que no existan registros creados anteriormente
-        $observacionDuplicada = ObservacionTecnico::where('solicitud_id', $solicitud->id)->first();
+        $observacionDuplicada = Observacion::where('solicitud_id', $solicitud->id)->first();
 
         if ($observacionDuplicada) {
             return [
@@ -51,18 +51,19 @@ class ObservacionTecnicoService
 
         // registro las observaciones
         foreach ($request['observaciones'] as $observacion) {
-            $newObservacion = new ObservacionTecnico();
+            $newObservacion = new Observacion();
             $newObservacion->cumple = $observacion['cumple'];
             $newObservacion->observacion = $observacion['observacion'];
             $newObservacion->tipo_observacion_id = $observacion['tipo_observacion_id'];
             $newObservacion->solicitud_id = $solicitud->id;
             $newObservacion->usuario_id = $user->id;
+            $newObservacion->rol_id = $user->rol_id;
             $newObservacion->save();
         }
 
         // Actualizo segumiento y agrego nuevo seguimiento para el siguiente rol
         $this->asignarSeguimiento($request, $user);
-
+        
         return [
             'status' => 200,
             'data' => [
@@ -111,7 +112,7 @@ class ObservacionTecnicoService
             ];
         }
 
-        $tipoObservaciones = TipoObservacionesTecnico::orderBy('enumeracion', 'asc')->get();
+        $tipoObservaciones = TipoObservaciones::orderBy('enumeracion', 'asc')->get();
 
         if ($tipoObservaciones->isEmpty()) {
             return [

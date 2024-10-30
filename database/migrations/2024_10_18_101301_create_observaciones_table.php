@@ -9,13 +9,14 @@ return new class extends Migration
 
     public function up(): void
     {
-        Schema::create('observaciones_tecnico', function (Blueprint $table) {
+        Schema::create('observaciones', function (Blueprint $table) {
             $table->id();
             $table->boolean('cumple');
             $table->text('observacion');
-            $table->foreignId('tipo_observacion_id')->constrained('tipos_observaciones_tecnico')->onDelete('cascade');
+            $table->foreignId('tipo_observacion_id')->constrained('tipos_observaciones')->onDelete('cascade');
             $table->foreignId('solicitud_id')->constrained('solicitudes')->onDelete('cascade');
             $table->foreignId('usuario_id')->constrained('usuarios')->onDelete('cascade');
+            $table->foreignId('rol_id')->constrained('roles')->onDelete('cascade');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -23,6 +24,6 @@ return new class extends Migration
 
     public function down(): void
     {
-        Schema::dropIfExists('observaciones_tecnico');
+        Schema::dropIfExists('observaciones');
     }
 };

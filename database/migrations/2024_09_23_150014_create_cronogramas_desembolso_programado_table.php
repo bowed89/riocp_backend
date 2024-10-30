@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('cronogramas_desembolso_programado', function (Blueprint $table) {
             $table->id();
             $table->string('objeto_deuda');
-            $table->decimal('monto_contratado_a', 13, 2);
-            $table->decimal('monto_desembolsado_b', 13, 2);
-            $table->decimal('saldo_desembolso_a_b', 13, 2);
+            $table->decimal('monto_contratado_a', 15, 2);
+            $table->decimal('monto_desembolsado_b', 15, 2);
+            $table->decimal('saldo_desembolso_a_b', 15, 2);
             $table->boolean('desembolso_desistido');
             $table->foreignId('acreedor_id')->constrained('acreedores')->onDelete('cascade');
             $table->foreignId('cronograma_main_id')->constrained('cronogramas_desembolso_programado_main')->onDelete('cascade');

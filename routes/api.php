@@ -4,6 +4,7 @@ use App\Http\Controllers\Utils\AcreedorController;
 use App\Http\Controllers\Administrador\SeguimientoJefeUnidadController;
 use App\Http\Controllers\Operador\ObservacionTecnicoController;
 use App\Http\Controllers\Operador\SeguimientoOperadorController;
+use App\Http\Controllers\Revisor\ObservacionRevisorController;
 use App\Http\Controllers\Revisor\SeguimientoRevisorController;
 use Illuminate\Support\Facades\Route;
 
@@ -86,7 +87,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     });
 
     // Operador (Tecnico) y Administrador
-    Route::middleware('rol:3.2')->group(function () {
+    Route::middleware('rol:3.2.4')->group(function () {
         Route::resource('seguimiento/operador/main', SeguimientoOperadorController::class);
         Route::resource('operador/tipo-observacion', ObservacionTecnicoController::class);
         Route::post('/seguimiento/operador/store', [SeguimientoOperadorController::class, 'asignardeOperadoraRevisor']);
@@ -100,11 +101,12 @@ Route::middleware(['auth:sanctum'])->group(function () {
         Route::get('/cronograma-desembolso-deuda/formulario/{id}', [CronogramaDesembolsoProgramadoController::class, 'getCronogramaDesembolso']);
     });
 
-    // Revisor 
+    // Revisor y Administrador
     Route::middleware('rol:4.2')->group(function () {
         Route::post('/seguimiento/revisor/store', [SeguimientoRevisorController::class, 'asignardeRevisoraJefeUnidad']);
         Route::resource('seguimiento/revisor/main', SeguimientoRevisorController::class);
         Route::get('usuario/jefe-unidad', [AuthController::class, 'getJefeUnidad']);
+        Route::get('usuario/revisor/{solicitudId}', [ObservacionRevisorController::class, 'verObservacionIdSolicitud']);
     });
 
     // todos roles
