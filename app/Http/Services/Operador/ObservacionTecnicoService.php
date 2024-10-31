@@ -48,7 +48,7 @@ class ObservacionTecnicoService
                 ]
             ];
         }
-
+        
         // registro las observaciones
         foreach ($request['observaciones'] as $observacion) {
             $newObservacion = new Observacion();

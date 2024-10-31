@@ -87,7 +87,7 @@ class FormularioCorrespondenciaController extends Controller
     }
 
     public function storeSolicitudFormulario(Request $request)
-    {
+    {   
         $user = Auth::user();
 
         if ($user) {
@@ -144,7 +144,7 @@ class FormularioCorrespondenciaController extends Controller
             $seguimiento = new Seguimientos();
             $seguimiento->usuario_origen_id = $user->id;
             $seguimiento->usuario_destino_id = 2; // usuario 2 administrador
-            $seguimiento->observacion = 'Derivación por defecto a Jefe de Unidad'; 
+            $seguimiento->observacion = 'DERIVACIÓN POR DEFECTO A JEFE DE UNIDAD.'; 
             $seguimiento->solicitud_id = $solicitud->id;
             $seguimiento->save();
 
