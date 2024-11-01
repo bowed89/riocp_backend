@@ -4,7 +4,7 @@ namespace App\Http\Requests\Revisor;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class AsignarRevisoraRequest extends FormRequest
+class SeguimientoRevisorRequests extends FormRequest
 {
     public function rules()
     {

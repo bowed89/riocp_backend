@@ -28,6 +28,7 @@ class SeguimientoJefeUnidadService
             DB::raw('COALESCE(s.fecha_derivacion::text, \'SIN DATOS\') AS fecha_derivacion'),
             DB::raw('COALESCE(s.observacion, \'SIN DATOS\') AS observacion'),
             DB::raw('so.id as solicitud_id'),
+            DB::raw('r_origen.id AS id_rol_origen'),
             DB::raw('u_origen.nombre AS nombre_origen'),
             DB::raw('u_origen.apellido AS apellido_origen'),
             DB::raw('u_destino.nombre AS nombre_destino'),
