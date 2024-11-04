@@ -11,7 +11,7 @@ class SeguimientoJefeUnidadRequest extends FormRequest
         return [
             'id_seguimiento' => 'required|integer',
             'observacion' => 'required|string',
-            'nro_hoja_ruta' => 'required|string',
+            'nro_hoja_ruta' => 'string',
             'solicitud_id' => 'required|integer',
             'usuario_destino_id' => 'required|integer',
         ];

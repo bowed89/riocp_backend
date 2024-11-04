@@ -24,6 +24,17 @@ class UsuarioSeeder extends Seeder
                 'entidad_id' => 4,
             ],
             [
+                'nombre' => 'Martha',
+                'apellido' => 'Sanchez Perez',
+                'correo' => 'solicitante2@gmail.com',
+                'nombre_usuario' => 'martha.sanchez',
+                'ci' => 48008716,
+                'password' => Hash::make('solicitante123'), 
+                'estado' => true,
+                'rol_id' => 1,
+                'entidad_id' => 12,
+            ],
+            [
                 'nombre' => 'Juan Carlos',
                 'apellido' => 'Perez',
                 'correo' => 'jefe.unidad@gmail.com',
@@ -70,6 +81,17 @@ class UsuarioSeeder extends Seeder
                 'rol_id' => 4,
                 'entidad_id' => null,
 
+            ],
+            [
+                'nombre' => 'Juana Maria',
+                'apellido' => 'Gutierrez Valencia',
+                'correo' => 'dgaft@gmail.com',
+                'nombre_usuario' => 'juana.gutierrez',
+                'ci' => 65275665,
+                'password' => Hash::make('dgaft123'),
+                'estado' => true,
+                'rol_id' => 5,
+                'entidad_id' => null,
             ]
         ]);
     }

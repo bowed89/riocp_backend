@@ -97,8 +97,8 @@ class SeguimientoRevisorService
                 ]
             ];
         }
-         // actualizar seguimiento de jefe de unidad a revisor
-         $seguimientoOrigen = Seguimientos::where('id', $data['id_seguimiento'])->first();
+        // actualizar seguimiento de jefe de unidad a revisor
+        $seguimientoOrigen = Seguimientos::where('id', $data['id_seguimiento'])->first();
 
         if (!$seguimientoOrigen) {
             return [
@@ -116,6 +116,21 @@ class SeguimientoRevisorService
         $seguimientoOrigen->save();
 
         // Agregar seguimiento para la próxima unidad
+        $seguimientoProximaUnidad = Seguimientos::where('solicitud_id', $data['solicitud_id'])
+            ->where('usuario_origen_id', $user->id)
+            ->where('usuario_destino_id', $data['usuario_destino_id'])
+            ->first();
+
+        if ($seguimientoProximaUnidad) {
+            return [
+                'status' => 400,
+                'data' => [
+                    'status' => false,
+                    'message' => 'Ya existe un seguimiento agregado a la próxima unidad.'
+                ]
+            ];
+        }
+
         $seguimiento = new Seguimientos();
         $seguimiento->solicitud_id = $data['solicitud_id'];
         $seguimiento->usuario_origen_id = $user->id;

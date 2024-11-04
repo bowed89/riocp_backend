@@ -14,7 +14,6 @@ class SolicitudRiocpRequest extends FormRequest
             'interes_anual' => 'required|numeric',
             'declaracion_jurada' => 'required|string',
             'comision_concepto' => 'nullable|string',
-            'comision_tasa' => 'nullable|numeric',
             'periodo_gracia' => 'required|integer|min:0',
             'objeto_operacion_credito' => 'required|string|max:255',
             'firma_digital' => 'required|boolean',

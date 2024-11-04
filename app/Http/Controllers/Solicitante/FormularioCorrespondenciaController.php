@@ -8,6 +8,7 @@ use App\Models\FormularioCorrespondencia;
 use App\Models\MenuPestaniasSolicitante;
 use App\Models\Seguimientos;
 use App\Models\Solicitud;
+use App\Models\Usuario;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -37,7 +38,7 @@ class FormularioCorrespondenciaController extends Controller
 
         if ($user) {
             $rules = [
-                'nombre_completo' => 'required|string|min:5',
+                'nombre_completo' => 'required|string|max:255',
                 'correo_electronico' => 'required|email|max:255',
                 'nombre_entidad' => 'required|string|max:255',
                 'cite_documento' => 'string|max:255',
@@ -87,7 +88,7 @@ class FormularioCorrespondenciaController extends Controller
     }
 
     public function storeSolicitudFormulario(Request $request)
-    {   
+    {
         $user = Auth::user();
 
         if ($user) {
@@ -113,7 +114,7 @@ class FormularioCorrespondenciaController extends Controller
             }
 
             $formularioRules = [
-                'nombre_completo' => 'required|string|min:5',
+                'nombre_completo' => 'required|string|max:255',
                 'correo_electronico' => 'required|email|max:255',
                 'nombre_entidad' => 'required|string|max:255',
                 'cite_documento' => 'string|max:255',
@@ -133,18 +134,22 @@ class FormularioCorrespondenciaController extends Controller
 
             // verifico que no exista un seguimiento creado anteriormente con la misma solicitud_id
             $seguimientoDuplicado = Seguimientos::where('solicitud_id', $solicitud->id)->first();
-            
+
             if ($seguimientoDuplicado) {
                 return response()->json([
                     'status' => false,
                     'message' => 'Ya se registro un seguimiento con una solicitud pendiente.'
                 ], 404);
             }
+
+            // obtengo el usuario destino de jefe de unidad
+            $usuarioDestino = Usuario::where('rol_id', 2)->first();
+
             // Realizar registro de seguimiento
             $seguimiento = new Seguimientos();
             $seguimiento->usuario_origen_id = $user->id;
-            $seguimiento->usuario_destino_id = 2; // usuario 2 administrador
-            $seguimiento->observacion = 'DERIVACIÓN POR DEFECTO A JEFE DE UNIDAD.'; 
+            $seguimiento->usuario_destino_id = $usuarioDestino->id; 
+            $seguimiento->observacion = 'DERIVACIÓN POR DEFECTO A JEFE DE UNIDAD.';
             $seguimiento->solicitud_id = $solicitud->id;
             $seguimiento->save();
 
@@ -238,7 +243,7 @@ class FormularioCorrespondenciaController extends Controller
         }
 
         $rules = [
-            'nombre_completo' => 'string|min:5',
+            'nombre_completo' => 'string|max:255',
             'correo_electronico' => 'email|max:255',
             'nombre_entidad' => 'string|max:255',
             'cite_documento' => 'string|max:255',

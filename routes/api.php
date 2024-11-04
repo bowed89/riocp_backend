@@ -43,6 +43,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
         Route::resource('usuarios', AuthController::class);
         Route::get('usuario/tecnico', [AuthController::class, 'getTecnicos']);
         Route::get('usuario/revisor', [AuthController::class, 'getRevisores']);
+        Route::get('usuario/dgaft', [AuthController::class, 'getDGAFT']);
 
         // Seguimiento Jefe Unidad
         Route::post('/seguimiento/administrador/store', [SeguimientoJefeUnidadController::class, 'asignarTecnicoRevisor']);
@@ -87,7 +88,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     });
 
     // Operador (Tecnico) y Administrador
-    Route::middleware('rol:3.2.4')->group(function () {
+    Route::middleware('rol:3.2.4.5')->group(function () {
         Route::resource('seguimiento/operador/main', SeguimientoOperadorController::class);
         Route::resource('operador/tipo-observacion', ObservacionTecnicoController::class);
         Route::post('/seguimiento/operador/store', [SeguimientoOperadorController::class, 'asignardeOperadoraRevisor']);
@@ -107,6 +108,11 @@ Route::middleware(['auth:sanctum'])->group(function () {
         Route::resource('seguimiento/revisor/main', SeguimientoRevisorController::class);
         Route::get('usuario/jefe-unidad', [AuthController::class, 'getJefeUnidad']);
         Route::get('usuario/revisor/{solicitudId}', [ObservacionRevisorController::class, 'verObservacionIdSolicitud']);
+    });
+
+    // DGAFT y Administrador
+    Route::middleware('rol:5.2')->group(function () {
+
     });
 
     // todos roles

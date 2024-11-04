@@ -108,6 +108,24 @@ class AuthController extends Controller
         ]);
     }
 
+    public function getDGAFT()
+    {
+        $usuarios = Usuario::where('rol_id', 5)->get();
+
+        if (!$usuarios) {
+            return response()->json([
+                'status' => false,
+                'message' => 'Usuario DGAFT no encontrado.'
+            ], 404);
+        }
+
+        return response()->json([
+            'status' => true,
+            'data' => $usuarios
+        ]);
+    }
+
+
 
     public function getJefeUnidad()
     {

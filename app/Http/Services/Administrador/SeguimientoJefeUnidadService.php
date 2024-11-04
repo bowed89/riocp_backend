@@ -4,6 +4,7 @@ namespace App\Http\Services\Administrador;
 
 use App\Models\Seguimientos;
 use App\Models\Solicitud;
+use App\Models\Usuario;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -17,7 +18,8 @@ class SeguimientoJefeUnidadService
         if (!$user) {
             return [
                 'status' => false,
-                'message' => 'Usuario no autorizado o sin rol asignado.'
+                'message' => 'Usuario no autorizado o sin rol asignado.',
+                'data' => $user
             ];
         }
 
@@ -27,6 +29,9 @@ class SeguimientoJefeUnidadService
             DB::raw('COALESCE(s.created_at::text, \'SIN DATOS\') AS fecha_recepcion'),
             DB::raw('COALESCE(s.fecha_derivacion::text, \'SIN DATOS\') AS fecha_derivacion'),
             DB::raw('COALESCE(s.observacion, \'SIN DATOS\') AS observacion'),
+
+            DB::raw("COALESCE(UPPER(e_origen.denominacion), '') AS denominacion"),
+
             DB::raw('so.id as solicitud_id'),
             DB::raw('r_origen.id AS id_rol_origen'),
             DB::raw('u_origen.nombre AS nombre_origen'),
@@ -45,6 +50,7 @@ class SeguimientoJefeUnidadService
             ->join('usuarios AS u_origen', 'u_origen.id', '=', 's.usuario_origen_id')
             ->join('roles AS r_origen', 'r_origen.id', '=', 'u_origen.rol_id')
             ->join('usuarios AS u_destino', 'u_destino.id', '=', 's.usuario_destino_id')
+            ->leftJoin('entidades AS e_origen', 'e_origen.id', '=', 'u_origen.entidad_id')
             ->join('roles AS r_destino', 'r_destino.id', '=', 'u_destino.rol_id')
             ->where('u_destino.rol_id', $user->rol_id)
             ->where('u_destino.id', $user->id)
@@ -96,21 +102,39 @@ class SeguimientoJefeUnidadService
         }
 
         $seguimientoOrigen->estado_derivado_id = 2;
+        $seguimientoOrigen->observacion = $data['observacion'];
         $seguimientoOrigen->fecha_derivacion = Carbon::now();
         $seguimientoOrigen->save();
 
-        // agregar seguimiento para la proxima unidad:: tecnico
+        // Verificar el tipo de rol del usuario por el seguimiento de usuario_origen_id 
+        $usuarioOrigen = Usuario::where('id', $seguimientoOrigen->usuario_origen_id)->first();
+
+        // entidad solicitante
+        if ($usuarioOrigen->rol_id == 1) {
+            // actualizar solicitud 
+            $solicitud->nro_hoja_ruta = $data['nro_hoja_ruta'];
+            $solicitud->estado_requisito_id = 2;
+            $solicitud->save();
+        }
+        // agregar seguimiento para la proxima unidad:: tecnico o DGAFT
+        $seguimientoProximaUnidad = Seguimientos::where('solicitud_id', $solicitud->id)
+            ->where('usuario_origen_id', $user->id)
+            ->where('usuario_destino_id', $data['usuario_destino_id'])
+            ->first();
+
+        if ($seguimientoProximaUnidad) {
+            return [
+                'status' => false,
+                'message' => 'Ya existe un seguimiento agregado a la próxima unidad.'
+            ];
+        }
+
         $seguimiento = new Seguimientos();
         $seguimiento->solicitud_id = $solicitud->id;
         $seguimiento->usuario_origen_id = $user->id;
         $seguimiento->usuario_destino_id = $data['usuario_destino_id'];
         $seguimiento->estado_derivado_id = 1;
         $seguimiento->save();
-
-        // actualizar solicitud 
-        $solicitud->nro_hoja_ruta = $data['nro_hoja_ruta'];
-        $solicitud->estado_requisito_id = 2;
-        $solicitud->save();
 
         return [
             'status' => true,

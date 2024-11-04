@@ -14,7 +14,7 @@ return new class extends Migration
             $table->integer('plazo');
             $table->decimal('interes_anual', 15, 2);
             $table->string('comision_concepto')->nullable();
-            $table->decimal('comision_tasa', 15, 2)->nullable();
+            $table->decimal('comision_tasa', 13, 2)->nullable();
             $table->string('declaracion_jurada');
             $table->integer('periodo_gracia');
             $table->string('objeto_operacion_credito');

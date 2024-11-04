@@ -14,8 +14,10 @@ class RolSeeder extends Seeder
         DB::table('roles')->insert([
             ['rol' => 'Entidad Solicitante', 'descripcion' => 'Entidad solicitante', 'estado' => 1],
             ['rol' => 'Jefe de Unidad', 'descripcion' => 'Usuario que gestiona todo el sistema', 'estado' => 1],
-            ['rol' => 'Tècnico', 'descripcion' => 'Gestor para realizar operaciones de aprobacion de creditos', 'estado' => 1],
+            ['rol' => 'Técnico', 'descripcion' => 'Gestor para realizar operaciones de aprobacion de creditos', 'estado' => 1],
             ['rol' => 'Revisor', 'descripcion' => 'Encargado de verificar el estado de las solicitudes', 'estado' => 1],
+            ['rol' => 'DGAFT', 'descripcion' => 'Director(a) General de Administración y Finanzas Territoriales', 'estado' => 1],
+            ['rol' => 'VTCP', 'descripcion' => 'Viceministro del Tesoro y Crédito Público', 'estado' => 1],
         ]);
     }
 }
