@@ -35,7 +35,7 @@ class AbrirDocumentoService
         }
 
         $rutaArchivo = 'public/' . $documento->ruta_documento;
-        
+
         if (!Storage::exists($rutaArchivo)) {
             return [
                 'status' => false,
@@ -44,7 +44,12 @@ class AbrirDocumentoService
             ];
         }
 
-        return Storage::download($rutaArchivo);
+        // return Storage::download($rutaArchivo);
+
+        $mimeType = Storage::mimeType($rutaArchivo);
+        $nombreArchivo = basename($documento->ruta_documento);
+
+        return Storage::download($rutaArchivo, $nombreArchivo, ['Content-Type' => $mimeType]);
     }
 
     public function abrirDocumentoRiocp($id)
@@ -102,7 +107,7 @@ class AbrirDocumentoService
         }
 
         $rutaArchivo = 'public/' . $documento->ruta_documento;
-        
+
         if (!Storage::exists($rutaArchivo)) {
             return [
                 'status' => false,

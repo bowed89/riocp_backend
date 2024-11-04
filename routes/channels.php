@@ -19,7 +19,11 @@ Broadcast::channel('App.Models.User.{id}', function ($user, $id) {
 });
 
 Broadcast::channel('menu-pestania', function ($user, $id) {
-    return true; // O verifica si el usuario tiene acceso
+    return true; 
+});
+
+Broadcast::channel('new-notificaciones', function ($user, $id) {
+    return true; 
 });
 
 /* Broadcast::channel('menu-pestania', function ($user) {

@@ -5,7 +5,7 @@ namespace App\Events;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
-class MenuUpdated implements ShouldBroadcast
+class Notificaciones implements ShouldBroadcast
 {
     public $data;
 
@@ -16,12 +16,12 @@ class MenuUpdated implements ShouldBroadcast
 
     public function broadcastOn()
     {
-        return new Channel('menu-pestania');
+        return new Channel('new-notificaciones');
     }
 
     public function broadcastAs()
     {
-        return 'App\\Events\\MenuUpdated';
+        return 'App\\Events\\Notificaciones';
     }
 
 }

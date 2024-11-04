@@ -26,6 +26,7 @@ use App\Http\Controllers\Solicitante\SolicitudRiocpController;
 use App\Http\Controllers\Solicitante\TipoDocumentoAdjuntoController;
 use App\Http\Controllers\Solicitante\TramitesController;
 use App\Http\Controllers\Utils\AbrirDocumentoController;
+use App\Http\Controllers\Utils\NotificacionesController;
 use App\Http\Controllers\Utils\PdfController;
 
 Route::post('auth/register', [AuthController::class, 'create']);
@@ -52,6 +53,9 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
     // Admistrador y solicitante
     Route::middleware('rol:1.2')->group(function () {
+
+        // Notificaciones
+        Route::resource('notificaciones', NotificacionesController::class);
 
         Route::resource('formulario-correspondencia', FormularioCorrespondenciaController::class);
         Route::post('/formulario-correspondencia/formulario', [FormularioCorrespondenciaController::class, 'storeSolicitudFormulario']);
