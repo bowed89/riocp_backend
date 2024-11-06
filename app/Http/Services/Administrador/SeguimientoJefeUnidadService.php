@@ -2,6 +2,8 @@
 
 namespace App\Http\Services\Administrador;
 
+use App\Events\Notificaciones;
+use App\Http\Queries\JefeUnidadQuery;
 use App\Models\Seguimientos;
 use App\Models\Solicitud;
 use App\Models\Usuario;
@@ -136,9 +138,24 @@ class SeguimientoJefeUnidadService
         $seguimiento->estado_derivado_id = 1;
         $seguimiento->save();
 
+        // Event para notificaciones de nuevos tramites
+        $this->emitNotificacion($user);
+        
         return [
             'status' => true,
             'message' => 'Derivación registrada correctamente.'
         ];
+    }
+
+    private function emitNotificacion($user)
+    {
+        $resultados = JefeUnidadQuery::getJefeUnidadList($user);
+        $count = 0;
+        foreach ($resultados as $res) {
+            if ($res['estado'] == 'SIN DERIVAR') {
+                $count += 1;
+            }
+        }
+        event(new Notificaciones($count));
     }
 }

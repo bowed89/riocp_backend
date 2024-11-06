@@ -2,6 +2,8 @@
 
 namespace App\Http\Services\Revisor;
 
+use App\Events\Notificaciones;
+use App\Http\Queries\JefeUnidadQuery;
 use App\Models\Observacion;
 use App\Models\Seguimientos;
 use App\Models\Solicitud;
@@ -150,6 +152,10 @@ class SeguimientoRevisorService
             $newObservacion->save();
         }
 
+
+        // Event para notificaciones de nuevos tramites
+        $this->emitNotificacion($user);
+
         return [
             'status' => 200,
             'data' => [
@@ -158,5 +164,17 @@ class SeguimientoRevisorService
                 'data' => $seguimiento
             ]
         ];
+    }
+
+    private function emitNotificacion($user)
+    {
+        $resultados = JefeUnidadQuery::getJefeUnidadList($user);
+        $count = 0;
+        foreach ($resultados as $res) {
+            if ($res['estado'] == 'SIN DERIVAR') {
+                $count += 1;
+            }
+        }
+        event(new Notificaciones($count));
     }
 }

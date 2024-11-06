@@ -2,6 +2,8 @@
 
 namespace App\Http\Services\Operador;
 
+use App\Events\Notificaciones;
+use App\Http\Queries\JefeUnidadQuery;
 use App\Models\Observacion;
 use App\Models\Seguimientos;
 use App\Models\Solicitud;
@@ -48,7 +50,7 @@ class ObservacionTecnicoService
                 ]
             ];
         }
-        
+
         // registro las observaciones
         foreach ($request['observaciones'] as $observacion) {
             $newObservacion = new Observacion();
@@ -63,7 +65,11 @@ class ObservacionTecnicoService
 
         // Actualizo segumiento y agrego nuevo seguimiento para el siguiente rol
         $this->asignarSeguimiento($request, $user);
-        
+
+        // Event para notificaciones de nuevos tramites
+        $this->emitNotificacion($user);
+
+
         return [
             'status' => 200,
             'data' => [
@@ -71,6 +77,18 @@ class ObservacionTecnicoService
                 'message' => 'Se registraron las observaciones correctamente.'
             ]
         ];
+    }
+
+    private function emitNotificacion($user)
+    {
+        $resultados = JefeUnidadQuery::getJefeUnidadList($user);
+        $count = 0;
+        foreach ($resultados as $res) {
+            if ($res['estado'] == 'SIN DERIVAR') {
+                $count += 1;
+            }
+        }
+        event(new Notificaciones($count));
     }
 
     private function asignarSeguimiento($data, $user)

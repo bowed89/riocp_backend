@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Solicitante;
 
 use App\Events\MenuUpdated;
+use App\Events\Notificaciones;
 use App\Http\Controllers\Controller;
+use App\Http\Queries\JefeUnidadQuery;
 use App\Models\FormularioCorrespondencia;
 use App\Models\MenuPestaniasSolicitante;
 use App\Models\Seguimientos;
@@ -103,6 +105,7 @@ class FormularioCorrespondenciaController extends Controller
                     'message' => 'No se encontró una solicitud del usuario en proceso. Primero debe completar el FORMULARIO 1 SOLICITUD RIOCP.'
                 ], 404);
             }
+
             // verifico que no exista un formulario creado anteriormente con la misma solicitud_id
             $formularioDuplicado = FormularioCorrespondencia::where('solicitud_id', $solicitud->id)->first();
 
@@ -148,7 +151,7 @@ class FormularioCorrespondenciaController extends Controller
             // Realizar registro de seguimiento
             $seguimiento = new Seguimientos();
             $seguimiento->usuario_origen_id = $user->id;
-            $seguimiento->usuario_destino_id = $usuarioDestino->id; 
+            $seguimiento->usuario_destino_id = $usuarioDestino->id;
             $seguimiento->observacion = 'DERIVACIÓN POR DEFECTO A JEFE DE UNIDAD.';
             $seguimiento->solicitud_id = $solicitud->id;
             $seguimiento->save();
@@ -169,7 +172,7 @@ class FormularioCorrespondenciaController extends Controller
             $formulario->ruta_documento = $filePath;
             $formulario->save();
 
-            // crear nro_solicitud fecha y num aleatorio y actualizar
+            // crear nro_solicitud fecha y num aleatorio y actualizar solicitud
             $fecha = date("dmy");
             $numerosAleatorios = mt_rand(100, 999);
             $numeroGenerado = $fecha . '' . $numerosAleatorios;
@@ -190,6 +193,7 @@ class FormularioCorrespondenciaController extends Controller
             $menu->refresh(); // devuelve todos los campos no solo created_at y updated_at
             // Iterar y ajustar el estado `disabled` basado en la clave del array
             $items = config('menu_pestanias');
+
             foreach ($items as &$item) {
                 $key = $item['disabled'];
                 if (isset($menu->$key)) {
@@ -199,6 +203,11 @@ class FormularioCorrespondenciaController extends Controller
 
             // evento con los datos del menu
             event(new MenuUpdated($items));
+
+            // Event para notificaciones de nuevos tramites
+            $userJefeUnidad = Usuario::where('rol_id', 2)->first();
+            $this->emitNotificacion($userJefeUnidad);
+
             return response()->json([
                 'status' => true,
                 'message' => 'Formulario registrado correctamente.',
@@ -291,4 +300,17 @@ class FormularioCorrespondenciaController extends Controller
             'data' => $formulario
         ], 200);
     }
+
+    private function emitNotificacion($user)
+    {
+        $resultados = JefeUnidadQuery::getJefeUnidadList($user);
+        $count = 0;
+        foreach ($resultados as $res) {
+            if ($res['estado'] == 'SIN DERIVAR') {
+                $count += 1;
+            }
+        }
+        event(new Notificaciones($count));
+    }
+
 }

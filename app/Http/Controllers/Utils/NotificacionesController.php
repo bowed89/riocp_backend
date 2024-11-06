@@ -16,8 +16,7 @@ class NotificacionesController extends Controller
 
     public function index()
     {
-        $response = $this->notificacionesService->NotificacionJefeUnidad();
-        //return response()->json($response['data'], $response['status']);
+        $response = $this->notificacionesService->Notificacion();
         return response()->json($response, $response['code']);
 
     }

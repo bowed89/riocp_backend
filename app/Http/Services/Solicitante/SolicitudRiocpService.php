@@ -3,12 +3,14 @@
 namespace App\Http\Services\Solicitante;
 
 use App\Events\MenuUpdated;
+use App\Events\Notificaciones;
 use App\Models\ContactoSubsanar;
 use App\Models\MenuPestaniasSolicitante;
 use App\Models\Solicitud;
 use App\Models\SolicitudRiocp;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class SolicitudRiocpService
 {
@@ -131,7 +133,7 @@ class SolicitudRiocpService
 
             // Actualizar el menú de pestañas
             $this->updateMenu($solicitudRiocp);
-
+            
             return [
                 'status' => true,
                 'message' => 'Formulario registrado correctamente.',
@@ -175,7 +177,6 @@ class SolicitudRiocpService
                 $item['disabled'] = $menu->$key;
             }
         }
-
         // Evento con los datos del menú
         event(new MenuUpdated($items));
     }

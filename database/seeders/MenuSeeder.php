@@ -329,7 +329,7 @@ class MenuSeeder extends Seeder
             ],
             [
                 'nombre' => 'Mis Tramites',
-                'url' => '/admin/ver-tramites',
+                'url' => '/admin/ver-tramite',
                 'icono' => 'pi pi-check-circle',
                 'rol_id' => 2,
                 'tipo_id' => 3,

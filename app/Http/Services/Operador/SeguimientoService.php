@@ -2,6 +2,8 @@
 
 namespace App\Http\Services\Operador;
 
+use App\Events\Notificaciones;
+use App\Http\Queries\JefeUnidadQuery;
 use App\Models\Seguimientos;
 use App\Models\Solicitud;
 use Carbon\Carbon;
@@ -116,4 +118,6 @@ class SeguimientoService
             'code' => 200
         ];
     }
+
+ 
 }

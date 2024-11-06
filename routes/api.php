@@ -12,9 +12,9 @@ use App\Http\Controllers\Usuario\AuthController;
 use App\Http\Controllers\Solicitante\CronogramaDesembolsoProgramadoController;
 use App\Http\Controllers\Solicitante\CronogramaServicioDeudaController;
 use App\Http\Controllers\Solicitante\DocumentoAdjuntoController;
+use App\Http\Controllers\Solicitante\FormularioCorrespondenciaController;
 use App\Http\Controllers\Utils\EntidadesController;
 use App\Http\Controllers\Utils\FirmadigitalController;
-use App\Http\Controllers\Solicitante\FormularioCorrespondenciaController;
 use App\Http\Controllers\Solicitante\InformacionDeudaController;
 use App\Http\Controllers\Utils\MenuController;
 use App\Http\Controllers\Utils\MenuPestaniasSolicitanteController;
@@ -53,10 +53,6 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
     // Admistrador y solicitante
     Route::middleware('rol:1.2')->group(function () {
-
-        // Notificaciones
-        Route::resource('notificaciones', NotificacionesController::class);
-
         Route::resource('formulario-correspondencia', FormularioCorrespondenciaController::class);
         Route::post('/formulario-correspondencia/formulario', [FormularioCorrespondenciaController::class, 'storeSolicitudFormulario']);
         Route::resource('solicitud', SolicitudController::class);
@@ -115,9 +111,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     });
 
     // DGAFT y Administrador
-    Route::middleware('rol:5.2')->group(function () {
-
-    });
+    Route::middleware('rol:5.2')->group(function () {});
 
     // todos roles
     Route::get('menu/rol/user', [MenuController::class, 'selectMenuByRol']);
@@ -132,4 +126,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('entidades/usuario/rol', [EntidadesController::class, 'getEntidadByUser']);
 
     Route::post('/generar-pdf', [PdfController::class, 'generarPDF'])->name('generar.pdf');
+
+    // Notificaciones
+    Route::resource('notificaciones', NotificacionesController::class);
 });

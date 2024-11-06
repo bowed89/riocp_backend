@@ -26,4 +26,5 @@ class SeguimientoRevisorController extends Controller
         $response = $this->seguimientoRevisorService->asignarRevisora($request);
         return response()->json($response['data'], $response['status']);
     }
+    
 }

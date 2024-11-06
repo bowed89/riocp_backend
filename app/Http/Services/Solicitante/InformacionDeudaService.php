@@ -3,6 +3,7 @@
 namespace App\Http\Services\Solicitante;
 
 use App\Events\MenuUpdated;
+use App\Events\Notificaciones;
 use App\Models\InformacionDeuda;
 use App\Models\MenuPestaniasSolicitante;
 use App\Models\Solicitud;
