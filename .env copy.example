@@ -78,3 +78,15 @@ VITE_PUSHER_SCHEME="${PUSHER_SCHEME}"
 VITE_PUSHER_APP_CLUSTER="${PUSHER_APP_CLUSTER}"
 
 
+#SMPT GMAIL
+MAIL_MAILER=smtp
+MAIL_HOST=smtp.gmail.com
+MAIL_PORT=587
+MAIL_USERNAME=jesus.lopez.averanga@gmail.com
+MAIL_PASSWORD="mizy ciic uhyk cxlw"
+MAIL_ENCRYPTION=tls
+MAIL_FROM_ADDRESS=jesus.lopez.averanga@gmail.com
+MAIL_FROM_NAME="RIOCP_ADMIN"
+
+
+

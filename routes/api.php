@@ -26,11 +26,15 @@ use App\Http\Controllers\Solicitante\SolicitudRiocpController;
 use App\Http\Controllers\Solicitante\TipoDocumentoAdjuntoController;
 use App\Http\Controllers\Solicitante\TramitesController;
 use App\Http\Controllers\Utils\AbrirDocumentoController;
+use App\Http\Controllers\Utils\CorreoController;
 use App\Http\Controllers\Utils\NotificacionesController;
 use App\Http\Controllers\Utils\PdfController;
 
 Route::post('auth/register', [AuthController::class, 'create']);
 Route::post('auth/login', [AuthController::class, 'login']);
+
+// Emails
+Route::post('email/send', [CorreoController::class, 'sendEmail']);
 
 Route::middleware(['auth:sanctum'])->group(function () {
     // Admistrador
@@ -62,7 +66,6 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
         // Firma Digital
         Route::post('/validar-firma', [FirmadigitalController::class, 'validarFirmaDigital']);
-
 
         // Formulario 1
         Route::resource('solicitud-riocp', SolicitudRiocpController::class);
