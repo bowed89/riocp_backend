@@ -426,6 +426,7 @@ class MenuSeeder extends Seeder
                 'estado' => 1,
                 'show_menu' => 1,
             ],
+            
             /* REVISOR */
             [
                 'nombre' => 'Inicio',
@@ -433,6 +434,33 @@ class MenuSeeder extends Seeder
                 'icono' => 'pi pi-check-circle',
                 'rol_id' => 4,
                 'tipo_id' => 1,
+                'estado' => 1,
+                'show_menu' => 1,
+            ],/* Subir archivos */
+            [
+                'nombre' => 'Deuda Pública Externa',
+                'url' => '/revisor/subir-deuda-publica-externa',
+                'icono' => 'pi pi-check-circle',
+                'rol_id' => 4,
+                'tipo_id' => 8,
+                'estado' => 1,
+                'show_menu' => 1,
+            ],
+            [
+                'nombre' => 'FNDR',
+                'url' => '/revisor/subir-fndr',
+                'icono' => 'pi pi-check-circle',
+                'rol_id' => 4,
+                'tipo_id' => 8,
+                'estado' => 1,
+                'show_menu' => 1,
+            ],
+            [
+                'nombre' => 'Balance General',
+                'url' => '/revisor/subir-balance-general',
+                'icono' => 'pi pi-check-circle',
+                'rol_id' => 4,
+                'tipo_id' => 8,
                 'estado' => 1,
                 'show_menu' => 1,
             ],
@@ -445,6 +473,7 @@ class MenuSeeder extends Seeder
                 'estado' => 1,
                 'show_menu' => 1,
             ],
+    
             [
                 'nombre' => 'Certificado',
                 'url' => '/revisor/certificado',

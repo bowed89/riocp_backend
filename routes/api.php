@@ -2,10 +2,14 @@
 
 use App\Http\Controllers\Utils\AcreedorController;
 use App\Http\Controllers\Administrador\SeguimientoJefeUnidadController;
+use App\Http\Controllers\Excel\BalanceGeneralExcelController;
+use App\Http\Controllers\Excel\DeudaPublicaExternaController;
+use App\Http\Controllers\Excel\FndrExcelController;
 use App\Http\Controllers\Operador\ObservacionTecnicoController;
 use App\Http\Controllers\Operador\SeguimientoOperadorController;
 use App\Http\Controllers\Revisor\ObservacionRevisorController;
 use App\Http\Controllers\Revisor\SeguimientoRevisorController;
+use App\Http\Controllers\Revisor\SubirHistorialExcelController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Usuario\AuthController;
@@ -111,6 +115,14 @@ Route::middleware(['auth:sanctum'])->group(function () {
         Route::resource('seguimiento/revisor/main', SeguimientoRevisorController::class);
         Route::get('usuario/jefe-unidad', [AuthController::class, 'getJefeUnidad']);
         Route::get('usuario/revisor/{solicitudId}', [ObservacionRevisorController::class, 'verObservacionIdSolicitud']);
+
+        Route::post('/subir-historial/revisor', [SubirHistorialExcelController::class, 'subirDocumento']);
+
+
+        // Excel
+        Route::post('import/deuda-externa', [DeudaPublicaExternaController::class, 'deudaPublicaExterna']);
+        Route::post('import/fndr-excel', [FndrExcelController::class, 'fndrExcel']);
+        Route::post('import/balance-general', [BalanceGeneralExcelController::class, 'balanceGeneralExcel']);
     });
 
     // DGAFT y Administrador

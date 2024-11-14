@@ -13,7 +13,9 @@ class TipoDocumentoAdjuntoSeeder extends Seeder
             ['tipo' => 'Cronograma de Pagos', 'obligatorio' =>  true],
             ['tipo' => 'Cronograma de Desembolsos', 'obligatorio' =>  true],
             ['tipo' => 'Información Financiera', 'obligatorio' =>  false],
-            ['tipo' => 'Certificado RIOCP no Vigente', 'obligatorio' =>  false]
+            ['tipo' => 'Deuda Pública Externa-Excel', 'obligatorio' =>  false],
+            ['tipo' => 'FNDR-Excel', 'obligatorio' =>  false],
+            ['tipo' => 'Balance General-Excel', 'obligatorio' =>  false],
         ]);
     }
 }

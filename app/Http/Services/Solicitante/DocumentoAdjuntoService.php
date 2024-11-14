@@ -88,6 +88,7 @@ class DocumentoAdjuntoService
                 'code' => 403
             ];
         }
+        
         // obtengo el id de la solicitud incompleta del usuario 
         $solicitud = Solicitud::where('usuario_id', $user->id)
             ->where('estado_requisito_id', 1)

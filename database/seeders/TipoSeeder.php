@@ -20,6 +20,7 @@ class TipoSeeder extends Seeder
             ['tipo' => 'reportes'],
             ['tipo' => 'ayuda'],
             ['tipo' => 'administracion'],
+            ['tipo' => 'subir archivos'],
         ]);
     }
 }
