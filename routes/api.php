@@ -5,6 +5,7 @@ use App\Http\Controllers\Administrador\SeguimientoJefeUnidadController;
 use App\Http\Controllers\Excel\BalanceGeneralExcelController;
 use App\Http\Controllers\Excel\DeudaPublicaExternaController;
 use App\Http\Controllers\Excel\FndrExcelController;
+use App\Http\Controllers\Excel\PromedioIcrEtaController;
 use App\Http\Controllers\Operador\ObservacionTecnicoController;
 use App\Http\Controllers\Operador\SeguimientoOperadorController;
 use App\Http\Controllers\Revisor\ObservacionRevisorController;
@@ -39,6 +40,8 @@ Route::post('auth/login', [AuthController::class, 'login']);
 
 // Emails
 Route::post('email/send', [CorreoController::class, 'sendEmail']);
+
+Route::post('import/icr-eta', [PromedioIcrEtaController::class, 'icrEtaExcel']);
 
 Route::middleware(['auth:sanctum'])->group(function () {
     // Admistrador
