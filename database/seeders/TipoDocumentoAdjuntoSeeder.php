@@ -16,6 +16,7 @@ class TipoDocumentoAdjuntoSeeder extends Seeder
             ['tipo' => 'Deuda Pública Externa-Excel', 'obligatorio' =>  false],
             ['tipo' => 'FNDR-Excel', 'obligatorio' =>  false],
             ['tipo' => 'Balance General-Excel', 'obligatorio' =>  false],
+            ['tipo' => 'Promedio ICR ETA-UP-Excel', 'obligatorio' =>  false],
         ]);
     }
 }

@@ -426,7 +426,7 @@ class MenuSeeder extends Seeder
                 'estado' => 1,
                 'show_menu' => 1,
             ],
-            
+
             /* REVISOR */
             [
                 'nombre' => 'Inicio',
@@ -465,6 +465,15 @@ class MenuSeeder extends Seeder
                 'show_menu' => 1,
             ],
             [
+                'nombre' => 'Promedio ICR ETA-UP',
+                'url' => '/revisor/subir-promedio-icr-eta-up',
+                'icono' => 'pi pi-check-circle',
+                'rol_id' => 4,
+                'tipo_id' => 8,
+                'estado' => 1,
+                'show_menu' => 1,
+            ],
+            [
                 'nombre' => 'Mis Tramites',
                 'url' => '/revisor/ver-tramite',
                 'icono' => 'pi pi-check-circle',
@@ -473,7 +482,7 @@ class MenuSeeder extends Seeder
                 'estado' => 1,
                 'show_menu' => 1,
             ],
-    
+
             [
                 'nombre' => 'Certificado',
                 'url' => '/revisor/certificado',

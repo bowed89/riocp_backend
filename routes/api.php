@@ -41,7 +41,6 @@ Route::post('auth/login', [AuthController::class, 'login']);
 // Emails
 Route::post('email/send', [CorreoController::class, 'sendEmail']);
 
-Route::post('import/icr-eta', [PromedioIcrEtaController::class, 'icrEtaExcel']);
 
 Route::middleware(['auth:sanctum'])->group(function () {
     // Admistrador
@@ -120,6 +119,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
         Route::get('usuario/revisor/{solicitudId}', [ObservacionRevisorController::class, 'verObservacionIdSolicitud']);
 
         Route::post('/subir-historial/revisor', [SubirHistorialExcelController::class, 'subirDocumento']);
+        Route::post('import/icr-eta', [PromedioIcrEtaController::class, 'icrEtaExcel']);
 
 
         // Excel
