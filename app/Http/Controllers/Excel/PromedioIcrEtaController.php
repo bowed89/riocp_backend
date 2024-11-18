@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Excel;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Excel\DeudaPublicaExternaRequest;
-use App\Http\Services\Excel\FndrExcelService;
 use App\Http\Services\Excel\PromedioIcrEtaService;
 
 class PromedioIcrEtaController extends Controller

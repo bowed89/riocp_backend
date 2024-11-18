@@ -24,41 +24,59 @@ class PromedioIcrEtaImport implements ToArray
         $spreadsheet = IOFactory::load($filePath);
         $sheet = $spreadsheet->getActiveSheet();
 
-        // Rango de datos a extraer
-        /*   $startRow = 3;
-        $endRow = 8; */
-        $startRow = 4;
-        $endRow = 21;
+        $highestColumn = $sheet->getHighestColumn(); // OBTENER LA ULTIMA COLUMNA BDD
 
-        // Rango de columnas a recorrer
-        $startColumn = 'B';  // Columna B
-        $endColumn = 'E';    // Columna E (puedes cambiar el final si necesitas más columnas)
+        // Rango de las filas
+        $startRow = 3;
+        $endRow = 50;
+
+        // Rango de las columnas 
+        $startColumn = 'B'; // index = 2
+        $endColumn = 'E'; // index = 3
 
         // Convertir columnas de letras a números
-        $startColumnIndex = \PhpOffice\PhpSpreadsheet\Cell\Coordinate::columnIndexFromString($startColumn) - 1;
-        $endColumnIndex = \PhpOffice\PhpSpreadsheet\Cell\Coordinate::columnIndexFromString($endColumn) - 1;
+        $startColumnIndex = \PhpOffice\PhpSpreadsheet\Cell\Coordinate::columnIndexFromString($startColumn);
+        $endColumnIndex = \PhpOffice\PhpSpreadsheet\Cell\Coordinate::columnIndexFromString($highestColumn);
+        $auxRowEntidad = null;
 
-
-        // Crear un array para almacenar los datos
         $data = [];
 
-        // Iterar sobre las filas y columnas para extraer los datos
-        for ($row = $startRow; $row <= $endRow; $row++) {
-            $rowData = $sheet->getCell("B$row")->getValue() ?? 0.00;
+        // recorro las columnass
+        for ($col = $startColumnIndex; $col <= $endColumnIndex; $col++) {
+            // Convertir el indice de columna a letra
+            $columnLetter = \PhpOffice\PhpSpreadsheet\Cell\Coordinate::stringFromColumnIndex($col);
+            
+            // obtener las id entidades de la primera fila 
+            $rowFilaUno = 1; //fila 1 donde estan los ids
+            $rowEntidadesID = $sheet->getCell("$columnLetter$rowFilaUno")->getValue();
 
-            /*   for ($col = $startColumn; $col <= $endColumn; $col++) {
-                $cellValue = $sheet->getCell("$col$row")->getValue();
-                $rowData[] = $cellValue ?? 0.00; // Añadir el valor o 0.00 si está vacío
-            } */
-
-            $data[] = $rowData;
-
-            // Iterar sobre las columnas (de B a E)
-            for ($col = $startColumnIndex; $col <= $endColumnIndex; $col++) {
-                $columnLetter = \PhpOffice\PhpSpreadsheet\Cell\Coordinate::stringFromColumnIndex($col + 1); // Convertir el índice de columna a letra
-                $cellValue = $sheet->getCell("$columnLetter$row")->getValue() ?? 0.00;
-                $rowData[] = $cellValue; // Añadir el valor de la celda al array de fila
+            if ($rowEntidadesID !== null) {
+                $auxRowEntidad = $rowEntidadesID;
+            } else {
+                $rowEntidadesID = $auxRowEntidad;
             }
+
+
+            $currentRowData = [];
+            $currentRowData[] = $rowEntidadesID; // concateno id entidades en cada array
+
+            // Recorro las filas
+            for ($row = $startRow; $row <= $endRow; $row++) {
+                $rowData = $sheet->getCell("$columnLetter$row")->getValue();
+
+                if($rowData !== null && !is_string($rowData) ) {
+                    $currentRowData[] = $rowData;
+                }
+            }
+            $data[] = $currentRowData;
+        }
+        
+        foreach ($data as $subArray) {
+            Log::debug("subArray ====> " . json_encode($subArray));
+
+            
+
+        
         }
 
         $this->processedData = $data;
