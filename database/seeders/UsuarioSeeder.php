@@ -40,7 +40,7 @@ class UsuarioSeeder extends Seeder
                 'correo' => 'jefe.unidad@gmail.com',
                 'nombre_usuario' => 'maria.admin',
                 'ci' => 34555233,
-                'password' => Hash::make('administrador123'), 
+                'password' => Hash::make('jefeunidad123'), 
                 'estado' => true,
                 'rol_id' => 2,
                 'entidad_id' => null,
@@ -91,6 +91,18 @@ class UsuarioSeeder extends Seeder
                 'password' => Hash::make('dgaft123'),
                 'estado' => true,
                 'rol_id' => 5,
+                'entidad_id' => null,
+            ]
+            ,
+            [
+                'nombre' => 'Jesus',
+                'apellido' => 'Ramallo',
+                'correo' => 'admin@gmail.com',
+                'nombre_usuario' => 'jesus.ramallo',
+                'ci' => 65275622,
+                'password' => Hash::make('admin123'),
+                'estado' => true,
+                'rol_id' => 7,
                 'entidad_id' => null,
             ]
         ]);

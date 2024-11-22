@@ -16,8 +16,8 @@ return new class extends Migration
             $table->string('comision_concepto')->nullable();
             $table->decimal('comision_tasa', 13, 2)->nullable();
             $table->string('declaracion_jurada');
-            $table->integer('periodo_gracia');
-            $table->string('objeto_operacion_credito');
+            $table->decimal('periodo_gracia', 4, 1);
+            $table->string('objeto_operacion_credito', 2000);
             $table->boolean('firma_digital')->default(false); // si el formulario valida la firma..
             $table->string('ruta_documento')->nullable(); // Columna para almacenar la ruta del documento
             $table->foreignId('solicitud_id')->nullable()->constrained('solicitudes')->onDelete('cascade');

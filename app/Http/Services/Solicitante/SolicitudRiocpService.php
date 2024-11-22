@@ -3,14 +3,12 @@
 namespace App\Http\Services\Solicitante;
 
 use App\Events\MenuUpdated;
-use App\Events\Notificaciones;
 use App\Models\ContactoSubsanar;
 use App\Models\MenuPestaniasSolicitante;
 use App\Models\Solicitud;
 use App\Models\SolicitudRiocp;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Log;
 
 class SolicitudRiocpService
 {
@@ -165,7 +163,7 @@ class SolicitudRiocpService
         $menu->solicitud_id = $solicitudRiocp->solicitud_id;
         $menu->formulario_1 = true;
         $menu->formulario_1_anexo = false;
-        $menu->formulario_2 = false;
+
         $menu->save();
         $menu->refresh(); // devuelve todos los campos no solo created_at y updated_at
 

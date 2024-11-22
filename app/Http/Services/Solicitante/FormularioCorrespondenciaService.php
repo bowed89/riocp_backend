@@ -45,7 +45,6 @@ class FormularioCorrespondenciaService
         }
 
         $formulario = FormularioCorrespondencia::create($data);
-
         return ['status' => true, 'message' => 'Formulario Creado.', 'data' => $formulario];
     }
 
@@ -80,7 +79,7 @@ class FormularioCorrespondenciaService
             return ['status' => false, 'message' => 'Ya se registró un seguimiento con una solicitud pendiente.'];
         }
 
-        $filePath = null; 
+        $filePath = null;
         // obtengo el usuario destino de jefe de unidad
         $usuarioDestino = Usuario::where('rol_id', 2)->first();
         $this->createSeguimiento($user, $usuarioDestino, $solicitud->id);
@@ -159,6 +158,13 @@ class FormularioCorrespondenciaService
 
     private function generateNroSolicitud()
     {
+        // ANTERIOR
+        // 1000 1 22 11 1434
+        // 1000122111434-1
+
+        // EJEMPLO FINAL
+        // 1000 1 22 11 1434
+
         $fecha = date("dmy");
         $numerosAleatorios = mt_rand(100, 999);
         return $fecha . '' . $numerosAleatorios;
@@ -194,7 +200,6 @@ class FormularioCorrespondenciaService
         }
 
         $formulario->update(['estado' => 0]);
-
         return ['status' => true, 'message' => 'Formulario desactivado correctamente.', 'data' => $formulario];
     }
 }

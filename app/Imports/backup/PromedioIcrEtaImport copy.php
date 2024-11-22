@@ -5,14 +5,13 @@ namespace App\Imports;
 use App\Models\PromedioIcrEta;
 use Illuminate\Support\Facades\Log;
 use Maatwebsite\Excel\Concerns\ToArray;
-use Maatwebsite\Excel\Facades\Excel;
 use PhpOffice\PhpSpreadsheet\IOFactory;
 
 class PromedioIcrEtaImport implements ToArray
 {
     public function __construct()
     {
-        PromedioIcrEta::truncate();
+     //   PromedioIcrEta::truncate();
     }
 
 
@@ -52,7 +51,7 @@ class PromedioIcrEtaImport implements ToArray
             // obtener las id entidades de la primera fila 
             $rowFilaUno = 1; //fila 1 donde estan los ids
             $rowEntidadesID = $sheet->getCell("$columnLetter$rowFilaUno")->getValue();
-
+            
             if ($rowEntidadesID !== null) {
                 $auxRowEntidad = $rowEntidadesID;
             } else {
@@ -136,7 +135,7 @@ class PromedioIcrEtaImport implements ToArray
                         'total_41_119' => $array[46]
                     ];
 
-                    PromedioIcrEta::create($data);
+                //   PromedioIcrEta::create($data);
                 }
             }
         } catch (\Exception $e) {

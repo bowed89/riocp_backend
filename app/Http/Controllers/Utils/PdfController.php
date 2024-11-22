@@ -19,8 +19,11 @@ class PdfController extends Controller
     {
         $datos = $request->all();
         $html = $this->pdfService->generarHtml($datos);
-        $filePath = $this->pdfService->generarPdf($html);
-
-        return response()->download($filePath);
+        $pdfContent = $this->pdfService->generarPdf($html); 
+        
+        // archivo PDF como una respuesta de descarga
+        return response($pdfContent)
+            ->header('Content-Type', 'application/pdf')
+            ->header('Content-Disposition', 'attachment; filename="formulario1.pdf"');
     }
 }

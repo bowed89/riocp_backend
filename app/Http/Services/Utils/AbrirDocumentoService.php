@@ -105,7 +105,7 @@ class AbrirDocumentoService
                 'code' => 400,
             ];
         }
-
+        
         $rutaArchivo = 'public/' . $documento->ruta_documento;
 
         if (!Storage::exists($rutaArchivo)) {

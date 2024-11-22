@@ -152,6 +152,8 @@ class DocumentoAdjuntoService
 
         if ($type == 'form-1') {
             $menu->formulario_1_anexo = true;
+            $menu->formulario_2 = false;
+            
         } elseif ($type == 'form-3') {
             $menu->sigep_anexo = true;
         }

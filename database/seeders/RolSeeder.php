@@ -18,6 +18,7 @@ class RolSeeder extends Seeder
             ['rol' => 'Revisor', 'descripcion' => 'Encargado de verificar el estado de las solicitudes', 'estado' => 1],
             ['rol' => 'DGAFT', 'descripcion' => 'Director(a) General de Administración y Finanzas Territoriales', 'estado' => 1],
             ['rol' => 'VTCP', 'descripcion' => 'Viceministro del Tesoro y Crédito Público', 'estado' => 1],
+            ['rol' => 'Administrador', 'descripcion' => 'Usuario que gestiona todo el sistema', 'estado' => 1],
         ]);
     }
 }

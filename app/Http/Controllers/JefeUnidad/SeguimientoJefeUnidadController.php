@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Administrador;
+namespace App\Http\Controllers\JefeUnidad;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Administrador\SeguimientoJefeUnidadRequest;
-use App\Http\Services\Administrador\SeguimientoJefeUnidadService;
+use App\Http\Requests\JefeUnidad\SeguimientoJefeUnidadRequest;
+use App\Http\Services\JefeUnidad\SeguimientoJefeUnidadService;
 
 class SeguimientoJefeUnidadController extends Controller
 {
@@ -24,6 +24,12 @@ class SeguimientoJefeUnidadController extends Controller
     public function asignarTecnicoRevisor(SeguimientoJefeUnidadRequest $request)
     {
         $response = $this->seguimientoService->asignarTecnicoRevisor($request->validated());
+        return response()->json($response, $response['status'] ? 200 : 400);
+    }
+
+    public function contadorAsignado() 
+    {
+        $response = $this->seguimientoService->countDerivado();
         return response()->json($response, $response['status'] ? 200 : 400);
     }
 }

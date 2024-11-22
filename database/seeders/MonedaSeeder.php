@@ -16,7 +16,7 @@ class MonedaSeeder extends Seeder
         DB::table('monedas')->insert([
             ['tipo' => 'Dolar', 'sigla' => 'USD'],
             ['tipo' => 'Euro', 'sigla' => 'EUR'],
-            ['tipo' => 'Bolivianos', 'sigla' => 'BOB'],
+            ['tipo' => 'Bolivianos', 'sigla' => 'BS'],
             ['tipo' => 'Yuan', 'sigla' => 'CNY'],
         ]);
     }

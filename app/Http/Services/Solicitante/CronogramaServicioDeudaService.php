@@ -90,6 +90,13 @@ class CronogramaServicioDeudaService
     {
         $menu = MenuPestaniasSolicitante::where('solicitud_id', $solicitud->id)->first();
         $menu->formulario_3 = true;
+
+        // si la pestaña formulario_4 esta deshabilitado
+        // recien activo pestaña registro
+        if ($menu->formulario_4) {
+            $menu->registro = false;
+        }
+
         $menu->save();
         $items = config('menu_pestanias');
 

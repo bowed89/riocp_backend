@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Excel;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Excel\DeudaPublicaExternaRequest;
 use App\Http\Services\Excel\IcrEtaExcelService;
-use App\Http\Services\Excel\PromedioIcrEtaService;
+use Illuminate\Support\Facades\Log;
 
 class PromedioIcrEtaController extends Controller
 {
@@ -20,7 +20,10 @@ class PromedioIcrEtaController extends Controller
     {
         $resultado = $this->icrEtaService->importarArchivo($request);
 
-        return response()->json($resultado['message'], $resultado['status']);
+        Log::debug("message ===>" .json_encode($resultado));
+
+
+        return response()->json($resultado, $resultado['status']);
 
     }
 }

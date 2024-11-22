@@ -1,11 +1,12 @@
 <?php
 
 use App\Http\Controllers\Utils\AcreedorController;
-use App\Http\Controllers\Administrador\SeguimientoJefeUnidadController;
+use App\Http\Controllers\JefeUnidad\SeguimientoJefeUnidadController;
 use App\Http\Controllers\Excel\BalanceGeneralExcelController;
 use App\Http\Controllers\Excel\DeudaPublicaExternaController;
 use App\Http\Controllers\Excel\FndrExcelController;
 use App\Http\Controllers\Excel\PromedioIcrEtaController;
+use App\Http\Controllers\Operador\CertificadoRiocpController;
 use App\Http\Controllers\Operador\ObservacionTecnicoController;
 use App\Http\Controllers\Operador\SeguimientoOperadorController;
 use App\Http\Controllers\Revisor\ObservacionRevisorController;
@@ -43,25 +44,29 @@ Route::post('email/send', [CorreoController::class, 'sendEmail']);
 
 
 Route::middleware(['auth:sanctum'])->group(function () {
-    // Admistrador
-    Route::middleware('rol:2')->group(function () {
-        Route::resource('roles', RolController::class);
 
+    // Administrador 
+    Route::middleware('rol:7')->group(function () {    
+        Route::resource('roles', RolController::class);
         Route::put('roles/delete/{id}', [RolController::class, 'deleteRol']);
         Route::get('roles/show/{id}', [RolController::class, 'showById']);
-
         Route::resource('menu', MenuController::class);
         Route::resource('usuarios', AuthController::class);
+
+    });
+    // jefe unidad
+    Route::middleware('rol:2')->group(function () {
         Route::get('usuario/tecnico', [AuthController::class, 'getTecnicos']);
         Route::get('usuario/revisor', [AuthController::class, 'getRevisores']);
         Route::get('usuario/dgaft', [AuthController::class, 'getDGAFT']);
 
         // Seguimiento Jefe Unidad
         Route::post('/seguimiento/administrador/store', [SeguimientoJefeUnidadController::class, 'asignarTecnicoRevisor']);
+        Route::get('/seguimiento/administrador/count-asignado', [SeguimientoJefeUnidadController::class, 'contadorAsignado']);
         Route::resource('seguimiento', SeguimientoJefeUnidadController::class);
     });
 
-    // Admistrador y solicitante
+    // Jefe Unidad y solicitante
     Route::middleware('rol:1.2')->group(function () {
         Route::resource('formulario-correspondencia', FormularioCorrespondenciaController::class);
         Route::post('/formulario-correspondencia/formulario', [FormularioCorrespondenciaController::class, 'storeSolicitudFormulario']);
@@ -96,7 +101,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
         Route::resource('tramite-solicitante', TramitesController::class);
     });
 
-    // Operador (Tecnico) y Administrador
+    // Operador (Tecnico) y Jefe Unidad
     Route::middleware('rol:3.2.4.5')->group(function () {
         Route::resource('seguimiento/operador/main', SeguimientoOperadorController::class);
         Route::resource('operador/tipo-observacion', ObservacionTecnicoController::class);
@@ -109,9 +114,11 @@ Route::middleware(['auth:sanctum'])->group(function () {
         Route::get('/abrir-formulario-correspondencia/{id}', [AbrirDocumentoController::class, 'abrirFormularioCorrespondencia']);
         Route::get('/cronograma-deuda/formulario/{id}', [CronogramaServicioDeudaController::class, 'getCronogramaById']);
         Route::get('/cronograma-desembolso-deuda/formulario/{id}', [CronogramaDesembolsoProgramadoController::class, 'getCronogramaDesembolso']);
+        Route::get('/certificado-riocp/{idSolicitud}', [CertificadoRiocpController::class, 'obtenerDatosSolicitudes']);
+
     });
 
-    // Revisor y Administrador
+    // Revisor y Jefe Unidad
     Route::middleware('rol:4.2')->group(function () {
         Route::post('/seguimiento/revisor/store', [SeguimientoRevisorController::class, 'asignardeRevisoraJefeUnidad']);
         Route::resource('seguimiento/revisor/main', SeguimientoRevisorController::class);
@@ -119,13 +126,12 @@ Route::middleware(['auth:sanctum'])->group(function () {
         Route::get('usuario/revisor/{solicitudId}', [ObservacionRevisorController::class, 'verObservacionIdSolicitud']);
 
         Route::post('/subir-historial/revisor', [SubirHistorialExcelController::class, 'subirDocumento']);
-        Route::post('import/icr-eta', [PromedioIcrEtaController::class, 'icrEtaExcel']);
-
-
+            
         // Excel
         Route::post('import/deuda-externa', [DeudaPublicaExternaController::class, 'deudaPublicaExterna']);
         Route::post('import/fndr-excel', [FndrExcelController::class, 'fndrExcel']);
         Route::post('import/balance-general', [BalanceGeneralExcelController::class, 'balanceGeneralExcel']);
+        Route::post('import/icr-eta', [PromedioIcrEtaController::class, 'icrEtaExcel']);
     });
 
     // DGAFT y Administrador

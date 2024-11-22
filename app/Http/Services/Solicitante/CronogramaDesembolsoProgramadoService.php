@@ -184,6 +184,13 @@ class CronogramaDesembolsoProgramadoService
     {
         $menu = MenuPestaniasSolicitante::where('solicitud_id', $solicitud->id)->first();
         $menu->formulario_4 = true;
+
+        // si la pestaña formulario_3 esta deshabilitado
+        // recien activo pestaña registro
+        if($menu->formulario_3) {
+            $menu->registro = false;
+        }
+
         $menu->save();
         $items = config('menu_pestanias');
 

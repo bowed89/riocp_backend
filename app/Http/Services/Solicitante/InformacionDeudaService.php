@@ -3,7 +3,6 @@
 namespace App\Http\Services\Solicitante;
 
 use App\Events\MenuUpdated;
-use App\Events\Notificaciones;
 use App\Models\InformacionDeuda;
 use App\Models\MenuPestaniasSolicitante;
 use App\Models\Solicitud;
@@ -99,7 +98,7 @@ class InformacionDeudaService
         $menu = MenuPestaniasSolicitante::where('solicitud_id', $solicitud->id)->first();
         $menu->sigep_anexo = false;
         $menu->formulario_2 = true;
-        $menu->registro = false;
+        // $menu->registro = false;
 
         // Si la pregunta 1 es true, deshabilitar pestaña formulario 4
         if ($informacion->pregunta_1) {
@@ -108,6 +107,10 @@ class InformacionDeudaService
         // Si la pregunta 2 o pregunta 3 es true, deshabilitar pestaña formulario 3
         if ($informacion->pregunta_2 || $informacion->pregunta_3) {
             $menu->formulario_3 = false;
+        }
+        // Si la pregunta 1, pregunta 2 y pregunta 3 es false activo pestaña registro
+        if (!$informacion->pregunta_1 && !$informacion->pregunta_2 && !$informacion->pregunta_3) {
+            $menu->registro = false;
         }
 
         $menu->save();

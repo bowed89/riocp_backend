@@ -2,7 +2,7 @@
 
 namespace App\Http\Services\Excel;
 
-use App\Imports\IcrEtaRubroImport;
+use App\Imports\PromedioIcrEtaImport;
 use App\Models\HistorialDocumentoExcel;
 use App\Models\Rol;
 use App\Models\TipoDocumentoAdjunto;
@@ -13,21 +13,21 @@ class IcrEtaExcelService
 {
     public function importarArchivo($data)
     {
-
         try {
+            // cargo a mi BD
+            $importer = new PromedioIcrEtaImport();
+            $importer->loadFileAndProcess($data['file']);
+            $processedData = $importer->getProcessedData();
 
-            // cargo el archivo a la bd
-            $importer = new IcrEtaRubroImport();
-            $result = $importer->loadFileAndProcess($data['file']);
-
-            if ($result != 200) {
+            if (empty($processedData)) {
                 return [
-                    'status' => 403,
-                    'message' => $result
+                    'status' => 404,
+                    'message' => 'No se encontraron datos procesados.',
                 ];
+
             }
 
-            // almaceno a mi tabla historial y guardo en mi ruta
+            // luego almaceno a mi tabla historial y guardo en mi ruta
             $user = Auth::user();
 
             if (!$user) {
@@ -54,7 +54,7 @@ class IcrEtaExcelService
             // Crear el historial documento excel
             $historial = new HistorialDocumentoExcel();
             $historial->usuario_id = $user->id;
-            $historial->tipo_documento_id = $data[' '];
+            $historial->tipo_documento_id = $data['tipo_documento_id'];
             $historial->ruta_documento = $filePath;
             $historial->save();
 
@@ -71,7 +71,6 @@ class IcrEtaExcelService
             ];
         }
     }
-
     private function uploadFile($user, $file, $tipo_documento_excel)
     {
         $nombres =  $user->nombre . ' ' . $user->apellido;

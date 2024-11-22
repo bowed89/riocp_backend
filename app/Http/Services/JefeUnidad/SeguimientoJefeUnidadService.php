@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Services\Administrador;
+namespace App\Http\Services\JefeUnidad;
 
 use App\Events\Notificaciones;
 use App\Http\Queries\JefeUnidadQuery;
@@ -29,8 +29,7 @@ class SeguimientoJefeUnidadService
 
         if ($resultados->isEmpty()) {
             return [
-                'status' => 404,
-                'status' => false,
+                'status' => 200,
                 'message' => 'No se encontraron seguimientos.'
             ];
         }
@@ -112,7 +111,7 @@ class SeguimientoJefeUnidadService
 
         return [
             'status' => true,
-            'message' => 'Derivación registrada correctamente.'
+            'message' => 'Derivación registrada correctamente.',
         ];
     }
 
@@ -132,13 +131,14 @@ class SeguimientoJefeUnidadService
 
         if ($resultados->isEmpty()) {
             return [
-                'status' => 404,
-                'status' => false,
-                'message' => 'No se encontraron seguimientos.'
+                'status' => true,
+                'message' => 'No se encontraron seguimientos.',
+                'data' => null
             ];
         }
         $countDerivado = 0;
         $countNoDerivado = 0;
+
         foreach ($resultados as $resultado) {
             if ($resultado->estado == 'DERIVADO') {
                 $countDerivado += 1;
@@ -150,12 +150,12 @@ class SeguimientoJefeUnidadService
         return [
             'status' => true,
             'message' => 'Contador Derivados.',
-            'derivado' => $countDerivado,
-            'no_derivado' => $countNoDerivado
+            'data' => [
+                "derivados" => $countDerivado,
+                "no_derivados" => $countNoDerivado
+            ]
         ];
     }
-
-
 
     private function querySeguimiento($user)
     {
