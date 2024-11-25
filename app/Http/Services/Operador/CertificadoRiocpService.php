@@ -7,6 +7,7 @@ use App\Models\Solicitud;
 use App\Models\SolicitudRiocp;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class CertificadoRiocpService
 {
@@ -23,16 +24,16 @@ class CertificadoRiocpService
         $resultados = SolicitudRiocp::select(
             'ic.id AS identificador_id',
             'e.entidad_id AS codigo',
-            'e.denominacion AS entidad',
-            's.objeto_operacion_credito',
+            DB::raw('UPPER(e.denominacion) AS entidad'),
+            DB::raw('UPPER(s.objeto_operacion_credito) AS objeto_operacion_credito'),
             's.monto_total',
             's.interes_anual',
-            's.comision_concepto',
+            DB::raw('UPPER(s.comision_concepto) AS comision_concepto'),
             's.comision_tasa',
             's.plazo',
             's.periodo_gracia',
-            'ac.nombre AS acreedor',
-            'mn.sigla AS moneda'
+            DB::raw('UPPER(ac.nombre) AS acreedor'),
+            DB::raw('UPPER(mn.sigla) AS moneda')
         )
             ->from('solicitudes_riocp AS s')
             ->join('identificadores_credito AS ic', 'ic.id', '=', 's.identificador_id')
@@ -41,6 +42,7 @@ class CertificadoRiocpService
             ->join('monedas AS mn', 'mn.id', '=', 's.moneda_id')
             ->where('s.id', $idSolicitud)
             ->get();
+
 
         if ($resultados->isEmpty()) {
             return [

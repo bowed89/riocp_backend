@@ -6,6 +6,7 @@ use App\Models\FndrExcel;
 use Illuminate\Support\Facades\Log;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
+use PhpOffice\PhpSpreadsheet\Shared\Date; // Importar la clase para manejar fechas de Excel
 
 class FndrExcelImport implements ToModel, WithHeadingRow
 {
@@ -18,12 +19,14 @@ class FndrExcelImport implements ToModel, WithHeadingRow
     {
         Log::debug("imports ==>", $row);
 
-       /*  if (
-            empty($row['codigo_presupuestario']) 
-        ) {
-            return null;
-        } */
-       
+        // Función para convertir fechas seriales de Excel
+        $convertExcelDate = function ($value) {
+            if (is_numeric($value)) {
+                return Date::excelToDateTimeObject($value)->format('d/m/Y'); // Formato deseado
+            }
+            return $value;
+        };
+
         return new FndrExcel([
             'codigo_prsupuestario' => $row['codigo_prsupuestario'] ?? '',
             'entidad' => $row['entidad'] ?? '',
@@ -32,13 +35,13 @@ class FndrExcelImport implements ToModel, WithHeadingRow
             'proyecto' => $row['proyecto'] ?? '',
             'monto_contratado' => $row['monto_contratado'] ?? '',
             'monto_prestamo' => $row['monto_prestamo'] ?? '',
-            'fecha_desembolso' => $row['fecha_desembolso'] ?? '',
+            'fecha_desembolso' => isset($row['fecha_desembolso']) ? $convertExcelDate($row['fecha_desembolso']) : null,
             'monto_desembolsado' => $row['monto_desembolsado'] ?? '',
             'plazo' => $row['plazo'] ?? '',
             'gracia' => $row['gracia'] ?? '',
-            'fecha_de_vigencia' => $row['fecha_de_vigencia'] ?? '',
+            'fecha_de_vigencia' => isset($row['fecha_de_vigencia']) ? $convertExcelDate($row['fecha_de_vigencia']) : null,
             'cuota' => $row['cuota'] ?? '',
-            'fecha_de_cuota' => $row['fecha_de_cuota'] ?? '',
+            'fecha_de_cuota' => isset($row['fecha_de_cuota']) ? $convertExcelDate($row['fecha_de_cuota']) : null,
             'tasa_fecha_cuota' => $row['tasa_fecha_cuota'] ?? '',
             'capital' => $row['capital'] ?? '',
             'interes' => $row['interes'] ?? '',
@@ -49,7 +52,7 @@ class FndrExcelImport implements ToModel, WithHeadingRow
             'estado_de_la_cuota' => $row['estado_de_la_cuota'] ?? '',
             'estado_del_prestamo' => $row['estado_del_prestamo'] ?? '',
             'moneda_del_prestamo' => $row['moneda_del_prestamo'] ?? '',
-            'fecha_de_pago' => $row['fecha_de_pago'] ?? '',
+            'fecha_de_pago' => isset($row['fecha_de_pago']) ? $convertExcelDate($row['fecha_de_pago']) : null,
             'saldo_de_capital_de_la_deuda' => $row['saldo_de_capital_de_la_deuda'] ?? '',
             'capital_amortizado' => $row['capital_amortizado'] ?? '',
             'interes_cobrado' => $row['interes_cobrado'] ?? '',
