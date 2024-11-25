@@ -10,10 +10,12 @@ class SolicitudRiocpRequest extends FormRequest
     {
         return [
             'monto_total' => 'required|numeric',
-            'plazo' => 'required|integer|min:1',
+            //'plazo' => 'required|integer|min:1',
+            'plazo' => 'required|numeric',
             'interes_anual' => 'required|numeric',
             'declaracion_jurada' => 'required|string',
             'comision_concepto' => 'nullable|string',
+            'comision_tasa' => 'nullable|numeric',
             'periodo_gracia' => 'required|numeric',
             'objeto_operacion_credito' => 'required|string|max:255',
             'firma_digital' => 'required|boolean',

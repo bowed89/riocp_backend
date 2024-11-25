@@ -54,7 +54,7 @@ class IcrEtaExcelService
             // Crear el historial documento excel
             $historial = new HistorialDocumentoExcel();
             $historial->usuario_id = $user->id;
-            $historial->tipo_documento_id = $data[' '];
+            $historial->tipo_documento_id = $data['tipo_documento_id'];
             $historial->ruta_documento = $filePath;
             $historial->save();
 

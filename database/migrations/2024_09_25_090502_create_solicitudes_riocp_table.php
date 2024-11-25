@@ -11,10 +11,11 @@ return new class extends Migration
         Schema::create('solicitudes_riocp', function (Blueprint $table) {
             $table->id();
             $table->decimal('monto_total', 15, 2);
-            $table->integer('plazo');
+            //$table->integer('plazo');
+            $table->decimal('plazo', 15, 2);
             $table->decimal('interes_anual', 15, 2);
             $table->string('comision_concepto')->nullable();
-            $table->decimal('comision_tasa', 13, 2)->nullable();
+            $table->decimal('comision_tasa', 15, 2)->nullable();
             $table->string('declaracion_jurada');
             $table->decimal('periodo_gracia', 4, 1);
             $table->string('objeto_operacion_credito', 2000);

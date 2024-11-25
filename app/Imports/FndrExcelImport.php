@@ -17,8 +17,6 @@ class FndrExcelImport implements ToModel, WithHeadingRow
 
     public function model(array $row)
     {
-        Log::debug("imports ==>", $row);
-
         // Función para convertir fechas seriales de Excel
         $convertExcelDate = function ($value) {
             if (is_numeric($value)) {
@@ -43,10 +41,10 @@ class FndrExcelImport implements ToModel, WithHeadingRow
             'cuota' => $row['cuota'] ?? '',
             'fecha_de_cuota' => isset($row['fecha_de_cuota']) ? $convertExcelDate($row['fecha_de_cuota']) : null,
             'tasa_fecha_cuota' => $row['tasa_fecha_cuota'] ?? '',
-            'capital' => $row['capital'] ?? '',
-            'interes' => $row['interes'] ?? '',
-            'capital_diferido' => $row['capital_diferido'] ?? '',
-            'interes_diferido' => $row['interes_diferido'] ?? '',
+            'capital' => $row['capital'] ?? '0',
+            'interes' => $row['interes'] ?? '0',
+            'capital_diferido' => $row['capital_diferido'] ?? '0',
+            'interes_diferido' => $row['interes_diferido'] ?? '0',
             'cuentas_por_cobrar' => $row['cuentas_por_cobrar'] ?? '',
             'total_de_la_cuota' => $row['total_de_la_cuota'] ?? '',
             'estado_de_la_cuota' => $row['estado_de_la_cuota'] ?? '',
