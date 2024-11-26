@@ -14,7 +14,6 @@ class CertificadoRiocp extends Model
 
     protected $fillable = [
         'nro_solicitud',
-        'objeto_operacion_credito_pubico',
         'servicio_deuda',
         'valor_presente_deuda_total',
         'solicitud_id',

@@ -2,6 +2,7 @@
 
 namespace App\Http\Services\Operador;
 
+use App\Models\CertificadoRiocp;
 use App\Models\Seguimientos;
 use App\Models\Solicitud;
 use App\Models\SolicitudRiocp;
@@ -51,15 +52,21 @@ class CertificadoRiocpService
             ];
         }
 
-        $codigo_entidad =$resultados[0]->codigo;
+        $codigo_entidad = $resultados[0]->codigo;
 
         $resultados[0]->servicio_deuda = $this->obtenerServicioDeuda($codigo_entidad);
+        $resultados[0]->nro_solicitud = $this->generarNumeroTramite($codigo_entidad);
 
         return [
             'status' => true,
             'message' => 'Listado de seguimientos.',
             'data' => $resultados,
         ];
+    }
+
+    // GUARDAR CERTIFICADO RIOCP
+    public function guardarCertificado() {
+        
     }
 
     //SERVICIO DE LA DEUDA(LÍMITE 20%)
@@ -88,6 +95,16 @@ class CertificadoRiocpService
         }
 
         return $resultadoFinal;
+    }
+
+    private function generarNumeroTramite($codigoEntidad)
+    {
+        $contadorRiocp = CertificadoRiocp::where('estados_riocp_id', 1)->count();
+        $mesActual = Carbon::now()->format('m'); //  mes actual en formato MM
+        $anioActual = Carbon::now()->format('y'); // año actual en formato YY
+        $numeroCeros = sprintf('%04d', $contadorRiocp + 1); // 0001, 0002, etc..
+
+        return '1' . $numeroCeros . $mesActual . $anioActual . $codigoEntidad;
     }
 
     public function asignarSeguimiento($data)
