@@ -67,6 +67,7 @@ class FormularioCorrespondenciaService
                 'message' => 'No se encontró una solicitud del usuario en proceso. Primero debe completar el FORMULARIO 1 SOLICITUD RIOCP.'
             ];
         }
+        
         // verifico que no exista un formulario creado anteriormente con la misma solicitud_id
         $formularioDuplicado = FormularioCorrespondencia::where('solicitud_id', $solicitud->id)->first();
         if ($formularioDuplicado) {

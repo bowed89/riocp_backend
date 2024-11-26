@@ -10,7 +10,6 @@ class SolicitudRiocpRequest extends FormRequest
     {
         return [
             'monto_total' => 'required|numeric',
-            //'plazo' => 'required|integer|min:1',
             'plazo' => 'required|numeric',
             'interes_anual' => 'required|numeric',
             'declaracion_jurada' => 'required|string',
@@ -29,7 +28,7 @@ class SolicitudRiocpRequest extends FormRequest
             'nombre_completo' => 'required|string|max:255',
             'correo_electronico' => 'required|email|max:255',
             'cargo' => 'required|string|max:255',
-            'telefono' => 'required|integer',
+            'telefono' => 'required|integer'
         ];
     }
 

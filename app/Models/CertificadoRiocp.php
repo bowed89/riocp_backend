@@ -11,7 +11,6 @@ class CertificadoRiocp extends Model
     use HasFactory, SoftDeletes;
 
     protected $table = 'certificados_riocp';
-
     protected $fillable = [
         'nro_solicitud',
         'servicio_deuda',

@@ -65,8 +65,90 @@ class CertificadoRiocpService
     }
 
     // GUARDAR CERTIFICADO RIOCP
-    public function guardarCertificado() {
-        
+    public function almacenarCertificado($request)
+    {
+        $user = Auth::user();
+
+        if (!$user) {
+            return [
+                'status' => false,
+                'message' => 'Usuario no autorizado o sin rol asignado.'
+            ];
+        }
+
+        $nroSolicitudRepetida = CertificadoRiocp::where('nro_solicitud', $request['nro_solicitud'])
+            ->first();
+
+        if ($nroSolicitudRepetida) {
+            return [
+                'status' => false,
+                'message' => 'Existe un número de solicitud similar que se almaceno anteriormente.'
+            ];
+        }
+
+        $solicitud = Solicitud::where('id', $request['solicitud_id'])->first();
+        if (!$solicitud) {
+            return [
+                'status' => false,
+                'message' => 'No existe la solicitud requerida.'
+            ];
+        }
+
+        // este es el formulario 1
+        $solicitudRiocp = SolicitudRiocp::where('solicitud_id', $request['solicitud_id'])
+            ->first();
+
+        if (!$solicitudRiocp) {
+            return [
+                'status' => false,
+                'message' => 'No existe el formulario de solicitud RIOCP con el número de solicitud.'
+            ];
+        }
+
+        // verifico si estoy dentro de rangos de 
+        // Servicio Deuda y Valor Presente Deuda Total
+        $interesAnual = $request['servicio_deuda'];
+        $interesAnual = (float) $interesAnual;
+        $valorPresenteDeuda = $request['valor_presente_deuda_total'];
+        $valorPresenteDeuda = (float) $valorPresenteDeuda;
+
+
+        $certificado = new CertificadoRiocp();
+        $certificado->fill($request);
+
+        // actualizo el campo objeto_operacion... de la tabla solicitud riocp,
+        // en caso de q se quiera corregir la tabla solicitada
+        $solicitudRiocp->objeto_operacion_credito = $request['objeto_operacion_credito'];
+        $solicitudRiocp->save();
+
+        if ($interesAnual <= 20.00 && $valorPresenteDeuda <= 200.00) {
+            // nuevo certificado APROBADO = 1
+            $certificado->estados_riocp_id = 1;
+            $certificado->save();
+
+            // cambio de estado mi solicitud FINALIZADO = 3
+            $solicitud->estado_solicitud_id = 3;
+            $solicitud->save();
+
+            return [
+                'status' => true,
+                'message' => 'Certificado almacenado correctamente con valores de Servicio Deuda y Valor Presente Deuda Total dentro de los rangos.'
+            ];
+        } else {
+            // nuevo certificado con estado RECHAZADO = 2
+            $certificado->nro_solicitud = null;
+            $certificado->estados_riocp_id = 2;
+            $certificado->save();
+
+            // cambio de estado mi solicitud RECHAZADO = 2
+            $solicitud->estado_solicitud_id = 2;
+            $solicitud->save();
+
+            return [
+                'status' => true,
+                'message' => 'Certificado almacenado correctamente con valores de Servicio Deuda y Valor Presente Deuda Total fuera de los rangos.'
+            ];
+        }
     }
 
     //SERVICIO DE LA DEUDA(LÍMITE 20%)

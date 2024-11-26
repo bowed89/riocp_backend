@@ -115,6 +115,8 @@ Route::middleware(['auth:sanctum'])->group(function () {
         Route::get('/cronograma-deuda/formulario/{id}', [CronogramaServicioDeudaController::class, 'getCronogramaById']);
         Route::get('/cronograma-desembolso-deuda/formulario/{id}', [CronogramaDesembolsoProgramadoController::class, 'getCronogramaDesembolso']);
         Route::get('/certificado-riocp/{idSolicitud}', [CertificadoRiocpController::class, 'obtenerDatosSolicitudes']);
+       
+        Route::post('/certificado-riocp/store', [CertificadoRiocpController::class, 'almacenarCertificado']);
 
     });
 

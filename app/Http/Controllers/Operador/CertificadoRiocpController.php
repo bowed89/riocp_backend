@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Operador;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Operador\CertificadoRiocpRequest;
 use App\Http\Services\Operador\CertificadoRiocpService;
 
 class CertificadoRiocpController extends Controller
@@ -20,4 +21,9 @@ class CertificadoRiocpController extends Controller
         return response()->json($response, $response['status'] ? 200 : 403);
     }
 
+    public function almacenarCertificado(CertificadoRiocpRequest $request)
+    {
+        $response = $this->certificadoService->almacenarCertificado($request->validated());
+        return response()->json($response, $response['status'] ? 200 : 403);
+    }
 }

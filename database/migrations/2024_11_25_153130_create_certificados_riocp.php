@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('certificados_riocp', function (Blueprint $table) {
             $table->id();
-            $table->integer('nro_solicitud');
-            $table->string('servicio_deuda');
-            $table->string('valor_presente_deuda_total');
+            $table->bigInteger('nro_solicitud')->nullable();
+            $table->decimal('servicio_deuda', 15, 2);
+            $table->decimal('valor_presente_deuda_total', 15, 2);
             $table->foreignId('solicitud_id')->nullable()->constrained('solicitudes')->onDelete('cascade');
             $table->foreignId('estados_riocp_id')->nullable()->constrained('estados_certificados_riocp')->onDelete('cascade');
             $table->timestamps();
@@ -23,11 +23,8 @@ return new class extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
-        Schema::dropIfExists('estados_certificados_riocp');
+        Schema::dropIfExists('certificados_riocp');
     }
 };
