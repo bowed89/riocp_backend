@@ -77,7 +77,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
         // Firma Digital
         Route::post('/validar-firma', [FirmadigitalController::class, 'validarFirmaDigital']);
-
+ 
         // Formulario 1
         Route::resource('solicitud-riocp', SolicitudRiocpController::class);
         Route::post('/solicitud-riocp/formulario', [SolicitudRiocpController::class, 'storeSolicitudFormularioRiocp']);
@@ -116,7 +116,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
         Route::get('/cronograma-desembolso-deuda/formulario/{id}', [CronogramaDesembolsoProgramadoController::class, 'getCronogramaDesembolso']);
         Route::get('/certificado-riocp/{idSolicitud}', [CertificadoRiocpController::class, 'obtenerDatosSolicitudes']);
        
-        Route::post('/certificado-riocp/store', [CertificadoRiocpController::class, 'almacenarCertificado']);
+        Route::post('/certificado-riocp/store', [CertificadoRiocpController::class, 'almacenarCertificadoAprobado']);
 
     });
 

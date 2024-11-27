@@ -21,9 +21,9 @@ class CertificadoRiocpController extends Controller
         return response()->json($response, $response['status'] ? 200 : 403);
     }
 
-    public function almacenarCertificado(CertificadoRiocpRequest $request)
+    public function almacenarCertificadoAprobado(CertificadoRiocpRequest $request)
     {
-        $response = $this->certificadoService->almacenarCertificado($request->validated());
+        $response = $this->certificadoService->almacenarCertificadoAprobado($request->validated());
         return response()->json($response, $response['status'] ? 200 : 403);
     }
 }

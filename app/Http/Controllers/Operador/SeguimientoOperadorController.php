@@ -28,3 +28,7 @@ class SeguimientoOperadorController extends Controller
         return response()->json($response, $response['status'] ? 200 : 400);
     }
 }
+
+
+// notas:
+// id, referencia, body, nro_hoja_ruta, solicitud_riocp_id

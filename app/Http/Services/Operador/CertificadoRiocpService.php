@@ -2,6 +2,7 @@
 
 namespace App\Http\Services\Operador;
 
+use App\Http\Services\Utils\GenerarNotasRiocp;
 use App\Models\CertificadoRiocp;
 use App\Models\Seguimientos;
 use App\Models\Solicitud;
@@ -64,8 +65,8 @@ class CertificadoRiocpService
         ];
     }
 
-    // GUARDAR CERTIFICADO RIOCP
-    public function almacenarCertificado($request)
+    // GUARDAR CERTIFICADO RIOCP APROBADO
+    public function almacenarCertificadoAprobado($request)
     {
         $user = Auth::user();
 
@@ -76,8 +77,7 @@ class CertificadoRiocpService
             ];
         }
 
-        $nroSolicitudRepetida = CertificadoRiocp::where('nro_solicitud', $request['nro_solicitud'])
-            ->first();
+        $nroSolicitudRepetida = CertificadoRiocp::where('nro_solicitud', $request['nro_solicitud'])->first();
 
         if ($nroSolicitudRepetida) {
             return [
@@ -104,14 +104,12 @@ class CertificadoRiocpService
                 'message' => 'No existe el formulario de solicitud RIOCP con el número de solicitud.'
             ];
         }
-
         // verifico si estoy dentro de rangos de 
         // Servicio Deuda y Valor Presente Deuda Total
         $interesAnual = $request['servicio_deuda'];
         $interesAnual = (float) $interesAnual;
         $valorPresenteDeuda = $request['valor_presente_deuda_total'];
         $valorPresenteDeuda = (float) $valorPresenteDeuda;
-
 
         $certificado = new CertificadoRiocp();
         $certificado->fill($request);
@@ -134,21 +132,11 @@ class CertificadoRiocpService
                 'status' => true,
                 'message' => 'Certificado almacenado correctamente con valores de Servicio Deuda y Valor Presente Deuda Total dentro de los rangos.'
             ];
-        } else {
-            // nuevo certificado con estado RECHAZADO = 2
-            $certificado->nro_solicitud = null;
-            $certificado->estados_riocp_id = 2;
-            $certificado->save();
-
-            // cambio de estado mi solicitud RECHAZADO = 2
-            $solicitud->estado_solicitud_id = 2;
-            $solicitud->save();
-
-            return [
-                'status' => true,
-                'message' => 'Certificado almacenado correctamente con valores de Servicio Deuda y Valor Presente Deuda Total fuera de los rangos.'
-            ];
         }
+        return [
+            'status' => false,
+            'message' => 'Error en los rangos de Servicio Deuda y Valor Presente Deuda Total.'
+        ];
     }
 
     //SERVICIO DE LA DEUDA(LÍMITE 20%)
