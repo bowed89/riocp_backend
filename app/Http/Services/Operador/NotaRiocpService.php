@@ -7,6 +7,7 @@ use App\Models\CertificadoRiocp;
 use App\Models\Solicitud;
 use App\Models\SolicitudRiocp;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 use stdClass;
 
 class NotaRiocpService
@@ -20,16 +21,6 @@ class NotaRiocpService
             return [
                 'status' => false,
                 'message' => 'Usuario no autorizado o sin rol asignado.'
-            ];
-        }
-
-        $nroSolicitudRepetida = CertificadoRiocp::where('nro_solicitud', $request['nro_solicitud'])
-            ->first();
-
-        if ($nroSolicitudRepetida) {
-            return [
-                'status' => false,
-                'message' => 'Existe un número de solicitud similar que se almaceno anteriormente.'
             ];
         }
 
@@ -79,12 +70,12 @@ class NotaRiocpService
 
             return [
                 'status' => true,
-                'message' => 'Certificado almacenado correctamente con valores de Servicio Deuda y Valor Presente Deuda Total dentro de los rangos.'
+                'message' => 'Certificado almacenado correctamente con valores de Servicio Deuda y Valor Presente Deuda Total fuera de los rangos.'
             ];
         }
     }
 
-    public function verNotas($solicitudId, $sd, $vpd)
+    public function verNotas($solicitudId)
     {
         $user = Auth::user();
 
@@ -94,15 +85,39 @@ class NotaRiocpService
                 'message' => 'Usuario no autorizado o sin rol asignado.'
             ];
         }
-        
+
+        // llamo el query para obtener mi codigo_entidad
+        $certificadoRiocpService = new CertificadoRiocpService();
+        $query = $certificadoRiocpService->obtenerSolicitudCertificado($solicitudId);
+
+        if (!$query) {
+            return [
+                'status' => false,
+                'message' => 'No se encontraron solicitudes.'
+            ];
+        }
+
+
+        // obtengo el codigo_entidad de la consulta
+        $codigo_entidad = $query['data'][0]->codigo;
+        $sd = $certificadoRiocpService->obtenerServicioDeuda($codigo_entidad);
+
+        //DATO QUEMADO DE VPD
+        $vpd = $certificadoRiocpService->obtenerValorPresenteDeudaTotal();
+
         $generarNota = new GenerarNotasRiocp();
-        
+
         $body = new stdClass();
-        $body->fechaActual = $generarNota->fechaActualNota();
-        $body->destinatarioNota = $generarNota->destinatarioNota($solicitudId);
+       /*  $body->fechaActual = $generarNota->fechaActualNota(); //header
+        $body->destinatarioNota = $generarNota->destinatarioNota($solicitudId); //header */
+        $body->header = $generarNota->fechaActualNota() . $generarNota->destinatarioNota($solicitudId);
+
         $body->referencia = $generarNota->Referencia();
-        $body->footer = $generarNota->footer();
         $body->body = $generarNota->body($solicitudId, $sd, $vpd);
+        $body->footer = $generarNota->footer();
+
+        /* Log::debug('$query ==>' . $body->destinatarioNota);
+ */
 
 
         return [

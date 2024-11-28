@@ -7,6 +7,7 @@ use App\Http\Controllers\Excel\DeudaPublicaExternaController;
 use App\Http\Controllers\Excel\FndrExcelController;
 use App\Http\Controllers\Excel\PromedioIcrEtaController;
 use App\Http\Controllers\Operador\CertificadoRiocpController;
+use App\Http\Controllers\Operador\NotaRiocpController;
 use App\Http\Controllers\Operador\ObservacionTecnicoController;
 use App\Http\Controllers\Operador\SeguimientoOperadorController;
 use App\Http\Controllers\Revisor\ObservacionRevisorController;
@@ -117,6 +118,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
         Route::get('/certificado-riocp/{idSolicitud}', [CertificadoRiocpController::class, 'obtenerDatosSolicitudes']);
        
         Route::post('/certificado-riocp/store', [CertificadoRiocpController::class, 'almacenarCertificadoAprobado']);
+        Route::get('/nota-certificado-riocp/{solicitudId}', [NotaRiocpController::class, 'obtenerDatosSolicitudes']);
 
     });
 

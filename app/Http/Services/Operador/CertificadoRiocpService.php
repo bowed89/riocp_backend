@@ -2,7 +2,6 @@
 
 namespace App\Http\Services\Operador;
 
-use App\Http\Services\Utils\GenerarNotasRiocp;
 use App\Models\CertificadoRiocp;
 use App\Models\Seguimientos;
 use App\Models\Solicitud;
@@ -13,17 +12,10 @@ use Illuminate\Support\Facades\DB;
 
 class CertificadoRiocpService
 {
-    public function obtenerSolicitudCertificado($idSolicitud)
-    {
-        $user = Auth::user();
-        if (!$user) {
-            return [
-                'status' => false,
-                'message' => 'Usuario no autorizado o sin rol asignado.'
-            ];
-        }
 
-        $resultados = SolicitudRiocp::select(
+    public function obtenerSolicitudCertificadoQuery($idSolicitud)
+    {
+        return SolicitudRiocp::select(
             'ic.id AS identificador_id',
             'e.entidad_id AS codigo',
             DB::raw('UPPER(e.denominacion) AS entidad'),
@@ -44,7 +36,19 @@ class CertificadoRiocpService
             ->join('monedas AS mn', 'mn.id', '=', 's.moneda_id')
             ->where('s.id', $idSolicitud)
             ->get();
+    }
 
+    public function obtenerSolicitudCertificado($idSolicitud)
+    {
+        $user = Auth::user();
+        if (!$user) {
+            return [
+                'status' => false,
+                'message' => 'Usuario no autorizado o sin rol asignado.'
+            ];
+        }
+
+        $resultados = $this->obtenerSolicitudCertificadoQuery($idSolicitud);
 
         if ($resultados->isEmpty()) {
             return [
@@ -57,6 +61,9 @@ class CertificadoRiocpService
 
         $resultados[0]->servicio_deuda = $this->obtenerServicioDeuda($codigo_entidad);
         $resultados[0]->nro_solicitud = $this->generarNumeroTramite($codigo_entidad);
+
+        //DATO QUEMADO DE VPD
+        $resultados[0]->valor_presente_deuda = $this->obtenerValorPresenteDeudaTotal();
 
         return [
             'status' => true,
@@ -138,6 +145,12 @@ class CertificadoRiocpService
             'message' => 'Error en los rangos de Servicio Deuda y Valor Presente Deuda Total.'
         ];
     }
+
+    //SERVICIO DE VALOR PRESENTE DE DEUDA TOTAL(LÍMITE 200%)
+    public function obtenerValorPresenteDeudaTotal() {
+        return 199.00;
+    }
+
 
     //SERVICIO DE LA DEUDA(LÍMITE 20%)
     public function obtenerServicioDeuda($codigo_entidad)

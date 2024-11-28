@@ -16,7 +16,7 @@ class GenerarNotasRiocp
         $anio = $fecha->year;
         $mes = $fecha->translatedFormat('F');
         $dia = (int) $fecha->format('d');
-        return 'La Paz, ' . $dia . ' de ' . $mes . ' de ' . $anio;
+        return 'La Paz, ' . $dia . ' de ' . $mes . ' de ' . $anio . "\n";
     }
 
     public function fechaPersonalizada($fecha)
@@ -94,13 +94,13 @@ class GenerarNotasRiocp
 
     public function queryObtenerDatosNota($solicitudId)
     {
-        return  SolicitudRiocp::query()
-            ->join('contactos_subsanar AS cs', 'cs.id', '=', 'solicitudes_riocp.contacto_id')
-            ->join('entidades AS e', 'e.id', '=', 'solicitudes_riocp.entidad_id')
-            ->join('solicitudes AS sol', 'sol.id', '=', 'solicitudes_riocp.solicitud_id')
+        return SolicitudRiocp::from('solicitudes_riocp AS s')
+            ->join('contactos_subsanar AS cs', 'cs.id', '=', 's.contacto_id')
+            ->join('entidades AS e', 'e.id', '=', 's.entidad_id')
+            ->join('solicitudes AS sol', 'sol.id', '=', 's.solicitud_id')
             ->join('formularios_correspondencia AS f', 'f.solicitud_id', '=', 'sol.id')
-            ->join('acreedores AS a', 'a.id', '=', 'solicitudes_riocp.acreedor_id')
-            ->where('solicitudes_riocp.solicitud_id', $solicitudId)
+            ->join('acreedores AS a', 'a.id', '=', 's.acreedor_id')
+            ->where('s.solicitud_id', $solicitudId)
             ->select(
                 'cs.nombre_completo',
                 'cs.cargo',
@@ -112,9 +112,9 @@ class GenerarNotasRiocp
             )->first();
     }
 
+
     public function footer()
     {
         return 'Viceministra del Tesoro y Crédito Público';
     }
-
 }

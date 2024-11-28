@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Operador;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Operador\CertificadoRiocpRequest;
 use App\Http\Services\Operador\NotaRiocpService;
 
 class NotaRiocpController extends Controller
@@ -15,9 +14,9 @@ class NotaRiocpController extends Controller
         $this->notaRiocpService = $notaRiocpService;
     }
 
-    public function obtenerDatosSolicitudes($solicitudId, $sd, $vpd)
+    public function obtenerDatosSolicitudes($solicitudId)
     {
-        $response = $this->notaRiocpService->verNotas($solicitudId, $sd, $vpd);
+        $response = $this->notaRiocpService->verNotas($solicitudId);
         return response()->json($response, $response['status'] ? 200 : 403);
     }
 }
