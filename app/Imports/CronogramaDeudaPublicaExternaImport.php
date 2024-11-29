@@ -11,7 +11,7 @@ class CronogramaDeudaPublicaExternaImport implements ToModel, WithHeadingRow, Wi
 {
     public function __construct()
     {
-        CronogramaDeudaPublicaExterna::truncate();
+        //CronogramaDeudaPublicaExterna::truncate();
     }
 
     public function model(array $row)
@@ -23,26 +23,27 @@ class CronogramaDeudaPublicaExternaImport implements ToModel, WithHeadingRow, Wi
         ) {
             return null;
         }
-        return new CronogramaDeudaPublicaExterna([
+       /*  return new CronogramaDeudaPublicaExterna([
             'no_prestamos' => $row['no_prestamos'] ?? null,
             'no_tramos' => $row['no_tramos'] ?? null,
             'prov_fondos' => $row['prov_fondos'] ?? null,
+            
             'moneda_del_tramo' => $row['moneda_del_tramo'] ?? null,
             'nombre_del_acreedor' => $row['nombre_del_acreedor'] ?? null,
             'concepto' => $row['concepto'] ?? null,
             'moneda' => $row['moneda'] ?? null,
             'fecha_de_vencimiento' => $row['fecha_de_vencimiento'] ?? null,
             'saldo_adeudado_al_31_12_2022' => $row['saldo_adeudado_al_31_12_2022'] ?? null,
-        ]);
+        ]); */
 
 
-        for ($year = 2023; $year <= 2059; $year++) {
+       /*  for ($year = 2023; $year <= 2059; $year++) {
             $prefix = "{$year}/";
             $deudaPublica->fill([
                 "{$prefix}1" => $row["{$prefix}1"] ?? null,
                 "{$prefix}2" => $row["{$prefix}2"] ?? null,
             ]);
-        }
+        } */
     }
 
     public function headingRow(): int

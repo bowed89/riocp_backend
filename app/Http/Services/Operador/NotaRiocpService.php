@@ -7,7 +7,6 @@ use App\Models\CertificadoRiocp;
 use App\Models\Solicitud;
 use App\Models\SolicitudRiocp;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Log;
 use stdClass;
 
 class NotaRiocpService

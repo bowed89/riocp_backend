@@ -2,7 +2,6 @@
 
 namespace App\Http\Services\Excel;
 
-use App\Imports\CronogramaDeudaPublicaExternaImport;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\DeudaPublicaExternaImport;
 use App\Models\HistorialDocumentoExcel;
@@ -16,12 +15,11 @@ class DeudaPublicaExternaService
     public function importarArchivo($data)
     {
 
-        Log::debug($data);
 
         try {
             // cargo a mi BD
             Excel::import(new DeudaPublicaExternaImport, $data['file']);
-            Excel::import(new CronogramaDeudaPublicaExternaImport, $data['file']);
+            //Excel::import(new CronogramaDeudaPublicaExternaImport, $data['file']);
 
             // luego almaceno a mi tabla historial y guardo en mi ruta
             $user = Auth::user();
