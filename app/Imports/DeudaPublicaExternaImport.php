@@ -3,33 +3,33 @@
 namespace App\Imports;
 
 use App\Models\DeudaPublicaExterna;
+use PhpOffice\PhpSpreadsheet\Shared\Date; // Importar la clase para manejar fechas de Excel
 use Illuminate\Support\Facades\Log;
 use Maatwebsite\Excel\Concerns\ToModel;
+use Maatwebsite\Excel\Concerns\WithChunkReading;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
-class DeudaPublicaExternaImport implements ToModel, WithHeadingRow
+class DeudaPublicaExternaImport implements ToModel, WithHeadingRow, WithChunkReading
 {
     public function __construct()
     {
-        // DeudaPublicaExterna::truncate();
+        DeudaPublicaExterna::truncate();
+        ini_set('max_execution_time', 300); // 300 segundos (5 minutos)
+
     }
 
     public function model(array $row)
     {
         Log::debug('Row data: ' . json_encode($row));
         // valido si la fila tiene datos necesarios
-        if (
-            empty($row['credito']) ||
-            empty($row['codigo']) ||
-            empty($row['entidad']) ||
-            empty($row['acreedor']) ||
-            empty($row['prestamo']) ||
-            empty($row['proyecto'])
-        ) {
-            return null;
-        }
 
-
+        // Función para convertir fechas seriales de Excel
+        $convertExcelDate = function ($value) {
+            if (is_numeric($value)) {
+                return Date::excelToDateTimeObject($value)->format('d/m/Y'); // Formato deseado
+            }
+            return $value;
+        };
 
         return new DeudaPublicaExterna([
             'credito' => $row['credito'] ?? null,
@@ -47,7 +47,7 @@ class DeudaPublicaExternaImport implements ToModel, WithHeadingRow
             'gracia' => $row['gracia'] ?? 0,
             'tasa_de_interes' => $row['tasa_de_interes'] ?? 0,
             'comision' => $row['comision'] ?? 0,
-            'fecha_cuota' => $row['fecha_cuota'] ?? null,
+            'fecha_cuota' => isset($row['fecha_cuota']) ? $convertExcelDate($row['fecha_cuota']) : null,
             'capital_moneda_origen' => $row['capital_en_moneda_origen'] ?? 0,
             'interes_moneda_origen' => $row['interes_moneda_origen'] ?? 0,
             'comision_moneda_origen' => $row['comision_moneda_origen'] ?? 0,
@@ -56,7 +56,7 @@ class DeudaPublicaExternaImport implements ToModel, WithHeadingRow
             'moneda_origen' => $row['moneda_de_origen'] ?? null,
             'tipo_cambio_sriocp' => $row['tipo_de_cambio_sriocp'] ?? 0,
             'tipo_cambio_valor' => $row['tipo_de_cambio_valor'] ?? 0,
-            'fecha_del_tipo_de_cambio_del_tramite' => $row['fecha_del_tipo_de_cambio_del_tramite'] ?? null,
+            'fecha_del_tipo_de_cambio_del_tramite' => isset($row['fecha_del_tipo_de_cambio_del_tramite']) ? $convertExcelDate($row['fecha_del_tipo_de_cambio_del_tramite']) : null,
             'tipo_cambio_dinamico' => $row['tipo_de_cambio_dinamico'] ?? 0,
             'monto_autorizado_bs' => $row['monto_autorizado_en_bs'] ?? 0,
             'monto_contratado_bs' => $row['monto_contratado_en_bs'] ?? 0,
@@ -66,8 +66,8 @@ class DeudaPublicaExternaImport implements ToModel, WithHeadingRow
             'interes_bs' => $row['interes_en_bs'] ?? 0,
             'comision_bs' => $row['comision_en_bs'] ?? 0,
             'codigo_riocp' => $row['codigo_riocp'] ?? null,
-            'fecha_emision_certificado_riocp' => $row['fecha_de_emision_del_certificado_de_riocp'] ?? null,
-            'fecha_vigencia' => $row['fech_de_vigencia'] ?? null,
+            'fecha_emision_certificado_riocp' => isset($row['fecha_emision_certificado_riocp']) ? $convertExcelDate($row['fecha_emision_certificado_riocp']) : null,
+            'fecha_vigencia' => isset($row['fecha_vigencia']) ? $convertExcelDate($row['fecha_vigencia']) : null,
             'gestion' => $row['gestion'] ?? 0,
             'meses' => $row['meses'] ?? 0,
             'si' => $row['si'] ?? null,
@@ -80,5 +80,10 @@ class DeudaPublicaExternaImport implements ToModel, WithHeadingRow
     public function headingRow(): int
     {
         return 1;
+    }
+
+    public function chunkSize(): int
+    {
+        return 1000; // Procesa el archivo en lotes de 1000 filas
     }
 }

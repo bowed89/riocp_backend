@@ -13,6 +13,7 @@ class Moneda extends Model
     protected $fillable = [
         'tipo',
         'sigla',
+        'cambio',
         'estado'
     ];
 }

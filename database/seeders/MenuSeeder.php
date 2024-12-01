@@ -631,6 +631,15 @@ class MenuSeeder extends Seeder
                 'show_menu' => 1,
             ],
             [
+                'nombre' => 'Moneda',
+                'url' => '/admin/moneda',
+                'icono' => 'pi pi-check-circle',
+                'rol_id' => 7,
+                'tipo_id' => 7,
+                'estado' => 1,
+                'show_menu' => 1,
+            ],
+            [
                 'nombre' => 'Asignación Roles y Permisos',
                 'url' => '/admin/roles-permisos',
                 'icono' => 'pi pi-check-circle',

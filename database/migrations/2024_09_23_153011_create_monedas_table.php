@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('tipo');
             $table->string('sigla');
+            $table->decimal('cambio', 6, 2);
             $table->boolean('estado')->default(true);
             $table->timestamps();
             $table->softDeletes();

@@ -5,6 +5,7 @@ namespace App\Http\Services\Utils;
 
 use App\Models\SolicitudRiocp;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Log;
 
 class GenerarNotasRiocp
 {
@@ -17,6 +18,14 @@ class GenerarNotasRiocp
         $mes = $fecha->translatedFormat('F');
         $dia = (int) $fecha->format('d');
         return 'La Paz, ' . $dia . ' de ' . $mes . ' de ' . $anio . "\n";
+    }
+
+    public function nroNota()
+    {
+        //  MEFP/VTCP/DGAFT/USCFT/N°711/2024
+        $fecha = Carbon::now();
+        $anio = $fecha->year;
+        return 'MEFP/VTCP/DGAFT/USCFT/N°711/' . $anio;
     }
 
     public function fechaPersonalizada($fecha)
@@ -41,7 +50,7 @@ class GenerarNotasRiocp
 
     public function Referencia()
     {
-        return 'Ref.:' . "\n" . '<b>Certificado de Registro de Inicio de Operaciones de Crédito Público</b>';
+        return 'Ref.:' . "\n" . 'Certificado de Registro de Inicio de Operaciones de Crédito Público';
     }
 
     public function body($solicitudId, $sd, $vpd)
@@ -49,30 +58,31 @@ class GenerarNotasRiocp
         $consulta = $this->queryObtenerDatosNota($solicitudId);
         $fechaCorrespondencia = $this->fechaPersonalizada($consulta->fecha_correspondencia);
         $objetoOperacion = ucwords(strtolower($consulta->objeto_operacion_credito));
-        $objetoOperacionFinal = '"<i>' . $objetoOperacion . '</i>"';
         $acreedor = ucwords(strtolower($consulta->nombre_acreedor));
 
         // verifico si estoy dentro de rangos de 
         // Servicio Deuda y Valor Presente Deuda Total
-        $servicioDeuda = (float) $sd;
-        $valorPresenteDeuda = (float) $vpd;
-        $motivoRechazo = null;
+        $servicioDeuda = (float)$sd;
+        $valorPresenteDeuda = (float)$vpd;
 
-        if ($valorPresenteDeuda > 200.00 && $servicioDeuda < 20.00) {
+        $motivoRechazo = '';
+        // Debug para verificar los valores
+        Log::debug("Valor Presente Deuda => " . $valorPresenteDeuda);
+        Log::debug("Servicio Deuda => " . $servicioDeuda);
+
+        if ($valorPresenteDeuda > 200 && $servicioDeuda < 20.00) {
             $motivoRechazo = 'indicador de 
             Valor Presente de la Deuda total supera el límite establecido en la Ley N° 2042 de Administración Presupuestaria (200%)';
-        }
-
-        if ($servicioDeuda > 20.00 && $valorPresenteDeuda < 200.00) {
+        } elseif ($servicioDeuda > 20.00 && $valorPresenteDeuda < 200) {
             $motivoRechazo = 'indicador del Servicio de Deuda supera 
             el límite establecido en la Ley N° 2042 de Administración Presupuestaria (20%)';
+        } elseif ($servicioDeuda > 20.00 && $valorPresenteDeuda > 200) {
+            $motivoRechazo = 'indicador del Servicio de Deuda y el Valor Presente
+            de la Deuda total superan el límite establecido en la
+            Ley N° 2042 de Administración Presupuestaria (20%) (200%)';
         }
 
-        if ($servicioDeuda > 20.00 && $valorPresenteDeuda > 200.00) {
-            $motivoRechazo = 'indicador del Servicio de Deuda y el Valor Presente
-             de la Deuda total superan el límite establecido en la
-             Ley N° 2042 de Administración Presupuestaria (20%) (200%)';
-        }
+        Log::debug("motivoRechazo =>" . $motivoRechazo);
 
         return '
         De mi consideración:
@@ -83,7 +93,7 @@ class GenerarNotasRiocp
         “Reglamento Específico para el Registro de Inicio de Operaciones de Crédito Público
         para Proyectos de Inversión Pública” modificada mediante 
         Resolución Ministerial N° 006 de 10 de enero de 2024, para la contratación de un nuevo 
-        endeudamiento destinado a la ' . $objetoOperacionFinal . ',
+        endeudamiento destinado a la ' . $objetoOperacion . ',
         a ser financiado por el' . $acreedor . '.
         Al respecto, cabe señalar que, en el marco de la normativa vigente, 
         con la inclusión del trámite solicitado por su entidad, el' . $motivoRechazo . ' , 
@@ -113,8 +123,13 @@ class GenerarNotasRiocp
     }
 
 
-    public function footer()
+    public function remitente()
     {
         return 'Viceministra del Tesoro y Crédito Público';
+    }
+
+    public function revisado()
+    {
+        return 'H.R.: 2024-18378-R' . "\n" . 'JPJS/TAE/JCVL/Shiarella Zelaya - Yamil Venegas' . "\n" . 'C.c.: Archivo';
     }
 }

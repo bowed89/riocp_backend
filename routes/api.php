@@ -47,13 +47,12 @@ Route::post('email/send', [CorreoController::class, 'sendEmail']);
 Route::middleware(['auth:sanctum'])->group(function () {
 
     // Administrador 
-    Route::middleware('rol:7')->group(function () {    
+    Route::middleware('rol:7')->group(function () {
         Route::resource('roles', RolController::class);
         Route::put('roles/delete/{id}', [RolController::class, 'deleteRol']);
         Route::get('roles/show/{id}', [RolController::class, 'showById']);
         Route::resource('menu', MenuController::class);
         Route::resource('usuarios', AuthController::class);
-
     });
     // jefe unidad
     Route::middleware('rol:2')->group(function () {
@@ -78,7 +77,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
         // Firma Digital
         Route::post('/validar-firma', [FirmadigitalController::class, 'validarFirmaDigital']);
- 
+
         // Formulario 1
         Route::resource('solicitud-riocp', SolicitudRiocpController::class);
         Route::post('/solicitud-riocp/formulario', [SolicitudRiocpController::class, 'storeSolicitudFormularioRiocp']);
@@ -116,10 +115,9 @@ Route::middleware(['auth:sanctum'])->group(function () {
         Route::get('/cronograma-deuda/formulario/{id}', [CronogramaServicioDeudaController::class, 'getCronogramaById']);
         Route::get('/cronograma-desembolso-deuda/formulario/{id}', [CronogramaDesembolsoProgramadoController::class, 'getCronogramaDesembolso']);
         Route::get('/certificado-riocp/{idSolicitud}', [CertificadoRiocpController::class, 'obtenerDatosSolicitudes']);
-       
+
         Route::post('/certificado-riocp/store', [CertificadoRiocpController::class, 'almacenarCertificadoAprobado']);
         Route::get('/nota-certificado-riocp/{solicitudId}', [NotaRiocpController::class, 'obtenerDatosSolicitudes']);
-
     });
 
     // Revisor y Jefe Unidad
@@ -130,7 +128,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
         Route::get('usuario/revisor/{solicitudId}', [ObservacionRevisorController::class, 'verObservacionIdSolicitud']);
 
         Route::post('/subir-historial/revisor', [SubirHistorialExcelController::class, 'subirDocumento']);
-            
+
         // Excel
         Route::post('import/deuda-externa', [DeudaPublicaExternaController::class, 'deudaPublicaExterna']);
         Route::post('import/fndr-excel', [FndrExcelController::class, 'fndrExcel']);
@@ -148,10 +146,15 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
     Route::resource('entidades', EntidadesController::class);
     Route::resource('acreedores', AcreedorController::class);
-    Route::resource('monedas', MonedaController::class);
+
     Route::resource('periodos', PeriodoController::class);
     Route::resource('tipos-documento', TipoDocumentoAdjuntoController::class);
     Route::get('entidades/usuario/rol', [EntidadesController::class, 'getEntidadByUser']);
+
+
+    Route::resource('monedas', MonedaController::class);
+    Route::put('monedas/delete/{id}', [MonedaController::class, 'deleteMoneda']);
+    Route::get('monedas/show/{id}', [MonedaController::class, 'showById']);
 
     Route::post('/generar-pdf', [PdfController::class, 'generarPDF'])->name('generar.pdf');
 

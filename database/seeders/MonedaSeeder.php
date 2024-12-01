@@ -14,10 +14,10 @@ class MonedaSeeder extends Seeder
     public function run(): void
     {
         DB::table('monedas')->insert([
-            ['tipo' => 'Dolar', 'sigla' => 'USD'],
-            ['tipo' => 'Euro', 'sigla' => 'EUR'],
-            ['tipo' => 'Bolivianos', 'sigla' => 'BS'],
-            ['tipo' => 'Yuan', 'sigla' => 'CNY'],
+            ['tipo' => 'Dolar', 'sigla' => 'USD', 'cambio' => 6.96],
+            ['tipo' => 'Euro', 'sigla' => 'EUR', 'cambio' => 7.30],
+            ['tipo' => 'Bolivianos', 'sigla' => 'BS', 'cambio' => 0.00],
+            ['tipo' => 'Yuan', 'sigla' => 'CNY', 'cambio' => 0.95],
         ]);
     }
 }

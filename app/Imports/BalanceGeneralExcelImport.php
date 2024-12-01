@@ -12,6 +12,8 @@ class BalanceGeneralExcelImport implements ToModel, WithHeadingRow, WithChunkRea
     public function __construct()
     {
         BalanceGeneralExcel::truncate();
+        ini_set('max_execution_time', 300); // 300 segundos (5 minutos)
+
     }
 
     public function model(array $row)

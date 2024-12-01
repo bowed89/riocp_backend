@@ -15,8 +15,8 @@ class DeudaPublicaExternaService
     public function importarArchivo($data)
     {
 
-
         try {
+            Log::debug('data==>' . $data['file']);
             // cargo a mi BD
             Excel::import(new DeudaPublicaExternaImport, $data['file']);
             //Excel::import(new CronogramaDeudaPublicaExternaImport, $data['file']);

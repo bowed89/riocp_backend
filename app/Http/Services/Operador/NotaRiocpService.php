@@ -7,6 +7,7 @@ use App\Models\CertificadoRiocp;
 use App\Models\Solicitud;
 use App\Models\SolicitudRiocp;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 use stdClass;
 
 class NotaRiocpService
@@ -107,18 +108,22 @@ class NotaRiocpService
         $generarNota = new GenerarNotasRiocp();
 
         $body = new stdClass();
-       /*  $body->fechaActual = $generarNota->fechaActualNota(); //header
+        /*  $body->fechaActual = $generarNota->fechaActualNota(); //header
         $body->destinatarioNota = $generarNota->destinatarioNota($solicitudId); //header */
-        $body->header = $generarNota->fechaActualNota() . $generarNota->destinatarioNota($solicitudId);
+        $body->fecha = $generarNota->fechaActualNota();
+        $body->nro_nota = $generarNota->nroNota();
+
+        $body->header = $generarNota->destinatarioNota($solicitudId);
 
         $body->referencia = $generarNota->Referencia();
+
+        Log::debug("sd =>" .$sd);
+        Log::debug("vpd =>" .$vpd);
+
         $body->body = $generarNota->body($solicitudId, $sd, $vpd);
-        $body->footer = $generarNota->footer();
-
-        /* Log::debug('$query ==>' . $body->destinatarioNota);
- */
-
-
+        $body->remitente = $generarNota->remitente();
+        $body->revisado = $generarNota->revisado();
+        
         return [
             'status' => true,
             'data' => $body,

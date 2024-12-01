@@ -147,8 +147,8 @@ class CertificadoRiocpService
     }
 
     //SERVICIO DE VALOR PRESENTE DE DEUDA TOTAL(LÍMITE 200%)
-    public function obtenerValorPresenteDeudaTotal() {
-        return 199.00;
+    public function obtenerValorPresenteDeudaTotal(): float  {
+        return 200.00;
     }
 
 
