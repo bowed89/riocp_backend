@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\DB;
 class CertificadoRiocpService
 {
 
+
     public function obtenerSolicitudCertificadoQuery($idSolicitud)
     {
         return SolicitudRiocp::select(
@@ -40,6 +41,8 @@ class CertificadoRiocpService
 
     public function obtenerSolicitudCertificado($idSolicitud)
     {
+        $servicioDeuda = new ServicioDeudaService();
+
         $user = Auth::user();
         if (!$user) {
             return [
@@ -59,7 +62,7 @@ class CertificadoRiocpService
 
         $codigo_entidad = $resultados[0]->codigo;
 
-        $resultados[0]->servicio_deuda = $this->obtenerServicioDeuda($codigo_entidad);
+        $resultados[0]->servicio_deuda = $servicioDeuda->obtenerServicioDeuda($idSolicitud);
         $resultados[0]->nro_solicitud = $this->generarNumeroTramite($codigo_entidad);
 
         //DATO QUEMADO DE VPD
@@ -147,7 +150,8 @@ class CertificadoRiocpService
     }
 
     //SERVICIO DE VALOR PRESENTE DE DEUDA TOTAL(LÍMITE 200%)
-    public function obtenerValorPresenteDeudaTotal(): float  {
+    public function obtenerValorPresenteDeudaTotal(): float
+    {
         return 200.00;
     }
 

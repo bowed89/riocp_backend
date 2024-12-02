@@ -77,6 +77,7 @@ class NotaRiocpService
 
     public function verNotas($solicitudId)
     {
+        $servicioDeuda = new ServicioDeudaService();
         $user = Auth::user();
 
         if (!$user) {
@@ -100,7 +101,7 @@ class NotaRiocpService
 
         // obtengo el codigo_entidad de la consulta
         $codigo_entidad = $query['data'][0]->codigo;
-        $sd = $certificadoRiocpService->obtenerServicioDeuda($codigo_entidad);
+        $sd = $servicioDeuda->obtenerServicioDeuda($codigo_entidad);
 
         //DATO QUEMADO DE VPD
         $vpd = $certificadoRiocpService->obtenerValorPresenteDeudaTotal();

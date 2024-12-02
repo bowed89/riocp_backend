@@ -4,6 +4,7 @@ SELECT id, tipo, sigla, estado, created_at, updated_at, deleted_at
 	
 
 /* filtramos fecha de cuotas desde el 2024 */
+
 SELECT * FROM fndr_excel 
 WHERE codigo_prsupuestario = '1434'
 AND TO_DATE(fecha_de_cuota, 'DD/MM/YYYY') >= TO_DATE('2024-01-01', 'YYYY-MM-DD');
@@ -38,38 +39,9 @@ AND TO_DATE(fecha_de_cuota, 'DD/MM/YYYY') >= TO_DATE('2024-01-01', 'YYYY-MM-DD')
 /**********  FNDR  ************/
 
 /*sumatoria de intereses mas capitales*/
+0/*SUMATORIA*/
 
 SELECT  
-       ROUND(
-           (interes::DECIMAL) + 
-           (interes_diferido::DECIMAL) + 
-           (capital::DECIMAL) + 
-           (capital_diferido::DECIMAL), 2) AS sumatoria,
-		
-       ROUND(
-           ((interes::DECIMAL) + 
-            (interes_diferido::DECIMAL) + 
-            (capital::DECIMAL) + 
-            (capital_diferido::DECIMAL)) / 
-           POWER(1 + 0.0299 / 365, 
-                 (TO_DATE(fecha_de_cuota, 'DD/MM/YYYY') - TO_DATE('31/12/2023', 'DD/MM/YYYY'))), 2) AS resultado,
-       *
-FROM fndr_excel
-WHERE codigo_prsupuestario = '1434'
-AND TO_DATE(fecha_de_cuota, 'DD/MM/YYYY') >= TO_DATE('2024-01-01', 'YYYY-MM-DD');
-
-
-/*SUMATORIA*/
-
-SELECT  
-    ROUND(
-        SUM(
-            (interes::DECIMAL) + 
-            (interes_diferido::DECIMAL) + 
-            (capital::DECIMAL) + 
-            (capital_diferido::DECIMAL)
-        ), 2) AS sumatoria_total,
-	
     ROUND(
         SUM(
             ((interes::DECIMAL) + 
@@ -78,7 +50,7 @@ SELECT
              (capital_diferido::DECIMAL)) / 
             POWER(1 + 0.0299 / 365, 
                   (TO_DATE(fecha_de_cuota, 'DD/MM/YYYY') - TO_DATE('31/12/2023', 'DD/MM/YYYY')))
-        ), 2) AS resultado_total
+        ), 2) AS resultado_total_fndr
 FROM fndr_excel
 WHERE codigo_prsupuestario = '1434'
 AND TO_DATE(fecha_de_cuota, 'DD/MM/YYYY') >= TO_DATE('2024-01-01', 'YYYY-MM-DD');
@@ -89,8 +61,88 @@ AND TO_DATE(fecha_de_cuota, 'DD/MM/YYYY') >= TO_DATE('2024-01-01', 'YYYY-MM-DD')
 SELECT * FROM deuda_publica_externa
 WHERE codigo = '1434'
 
+SELECT  
+       ROUND(
+           (capital_moneda_origen::DECIMAL) + 
+           (interes_moneda_origen::DECIMAL), 2) AS sumatoria,
+		
+       ROUND(
+           ((capital_moneda_origen::DECIMAL) + 
+            (interes_moneda_origen::DECIMAL)) / 
+           POWER(1 + 0.0299 / 365, 
+                 (TO_DATE(fecha_cuota, 'DD/MM/YYYY') - TO_DATE('31/12/2023', 'DD/MM/YYYY'))), 2) AS resultado,
+       fecha_cuota, capital_moneda_origen, interes_moneda_origen
+FROM deuda_publica_externa
+WHERE codigo = '1434'
+AND TO_DATE(fecha_cuota, 'DD/MM/YYYY') >= TO_DATE('2024-01-01', 'YYYY-MM-DD');
 
-/************************  OTROS **********************/
+ 
 
-SELECT * FROM solicitudes_riocp
+/*SUMATORIA*/
+5.068.109,85
+
+SELECT  
+    ROUND(
+        SUM(
+            (
+             (capital_moneda_origen::DECIMAL) + 
+             (interes_moneda_origen::DECIMAL) 
+			) / 
+            POWER(1 + 0.0299 / 365, 
+                  (TO_DATE(fecha_cuota, 'DD/MM/YYYY') - TO_DATE('31/12/2023', 'DD/MM/YYYY')))
+        ), 2) AS resultado_total_deuda_externa
+FROM deuda_publica_externa
+WHERE codigo = '1434'
+AND TO_DATE(fecha_cuota, 'DD/MM/YYYY') >= TO_DATE('2024-01-01', 'YYYY-MM-DD');
+
+
+
+/************************  50% PASIVOS SIN CRONOGRAMAS **********************/
+
+
+/************************  50% PASIVOS **********************/
+
+SELECT * FROM balance_general_excel
+WHERE entidad = '1434'
+AND cuenta = '21172'
+
+SELECT 
+    CASE 
+        WHEN saldo::NUMERIC < 0 THEN 0
+        ELSE saldo::NUMERIC
+    END AS saldo_convertido
+FROM balance_general_excel
+WHERE entidad = '1434'
+  AND cuenta IN (
+    '2111', '2112', '2113', '2114', '2115',
+    '2116', '2118', '2119', '2121', '2122',
+    '213', '2141', '2142', '2143', '2151',
+    '2152', '2153', '2154', '216', '217', '2211', '2212',
+    '2221', '2222', '224', '2251', '2252', '2253', '226'
+);
+
+
+
+/************************  SUMA  **********************/
+
+SELECT 
+    ROUND(SUM(
+        CASE 
+            WHEN saldo::NUMERIC < 0 THEN 0
+            ELSE saldo::NUMERIC
+        END
+    )*0.5, 2) AS total_saldo_convertido
+FROM balance_general_excel
+WHERE entidad = '1434'
+  AND cuenta IN (
+    '2111', '2112', '2113', '2114', '2115',
+    '2116', '2118', '2119', '2121', '2122',
+    '213', '2141', '2142', '2143', '2151',
+    '2152', '2153', '2154', '216', '217', '2211', '2212',
+    '2221', '2222', '224', '2251', '2252', '2253', '226'
+);
+
+/****   SUMATORIA 
+FNDR + DEUDA_EXTERNA + PASIVOS   
+*****/
 
