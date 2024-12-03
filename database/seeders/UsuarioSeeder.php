@@ -21,7 +21,7 @@ class UsuarioSeeder extends Seeder
                 'password' => Hash::make('solicitante123'), 
                 'estado' => true,
                 'rol_id' => 1,
-                'entidad_id' => 4,
+                'entidad_id' => 1434,
             ],
             [
                 'nombre' => 'Martha',
@@ -32,7 +32,7 @@ class UsuarioSeeder extends Seeder
                 'password' => Hash::make('solicitante123'), 
                 'estado' => true,
                 'rol_id' => 1,
-                'entidad_id' => 12,
+                'entidad_id' => 1109,
             ],
             [
                 'nombre' => 'Juan Carlos',

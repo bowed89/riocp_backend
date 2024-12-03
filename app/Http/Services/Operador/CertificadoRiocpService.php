@@ -62,7 +62,7 @@ class CertificadoRiocpService
 
         $codigo_entidad = $resultados[0]->codigo;
 
-        $resultados[0]->servicio_deuda = $servicioDeuda->obtenerServicioDeuda($idSolicitud);
+        $resultados[0]->servicio_deuda = $servicioDeuda->obtenerServicioDeuda($codigo_entidad);
         $resultados[0]->nro_solicitud = $this->generarNumeroTramite($codigo_entidad);
 
         //DATO QUEMADO DE VPD
@@ -171,7 +171,7 @@ class CertificadoRiocpService
 
         $sumDeudas = $deudaCreditoExterno  +  $deudaCreditoTerritoriales + $pasivosSinCronogramas;
 
-        Log::debug("sumDeudas" .$sumDeudas);
+        Log::debug("sumDeudas" . $sumDeudas);
 
         // promedio icr eta
         // Subconsulta para el cálculo de promedio_icr_eta
@@ -181,9 +181,10 @@ class CertificadoRiocpService
             ->selectRaw('ROUND(AVG(monto::DECIMAL), 2) AS promedio_icr_eta')
             ->first();
 
-        $resultadofinal = $sumDeudas / $promedioIcrEta->promedio_icr_eta;
+        //$resultadofinal = ($sumDeudas / $promedioIcrEta->promedio_icr_eta)*100;
+        $resultadofinal = floor(($sumDeudas / $promedioIcrEta->promedio_icr_eta) * 100);
 
-        Log::debug("resultadofinal" .$resultadofinal);
+        Log::debug("resultadofinal" . $resultadofinal);
 
         return $resultadofinal;
     }
