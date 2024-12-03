@@ -104,8 +104,11 @@ class NotaRiocpService
         $sd = $servicioDeuda->obtenerServicioDeuda($codigo_entidad);
 
         //DATO QUEMADO DE VPD
-        $vpd = $certificadoRiocpService->obtenerValorPresenteDeudaTotal();
+        $vpd = $certificadoRiocpService->obtenerValorPresenteDeudaTotal($codigo_entidad);
 
+        Log::debug("vpd" .$vpd);
+
+        
         $generarNota = new GenerarNotasRiocp();
 
         $body = new stdClass();

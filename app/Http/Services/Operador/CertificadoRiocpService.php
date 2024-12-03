@@ -9,6 +9,7 @@ use App\Models\SolicitudRiocp;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class CertificadoRiocpService
 {
@@ -42,7 +43,6 @@ class CertificadoRiocpService
     public function obtenerSolicitudCertificado($idSolicitud)
     {
         $servicioDeuda = new ServicioDeudaService();
-
         $user = Auth::user();
         if (!$user) {
             return [
@@ -66,7 +66,7 @@ class CertificadoRiocpService
         $resultados[0]->nro_solicitud = $this->generarNumeroTramite($codigo_entidad);
 
         //DATO QUEMADO DE VPD
-        $resultados[0]->valor_presente_deuda = $this->obtenerValorPresenteDeudaTotal();
+        $resultados[0]->valor_presente_deuda = $this->obtenerValorPresenteDeudaTotal($codigo_entidad);
 
         return [
             'status' => true,
@@ -150,9 +150,42 @@ class CertificadoRiocpService
     }
 
     //SERVICIO DE VALOR PRESENTE DE DEUDA TOTAL(LÍMITE 200%)
-    public function obtenerValorPresenteDeudaTotal(): float
+    public function obtenerValorPresenteDeudaTotal($codigo_entidad)
     {
-        return 200.00;
+        $tasa = 0.0299;
+
+        Log::debug('codigo_entidad' . $codigo_entidad);
+        $valorPresenteDeuda = new ValorPresenteDeudaService();
+        $deudaCreditoExterno = $valorPresenteDeuda->sumatoriaDeudaCreditoExterno($tasa, $codigo_entidad);
+
+
+        Log::debug("deudaCreditoExterno" . $deudaCreditoExterno);
+
+        $deudaCreditoTerritoriales = $valorPresenteDeuda->sumatoriaDeudaTerritoriales($tasa, $codigo_entidad);
+
+        Log::debug("deudaCreditoTerritoriales" . $deudaCreditoTerritoriales);
+
+        $pasivosSinCronogramas = $valorPresenteDeuda->cincuentaXcientoSinCronograma($codigo_entidad);
+
+        Log::debug("pasivosSinCronogramas" . $pasivosSinCronogramas);
+
+        $sumDeudas = $deudaCreditoExterno  +  $deudaCreditoTerritoriales + $pasivosSinCronogramas;
+
+        Log::debug("sumDeudas" .$sumDeudas);
+
+        // promedio icr eta
+        // Subconsulta para el cálculo de promedio_icr_eta
+        $promedioIcrEta = DB::table('icr_eta_rubro_total_excel')
+            ->where('entidad', $codigo_entidad)
+            ->where('nombre_total', 'ICR')
+            ->selectRaw('ROUND(AVG(monto::DECIMAL), 2) AS promedio_icr_eta')
+            ->first();
+
+        $resultadofinal = $sumDeudas / $promedioIcrEta->promedio_icr_eta;
+
+        Log::debug("resultadofinal" .$resultadofinal);
+
+        return $resultadofinal;
     }
 
 

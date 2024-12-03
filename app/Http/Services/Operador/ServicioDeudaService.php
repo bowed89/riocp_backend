@@ -8,7 +8,7 @@ class ServicioDeudaService
 {
     //SERVICIO DE LA DEUDA(LÍMITE 20%)
     public function obtenerServicioDeuda($codigo_entidad)
-    {
+    {        
         $anioActual = Carbon::now()->year;
 
         $sumCapInteres = DB::table('fndr_excel')

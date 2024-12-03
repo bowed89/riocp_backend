@@ -1,7 +1,11 @@
-SELECT id, tipo, sigla, estado, created_at, updated_at, deleted_at
-	FROM public.monedas;
+SELECT *
+	FROM entidades where id=4
 	
 	
+SELECT *
+	FROM usuarios
+	
+
 
 /* filtramos fecha de cuotas desde el 2024 */
 
@@ -39,7 +43,7 @@ AND TO_DATE(fecha_de_cuota, 'DD/MM/YYYY') >= TO_DATE('2024-01-01', 'YYYY-MM-DD')
 /**********  FNDR  ************/
 
 /*sumatoria de intereses mas capitales*/
-0/*SUMATORIA*/
+/*SUMATORIA*/
 
 SELECT  
     ROUND(
@@ -120,7 +124,6 @@ WHERE entidad = '1434'
     '2152', '2153', '2154', '216', '217', '2211', '2212',
     '2221', '2222', '224', '2251', '2252', '2253', '226'
 );
-
 
 
 /************************  SUMA  **********************/

@@ -14,6 +14,7 @@ class EntidadSeeder extends Seeder
     { {
             DB::table('entidades')->insert([
                 [
+                    'id' => 1102,  // Asigna el mismo valor que entidad_id
                     'entidad_id' => 1102,
                     'par_tipo_institucion' => 1006,
                     'par_departamento' => 3002,
@@ -21,6 +22,7 @@ class EntidadSeeder extends Seeder
                     'sigla' => ''
                 ],
                 [
+                    'id' => 1103,  // Asigna el mismo valor que entidad_id
                     'entidad_id' => 1103,
                     'par_tipo_institucion' => 1006,
                     'par_departamento' => 3002,
@@ -28,6 +30,7 @@ class EntidadSeeder extends Seeder
                     'sigla' => ''
                 ],
                 [
+                    'id' => 1104,  // Asigna el mismo valor que entidad_id
                     'entidad_id' => 1104,
                     'par_tipo_institucion' => 1006,
                     'par_departamento' => 3002,
@@ -42,6 +45,15 @@ class EntidadSeeder extends Seeder
                     'sigla' => ''
                 ],
                 [
+                    'id' => 1105,  // Asigna el mismo valor que entidad_id
+                    'entidad_id' => 1105,
+                    'par_tipo_institucion' => 1006,
+                    'par_departamento' => 3002,
+                    'denominacion' => 'Gobierno Autónomo Municipal de Tarvita (Villa Orías)',
+                    'sigla' => ''
+                ],
+                [
+                    'id' => 1106,  // Asigna el mismo valor que entidad_id
                     'entidad_id' => 1106,
                     'par_tipo_institucion' => 1006,
                     'par_departamento' => 3002,
@@ -49,6 +61,7 @@ class EntidadSeeder extends Seeder
                     'sigla' => ''
                 ],
                 [
+                    'id' => 1107,  // Asigna el mismo valor que entidad_id
                     'entidad_id' => 1107,
                     'par_tipo_institucion' => 1006,
                     'par_departamento' => 3002,
@@ -56,6 +69,7 @@ class EntidadSeeder extends Seeder
                     'sigla' => ''
                 ],
                 [
+                    'id' => 1108,  // Asigna el mismo valor que entidad_id
                     'entidad_id' => 1108,
                     'par_tipo_institucion' => 1006,
                     'par_departamento' => 3002,
@@ -63,6 +77,7 @@ class EntidadSeeder extends Seeder
                     'sigla' => ''
                 ],
                 [
+                    'id' => 1109,  // Asigna el mismo valor que entidad_id
                     'entidad_id' => 1109,
                     'par_tipo_institucion' => 1006,
                     'par_departamento' => 3002,
@@ -70,6 +85,7 @@ class EntidadSeeder extends Seeder
                     'sigla' => ''
                 ],
                 [
+                    'id' => 1110,  // Asigna el mismo valor que entidad_id
                     'entidad_id' => 1110,
                     'par_tipo_institucion' => 1006,
                     'par_departamento' => 3002,
@@ -77,6 +93,7 @@ class EntidadSeeder extends Seeder
                     'sigla' => ''
                 ],
                 [
+                    'id' => 1111,  // Asigna el mismo valor que entidad_id
                     'entidad_id' => 1111,
                     'par_tipo_institucion' => 1006,
                     'par_departamento' => 3002,
@@ -84,6 +101,7 @@ class EntidadSeeder extends Seeder
                     'sigla' => ''
                 ],
                 [
+                    'id' => 1112,  // Asigna el mismo valor que entidad_id
                     'entidad_id' => 1112,
                     'par_tipo_institucion' => 1006,
                     'par_departamento' => 3002,
@@ -91,6 +109,7 @@ class EntidadSeeder extends Seeder
                     'sigla' => ''
                 ],
                 [
+                    'id' => 1113,  // Asigna el mismo valor que entidad_id
                     'entidad_id' => 1113,
                     'par_tipo_institucion' => 1006,
                     'par_departamento' => 3002,
@@ -98,6 +117,7 @@ class EntidadSeeder extends Seeder
                     'sigla' => ''
                 ],
                 [
+                    'id' => 1114,  // Asigna el mismo valor que entidad_id
                     'entidad_id' => 1114,
                     'par_tipo_institucion' => 1006,
                     'par_departamento' => 3002,
@@ -105,6 +125,7 @@ class EntidadSeeder extends Seeder
                     'sigla' => ''
                 ],
                 [
+                    'id' => 1115,  // Asigna el mismo valor que entidad_id
                     'entidad_id' => 1115,
                     'par_tipo_institucion' => 1006,
                     'par_departamento' => 3002,
@@ -112,6 +133,7 @@ class EntidadSeeder extends Seeder
                     'sigla' => ''
                 ],
                 [
+                    'id' => 1116,  // Asigna el mismo valor que entidad_id
                     'entidad_id' => 1116,
                     'par_tipo_institucion' => 1006,
                     'par_departamento' => 3002,
@@ -119,6 +141,7 @@ class EntidadSeeder extends Seeder
                     'sigla' => ''
                 ],
                 [
+                    'id' => 1117,  // Asigna el mismo valor que entidad_id
                     'entidad_id' => 1117,
                     'par_tipo_institucion' => 1006,
                     'par_departamento' => 3002,
@@ -126,6 +149,7 @@ class EntidadSeeder extends Seeder
                     'sigla' => ''
                 ],
                 [
+                    'id' => 1118,  // Asigna el mismo valor que entidad_id
                     'entidad_id' => 1118,
                     'par_tipo_institucion' => 1006,
                     'par_departamento' => 3002,
@@ -133,6 +157,7 @@ class EntidadSeeder extends Seeder
                     'sigla' => ''
                 ],
                 [
+                    'id' => 1119,  // Asigna el mismo valor que entidad_id
                     'entidad_id' => 1119,
                     'par_tipo_institucion' => 1006,
                     'par_departamento' => 3002,
@@ -140,6 +165,7 @@ class EntidadSeeder extends Seeder
                     'sigla' => ''
                 ],
                 [
+                    'id' => 1120,  // Asigna el mismo valor que entidad_id
                     'entidad_id' => 1120,
                     'par_tipo_institucion' => 1006,
                     'par_departamento' => 3002,
@@ -147,128 +173,93 @@ class EntidadSeeder extends Seeder
                     'sigla' => ''
                 ],
                 [
+                    'id' => 1121,  // Asigna el mismo valor que entidad_id
                     'entidad_id' => 1121,
                     'par_tipo_institucion' => 1006,
                     'par_departamento' => 3002,
                     'denominacion' => 'Gobierno Autónomo Municipal de Incahuasi',
                     'sigla' => ''
                 ],
-                ['entidad_id' => 1123, 'par_tipo_institucion' => 1006, 'par_departamento' => 3002, 'denominacion' => 'Gobierno Autónomo Municipal de Camataqui (Villa Abecia)', 'sigla' => ''],
-                ['entidad_id' => 1124, 'par_tipo_institucion' => 1006, 'par_departamento' => 3002, 'denominacion' => 'Gobierno Autónomo Municipal de Culpina', 'sigla' => ''],
-                ['entidad_id' => 1125, 'par_tipo_institucion' => 1006, 'par_departamento' => 3002, 'denominacion' => 'Gobierno Autónomo Municipal de Las Carreras', 'sigla' => ''],
-                ['entidad_id' => 1432, 'par_tipo_institucion' => 1006, 'par_departamento' => 3003, 'denominacion' => 'Gobierno Autónomo Municipal de Coipasa', 'sigla' => ''],
-                ['entidad_id' => 1910, 'par_tipo_institucion' => 1006, 'par_departamento' => 3009, 'denominacion' => 'Gobierno Autónomo Municipal de Sena', 'sigla' => ''],
-                ['entidad_id' => 1215, 'par_tipo_institucion' => 1006, 'par_departamento' => 3001, 'denominacion' => 'Gobierno Autónomo Municipal de Patacamaya', 'sigla' => ''],
-                ['entidad_id' => 1216, 'par_tipo_institucion' => 1006, 'par_departamento' => 3001, 'denominacion' => 'Gobierno Autónomo Municipal de Colquencha', 'sigla' => ''],
-                ['entidad_id' => 1217, 'par_tipo_institucion' => 1006, 'par_departamento' => 3001, 'denominacion' => 'Gobierno Autónomo Municipal de Collana', 'sigla' => ''],
-                ['entidad_id' => 1218, 'par_tipo_institucion' => 1006, 'par_departamento' => 3001, 'denominacion' => 'Gobierno Autónomo Municipal de Inquisivi', 'sigla' => ''],
-                ['entidad_id' => 1219, 'par_tipo_institucion' => 1006, 'par_departamento' => 3001, 'denominacion' => 'Gobierno Autónomo Municipal de Quime', 'sigla' => ''],
                 [
-                    'entidad_id' => 1220,
+                    'id' => 1123,  // Asigna el mismo valor que entidad_id
+                    'entidad_id' => 1123,
                     'par_tipo_institucion' => 1006,
-                    'par_departamento' => 3001,
-                    'denominacion' => 'Gobierno Autónomo Municipal de Cajuata',
-                    'sigla' => '',
+                    'par_departamento' => 3002,
+                    'denominacion' => 'Gobierno Autónomo Municipal de Camataqui (Villa Abecia)',
+                    'sigla' => ''
                 ],
                 [
-                    'entidad_id' => 1221,
+                    'id' => 1124,  // Asigna el mismo valor que entidad_id
+                    'entidad_id' => 1124,
                     'par_tipo_institucion' => 1006,
-                    'par_departamento' => 3001,
-                    'denominacion' => 'Gobierno Autónomo Municipal de Colquiri',
-                    'sigla' => '',
+                    'par_departamento' => 3002,
+                    'denominacion' => 'Gobierno Autónomo Municipal de Culpina',
+                    'sigla' => ''
                 ],
                 [
-                    'entidad_id' => 1222,
+                    'id' => 1125,  // Asigna el mismo valor que entidad_id
+                    'entidad_id' => 1125,
                     'par_tipo_institucion' => 1006,
-                    'par_departamento' => 3001,
-                    'denominacion' => 'Gobierno Autónomo Municipal de Ichoca',
-                    'sigla' => '',
+                    'par_departamento' => 3002,
+                    'denominacion' => 'Gobierno Autónomo Municipal de Las Carreras',
+                    'sigla' => ''
                 ],
                 [
-                    'entidad_id' => 1224,
+                    'id' => 1432,  // Asigna el mismo valor que entidad_id
+                    'entidad_id' => 1432,
                     'par_tipo_institucion' => 1006,
-                    'par_departamento' => 3001,
-                    'denominacion' => 'Gobierno Autónomo Municipal de Achacachi',
-                    'sigla' => '',
+                    'par_departamento' => 3003,
+                    'denominacion' => 'Gobierno Autónomo Municipal de Coipasa',
+                    'sigla' => ''
                 ],
                 [
-                    'entidad_id' => 1225,
+                    'id' => 1910,  // Asigna el mismo valor que entidad_id
+                    'entidad_id' => 1910,
                     'par_tipo_institucion' => 1006,
-                    'par_departamento' => 3001,
-                    'denominacion' => 'Gobierno Autónomo Municipal de Ancoraimes',
-                    'sigla' => '',
+                    'par_departamento' => 3009,
+                    'denominacion' => 'Gobierno Autónomo Municipal de Sena',
+                    'sigla' => ''
                 ],
                 [
-                    'entidad_id' => 1226,
+                    'id' => 1215,  // Asigna el mismo valor que entidad_id
+                    'entidad_id' => 1215,
                     'par_tipo_institucion' => 1006,
                     'par_departamento' => 3001,
-                    'denominacion' => 'Gobierno Autónomo Municipal de Sorata',
-                    'sigla' => '',
+                    'denominacion' => 'Gobierno Autónomo Municipal de Patacamaya',
+                    'sigla' => ''
                 ],
                 [
-                    'entidad_id' => 1227,
+                    'id' => 1216,  // Asigna el mismo valor que entidad_id
+                    'entidad_id' => 1216,
                     'par_tipo_institucion' => 1006,
                     'par_departamento' => 3001,
-                    'denominacion' => 'Gobierno Autónomo Municipal de Guanay',
-                    'sigla' => '',
+                    'denominacion' => 'Gobierno Autónomo Municipal de Colquencha',
+                    'sigla' => ''
                 ],
+
+                /* ********************************************************** */
+                ['id' => 1217, 'entidad_id' => 1217, 'par_tipo_institucion' => 1006, 'par_departamento' => 3001, 'denominacion' => 'Gobierno Autónomo Municipal de Collana', 'sigla' => ''],
+                ['id' => 1218, 'entidad_id' => 1218, 'par_tipo_institucion' => 1006, 'par_departamento' => 3001, 'denominacion' => 'Gobierno Autónomo Municipal de Inquisivi', 'sigla' => ''],
+                ['id' => 1219, 'entidad_id' => 1219, 'par_tipo_institucion' => 1006, 'par_departamento' => 3001, 'denominacion' => 'Gobierno Autónomo Municipal de Quime', 'sigla' => ''],
+                ['id' => 1220, 'entidad_id' => 1220, 'par_tipo_institucion' => 1006, 'par_departamento' => 3001, 'denominacion' => 'Gobierno Autónomo Municipal de Cajuata', 'sigla' => ''],
+                ['id' => 1221, 'entidad_id' => 1221, 'par_tipo_institucion' => 1006, 'par_departamento' => 3001, 'denominacion' => 'Gobierno Autónomo Municipal de Colquiri', 'sigla' => ''],
+                ['id' => 1222, 'entidad_id' => 1222, 'par_tipo_institucion' => 1006, 'par_departamento' => 3001, 'denominacion' => 'Gobierno Autónomo Municipal de Ichoca', 'sigla' => ''],
+                ['id' => 1224, 'entidad_id' => 1224, 'par_tipo_institucion' => 1006, 'par_departamento' => 3001, 'denominacion' => 'Gobierno Autónomo Municipal de Achacachi', 'sigla' => ''],
+                ['id' => 1225, 'entidad_id' => 1225, 'par_tipo_institucion' => 1006, 'par_departamento' => 3001, 'denominacion' => 'Gobierno Autónomo Municipal de Ancoraimes', 'sigla' => ''],
+                ['id' => 1226, 'entidad_id' => 1226, 'par_tipo_institucion' => 1006, 'par_departamento' => 3001, 'denominacion' => 'Gobierno Autónomo Municipal de Sorata', 'sigla' => ''],
+                ['id' => 1227, 'entidad_id' => 1227, 'par_tipo_institucion' => 1006, 'par_departamento' => 3001, 'denominacion' => 'Gobierno Autónomo Municipal de Guanay', 'sigla' => ''],
+                ['id' => 1228, 'entidad_id' => 1228, 'par_tipo_institucion' => 1006, 'par_departamento' => 3001, 'denominacion' => 'Gobierno Autónomo Municipal de Tacacoma', 'sigla' => ''],
+                ['id' => 1229, 'entidad_id' => 1229, 'par_tipo_institucion' => 1006, 'par_departamento' => 3001, 'denominacion' => 'Gobierno Autónomo Municipal de Tipuani', 'sigla' => ''],
+                ['id' => 1300, 'entidad_id' => 1300, 'par_tipo_institucion' => 1006, 'par_departamento' => 3001, 'denominacion' => 'Gobierno Autónomo Municipal de Quiabaya', 'sigla' => ''],
+                ['id' => 1231, 'entidad_id' => 1231, 'par_tipo_institucion' => 1006, 'par_departamento' => 3001, 'denominacion' => 'Gobierno Autónomo Municipal de Combaya', 'sigla' => ''],
+                ['id' => 1232, 'entidad_id' => 1232, 'par_tipo_institucion' => 1006, 'par_departamento' => 3001, 'denominacion' => 'Gobierno Autónomo Municipal de Copacabana', 'sigla' => ''],
+                ['id' => 1233, 'entidad_id' => 1233, 'par_tipo_institucion' => 1006, 'par_departamento' => 3001, 'denominacion' => 'Gobierno Autónomo Municipal de San Pedro de Tiquina', 'sigla' => ''],
+                ['id' => 1234, 'entidad_id' => 1234, 'par_tipo_institucion' => 1006, 'par_departamento' => 3001, 'denominacion' => 'Gobierno Autónomo Municipal de Tito Yupanqui', 'sigla' => ''],
+                ['id' => 1235, 'entidad_id' => 1235, 'par_tipo_institucion' => 1006, 'par_departamento' => 3001, 'denominacion' => 'Gobierno Autónomo Municipal de Chuma', 'sigla' => ''],
+
+                /* ********************************************************** */
                 [
-                    'entidad_id' => 1228,
-                    'par_tipo_institucion' => 1006,
-                    'par_departamento' => 3001,
-                    'denominacion' => 'Gobierno Autónomo Municipal de Tacacoma',
-                    'sigla' => '',
-                ],
-                [
-                    'entidad_id' => 1229,
-                    'par_tipo_institucion' => 1006,
-                    'par_departamento' => 3001,
-                    'denominacion' => 'Gobierno Autónomo Municipal de Tipuani',
-                    'sigla' => '',
-                ],
-                [
-                    'entidad_id' => 1300,
-                    'par_tipo_institucion' => 1006,
-                    'par_departamento' => 3001,
-                    'denominacion' => 'Gobierno Autónomo Municipal de Quiabaya',
-                    'sigla' => '',
-                ],
-                [
-                    'entidad_id' => 1231,
-                    'par_tipo_institucion' => 1006,
-                    'par_departamento' => 3001,
-                    'denominacion' => 'Gobierno Autónomo Municipal de Combaya',
-                    'sigla' => '',
-                ],
-                [
-                    'entidad_id' => 1232,
-                    'par_tipo_institucion' => 1006,
-                    'par_departamento' => 3001,
-                    'denominacion' => 'Gobierno Autónomo Municipal de Copacabana',
-                    'sigla' => '',
-                ],
-                [
-                    'entidad_id' => 1233,
-                    'par_tipo_institucion' => 1006,
-                    'par_departamento' => 3001,
-                    'denominacion' => 'Gobierno Autónomo Municipal de San Pedro de Tiquina',
-                    'sigla' => '',
-                ],
-                [
-                    'entidad_id' => 1234,
-                    'par_tipo_institucion' => 1006,
-                    'par_departamento' => 3001,
-                    'denominacion' => 'Gobierno Autónomo Municipal de Tito Yupanqui',
-                    'sigla' => '',
-                ],
-                [
-                    'entidad_id' => 1235,
-                    'par_tipo_institucion' => 1006,
-                    'par_departamento' => 3001,
-                    'denominacion' => 'Gobierno Autónomo Municipal de Chuma',
-                    'sigla' => '',
-                ],
-                [
+                    'id' => 1236,
                     'entidad_id' => 1236,
                     'par_tipo_institucion' => 1006,
                     'par_departamento' => 3001,
@@ -276,6 +267,7 @@ class EntidadSeeder extends Seeder
                     'sigla' => '',
                 ],
                 [
+                    'id' => 1237,
                     'entidad_id' => 1237,
                     'par_tipo_institucion' => 1006,
                     'par_departamento' => 3001,
@@ -283,6 +275,7 @@ class EntidadSeeder extends Seeder
                     'sigla' => '',
                 ],
                 [
+                    'id' => 1238,
                     'entidad_id' => 1238,
                     'par_tipo_institucion' => 1006,
                     'par_departamento' => 3001,
@@ -290,6 +283,7 @@ class EntidadSeeder extends Seeder
                     'sigla' => '',
                 ],
                 [
+                    'id' => 1239,
                     'entidad_id' => 1239,
                     'par_tipo_institucion' => 1006,
                     'par_departamento' => 3001,
@@ -297,6 +291,7 @@ class EntidadSeeder extends Seeder
                     'sigla' => '',
                 ],
                 [
+                    'id' => 1240,
                     'entidad_id' => 1240,
                     'par_tipo_institucion' => 1006,
                     'par_departamento' => 3001,
@@ -304,6 +299,7 @@ class EntidadSeeder extends Seeder
                     'sigla' => '',
                 ],
                 [
+                    'id' => 902,
                     'entidad_id' => 902,
                     'par_tipo_institucion' => 1005,
                     'par_departamento' => 3001,
@@ -311,6 +307,7 @@ class EntidadSeeder extends Seeder
                     'sigla' => 'GAD-LPZ',
                 ],
                 [
+                    'id' => 903,
                     'entidad_id' => 903,
                     'par_tipo_institucion' => 1005,
                     'par_departamento' => 3005,
@@ -318,6 +315,7 @@ class EntidadSeeder extends Seeder
                     'sigla' => 'GAD-CBB',
                 ],
                 [
+                    'id' => 904,
                     'entidad_id' => 904,
                     'par_tipo_institucion' => 1005,
                     'par_departamento' => 3003,
@@ -325,6 +323,7 @@ class EntidadSeeder extends Seeder
                     'sigla' => 'GAD-ORU',
                 ],
                 [
+                    'id' => 905,
                     'entidad_id' => 905,
                     'par_tipo_institucion' => 1005,
                     'par_departamento' => 3004,
@@ -332,6 +331,7 @@ class EntidadSeeder extends Seeder
                     'sigla' => 'GAD-PTS',
                 ],
                 [
+                    'id' => 907,
                     'entidad_id' => 907,
                     'par_tipo_institucion' => 1005,
                     'par_departamento' => 3006,
@@ -339,6 +339,7 @@ class EntidadSeeder extends Seeder
                     'sigla' => 'GAD-SCZ',
                 ],
                 [
+                    'id' => 909,
                     'entidad_id' => 909,
                     'par_tipo_institucion' => 1005,
                     'par_departamento' => 3009,
@@ -346,6 +347,7 @@ class EntidadSeeder extends Seeder
                     'sigla' => 'GAD-PAN',
                 ],
                 [
+                    'id' => 1101,
                     'entidad_id' => 1101,
                     'par_tipo_institucion' => 1006,
                     'par_departamento' => 3002,
@@ -353,6 +355,7 @@ class EntidadSeeder extends Seeder
                     'sigla' => 'SUC',
                 ],
                 [
+                    'id' => 1201,
                     'entidad_id' => 1201,
                     'par_tipo_institucion' => 1006,
                     'par_departamento' => 3001,
@@ -360,63 +363,72 @@ class EntidadSeeder extends Seeder
                     'sigla' => 'LPZ',
                 ],
                 [
+                    'id' => 1205,
                     'entidad_id' => 1205,
                     'par_tipo_institucion' => 1006,
                     'par_departamento' => 3001,
                     'denominacion' => 'Gobierno Autónomo Municipal de El Alto de La Paz',
                     'sigla' => 'ELLA',
                 ],
-                ['entidad_id' => 1241, 'par_tipo_institucion' => 1006, 'par_departamento' => 3001, 'denominacion' => 'Gobierno Autónomo Municipal de Comanche', 'sigla' => ''],
-                ['entidad_id' => 1242, 'par_tipo_institucion' => 1006, 'par_departamento' => 3001, 'denominacion' => 'Gobierno Autónomo Municipal de Charaña', 'sigla' => ''],
-                ['entidad_id' => 1243, 'par_tipo_institucion' => 1006, 'par_departamento' => 3001, 'denominacion' => 'Gobierno Autónomo Municipal de Waldo Ballivián', 'sigla' => ''],
-                ['entidad_id' => 1245, 'par_tipo_institucion' => 1006, 'par_departamento' => 3001, 'denominacion' => 'Gobierno Autónomo Municipal de Santiago de Callapa', 'sigla' => ''],
-                ['entidad_id' => 1246, 'par_tipo_institucion' => 1006, 'par_departamento' => 3001, 'denominacion' => 'Gobierno Autónomo Municipal de Puerto Acosta', 'sigla' => ''],
-                ['entidad_id' => 1247, 'par_tipo_institucion' => 1006, 'par_departamento' => 3001, 'denominacion' => 'Gobierno Autónomo Municipal de Mocomoco', 'sigla' => ''],
-                ['entidad_id' => 1248, 'par_tipo_institucion' => 1006, 'par_departamento' => 3001, 'denominacion' => 'Gobierno Autónomo Municipal de Carabuco', 'sigla' => ''],
-                ['entidad_id' => 1249, 'par_tipo_institucion' => 1006, 'par_departamento' => 3001, 'denominacion' => 'Gobierno Autónomo Municipal de Apolo', 'sigla' => ''],
-                ['entidad_id' => 1250, 'par_tipo_institucion' => 1006, 'par_departamento' => 3001, 'denominacion' => 'Gobierno Autónomo Municipal de Pelechuco', 'sigla' => ''],
-                ['entidad_id' => 1251, 'par_tipo_institucion' => 1006, 'par_departamento' => 3001, 'denominacion' => 'Gobierno Autónomo Municipal de Luribay', 'sigla' => ''],
-                ['entidad_id' => 1252, 'par_tipo_institucion' => 1006, 'par_departamento' => 3001, 'denominacion' => 'Gobierno Autónomo Municipal de Sapahaqui', 'sigla' => ''],
-                ['entidad_id' => 1253, 'par_tipo_institucion' => 1006, 'par_departamento' => 3001, 'denominacion' => 'Gobierno Autónomo Municipal de Yaco', 'sigla' => ''],
-                ['entidad_id' => 1254, 'par_tipo_institucion' => 1006, 'par_departamento' => 3001, 'denominacion' => 'Gobierno Autónomo Municipal de Malla', 'sigla' => ''],
-                ['entidad_id' => 1255, 'par_tipo_institucion' => 1006, 'par_departamento' => 3001, 'denominacion' => 'Gobierno Autónomo Municipal de Cairoma', 'sigla' => ''],
-                ['entidad_id' => 1256, 'par_tipo_institucion' => 1006, 'par_departamento' => 3001, 'denominacion' => 'Gobierno Autónomo Municipal de Chulumani (Villa de la Libertad)', 'sigla' => ''],
-                ['entidad_id' => 1257, 'par_tipo_institucion' => 1006, 'par_departamento' => 3001, 'denominacion' => 'Gobierno Autónomo Municipal de Irupana (Villa de Lanza)', 'sigla' => ''],
-                ['entidad_id' => 1258, 'par_tipo_institucion' => 1006, 'par_departamento' => 3001, 'denominacion' => 'Gobierno Autónomo Municipal de Yanacachi', 'sigla' => ''],
-                ['entidad_id' => 1259, 'par_tipo_institucion' => 1006, 'par_departamento' => 3001, 'denominacion' => 'Gobierno Autónomo Municipal de Palos Blancos', 'sigla' => ''],
-                ['entidad_id' => 1260, 'par_tipo_institucion' => 1006, 'par_departamento' => 3001, 'denominacion' => 'Gobierno Autónomo Municipal de La Asunta', 'sigla' => ''],
-                ['entidad_id' => 1261, 'par_tipo_institucion' => 1006, 'par_departamento' => 3001, 'denominacion' => 'Gobierno Autónomo Municipal de Pucarani', 'sigla' => ''],
-                ['entidad_id' => 1262, 'par_tipo_institucion' => 1006, 'par_departamento' => 3001, 'denominacion' => 'Gobierno Autónomo Municipal de Laja', 'sigla' => ''],
-                ['entidad_id' => 1263, 'par_tipo_institucion' => 1006, 'par_departamento' => 3001, 'denominacion' => 'Gobierno Autónomo Municipal de Batallas', 'sigla' => ''],
-                ['entidad_id' => 1264, 'par_tipo_institucion' => 1006, 'par_departamento' => 3001, 'denominacion' => 'Gobierno Autónomo Municipal de Puerto Pérez', 'sigla' => ''],
-                ['entidad_id' => 1265, 'par_tipo_institucion' => 1006, 'par_departamento' => 3001, 'denominacion' => 'Gobierno Autónomo Municipal de Coroico', 'sigla' => ''],
-                ['entidad_id' => 1266, 'par_tipo_institucion' => 1006, 'par_departamento' => 3001, 'denominacion' => 'Gobierno Autónomo Municipal de Coripata', 'sigla' => ''],
-                ['entidad_id' => 1267, 'par_tipo_institucion' => 1006, 'par_departamento' => 3001, 'denominacion' => 'Gobierno Autónomo Municipal de Ixiamas', 'sigla' => ''],
-                ['entidad_id' => 1270, 'par_tipo_institucion' => 1006, 'par_departamento' => 3001, 'denominacion' => 'Gobierno Autónomo Municipal de Curva', 'sigla' => ''],
-                ['entidad_id' => 1271, 'par_tipo_institucion' => 1006, 'par_departamento' => 3001, 'denominacion' => 'Gobierno Autónomo Municipal de San Pedro de Curahuara', 'sigla' => ''],
-                ['entidad_id' => 1272, 'par_tipo_institucion' => 1006, 'par_departamento' => 3001, 'denominacion' => 'Gobierno Autónomo Municipal de Papel Pampa', 'sigla' => ''],
-                ['entidad_id' => 1273, 'par_tipo_institucion' => 1006, 'par_departamento' => 3001, 'denominacion' => 'Gobierno Autónomo Municipal de Chacarilla', 'sigla' => ''],
-                ['entidad_id' => 1275, 'par_tipo_institucion' => 1006, 'par_departamento' => 3001, 'denominacion' => 'Gobierno Autónomo Municipal de Catacora', 'sigla' => ''],
-                ['entidad_id' => 1276, 'par_tipo_institucion' => 1006, 'par_departamento' => 3001, 'denominacion' => 'Gobierno Autónomo Municipal de Mapiri', 'sigla' => ''],
-                ['entidad_id' => 1277, 'par_tipo_institucion' => 1006, 'par_departamento' => 3001, 'denominacion' => 'Gobierno Autónomo Municipal de Teoponte', 'sigla' => ''],
-                ['entidad_id' => 1536, 'par_tipo_institucion' => 1006, 'par_departamento' => 3004, 'denominacion' => 'Gobierno Autónomo Municipal de Tahua', 'sigla' => ''],
-                ['entidad_id' => 1278, 'par_tipo_institucion' => 1006, 'par_departamento' => 3002, 'denominacion' => 'Gobierno Autónomo Municipal de San Pedro', 'sigla' => ''],
-                ['entidad_id' => 1279, 'par_tipo_institucion' => 1006, 'par_departamento' => 3002, 'denominacion' => 'Gobierno Autónomo Municipal de Teoponte', 'sigla' => ''],
-                ['entidad_id' => 1280, 'par_tipo_institucion' => 1006, 'par_departamento' => 3002, 'denominacion' => 'Gobierno Autónomo Municipal de San Lorenzo', 'sigla' => ''],
-                ['entidad_id' => 1302, 'par_tipo_institucion' => 1006, 'par_departamento' => 3005, 'denominacion' => 'Gobierno Autónomo Municipal de Quillacollo', 'sigla' => ''],
-                ['entidad_id' => 1303, 'par_tipo_institucion' => 1006, 'par_departamento' => 3005, 'denominacion' => 'Gobierno Autónomo Municipal de Sipe Sipe', 'sigla' => ''],
-                ['entidad_id' => 1304, 'par_tipo_institucion' => 1006, 'par_departamento' => 3005, 'denominacion' => 'Gobierno Autónomo Municipal de Tiquipaya', 'sigla' => ''],
-                ['entidad_id' => 1306, 'par_tipo_institucion' => 1006, 'par_departamento' => 3005, 'denominacion' => 'Gobierno Autónomo Municipal de Colcapirhua', 'sigla' => ''],
-                ['entidad_id' => 1307, 'par_tipo_institucion' => 1006, 'par_departamento' => 3005, 'denominacion' => 'Gobierno Autónomo Municipal de Aiquile', 'sigla' => ''],
-                ['entidad_id' => 1308, 'par_tipo_institucion' => 1006, 'par_departamento' => 3005, 'denominacion' => 'Gobierno Autónomo Municipal de Pasorapa', 'sigla' => ''],
-                ['entidad_id' => 1309, 'par_tipo_institucion' => 1006, 'par_departamento' => 3005, 'denominacion' => 'Gobierno Autónomo Municipal de Omereque', 'sigla' => ''],
-                ['entidad_id' => 1310, 'par_tipo_institucion' => 1006, 'par_departamento' => 3005, 'denominacion' => 'Gobierno Autónomo Municipal de Ayopaya (Villa de Independencia)', 'sigla' => ''],
-                ['entidad_id' => 1311, 'par_tipo_institucion' => 1006, 'par_departamento' => 3005, 'denominacion' => 'Gobierno Autónomo Municipal de Morochata', 'sigla' => ''],
-                ['entidad_id' => 1312, 'par_tipo_institucion' => 1006, 'par_departamento' => 3005, 'denominacion' => 'Gobierno Autónomo Municipal de Sacaba', 'sigla' => ''],
-                ['entidad_id' => 1313, 'par_tipo_institucion' => 1006, 'par_departamento' => 3005, 'denominacion' => 'Gobierno Autónomo Municipal de Colomi', 'sigla' => ''],
-                ['entidad_id' => 1314, 'par_tipo_institucion' => 1006, 'par_departamento' => 3005, 'denominacion' => 'Gobierno Autónomo Municipal de Villa Tunari', 'sigla' => ''],
-                ['entidad_id' => 1315, 'par_tipo_institucion' => 1006, 'par_departamento' => 3005, 'denominacion' => 'Gobierno Autónomo Municipal de Punata', 'sigla' => ''],
+                /* ********************************************************** */
+                ['id' => 1241, 'entidad_id' => 1241, 'par_tipo_institucion' => 1006, 'par_departamento' => 3001, 'denominacion' => 'Gobierno Autónomo Municipal de Comanche', 'sigla' => ''],
+                ['id' => 1242, 'entidad_id' => 1242, 'par_tipo_institucion' => 1006, 'par_departamento' => 3001, 'denominacion' => 'Gobierno Autónomo Municipal de Charaña', 'sigla' => ''],
+                ['id' => 1243, 'entidad_id' => 1243, 'par_tipo_institucion' => 1006, 'par_departamento' => 3001, 'denominacion' => 'Gobierno Autónomo Municipal de Waldo Ballivián', 'sigla' => ''],
+                ['id' => 1245, 'entidad_id' => 1245, 'par_tipo_institucion' => 1006, 'par_departamento' => 3001, 'denominacion' => 'Gobierno Autónomo Municipal de Santiago de Callapa', 'sigla' => ''],
+                ['id' => 1246, 'entidad_id' => 1246, 'par_tipo_institucion' => 1006, 'par_departamento' => 3001, 'denominacion' => 'Gobierno Autónomo Municipal de Puerto Acosta', 'sigla' => ''],
+                ['id' => 1247, 'entidad_id' => 1247, 'par_tipo_institucion' => 1006, 'par_departamento' => 3001, 'denominacion' => 'Gobierno Autónomo Municipal de Mocomoco', 'sigla' => ''],
+                ['id' => 1248, 'entidad_id' => 1248, 'par_tipo_institucion' => 1006, 'par_departamento' => 3001, 'denominacion' => 'Gobierno Autónomo Municipal de Carabuco', 'sigla' => ''],
+                ['id' => 1249, 'entidad_id' => 1249, 'par_tipo_institucion' => 1006, 'par_departamento' => 3001, 'denominacion' => 'Gobierno Autónomo Municipal de Apolo', 'sigla' => ''],
+                ['id' => 1250, 'entidad_id' => 1250, 'par_tipo_institucion' => 1006, 'par_departamento' => 3001, 'denominacion' => 'Gobierno Autónomo Municipal de Pelechuco', 'sigla' => ''],
+                ['id' => 1251, 'entidad_id' => 1251, 'par_tipo_institucion' => 1006, 'par_departamento' => 3001, 'denominacion' => 'Gobierno Autónomo Municipal de Luribay', 'sigla' => ''],
+                ['id' => 1252, 'entidad_id' => 1252, 'par_tipo_institucion' => 1006, 'par_departamento' => 3001, 'denominacion' => 'Gobierno Autónomo Municipal de Sapahaqui', 'sigla' => ''],
+                ['id' => 1253, 'entidad_id' => 1253, 'par_tipo_institucion' => 1006, 'par_departamento' => 3001, 'denominacion' => 'Gobierno Autónomo Municipal de Yaco', 'sigla' => ''],
+                ['id' => 1254, 'entidad_id' => 1254, 'par_tipo_institucion' => 1006, 'par_departamento' => 3001, 'denominacion' => 'Gobierno Autónomo Municipal de Malla', 'sigla' => ''],
+                ['id' => 1255, 'entidad_id' => 1255, 'par_tipo_institucion' => 1006, 'par_departamento' => 3001, 'denominacion' => 'Gobierno Autónomo Municipal de Cairoma', 'sigla' => ''],
+                ['id' => 1256, 'entidad_id' => 1256, 'par_tipo_institucion' => 1006, 'par_departamento' => 3001, 'denominacion' => 'Gobierno Autónomo Municipal de Chulumani (Villa de la Libertad)', 'sigla' => ''],
+                ['id' => 1257, 'entidad_id' => 1257, 'par_tipo_institucion' => 1006, 'par_departamento' => 3001, 'denominacion' => 'Gobierno Autónomo Municipal de Irupana (Villa de Lanza)', 'sigla' => ''],
+                ['id' => 1258, 'entidad_id' => 1258, 'par_tipo_institucion' => 1006, 'par_departamento' => 3001, 'denominacion' => 'Gobierno Autónomo Municipal de Yanacachi', 'sigla' => ''],
+                ['id' => 1259, 'entidad_id' => 1259, 'par_tipo_institucion' => 1006, 'par_departamento' => 3001, 'denominacion' => 'Gobierno Autónomo Municipal de Palos Blancos', 'sigla' => ''],
+                ['id' => 1260, 'entidad_id' => 1260, 'par_tipo_institucion' => 1006, 'par_departamento' => 3001, 'denominacion' => 'Gobierno Autónomo Municipal de La Asunta', 'sigla' => ''],
+                ['id' => 1261, 'entidad_id' => 1261, 'par_tipo_institucion' => 1006, 'par_departamento' => 3001, 'denominacion' => 'Gobierno Autónomo Municipal de Pucarani', 'sigla' => ''],
+                ['id' => 1262, 'entidad_id' => 1262, 'par_tipo_institucion' => 1006, 'par_departamento' => 3001, 'denominacion' => 'Gobierno Autónomo Municipal de Laja', 'sigla' => ''],
+                ['id' => 1263, 'entidad_id' => 1263, 'par_tipo_institucion' => 1006, 'par_departamento' => 3001, 'denominacion' => 'Gobierno Autónomo Municipal de Batallas', 'sigla' => ''],
+                ['id' => 1264, 'entidad_id' => 1264, 'par_tipo_institucion' => 1006, 'par_departamento' => 3001, 'denominacion' => 'Gobierno Autónomo Municipal de Puerto Pérez', 'sigla' => ''],
+                ['id' => 1265, 'entidad_id' => 1265, 'par_tipo_institucion' => 1006, 'par_departamento' => 3001, 'denominacion' => 'Gobierno Autónomo Municipal de Coroico', 'sigla' => ''],
+                ['id' => 1266, 'entidad_id' => 1266, 'par_tipo_institucion' => 1006, 'par_departamento' => 3001, 'denominacion' => 'Gobierno Autónomo Municipal de Coripata', 'sigla' => ''],
+
+
+                /* *********************************************************** */
+
+                ['id' => 1267, 'entidad_id' => 1267, 'par_tipo_institucion' => 1006, 'par_departamento' => 3001, 'denominacion' => 'Gobierno Autónomo Municipal de Ixiamas', 'sigla' => ''],
+                ['id' => 1270, 'entidad_id' => 1270, 'par_tipo_institucion' => 1006, 'par_departamento' => 3001, 'denominacion' => 'Gobierno Autónomo Municipal de Curva', 'sigla' => ''],
+                ['id' => 1271, 'entidad_id' => 1271, 'par_tipo_institucion' => 1006, 'par_departamento' => 3001, 'denominacion' => 'Gobierno Autónomo Municipal de San Pedro de Curahuara', 'sigla' => ''],
+                ['id' => 1272, 'entidad_id' => 1272, 'par_tipo_institucion' => 1006, 'par_departamento' => 3001, 'denominacion' => 'Gobierno Autónomo Municipal de Papel Pampa', 'sigla' => ''],
+                ['id' => 1273, 'entidad_id' => 1273, 'par_tipo_institucion' => 1006, 'par_departamento' => 3001, 'denominacion' => 'Gobierno Autónomo Municipal de Chacarilla', 'sigla' => ''],
+                ['id' => 1275, 'entidad_id' => 1275, 'par_tipo_institucion' => 1006, 'par_departamento' => 3001, 'denominacion' => 'Gobierno Autónomo Municipal de Catacora', 'sigla' => ''],
+                ['id' => 1276, 'entidad_id' => 1276, 'par_tipo_institucion' => 1006, 'par_departamento' => 3001, 'denominacion' => 'Gobierno Autónomo Municipal de Mapiri', 'sigla' => ''],
+                ['id' => 1277, 'entidad_id' => 1277, 'par_tipo_institucion' => 1006, 'par_departamento' => 3001, 'denominacion' => 'Gobierno Autónomo Municipal de Teoponte', 'sigla' => ''],
+                ['id' => 1536, 'entidad_id' => 1536, 'par_tipo_institucion' => 1006, 'par_departamento' => 3004, 'denominacion' => 'Gobierno Autónomo Municipal de Tahua', 'sigla' => ''],
+                ['id' => 1278, 'entidad_id' => 1278, 'par_tipo_institucion' => 1006, 'par_departamento' => 3002, 'denominacion' => 'Gobierno Autónomo Municipal de San Pedro', 'sigla' => ''],
+                ['id' => 1279, 'entidad_id' => 1279, 'par_tipo_institucion' => 1006, 'par_departamento' => 3002, 'denominacion' => 'Gobierno Autónomo Municipal de Teoponte', 'sigla' => ''],
+                ['id' => 1280, 'entidad_id' => 1280, 'par_tipo_institucion' => 1006, 'par_departamento' => 3002, 'denominacion' => 'Gobierno Autónomo Municipal de San Lorenzo', 'sigla' => ''],
+                ['id' => 1302, 'entidad_id' => 1302, 'par_tipo_institucion' => 1006, 'par_departamento' => 3005, 'denominacion' => 'Gobierno Autónomo Municipal de Quillacollo', 'sigla' => ''],
+                ['id' => 1303, 'entidad_id' => 1303, 'par_tipo_institucion' => 1006, 'par_departamento' => 3005, 'denominacion' => 'Gobierno Autónomo Municipal de Sipe Sipe', 'sigla' => ''],
+                ['id' => 1304, 'entidad_id' => 1304, 'par_tipo_institucion' => 1006, 'par_departamento' => 3005, 'denominacion' => 'Gobierno Autónomo Municipal de Tiquipaya', 'sigla' => ''],
+                ['id' => 1306, 'entidad_id' => 1306, 'par_tipo_institucion' => 1006, 'par_departamento' => 3005, 'denominacion' => 'Gobierno Autónomo Municipal de Colcapirhua', 'sigla' => ''],
+                ['id' => 1307, 'entidad_id' => 1307, 'par_tipo_institucion' => 1006, 'par_departamento' => 3005, 'denominacion' => 'Gobierno Autónomo Municipal de Aiquile', 'sigla' => ''],
+                ['id' => 1308, 'entidad_id' => 1308, 'par_tipo_institucion' => 1006, 'par_departamento' => 3005, 'denominacion' => 'Gobierno Autónomo Municipal de Pasorapa', 'sigla' => ''],
+                ['id' => 1309, 'entidad_id' => 1309, 'par_tipo_institucion' => 1006, 'par_departamento' => 3005, 'denominacion' => 'Gobierno Autónomo Municipal de Omereque', 'sigla' => ''],
+                ['id' => 1310, 'entidad_id' => 1310, 'par_tipo_institucion' => 1006, 'par_departamento' => 3005, 'denominacion' => 'Gobierno Autónomo Municipal de Ayopaya (Villa de Independencia)', 'sigla' => ''],
+                ['id' => 1311, 'entidad_id' => 1311, 'par_tipo_institucion' => 1006, 'par_departamento' => 3005, 'denominacion' => 'Gobierno Autónomo Municipal de Morochata', 'sigla' => ''],
+                ['id' => 1312, 'entidad_id' => 1312, 'par_tipo_institucion' => 1006, 'par_departamento' => 3005, 'denominacion' => 'Gobierno Autónomo Municipal de Sacaba', 'sigla' => ''],
+                ['id' => 1313, 'entidad_id' => 1313, 'par_tipo_institucion' => 1006, 'par_departamento' => 3005, 'denominacion' => 'Gobierno Autónomo Municipal de Colomi', 'sigla' => ''],
+                ['id' => 1314, 'entidad_id' => 1314, 'par_tipo_institucion' => 1006, 'par_departamento' => 3005, 'denominacion' => 'Gobierno Autónomo Municipal de Villa Tunari', 'sigla' => ''],
+                ['id' => 1315, 'entidad_id' => 1315, 'par_tipo_institucion' => 1006, 'par_departamento' => 3005, 'denominacion' => 'Gobierno Autónomo Municipal de Punata', 'sigla' => ''],
+
+                /* *********************************************************** */
                 [
+                    'id' => 1316,
                     'entidad_id' => 1316,
                     'par_tipo_institucion' => 1006,
                     'par_departamento' => 3005,
@@ -424,98 +436,114 @@ class EntidadSeeder extends Seeder
                     'sigla' => ''
                 ],
                 [
+                    'id' => 1317,
                     'entidad_id' => 1317,
                     'par_tipo_institucion' => 1006,
                     'par_departamento' => 3005,
                     'denominacion' => 'Gobierno Autónomo Municipal de San Benito (Villa José Quintín Mendoza)',
-                    'sigla' => '',
+                    'sigla' => ''
                 ],
                 [
+                    'id' => 1318,
                     'entidad_id' => 1318,
                     'par_tipo_institucion' => 1006,
                     'par_departamento' => 3005,
                     'denominacion' => 'Gobierno Autónomo Municipal de Tacachi',
-                    'sigla' => '',
+                    'sigla' => ''
                 ],
                 [
+                    'id' => 1319,
                     'entidad_id' => 1319,
                     'par_tipo_institucion' => 1006,
                     'par_departamento' => 3005,
                     'denominacion' => 'Gobierno Autónomo Municipal de Cuchumuela (Villa Gualberto Villarroel)',
-                    'sigla' => '',
+                    'sigla' => ''
                 ],
                 [
+                    'id' => 1320,
                     'entidad_id' => 1320,
                     'par_tipo_institucion' => 1006,
                     'par_departamento' => 3005,
                     'denominacion' => 'Gobierno Autónomo Municipal de Tarata',
-                    'sigla' => '',
+                    'sigla' => ''
                 ],
                 [
+                    'id' => 1321,
                     'entidad_id' => 1321,
                     'par_tipo_institucion' => 1006,
                     'par_departamento' => 3005,
                     'denominacion' => 'Gobierno Autónomo Municipal de Anzaldo',
-                    'sigla' => '',
+                    'sigla' => ''
                 ],
                 [
+                    'id' => 1322,
                     'entidad_id' => 1322,
                     'par_tipo_institucion' => 1006,
                     'par_departamento' => 3005,
                     'denominacion' => 'Gobierno Autónomo Municipal de Arbieto',
-                    'sigla' => '',
+                    'sigla' => ''
                 ],
                 [
+                    'id' => 1323,
                     'entidad_id' => 1323,
                     'par_tipo_institucion' => 1006,
                     'par_departamento' => 3005,
                     'denominacion' => 'Gobierno Autónomo Municipal de Sacabamba',
-                    'sigla' => '',
+                    'sigla' => ''
                 ],
                 [
+                    'id' => 1325,
                     'entidad_id' => 1325,
                     'par_tipo_institucion' => 1006,
                     'par_departamento' => 3005,
                     'denominacion' => 'Gobierno Autónomo Municipal de Toco',
-                    'sigla' => '',
+                    'sigla' => ''
                 ],
                 [
+                    'id' => 1326,
                     'entidad_id' => 1326,
                     'par_tipo_institucion' => 1006,
                     'par_departamento' => 3005,
                     'denominacion' => 'Gobierno Autónomo Municipal de Tolata',
-                    'sigla' => '',
+                    'sigla' => ''
                 ],
                 [
+                    'id' => 1327,
                     'entidad_id' => 1327,
                     'par_tipo_institucion' => 1006,
                     'par_departamento' => 3005,
                     'denominacion' => 'Gobierno Autónomo Municipal de Capinota',
-                    'sigla' => '',
+                    'sigla' => ''
                 ],
-
                 [
+                    'id' => 1328,
                     'entidad_id' => 1328,
                     'par_tipo_institucion' => 1006,
                     'par_departamento' => 3005,
                     'denominacion' => 'Gobierno Autónomo Municipal de Santivañez',
-                    'sigla' => '',
+                    'sigla' => ''
                 ],
                 [
+                    'id' => 1329,
                     'entidad_id' => 1329,
                     'par_tipo_institucion' => 1006,
                     'par_departamento' => 3005,
                     'denominacion' => 'Gobierno Autónomo Municipal de Sicaya',
-                    'sigla' => '',
+                    'sigla' => ''
                 ],
                 [
+                    'id' => 1330,
                     'entidad_id' => 1330,
                     'par_tipo_institucion' => 1006,
                     'par_departamento' => 3005,
                     'denominacion' => 'Gobierno Autónomo Municipal de Tapacarí',
-                    'sigla' => '',
+                    'sigla' => ''
                 ],
+
+                /* *********************************************************** */
+
                 [
+                    'id' => 1331,
                     'entidad_id' => 1331,
                     'par_tipo_institucion' => 1006,
                     'par_departamento' => 3005,
@@ -523,6 +551,7 @@ class EntidadSeeder extends Seeder
                     'sigla' => '',
                 ],
                 [
+                    'id' => 1332,
                     'entidad_id' => 1332,
                     'par_tipo_institucion' => 1006,
                     'par_departamento' => 3005,
@@ -530,6 +559,7 @@ class EntidadSeeder extends Seeder
                     'sigla' => '',
                 ],
                 [
+                    'id' => 1333,
                     'entidad_id' => 1333,
                     'par_tipo_institucion' => 1006,
                     'par_departamento' => 3005,
@@ -537,6 +567,7 @@ class EntidadSeeder extends Seeder
                     'sigla' => '',
                 ],
                 [
+                    'id' => 1334,
                     'entidad_id' => 1334,
                     'par_tipo_institucion' => 1006,
                     'par_departamento' => 3005,
@@ -544,6 +575,7 @@ class EntidadSeeder extends Seeder
                     'sigla' => '',
                 ],
                 [
+                    'id' => 1335,
                     'entidad_id' => 1335,
                     'par_tipo_institucion' => 1006,
                     'par_departamento' => 3005,
@@ -551,6 +583,7 @@ class EntidadSeeder extends Seeder
                     'sigla' => '',
                 ],
                 [
+                    'id' => 1336,
                     'entidad_id' => 1336,
                     'par_tipo_institucion' => 1006,
                     'par_departamento' => 3005,
@@ -558,6 +591,7 @@ class EntidadSeeder extends Seeder
                     'sigla' => '',
                 ],
                 [
+                    'id' => 1337,
                     'entidad_id' => 1337,
                     'par_tipo_institucion' => 1006,
                     'par_departamento' => 3005,
@@ -565,6 +599,7 @@ class EntidadSeeder extends Seeder
                     'sigla' => '',
                 ],
                 [
+                    'id' => 1338,
                     'entidad_id' => 1338,
                     'par_tipo_institucion' => 1006,
                     'par_departamento' => 3005,
@@ -572,6 +607,7 @@ class EntidadSeeder extends Seeder
                     'sigla' => '',
                 ],
                 [
+                    'id' => 1339,
                     'entidad_id' => 1339,
                     'par_tipo_institucion' => 1006,
                     'par_departamento' => 3005,
@@ -579,6 +615,7 @@ class EntidadSeeder extends Seeder
                     'sigla' => '',
                 ],
                 [
+                    'id' => 1340,
                     'entidad_id' => 1340,
                     'par_tipo_institucion' => 1006,
                     'par_departamento' => 3005,
@@ -586,6 +623,7 @@ class EntidadSeeder extends Seeder
                     'sigla' => '',
                 ],
                 [
+                    'id' => 1341,
                     'entidad_id' => 1341,
                     'par_tipo_institucion' => 1006,
                     'par_departamento' => 3005,
@@ -593,6 +631,7 @@ class EntidadSeeder extends Seeder
                     'sigla' => '',
                 ],
                 [
+                    'id' => 1342,
                     'entidad_id' => 1342,
                     'par_tipo_institucion' => 1006,
                     'par_departamento' => 3005,
@@ -600,6 +639,7 @@ class EntidadSeeder extends Seeder
                     'sigla' => '',
                 ],
                 [
+                    'id' => 1344,
                     'entidad_id' => 1344,
                     'par_tipo_institucion' => 1006,
                     'par_departamento' => 3005,
@@ -607,6 +647,7 @@ class EntidadSeeder extends Seeder
                     'sigla' => '',
                 ],
                 [
+                    'id' => 1345,
                     'entidad_id' => 1345,
                     'par_tipo_institucion' => 1006,
                     'par_departamento' => 3005,
@@ -614,13 +655,18 @@ class EntidadSeeder extends Seeder
                     'sigla' => '',
                 ],
                 [
+                    'id' => 1402,
                     'entidad_id' => 1402,
                     'par_tipo_institucion' => 1006,
                     'par_departamento' => 3003,
                     'denominacion' => 'Gobierno Autónomo Municipal de Caracollo',
                     'sigla' => '',
                 ],
+
+                /* *********************************************************** */
+
                 [
+                    'id' => 1403,
                     'entidad_id' => 1403,
                     'par_tipo_institucion' => 1006,
                     'par_departamento' => 3003,
@@ -628,6 +674,7 @@ class EntidadSeeder extends Seeder
                     'sigla' => '',
                 ],
                 [
+                    'id' => 1404,
                     'entidad_id' => 1404,
                     'par_tipo_institucion' => 1006,
                     'par_departamento' => 3003,
@@ -635,6 +682,7 @@ class EntidadSeeder extends Seeder
                     'sigla' => '',
                 ],
                 [
+                    'id' => 1405,
                     'entidad_id' => 1405,
                     'par_tipo_institucion' => 1006,
                     'par_departamento' => 3003,
@@ -642,6 +690,7 @@ class EntidadSeeder extends Seeder
                     'sigla' => '',
                 ],
                 [
+                    'id' => 1406,
                     'entidad_id' => 1406,
                     'par_tipo_institucion' => 1006,
                     'par_departamento' => 3003,
@@ -649,6 +698,7 @@ class EntidadSeeder extends Seeder
                     'sigla' => '',
                 ],
                 [
+                    'id' => 1407,
                     'entidad_id' => 1407,
                     'par_tipo_institucion' => 1006,
                     'par_departamento' => 3003,
@@ -656,6 +706,7 @@ class EntidadSeeder extends Seeder
                     'sigla' => '',
                 ],
                 [
+                    'id' => 1408,
                     'entidad_id' => 1408,
                     'par_tipo_institucion' => 1006,
                     'par_departamento' => 3003,
@@ -663,6 +714,7 @@ class EntidadSeeder extends Seeder
                     'sigla' => '',
                 ],
                 [
+                    'id' => 1409,
                     'entidad_id' => 1409,
                     'par_tipo_institucion' => 1006,
                     'par_departamento' => 3003,
@@ -670,6 +722,7 @@ class EntidadSeeder extends Seeder
                     'sigla' => '',
                 ],
                 [
+                    'id' => 1411,
                     'entidad_id' => 1411,
                     'par_tipo_institucion' => 1006,
                     'par_departamento' => 3003,
@@ -677,6 +730,7 @@ class EntidadSeeder extends Seeder
                     'sigla' => '',
                 ],
                 [
+                    'id' => 1412,
                     'entidad_id' => 1412,
                     'par_tipo_institucion' => 1006,
                     'par_departamento' => 3003,
@@ -684,6 +738,7 @@ class EntidadSeeder extends Seeder
                     'sigla' => '',
                 ],
                 [
+                    'id' => 1413,
                     'entidad_id' => 1413,
                     'par_tipo_institucion' => 1006,
                     'par_departamento' => 3003,
@@ -691,6 +746,7 @@ class EntidadSeeder extends Seeder
                     'sigla' => '',
                 ],
                 [
+                    'id' => 1414,
                     'entidad_id' => 1414,
                     'par_tipo_institucion' => 1006,
                     'par_departamento' => 3003,
@@ -698,6 +754,7 @@ class EntidadSeeder extends Seeder
                     'sigla' => '',
                 ],
                 [
+                    'id' => 1415,
                     'entidad_id' => 1415,
                     'par_tipo_institucion' => 1006,
                     'par_departamento' => 3003,
@@ -705,6 +762,7 @@ class EntidadSeeder extends Seeder
                     'sigla' => '',
                 ],
                 [
+                    'id' => 1416,
                     'entidad_id' => 1416,
                     'par_tipo_institucion' => 1006,
                     'par_departamento' => 3003,
@@ -712,6 +770,7 @@ class EntidadSeeder extends Seeder
                     'sigla' => '',
                 ],
                 [
+                    'id' => 1417,
                     'entidad_id' => 1417,
                     'par_tipo_institucion' => 1006,
                     'par_departamento' => 3003,
@@ -719,13 +778,17 @@ class EntidadSeeder extends Seeder
                     'sigla' => '',
                 ],
                 [
+                    'id' => 1418,
                     'entidad_id' => 1418,
                     'par_tipo_institucion' => 1006,
                     'par_departamento' => 3003,
                     'denominacion' => 'Gobierno Autónomo Municipal de Huachacalla',
                     'sigla' => '',
                 ],
+
+                /* *********************************************************** */
                 [
+                    'id' => 1419,
                     'entidad_id' => 1419,
                     'par_tipo_institucion' => 1006,
                     'par_departamento' => 3003,
@@ -733,6 +796,7 @@ class EntidadSeeder extends Seeder
                     'sigla' => '',
                 ],
                 [
+                    'id' => 1420,
                     'entidad_id' => 1420,
                     'par_tipo_institucion' => 1006,
                     'par_departamento' => 3003,
@@ -740,6 +804,7 @@ class EntidadSeeder extends Seeder
                     'sigla' => '',
                 ],
                 [
+                    'id' => 1421,
                     'entidad_id' => 1421,
                     'par_tipo_institucion' => 1006,
                     'par_departamento' => 3003,
@@ -747,6 +812,7 @@ class EntidadSeeder extends Seeder
                     'sigla' => '',
                 ],
                 [
+                    'id' => 1422,
                     'entidad_id' => 1422,
                     'par_tipo_institucion' => 1006,
                     'par_departamento' => 3003,
@@ -754,6 +820,7 @@ class EntidadSeeder extends Seeder
                     'sigla' => '',
                 ],
                 [
+                    'id' => 1423,
                     'entidad_id' => 1423,
                     'par_tipo_institucion' => 1006,
                     'par_departamento' => 3003,
@@ -761,6 +828,7 @@ class EntidadSeeder extends Seeder
                     'sigla' => '',
                 ],
                 [
+                    'id' => 1424,
                     'entidad_id' => 1424,
                     'par_tipo_institucion' => 1006,
                     'par_departamento' => 3003,
@@ -768,6 +836,7 @@ class EntidadSeeder extends Seeder
                     'sigla' => '',
                 ],
                 [
+                    'id' => 1425,
                     'entidad_id' => 1425,
                     'par_tipo_institucion' => 1006,
                     'par_departamento' => 3003,
@@ -775,6 +844,7 @@ class EntidadSeeder extends Seeder
                     'sigla' => '',
                 ],
                 [
+                    'id' => 1426,
                     'entidad_id' => 1426,
                     'par_tipo_institucion' => 1006,
                     'par_departamento' => 3003,
@@ -782,6 +852,7 @@ class EntidadSeeder extends Seeder
                     'sigla' => '',
                 ],
                 [
+                    'id' => 1427,
                     'entidad_id' => 1427,
                     'par_tipo_institucion' => 1006,
                     'par_departamento' => 3003,
@@ -789,6 +860,7 @@ class EntidadSeeder extends Seeder
                     'sigla' => '',
                 ],
                 [
+                    'id' => 1428,
                     'entidad_id' => 1428,
                     'par_tipo_institucion' => 1006,
                     'par_departamento' => 3003,
@@ -796,6 +868,7 @@ class EntidadSeeder extends Seeder
                     'sigla' => '',
                 ],
                 [
+                    'id' => 1429,
                     'entidad_id' => 1429,
                     'par_tipo_institucion' => 1006,
                     'par_departamento' => 3003,
@@ -803,6 +876,7 @@ class EntidadSeeder extends Seeder
                     'sigla' => '',
                 ],
                 [
+                    'id' => 1431,
                     'entidad_id' => 1431,
                     'par_tipo_institucion' => 1006,
                     'par_departamento' => 3003,
@@ -810,6 +884,7 @@ class EntidadSeeder extends Seeder
                     'sigla' => '',
                 ],
                 [
+                    'id' => 1433,
                     'entidad_id' => 1433,
                     'par_tipo_institucion' => 1006,
                     'par_departamento' => 3003,
@@ -817,6 +892,7 @@ class EntidadSeeder extends Seeder
                     'sigla' => '',
                 ],
                 [
+                    'id' => 1434,
                     'entidad_id' => 1434,
                     'par_tipo_institucion' => 1006,
                     'par_departamento' => 3003,
@@ -824,6 +900,7 @@ class EntidadSeeder extends Seeder
                     'sigla' => '',
                 ],
                 [
+                    'id' => 1435,
                     'entidad_id' => 1435,
                     'par_tipo_institucion' => 1006,
                     'par_departamento' => 3003,
@@ -831,13 +908,17 @@ class EntidadSeeder extends Seeder
                     'sigla' => '',
                 ],
                 [
+                    'id' => 1502,
                     'entidad_id' => 1502,
                     'par_tipo_institucion' => 1006,
                     'par_departamento' => 3004,
                     'denominacion' => 'Gobierno Autónomo Municipal de Tinguipaya',
                     'sigla' => '',
                 ],
+
+                /* *********************************************************** */
                 [
+                    'id' => 1503,
                     'entidad_id' => 1503,
                     'par_tipo_institucion' => 1006,
                     'par_departamento' => 3004,
@@ -845,6 +926,7 @@ class EntidadSeeder extends Seeder
                     'sigla' => '',
                 ],
                 [
+                    'id' => 1504,
                     'entidad_id' => 1504,
                     'par_tipo_institucion' => 1006,
                     'par_departamento' => 3004,
@@ -852,6 +934,7 @@ class EntidadSeeder extends Seeder
                     'sigla' => '',
                 ],
                 [
+                    'id' => 1506,
                     'entidad_id' => 1506,
                     'par_tipo_institucion' => 1006,
                     'par_departamento' => 3004,
@@ -859,6 +942,7 @@ class EntidadSeeder extends Seeder
                     'sigla' => '',
                 ],
                 [
+                    'id' => 1507,
                     'entidad_id' => 1507,
                     'par_tipo_institucion' => 1006,
                     'par_departamento' => 3004,
@@ -866,6 +950,7 @@ class EntidadSeeder extends Seeder
                     'sigla' => '',
                 ],
                 [
+                    'id' => 1508,
                     'entidad_id' => 1508,
                     'par_tipo_institucion' => 1006,
                     'par_departamento' => 3004,
@@ -873,6 +958,7 @@ class EntidadSeeder extends Seeder
                     'sigla' => '',
                 ],
                 [
+                    'id' => 1509,
                     'entidad_id' => 1509,
                     'par_tipo_institucion' => 1006,
                     'par_departamento' => 3004,
@@ -880,6 +966,7 @@ class EntidadSeeder extends Seeder
                     'sigla' => '',
                 ],
                 [
+                    'id' => 1510,
                     'entidad_id' => 1510,
                     'par_tipo_institucion' => 1006,
                     'par_departamento' => 3004,
@@ -887,6 +974,7 @@ class EntidadSeeder extends Seeder
                     'sigla' => '',
                 ],
                 [
+                    'id' => 1512,
                     'entidad_id' => 1512,
                     'par_tipo_institucion' => 1006,
                     'par_departamento' => 3004,
@@ -894,6 +982,7 @@ class EntidadSeeder extends Seeder
                     'sigla' => '',
                 ],
                 [
+                    'id' => 1513,
                     'entidad_id' => 1513,
                     'par_tipo_institucion' => 1006,
                     'par_departamento' => 3004,
@@ -901,181 +990,207 @@ class EntidadSeeder extends Seeder
                     'sigla' => '',
                 ],
                 [
+                    'id' => 1514,
                     'entidad_id' => 1514,
                     'par_tipo_institucion' => 1006,
                     'par_departamento' => 3004,
                     'denominacion' => 'Gobierno Autónomo Municipal de Ocurí',
                     'sigla' => '',
                 ],
-                ['entidad_id' => 1515, 'par_tipo_institucion' => 1006, 'par_departamento' => 3004, 'denominacion' => 'Gobierno Autónomo Municipal de San Pedro', 'sigla' => ''],
-                ['entidad_id' => 1516, 'par_tipo_institucion' => 1006, 'par_departamento' => 3004, 'denominacion' => 'Gobierno Autónomo Municipal de Toro Toro', 'sigla' => ''],
-                ['entidad_id' => 1519, 'par_tipo_institucion' => 1006, 'par_departamento' => 3004, 'denominacion' => 'Gobierno Autónomo Municipal de Tupiza', 'sigla' => ''],
-                ['entidad_id' => 1520, 'par_tipo_institucion' => 1006, 'par_departamento' => 3004, 'denominacion' => 'Gobierno Autónomo Municipal de Atocha', 'sigla' => ''],
-                ['entidad_id' => 1521, 'par_tipo_institucion' => 1006, 'par_departamento' => 3004, 'denominacion' => 'Gobierno Autónomo Municipal de Colcha (Villa Martín)', 'sigla' => ''],
-                ['entidad_id' => 1522, 'par_tipo_institucion' => 1006, 'par_departamento' => 3004, 'denominacion' => 'Gobierno Autónomo Municipal de San Pedro de Quemes', 'sigla' => ''],
-                ['entidad_id' => 1524, 'par_tipo_institucion' => 1006, 'par_departamento' => 3004, 'denominacion' => 'Gobierno Autónomo Municipal de Mojinete', 'sigla' => ''],
-                ['entidad_id' => 1525, 'par_tipo_institucion' => 1006, 'par_departamento' => 3004, 'denominacion' => 'Gobierno Autónomo Municipal de San Antonio de Esmoruco', 'sigla' => ''],
-                ['entidad_id' => 1526, 'par_tipo_institucion' => 1006, 'par_departamento' => 3004, 'denominacion' => 'Gobierno Autónomo Municipal de Sacaca (Villa de Sacaca)', 'sigla' => ''],
-                ['entidad_id' => 1527, 'par_tipo_institucion' => 1006, 'par_departamento' => 3004, 'denominacion' => 'Gobierno Autónomo Municipal de Caripuyo', 'sigla' => ''],
-                ['entidad_id' => 1528, 'par_tipo_institucion' => 1006, 'par_departamento' => 3004, 'denominacion' => 'Gobierno Autónomo Municipal de Puna (Villa Talavera)', 'sigla' => ''],
-                ['entidad_id' => 1530, 'par_tipo_institucion' => 1006, 'par_departamento' => 3004, 'denominacion' => 'Gobierno Autónomo Municipal de Uyuni', 'sigla' => ''],
-                ['entidad_id' => 1531, 'par_tipo_institucion' => 1006, 'par_departamento' => 3004, 'denominacion' => 'Gobierno Autónomo Municipal de Tomave', 'sigla' => ''],
-                ['entidad_id' => 1532, 'par_tipo_institucion' => 1006, 'par_departamento' => 3004, 'denominacion' => 'Gobierno Autónomo Municipal de Porco', 'sigla' => ''],
-                ['entidad_id' => 1533, 'par_tipo_institucion' => 1006, 'par_departamento' => 3004, 'denominacion' => 'Gobierno Autónomo Municipal de Arampampa', 'sigla' => ''],
-                ['entidad_id' => 1534, 'par_tipo_institucion' => 1006, 'par_departamento' => 3004, 'denominacion' => 'Gobierno Autónomo Municipal de Acasio', 'sigla' => ''],
-                ['entidad_id' => 1537, 'par_tipo_institucion' => 1006, 'par_departamento' => 3004, 'denominacion' => 'Gobierno Autónomo Municipal de Villazón', 'sigla' => ''],
-                ['entidad_id' => 1538, 'par_tipo_institucion' => 1006, 'par_departamento' => 3004, 'denominacion' => 'Gobierno Autónomo Municipal de San Agustín', 'sigla' => ''],
-                ['entidad_id' => 1602, 'par_tipo_institucion' => 1006, 'par_departamento' => 3007, 'denominacion' => 'Gobierno Autónomo Municipal de Padcaya', 'sigla' => ''],
-                ['entidad_id' => 1603, 'par_tipo_institucion' => 1006, 'par_departamento' => 3007, 'denominacion' => 'Gobierno Autónomo Municipal de Bermejo', 'sigla' => ''],
-                ['entidad_id' => 1604, 'par_tipo_institucion' => 1006, 'par_departamento' => 3007, 'denominacion' => 'Gobierno Autónomo Municipal de Yacuiba', 'sigla' => ''],
-                ['entidad_id' => 1605, 'par_tipo_institucion' => 1006, 'par_departamento' => 3007, 'denominacion' => 'Gobierno Autónomo Municipal de Caraparí', 'sigla' => ''],
-                ['entidad_id' => 1606, 'par_tipo_institucion' => 1006, 'par_departamento' => 3007, 'denominacion' => 'Gobierno Autónomo Municipal de Villamontes', 'sigla' => ''],
-                ['entidad_id' => 1607, 'par_tipo_institucion' => 1006, 'par_departamento' => 3007, 'denominacion' => 'Gobierno Autónomo Municipal de Uriondo (Concepción)', 'sigla' => ''],
-                ['entidad_id' => 1608, 'par_tipo_institucion' => 1006, 'par_departamento' => 3007, 'denominacion' => 'Gobierno Autónomo Municipal de Yunchara', 'sigla' => ''],
-                ['entidad_id' => 1501, 'par_tipo_institucion' => 1006, 'par_departamento' => 3004, 'denominacion' => 'Gobierno Autónomo Municipal de Potosí', 'sigla' => 'POT'],
-                ['entidad_id' => 1601, 'par_tipo_institucion' => 1006, 'par_departamento' => 3007, 'denominacion' => 'Gobierno Autónomo Municipal de Tarija', 'sigla' => 'TRJ'],
-                ['entidad_id' => 1609, 'par_tipo_institucion' => 1006, 'par_departamento' => 3007, 'denominacion' => 'Gobierno Autónomo Municipal de San Lorenzo', 'sigla' => ''],
-                ['entidad_id' => 1610, 'par_tipo_institucion' => 1006, 'par_departamento' => 3007, 'denominacion' => 'Gobierno Autónomo Municipal de El Puente', 'sigla' => ''],
-                ['entidad_id' => 1611, 'par_tipo_institucion' => 1006, 'par_departamento' => 3007, 'denominacion' => 'Gobierno Autónomo Municipal de Entre Ríos', 'sigla' => ''],
-                ['entidad_id' => 1702, 'par_tipo_institucion' => 1006, 'par_departamento' => 3006, 'denominacion' => 'Gobierno Autónomo Municipal de Cotoca', 'sigla' => ''],
-                ['entidad_id' => 1703, 'par_tipo_institucion' => 1006, 'par_departamento' => 3006, 'denominacion' => 'Gobierno Autónomo Municipal de Porongo (Ayacucho)', 'sigla' => ''],
-                ['entidad_id' => 1704, 'par_tipo_institucion' => 1006, 'par_departamento' => 3006, 'denominacion' => 'Gobierno Autónomo Municipal de La Guardia', 'sigla' => ''],
-                ['entidad_id' => 1705, 'par_tipo_institucion' => 1006, 'par_departamento' => 3006, 'denominacion' => 'Gobierno Autónomo Municipal de El Torno', 'sigla' => ''],
-                ['entidad_id' => 1706, 'par_tipo_institucion' => 1006, 'par_departamento' => 3006, 'denominacion' => 'Gobierno Autónomo Municipal de Warnes', 'sigla' => ''],
-                ['entidad_id' => 1707, 'par_tipo_institucion' => 1006, 'par_departamento' => 3006, 'denominacion' => 'Gobierno Autónomo Municipal de San Ignacio (San Ignacio de Velasco)', 'sigla' => ''],
-                ['entidad_id' => 1708, 'par_tipo_institucion' => 1006, 'par_departamento' => 3006, 'denominacion' => 'Gobierno Autónomo Municipal de San Miguel (San Miguel de Velasco)', 'sigla' => ''],
-                ['entidad_id' => 1709, 'par_tipo_institucion' => 1006, 'par_departamento' => 3006, 'denominacion' => 'Gobierno Autónomo Municipal de San Rafael', 'sigla' => ''],
-                ['entidad_id' => 1710, 'par_tipo_institucion' => 1006, 'par_departamento' => 3006, 'denominacion' => 'Gobierno Autónomo Municipal de Buena Vista', 'sigla' => ''],
-                ['entidad_id' => 1711, 'par_tipo_institucion' => 1006, 'par_departamento' => 3006, 'denominacion' => 'Gobierno Autónomo Municipal de San Carlos', 'sigla' => ''],
-                ['entidad_id' => 1712, 'par_tipo_institucion' => 1006, 'par_departamento' => 3006, 'denominacion' => 'Gobierno Autónomo Municipal de Yapacaní', 'sigla' => ''],
-                ['entidad_id' => 1713, 'par_tipo_institucion' => 1006, 'par_departamento' => 3006, 'denominacion' => 'Gobierno Autónomo Municipal de San José', 'sigla' => ''],
-                ['entidad_id' => 1714, 'par_tipo_institucion' => 1006, 'par_departamento' => 3006, 'denominacion' => 'Gobierno Autónomo Municipal de Pailón', 'sigla' => ''],
-                ['entidad_id' => 1715, 'par_tipo_institucion' => 1006, 'par_departamento' => 3006, 'denominacion' => 'Gobierno Autónomo Municipal de Roboré', 'sigla' => ''],
-                ['entidad_id' => 1716, 'par_tipo_institucion' => 1006, 'par_departamento' => 3006, 'denominacion' => 'Gobierno Autónomo Municipal de Portachuelo', 'sigla' => ''],
-                ['entidad_id' => 1717, 'par_tipo_institucion' => 1006, 'par_departamento' => 3006, 'denominacion' => 'Gobierno Autónomo Municipal de Santa Rosa del Sara', 'sigla' => ''],
-                ['entidad_id' => 1718, 'par_tipo_institucion' => 1006, 'par_departamento' => 3006, 'denominacion' => 'Gobierno Autónomo Municipal de Lagunillas', 'sigla' => ''],
-                ['entidad_id' => 1719, 'par_tipo_institucion' => 1006, 'par_departamento' => 3006, 'denominacion' => 'Gobierno Autónomo Municipal de Charagua', 'sigla' => ''],
-                ['entidad_id' => 1720, 'par_tipo_institucion' => 1006, 'par_departamento' => 3006, 'denominacion' => 'Gobierno Autónomo Municipal de Cabezas', 'sigla' => ''],
-                ['entidad_id' => 1721, 'par_tipo_institucion' => 1006, 'par_departamento' => 3006, 'denominacion' => 'Gobierno Autónomo Municipal de Cuevo', 'sigla' => ''],
-                ['entidad_id' => 1722, 'par_tipo_institucion' => 1006, 'par_departamento' => 3006, 'denominacion' => 'Gobierno Autónomo Municipal de Gutiérrez', 'sigla' => ''],
-                ['entidad_id' => 1723, 'par_tipo_institucion' => 1006, 'par_departamento' => 3006, 'denominacion' => 'Gobierno Autónomo Municipal de Camiri', 'sigla' => ''],
-                ['entidad_id' => 1724, 'par_tipo_institucion' => 1006, 'par_departamento' => 3006, 'denominacion' => 'Gobierno Autónomo Municipal de Boyuibe', 'sigla' => ''],
-                ['entidad_id' => 1725, 'par_tipo_institucion' => 1006, 'par_departamento' => 3006, 'denominacion' => 'Gobierno Autónomo Municipal de Vallegrande', 'sigla' => ''],
-                ['entidad_id' => 1726, 'par_tipo_institucion' => 1006, 'par_departamento' => 3006, 'denominacion' => 'Gobierno Autónomo Municipal de Trigal', 'sigla' => ''],
-                ['entidad_id' => 1727, 'par_tipo_institucion' => 1006, 'par_departamento' => 3006, 'denominacion' => 'Gobierno Autónomo Municipal de Moro Moro', 'sigla' => ''],
-                ['entidad_id' => 1728, 'par_tipo_institucion' => 1006, 'par_departamento' => 3006, 'denominacion' => 'Gobierno Autónomo Municipal de Postrer Valle', 'sigla' => ''],
-                ['entidad_id' => 1729, 'par_tipo_institucion' => 1006, 'par_departamento' => 3006, 'denominacion' => 'Gobierno Autónomo Municipal de Pucara', 'sigla' => ''],
-                ['entidad_id' => 1730, 'par_tipo_institucion' => 1006, 'par_departamento' => 3006, 'denominacion' => 'Gobierno Autónomo Municipal de Samaipata', 'sigla' => ''],
-                ['entidad_id' => 1731, 'par_tipo_institucion' => 1006, 'par_departamento' => 3006, 'denominacion' => 'Gobierno Autónomo Municipal de Pampa Grande', 'sigla' => ''],
-                ['entidad_id' => 1732, 'par_tipo_institucion' => 1006, 'par_departamento' => 3006, 'denominacion' => 'Gobierno Autónomo Municipal de Mairana', 'sigla' => ''],
-                ['entidad_id' => 1733, 'par_tipo_institucion' => 1006, 'par_departamento' => 3006, 'denominacion' => 'Gobierno Autónomo Municipal de Quirusillas', 'sigla' => ''],
-                ['entidad_id' => 1734, 'par_tipo_institucion' => 1006, 'par_departamento' => 3006, 'denominacion' => 'Gobierno Autónomo Municipal de Montero', 'sigla' => ''],
-                ['entidad_id' => 1735, 'par_tipo_institucion' => 1006, 'par_departamento' => 3006, 'denominacion' => 'Gobierno Autónomo Municipal de General Agustín Saavedra', 'sigla' => ''],
-                ['entidad_id' => 1736, 'par_tipo_institucion' => 1006, 'par_departamento' => 3006, 'denominacion' => 'Gobierno Autónomo Municipal de Mineros', 'sigla' => ''],
-                ['entidad_id' => 1737, 'par_tipo_institucion' => 1006, 'par_departamento' => 3006, 'denominacion' => 'Gobierno Autónomo Municipal de Concepción', 'sigla' => ''],
-                ['entidad_id' => 1738, 'par_tipo_institucion' => 1006, 'par_departamento' => 3006, 'denominacion' => 'Gobierno Autónomo Municipal de San Javier', 'sigla' => ''],
-                ['entidad_id' => 1739, 'par_tipo_institucion' => 1006, 'par_departamento' => 3006, 'denominacion' => 'Gobierno Autónomo Municipal de San Julián', 'sigla' => ''],
-                ['entidad_id' => 1740, 'par_tipo_institucion' => 1006, 'par_departamento' => 3006, 'denominacion' => 'Gobierno Autónomo Municipal de San Matías', 'sigla' => ''],
-                ['entidad_id' => 1741, 'par_tipo_institucion' => 1006, 'par_departamento' => 3006, 'denominacion' => 'Gobierno Autónomo Municipal de Comarapa', 'sigla' => ''],
-                ['entidad_id' => 1742, 'par_tipo_institucion' => 1006, 'par_departamento' => 3006, 'denominacion' => 'Gobierno Autónomo Municipal de Saipina', 'sigla' => ''],
-                ['entidad_id' => 1743, 'par_tipo_institucion' => 1006, 'par_departamento' => 3006, 'denominacion' => 'Gobierno Autónomo Municipal de Puerto Suárez', 'sigla' => ''],
-                ['entidad_id' => 1744, 'par_tipo_institucion' => 1006, 'par_departamento' => 3006, 'denominacion' => 'Gobierno Autónomo Municipal de Puerto Quijarro', 'sigla' => ''],
-                ['entidad_id' => 1745, 'par_tipo_institucion' => 1006, 'par_departamento' => 3006, 'denominacion' => 'Gobierno Autónomo Municipal de Ascensión de Guarayos', 'sigla' => ''],
-                ['entidad_id' => 1746, 'par_tipo_institucion' => 1006, 'par_departamento' => 3006, 'denominacion' => 'Gobierno Autónomo Municipal de Urubicha', 'sigla' => ''],
-                ['entidad_id' => 1747, 'par_tipo_institucion' => 1006, 'par_departamento' => 3006, 'denominacion' => 'Gobierno Autónomo Municipal de El Puente', 'sigla' => ''],
-                ['entidad_id' => 1748, 'par_tipo_institucion' => 1006, 'par_departamento' => 3006, 'denominacion' => 'Gobierno Autónomo Municipal de Okinawa Uno', 'sigla' => ''],
-                ['entidad_id' => 1749, 'par_tipo_institucion' => 1006, 'par_departamento' => 3006, 'denominacion' => 'Gobierno Autónomo Municipal de San Antonio de Lomerio', 'sigla' => ''],
-                ['entidad_id' => 1750, 'par_tipo_institucion' => 1006, 'par_departamento' => 3006, 'denominacion' => 'Gobierno Autónomo Municipal de San Ramón', 'sigla' => ''],
-                ['entidad_id' => 1751, 'par_tipo_institucion' => 1006, 'par_departamento' => 3006, 'denominacion' => 'Gobierno Autónomo Municipal de El Carmen Rivero Tórrez', 'sigla' => ''],
-                ['entidad_id' => 1752, 'par_tipo_institucion' => 1006, 'par_departamento' => 3006, 'denominacion' => 'Gobierno Autónomo Municipal de San Juan', 'sigla' => ''],
-                ['entidad_id' => 1753, 'par_tipo_institucion' => 1006, 'par_departamento' => 3006, 'denominacion' => 'Gobierno Autónomo Municipal de Fernández Alonso', 'sigla' => ''],
-                ['entidad_id' => 1754, 'par_tipo_institucion' => 1006, 'par_departamento' => 3006, 'denominacion' => 'Gobierno Autónomo Municipal de San Pedro', 'sigla' => ''],
-                ['entidad_id' => 1755, 'par_tipo_institucion' => 1006, 'par_departamento' => 3006, 'denominacion' => 'Gobierno Autónomo Municipal de Cuatro Cañadas', 'sigla' => ''],
-                ['entidad_id' => 1756, 'par_tipo_institucion' => 1006, 'par_departamento' => 3006, 'denominacion' => 'Gobierno Autónomo Municipal de Colpa Bélgica', 'sigla' => ''],
-                ['entidad_id' => 1802, 'par_tipo_institucion' => 1006, 'par_departamento' => 3008, 'denominacion' => 'Gobierno Autónomo Municipal de San Javier', 'sigla' => ''],
-                ['entidad_id' => 1803, 'par_tipo_institucion' => 1006, 'par_departamento' => 3008, 'denominacion' => 'Gobierno Autónomo Municipal de Riberalta', 'sigla' => ''],
-                ['entidad_id' => 1805, 'par_tipo_institucion' => 1006, 'par_departamento' => 3008, 'denominacion' => 'Gobierno Autónomo Municipal de Puerto Guayaramerín', 'sigla' => ''],
-                ['entidad_id' => 1806, 'par_tipo_institucion' => 1006, 'par_departamento' => 3008, 'denominacion' => 'Gobierno Autónomo Municipal de Reyes', 'sigla' => ''],
-                ['entidad_id' => 1807, 'par_tipo_institucion' => 1006, 'par_departamento' => 3008, 'denominacion' => 'Gobierno Autónomo Municipal de Puerto Rurrenabaque', 'sigla' => ''],
-                ['entidad_id' => 1808, 'par_tipo_institucion' => 1006, 'par_departamento' => 3008, 'denominacion' => 'Gobierno Autónomo Municipal de San Borja', 'sigla' => ''],
-                ['entidad_id' => 1809, 'par_tipo_institucion' => 1006, 'par_departamento' => 3008, 'denominacion' => 'Gobierno Autónomo Municipal de Santa Rosa', 'sigla' => ''],
-                ['entidad_id' => 1810, 'par_tipo_institucion' => 1006, 'par_departamento' => 3008, 'denominacion' => 'Gobierno Autónomo Municipal de Santa Ana', 'sigla' => ''],
-                ['entidad_id' => 1811, 'par_tipo_institucion' => 1006, 'par_departamento' => 3008, 'denominacion' => 'Gobierno Autónomo Municipal de San Ignacio', 'sigla' => ''],
-                ['entidad_id' => 1812, 'par_tipo_institucion' => 1006, 'par_departamento' => 3008, 'denominacion' => 'Gobierno Autónomo Municipal de Loreto', 'sigla' => ''],
-                ['entidad_id' => 1813, 'par_tipo_institucion' => 1006, 'par_departamento' => 3008, 'denominacion' => 'Gobierno Autónomo Municipal de San Andrés', 'sigla' => ''],
-                ['entidad_id' => 1814, 'par_tipo_institucion' => 1006, 'par_departamento' => 3008, 'denominacion' => 'Gobierno Autónomo Municipal de San Joaquín', 'sigla' => ''],
-                ['entidad_id' => 1815, 'par_tipo_institucion' => 1006, 'par_departamento' => 3008, 'denominacion' => 'Gobierno Autónomo Municipal de San Ramón', 'sigla' => ''],
-                ['entidad_id' => 1816, 'par_tipo_institucion' => 1006, 'par_departamento' => 3008, 'denominacion' => 'Gobierno Autónomo Municipal de Puerto Síles', 'sigla' => ''],
-                ['entidad_id' => 1801, 'par_tipo_institucion' => 1006, 'par_departamento' => 3008, 'denominacion' => 'Gobierno Autónomo Municipal de Trinidad', 'sigla' => 'TRI'],
-                ['entidad_id' => 1817, 'par_tipo_institucion' => 1006, 'par_departamento' => 3008, 'denominacion' => 'Gobierno Autónomo Municipal de Magdalena', 'sigla' => ''],
-                ['entidad_id' => 1818, 'par_tipo_institucion' => 1006, 'par_departamento' => 3008, 'denominacion' => 'Gobierno Autónomo Municipal de Baures', 'sigla' => ''],
-                ['entidad_id' => 1819, 'par_tipo_institucion' => 1006, 'par_departamento' => 3008, 'denominacion' => 'Gobierno Autónomo Municipal de Huacaraje', 'sigla' => ''],
-                ['entidad_id' => 1820, 'par_tipo_institucion' => 1006, 'par_departamento' => 3008, 'denominacion' => 'Gobierno Autónomo Municipal de Exaltación', 'sigla' => ''],
-                ['entidad_id' => 1902, 'par_tipo_institucion' => 1006, 'par_departamento' => 3009, 'denominacion' => 'Gobierno Autónomo Municipal de Porvenir', 'sigla' => ''],
-                ['entidad_id' => 1903, 'par_tipo_institucion' => 1006, 'par_departamento' => 3009, 'denominacion' => 'Gobierno Autónomo Municipal de Bolpebra', 'sigla' => ''],
-                ['entidad_id' => 1904, 'par_tipo_institucion' => 1006, 'par_departamento' => 3009, 'denominacion' => 'Gobierno Autónomo Municipal de Bella Flor', 'sigla' => ''],
-                ['entidad_id' => 1905, 'par_tipo_institucion' => 1006, 'par_departamento' => 3009, 'denominacion' => 'Gobierno Autónomo Municipal de Puerto Rico', 'sigla' => ''],
-                ['entidad_id' => 1906, 'par_tipo_institucion' => 1006, 'par_departamento' => 3009, 'denominacion' => 'Gobierno Autónomo Municipal de San Pedro', 'sigla' => ''],
-                ['entidad_id' => 1907, 'par_tipo_institucion' => 1006, 'par_departamento' => 3009, 'denominacion' => 'Gobierno Autónomo Municipal de Filadelfia', 'sigla' => ''],
-                ['entidad_id' => 1908, 'par_tipo_institucion' => 1006, 'par_departamento' => 3009, 'denominacion' => 'Gobierno Autónomo Municipal de Puerto Gonzalo Moreno', 'sigla' => ''],
-                ['entidad_id' => 1909, 'par_tipo_institucion' => 1006, 'par_departamento' => 3009, 'denominacion' => 'Gobierno Autónomo Municipal de San Lorenzo', 'sigla' => ''],
-                ['entidad_id' => 1911, 'par_tipo_institucion' => 1006, 'par_departamento' => 3009, 'denominacion' => 'Gobierno Autónomo Municipal de Santa Rosa del Abuná', 'sigla' => ''],
-                ['entidad_id' => 1912, 'par_tipo_institucion' => 1006, 'par_departamento' => 3009, 'denominacion' => 'Gobierno Autónomo Municipal de Ingavi (Humaita)', 'sigla' => ''],
-                ['entidad_id' => 1913, 'par_tipo_institucion' => 1006, 'par_departamento' => 3009, 'denominacion' => 'Gobierno Autónomo Municipal de Nueva Esperanza', 'sigla' => ''],
-                ['entidad_id' => 1914, 'par_tipo_institucion' => 1006, 'par_departamento' => 3009, 'denominacion' => 'Gobierno Autónomo Municipal de Villa Nueva (Loma Alta)', 'sigla' => ''],
-                ['entidad_id' => 1915, 'par_tipo_institucion' => 1006, 'par_departamento' => 3009, 'denominacion' => 'Gobierno Autónomo Municipal de Santos Mercado', 'sigla' => ''],
-                ['entidad_id' => 1268, 'par_tipo_institucion' => 1006, 'par_departamento' => 3001, 'denominacion' => 'Gobierno Autónomo Municipal de San Buenaventura', 'sigla' => ''],
-                ['entidad_id' => 1274, 'par_tipo_institucion' => 1006, 'par_departamento' => 3001, 'denominacion' => 'Gobierno Autónomo Municipal de Santiago de Machaca', 'sigla' => ''],
-                ['entidad_id' => 1505, 'par_tipo_institucion' => 1006, 'par_departamento' => 3004, 'denominacion' => 'Gobierno Autónomo Municipal de Uncía', 'sigla' => ''],
-                ['entidad_id' => 1511, 'par_tipo_institucion' => 1006, 'par_departamento' => 3004, 'denominacion' => 'Gobierno Autónomo Municipal de Colquechaca', 'sigla' => ''],
-                ['entidad_id' => 1517, 'par_tipo_institucion' => 1006, 'par_departamento' => 3004, 'denominacion' => 'Gobierno Autónomo Municipal de Cotagaita', 'sigla' => ''],
-                ['entidad_id' => 1523, 'par_tipo_institucion' => 1006, 'par_departamento' => 3004, 'denominacion' => 'Gobierno Autónomo Municipal de San Pablo de Lípez', 'sigla' => ''],
-                ['entidad_id' => 1529, 'par_tipo_institucion' => 1006, 'par_departamento' => 3004, 'denominacion' => 'Gobierno Autónomo Municipal de Caiza', 'sigla' => ''],
-                ['entidad_id' => 1535, 'par_tipo_institucion' => 1006, 'par_departamento' => 3004, 'denominacion' => 'Gobierno Autónomo Municipal de Llica', 'sigla' => ''],
-                ['entidad_id' => 1223, 'par_tipo_institucion' => 1006, 'par_departamento' => 3001, 'denominacion' => 'Gobierno Autónomo Municipal de Licoma Pampa', 'sigla' => ''],
-                ['entidad_id' => 1244, 'par_tipo_institucion' => 1006, 'par_departamento' => 3001, 'denominacion' => 'Gobierno Autónomo Municipal de Nazacara de Pacajes', 'sigla' => ''],
-                ['entidad_id' => 1269, 'par_tipo_institucion' => 1006, 'par_departamento' => 3001, 'denominacion' => 'Gobierno Autónomo Municipal de General Juan José Pérez (Charazani)', 'sigla' => ''],
-                ['entidad_id' => 1122, 'par_tipo_institucion' => 1006, 'par_departamento' => 3002, 'denominacion' => 'Gobierno Autónomo Municipal de Villa Serrano', 'sigla' => ''],
-                ['entidad_id' => 1410, 'par_tipo_institucion' => 1006, 'par_departamento' => 3003, 'denominacion' => 'Gobierno Autónomo Municipal de Antequera', 'sigla' => ''],
-                ['entidad_id' => 1430, 'par_tipo_institucion' => 1006, 'par_departamento' => 3003, 'denominacion' => 'Gobierno Autónomo Municipal de Carangas', 'sigla' => ''],
-                ['entidad_id' => 1518, 'par_tipo_institucion' => 1006, 'par_departamento' => 3004, 'denominacion' => 'Gobierno Autónomo Municipal de Vitichi', 'sigla' => ''],
-                ['entidad_id' => 1305, 'par_tipo_institucion' => 1006, 'par_departamento' => 3005, 'denominacion' => 'Gobierno Autónomo Municipal de Vinto', 'sigla' => ''],
-                ['entidad_id' => 1324, 'par_tipo_institucion' => 1006, 'par_departamento' => 3005, 'denominacion' => 'Gobierno Autónomo Municipal de Cliza', 'sigla' => ''],
-                ['entidad_id' => 1343, 'par_tipo_institucion' => 1006, 'par_departamento' => 3005, 'denominacion' => 'Gobierno Autónomo Municipal de Vila Vila', 'sigla' => ''],
-                ['entidad_id' => 138, 'par_tipo_institucion' => 1003, 'par_departamento' => 3002, 'denominacion' => 'Universidad Mayor Real y Pontificia de San Francisco Xavier', 'sigla' => 'UMSX'],
-                ['entidad_id' => 139, 'par_tipo_institucion' => 1003, 'par_departamento' => 3001, 'denominacion' => 'Universidad Mayor de San Andrés', 'sigla' => 'UMSA'],
-                ['entidad_id' => 140, 'par_tipo_institucion' => 1003, 'par_departamento' => 3001, 'denominacion' => 'Universidad Pública de El Alto', 'sigla' => 'UPEA'],
-                ['entidad_id' => 141, 'par_tipo_institucion' => 1003, 'par_departamento' => 3005, 'denominacion' => 'Universidad Mayor de San Simón', 'sigla' => 'UMSS'],
-                ['entidad_id' => 142, 'par_tipo_institucion' => 1003, 'par_departamento' => 3003, 'denominacion' => 'Universidad Técnica de Oruro', 'sigla' => 'UTO'],
-                ['entidad_id' => 143, 'par_tipo_institucion' => 1003, 'par_departamento' => 3004, 'denominacion' => 'Universidad Autónoma Tomás Frías', 'sigla' => 'UATF'],
-                ['entidad_id' => 144, 'par_tipo_institucion' => 1003, 'par_departamento' => 3004, 'denominacion' => 'Universidad Nacional Siglo XX', 'sigla' => 'UNSXX'],
-                ['entidad_id' => 1126, 'par_tipo_institucion' => 1006, 'par_departamento' => 3002, 'denominacion' => 'Gobierno Autónomo Municipal de Villa Vaca Guzmán', 'sigla' => ''],
-                ['entidad_id' => 1127, 'par_tipo_institucion' => 1006, 'par_departamento' => 3002, 'denominacion' => 'Gobierno Autónomo Municipal de Villa de Huacaya', 'sigla' => ''],
-                ['entidad_id' => 1128, 'par_tipo_institucion' => 1006, 'par_departamento' => 3002, 'denominacion' => 'Gobierno Autónomo Municipal de Machareti', 'sigla' => ''],
-                ['entidad_id' => 1202, 'par_tipo_institucion' => 1006, 'par_departamento' => 3001, 'denominacion' => 'Gobierno Autónomo Municipal de Palca', 'sigla' => ''],
-                ['entidad_id' => 1203, 'par_tipo_institucion' => 1006, 'par_departamento' => 3001, 'denominacion' => 'Gobierno Autónomo Municipal de Mecapaca', 'sigla' => ''],
-                ['entidad_id' => 1204, 'par_tipo_institucion' => 1006, 'par_departamento' => 3001, 'denominacion' => 'Gobierno Autónomo Municipal de Achocalla', 'sigla' => ''],
-                ['entidad_id' => 1206, 'par_tipo_institucion' => 1006, 'par_departamento' => 3001, 'denominacion' => 'Gobierno Autónomo Municipal de Viacha', 'sigla' => ''],
-                ['entidad_id' => 1207, 'par_tipo_institucion' => 1006, 'par_departamento' => 3001, 'denominacion' => 'Gobierno Autónomo Municipal de Guaqui', 'sigla' => ''],
-                ['entidad_id' => 1208, 'par_tipo_institucion' => 1006, 'par_departamento' => 3001, 'denominacion' => 'Gobierno Autónomo Municipal de Tiahuanacu', 'sigla' => ''],
-                ['entidad_id' => 1209, 'par_tipo_institucion' => 1006, 'par_departamento' => 3001, 'denominacion' => 'Gobierno Autónomo Municipal de Desaguadero', 'sigla' => ''],
-                ['entidad_id' => 1210, 'par_tipo_institucion' => 1006, 'par_departamento' => 3001, 'denominacion' => 'Gobierno Autónomo Municipal de Caranavi', 'sigla' => ''],
-                ['entidad_id' => 1211, 'par_tipo_institucion' => 1006, 'par_departamento' => 3001, 'denominacion' => 'Gobierno Autónomo Municipal de Sica Sica (Villa Aroma)', 'sigla' => ''],
-                ['entidad_id' => 1212, 'par_tipo_institucion' => 1006, 'par_departamento' => 3001, 'denominacion' => 'Gobierno Autónomo Municipal de Umala', 'sigla' => ''],
-                ['entidad_id' => 1213, 'par_tipo_institucion' => 1006, 'par_departamento' => 3001, 'denominacion' => 'Gobierno Autónomo Municipal de Ayo Ayo', 'sigla' => ''],
-                ['entidad_id' => 1214, 'par_tipo_institucion' => 1006, 'par_departamento' => 3001, 'denominacion' => 'Gobierno Autónomo Municipal de Calamarca', 'sigla' => ''],
-                ['entidad_id' => 145, 'par_tipo_institucion' => 1003, 'par_departamento' => 3007, 'denominacion' => 'Universidad Autónoma Juan Misael Saracho', 'sigla' => 'UAJMS'],
-                ['entidad_id' => 146, 'par_tipo_institucion' => 1003, 'par_departamento' => 3006, 'denominacion' => 'Universidad Autónoma Gabriel René Moreno', 'sigla' => 'UAGRM'],
-                ['entidad_id' => 147, 'par_tipo_institucion' => 1003, 'par_departamento' => 3008, 'denominacion' => 'Universidad Técnica del Beni Mariscal José Ballivián', 'sigla' => 'UTBMJB'],
-                ['entidad_id' => 148, 'par_tipo_institucion' => 1003, 'par_departamento' => 3009, 'denominacion' => 'Universidad Amazónica de Pando', 'sigla' => 'UAP'],
-                ['entidad_id' => 901, 'par_tipo_institucion' => 1005, 'par_departamento' => 3002, 'denominacion' => 'Gobierno Autónomo Departamental de Chuquisaca', 'sigla' => 'GAD-CHU'],
-                ['entidad_id' => 906, 'par_tipo_institucion' => 1005, 'par_departamento' => 3007, 'denominacion' => 'Gobierno Autónomo Departamental de Tarija', 'sigla' => 'GAD-TAR'],
-                ['entidad_id' => 908, 'par_tipo_institucion' => 1005, 'par_departamento' => 3008, 'denominacion' => 'Gobierno Autónomo Departamental de Beni', 'sigla' => 'GAD-BEN'],
-                ['entidad_id' => 1301, 'par_tipo_institucion' => 1006, 'par_departamento' => 3005, 'denominacion' => 'Gobierno Autónomo Municipal de Cochabamba', 'sigla' => 'CBB'],
-                ['entidad_id' => 1401, 'par_tipo_institucion' => 1006, 'par_departamento' => 3003, 'denominacion' => 'Gobierno Autónomo Municipal de Oruro', 'sigla' => 'ORU'],
-                ['entidad_id' => 1701, 'par_tipo_institucion' => 1006, 'par_departamento' => 3006, 'denominacion' => 'Gobierno Autónomo Municipal de Santa Cruz de La Sierra', 'sigla' => 'SCZ'],
-                ['entidad_id' => 1901, 'par_tipo_institucion' => 1006, 'par_departamento' => 3009, 'denominacion' => 'Gobierno Autónomo Municipal de Cobija', 'sigla' => 'CBJ']
+
+                /* *********************************************************** */
+
+                ['id' => 1515, 'entidad_id' => 1515, 'par_tipo_institucion' => 1006, 'par_departamento' => 3004, 'denominacion' => 'Gobierno Autónomo Municipal de San Pedro', 'sigla' => ''],
+                ['id' => 1516, 'entidad_id' => 1516, 'par_tipo_institucion' => 1006, 'par_departamento' => 3004, 'denominacion' => 'Gobierno Autónomo Municipal de Toro Toro', 'sigla' => ''],
+                ['id' => 1519, 'entidad_id' => 1519, 'par_tipo_institucion' => 1006, 'par_departamento' => 3004, 'denominacion' => 'Gobierno Autónomo Municipal de Tupiza', 'sigla' => ''],
+                ['id' => 1520, 'entidad_id' => 1520, 'par_tipo_institucion' => 1006, 'par_departamento' => 3004, 'denominacion' => 'Gobierno Autónomo Municipal de Atocha', 'sigla' => ''],
+                ['id' => 1521, 'entidad_id' => 1521, 'par_tipo_institucion' => 1006, 'par_departamento' => 3004, 'denominacion' => 'Gobierno Autónomo Municipal de Colcha (Villa Martín)', 'sigla' => ''],
+                ['id' => 1522, 'entidad_id' => 1522, 'par_tipo_institucion' => 1006, 'par_departamento' => 3004, 'denominacion' => 'Gobierno Autónomo Municipal de San Pedro de Quemes', 'sigla' => ''],
+                ['id' => 1524, 'entidad_id' => 1524, 'par_tipo_institucion' => 1006, 'par_departamento' => 3004, 'denominacion' => 'Gobierno Autónomo Municipal de Mojinete', 'sigla' => ''],
+                ['id' => 1525, 'entidad_id' => 1525, 'par_tipo_institucion' => 1006, 'par_departamento' => 3004, 'denominacion' => 'Gobierno Autónomo Municipal de San Antonio de Esmoruco', 'sigla' => ''],
+                ['id' => 1526, 'entidad_id' => 1526, 'par_tipo_institucion' => 1006, 'par_departamento' => 3004, 'denominacion' => 'Gobierno Autónomo Municipal de Sacaca (Villa de Sacaca)', 'sigla' => ''],
+                ['id' => 1527, 'entidad_id' => 1527, 'par_tipo_institucion' => 1006, 'par_departamento' => 3004, 'denominacion' => 'Gobierno Autónomo Municipal de Caripuyo', 'sigla' => ''],
+                ['id' => 1528, 'entidad_id' => 1528, 'par_tipo_institucion' => 1006, 'par_departamento' => 3004, 'denominacion' => 'Gobierno Autónomo Municipal de Puna (Villa Talavera)', 'sigla' => ''],
+                ['id' => 1530, 'entidad_id' => 1530, 'par_tipo_institucion' => 1006, 'par_departamento' => 3004, 'denominacion' => 'Gobierno Autónomo Municipal de Uyuni', 'sigla' => ''],
+                ['id' => 1531, 'entidad_id' => 1531, 'par_tipo_institucion' => 1006, 'par_departamento' => 3004, 'denominacion' => 'Gobierno Autónomo Municipal de Tomave', 'sigla' => ''],
+                ['id' => 1532, 'entidad_id' => 1532, 'par_tipo_institucion' => 1006, 'par_departamento' => 3004, 'denominacion' => 'Gobierno Autónomo Municipal de Porco', 'sigla' => ''],
+                ['id' => 1533, 'entidad_id' => 1533, 'par_tipo_institucion' => 1006, 'par_departamento' => 3004, 'denominacion' => 'Gobierno Autónomo Municipal de Arampampa', 'sigla' => ''],
+                ['id' => 1534, 'entidad_id' => 1534, 'par_tipo_institucion' => 1006, 'par_departamento' => 3004, 'denominacion' => 'Gobierno Autónomo Municipal de Acasio', 'sigla' => ''],
+                ['id' => 1537, 'entidad_id' => 1537, 'par_tipo_institucion' => 1006, 'par_departamento' => 3004, 'denominacion' => 'Gobierno Autónomo Municipal de Villazón', 'sigla' => ''],
+                ['id' => 1538, 'entidad_id' => 1538, 'par_tipo_institucion' => 1006, 'par_departamento' => 3004, 'denominacion' => 'Gobierno Autónomo Municipal de San Agustín', 'sigla' => ''],
+                ['id' => 1602, 'entidad_id' => 1602, 'par_tipo_institucion' => 1006, 'par_departamento' => 3007, 'denominacion' => 'Gobierno Autónomo Municipal de Padcaya', 'sigla' => ''],
+                ['id' => 1603, 'entidad_id' => 1603, 'par_tipo_institucion' => 1006, 'par_departamento' => 3007, 'denominacion' => 'Gobierno Autónomo Municipal de Bermejo', 'sigla' => ''],
+                ['id' => 1604, 'entidad_id' => 1604, 'par_tipo_institucion' => 1006, 'par_departamento' => 3007, 'denominacion' => 'Gobierno Autónomo Municipal de Yacuiba', 'sigla' => ''],
+                ['id' => 1605, 'entidad_id' => 1605, 'par_tipo_institucion' => 1006, 'par_departamento' => 3007, 'denominacion' => 'Gobierno Autónomo Municipal de Caraparí', 'sigla' => ''],
+                ['id' => 1606, 'entidad_id' => 1606, 'par_tipo_institucion' => 1006, 'par_departamento' => 3007, 'denominacion' => 'Gobierno Autónomo Municipal de Villamontes', 'sigla' => ''],
+                ['id' => 1607, 'entidad_id' => 1607, 'par_tipo_institucion' => 1006, 'par_departamento' => 3007, 'denominacion' => 'Gobierno Autónomo Municipal de Uriondo (Concepción)', 'sigla' => ''],
+                ['id' => 1608, 'entidad_id' => 1608, 'par_tipo_institucion' => 1006, 'par_departamento' => 3007, 'denominacion' => 'Gobierno Autónomo Municipal de Yunchara', 'sigla' => ''],
+                ['id' => 1501, 'entidad_id' => 1501, 'par_tipo_institucion' => 1006, 'par_departamento' => 3004, 'denominacion' => 'Gobierno Autónomo Municipal de Potosí', 'sigla' => 'POT'],
+                ['id' => 1601, 'entidad_id' => 1601, 'par_tipo_institucion' => 1006, 'par_departamento' => 3007, 'denominacion' => 'Gobierno Autónomo Municipal de Tarija', 'sigla' => 'TRJ'],
+                ['id' => 1609, 'entidad_id' => 1609, 'par_tipo_institucion' => 1006, 'par_departamento' => 3007, 'denominacion' => 'Gobierno Autónomo Municipal de San Lorenzo', 'sigla' => ''],
+                ['id' => 1610, 'entidad_id' => 1610, 'par_tipo_institucion' => 1006, 'par_departamento' => 3007, 'denominacion' => 'Gobierno Autónomo Municipal de El Puente', 'sigla' => ''],
+                ['id' => 1611, 'entidad_id' => 1611, 'par_tipo_institucion' => 1006, 'par_departamento' => 3007, 'denominacion' => 'Gobierno Autónomo Municipal de Entre Ríos', 'sigla' => ''],
+                ['id' => 1702, 'entidad_id' => 1702, 'par_tipo_institucion' => 1006, 'par_departamento' => 3006, 'denominacion' => 'Gobierno Autónomo Municipal de Cobija', 'sigla' => ''],
+
+
+
+                /* *********************************************************** */
+
+                ['id' => 1703, 'entidad_id' => 1703, 'par_tipo_institucion' => 1006, 'par_departamento' => 3006, 'denominacion' => 'Gobierno Autónomo Municipal de Porongo (Ayacucho)', 'sigla' => ''],
+                ['id' => 1704, 'entidad_id' => 1704, 'par_tipo_institucion' => 1006, 'par_departamento' => 3006, 'denominacion' => 'Gobierno Autónomo Municipal de La Guardia', 'sigla' => ''],
+                ['id' => 1705, 'entidad_id' => 1705, 'par_tipo_institucion' => 1006, 'par_departamento' => 3006, 'denominacion' => 'Gobierno Autónomo Municipal de El Torno', 'sigla' => ''],
+                ['id' => 1706, 'entidad_id' => 1706, 'par_tipo_institucion' => 1006, 'par_departamento' => 3006, 'denominacion' => 'Gobierno Autónomo Municipal de Warnes', 'sigla' => ''],
+                ['id' => 1707, 'entidad_id' => 1707, 'par_tipo_institucion' => 1006, 'par_departamento' => 3006, 'denominacion' => 'Gobierno Autónomo Municipal de San Ignacio (San Ignacio de Velasco)', 'sigla' => ''],
+                ['id' => 1708, 'entidad_id' => 1708, 'par_tipo_institucion' => 1006, 'par_departamento' => 3006, 'denominacion' => 'Gobierno Autónomo Municipal de San Miguel (San Miguel de Velasco)', 'sigla' => ''],
+                ['id' => 1709, 'entidad_id' => 1709, 'par_tipo_institucion' => 1006, 'par_departamento' => 3006, 'denominacion' => 'Gobierno Autónomo Municipal de San Rafael', 'sigla' => ''],
+                ['id' => 1710, 'entidad_id' => 1710, 'par_tipo_institucion' => 1006, 'par_departamento' => 3006, 'denominacion' => 'Gobierno Autónomo Municipal de Buena Vista', 'sigla' => ''],
+                ['id' => 1711, 'entidad_id' => 1711, 'par_tipo_institucion' => 1006, 'par_departamento' => 3006, 'denominacion' => 'Gobierno Autónomo Municipal de San Carlos', 'sigla' => ''],
+                ['id' => 1712, 'entidad_id' => 1712, 'par_tipo_institucion' => 1006, 'par_departamento' => 3006, 'denominacion' => 'Gobierno Autónomo Municipal de Yapacaní', 'sigla' => ''],
+                ['id' => 1713, 'entidad_id' => 1713, 'par_tipo_institucion' => 1006, 'par_departamento' => 3006, 'denominacion' => 'Gobierno Autónomo Municipal de San José', 'sigla' => ''],
+                ['id' => 1714, 'entidad_id' => 1714, 'par_tipo_institucion' => 1006, 'par_departamento' => 3006, 'denominacion' => 'Gobierno Autónomo Municipal de Pailón', 'sigla' => ''],
+                ['id' => 1715, 'entidad_id' => 1715, 'par_tipo_institucion' => 1006, 'par_departamento' => 3006, 'denominacion' => 'Gobierno Autónomo Municipal de Roboré', 'sigla' => ''],
+                ['id' => 1716, 'entidad_id' => 1716, 'par_tipo_institucion' => 1006, 'par_departamento' => 3006, 'denominacion' => 'Gobierno Autónomo Municipal de Portachuelo', 'sigla' => ''],
+                ['id' => 1717, 'entidad_id' => 1717, 'par_tipo_institucion' => 1006, 'par_departamento' => 3006, 'denominacion' => 'Gobierno Autónomo Municipal de Santa Rosa del Sara', 'sigla' => ''],
+                ['id' => 1718, 'entidad_id' => 1718, 'par_tipo_institucion' => 1006, 'par_departamento' => 3006, 'denominacion' => 'Gobierno Autónomo Municipal de Lagunillas', 'sigla' => ''],
+                ['id' => 1719, 'entidad_id' => 1719, 'par_tipo_institucion' => 1006, 'par_departamento' => 3006, 'denominacion' => 'Gobierno Autónomo Municipal de Charagua', 'sigla' => ''],
+                ['id' => 1720, 'entidad_id' => 1720, 'par_tipo_institucion' => 1006, 'par_departamento' => 3006, 'denominacion' => 'Gobierno Autónomo Municipal de Cabezas', 'sigla' => ''],
+                ['id' => 1721, 'entidad_id' => 1721, 'par_tipo_institucion' => 1006, 'par_departamento' => 3006, 'denominacion' => 'Gobierno Autónomo Municipal de Cuevo', 'sigla' => ''],
+                ['id' => 1722, 'entidad_id' => 1722, 'par_tipo_institucion' => 1006, 'par_departamento' => 3006, 'denominacion' => 'Gobierno Autónomo Municipal de Gutiérrez', 'sigla' => ''],
+                ['id' => 1723, 'entidad_id' => 1723, 'par_tipo_institucion' => 1006, 'par_departamento' => 3006, 'denominacion' => 'Gobierno Autónomo Municipal de Camiri', 'sigla' => ''],
+                ['id' => 1724, 'entidad_id' => 1724, 'par_tipo_institucion' => 1006, 'par_departamento' => 3006, 'denominacion' => 'Gobierno Autónomo Municipal de Boyuibe', 'sigla' => ''],
+                ['id' => 1725, 'entidad_id' => 1725, 'par_tipo_institucion' => 1006, 'par_departamento' => 3006, 'denominacion' => 'Gobierno Autónomo Municipal de Vallegrande', 'sigla' => ''],
+                ['id' => 1726, 'entidad_id' => 1726, 'par_tipo_institucion' => 1006, 'par_departamento' => 3006, 'denominacion' => 'Gobierno Autónomo Municipal de Trigal', 'sigla' => ''],
+                ['id' => 1727, 'entidad_id' => 1727, 'par_tipo_institucion' => 1006, 'par_departamento' => 3006, 'denominacion' => 'Gobierno Autónomo Municipal de Moro Moro', 'sigla' => ''],
+                ['id' => 1728, 'entidad_id' => 1728, 'par_tipo_institucion' => 1006, 'par_departamento' => 3006, 'denominacion' => 'Gobierno Autónomo Municipal de Postrer Valle', 'sigla' => ''],
+                ['id' => 1729, 'entidad_id' => 1729, 'par_tipo_institucion' => 1006, 'par_departamento' => 3006, 'denominacion' => 'Gobierno Autónomo Municipal de Pucara', 'sigla' => ''],
+                ['id' => 1730, 'entidad_id' => 1730, 'par_tipo_institucion' => 1006, 'par_departamento' => 3006, 'denominacion' => 'Gobierno Autónomo Municipal de Samaipata', 'sigla' => ''],
+                ['id' => 1731, 'entidad_id' => 1731, 'par_tipo_institucion' => 1006, 'par_departamento' => 3006, 'denominacion' => 'Gobierno Autónomo Municipal de Pampa Grande', 'sigla' => ''],
+                ['id' => 1732, 'entidad_id' => 1732, 'par_tipo_institucion' => 1006, 'par_departamento' => 3006, 'denominacion' => 'Gobierno Autónomo Municipal de Mairana', 'sigla' => ''],
+                ['id' => 1733, 'entidad_id' => 1733, 'par_tipo_institucion' => 1006, 'par_departamento' => 3006, 'denominacion' => 'Gobierno Autónomo Municipal de Quirusillas', 'sigla' => ''],
+                ['id' => 1734, 'entidad_id' => 1734, 'par_tipo_institucion' => 1006, 'par_departamento' => 3006, 'denominacion' => 'Gobierno Autónomo Municipal de Cañada de Pabellón', 'sigla' => ''],
+
+
+                /* ******************************** */
+                ['id' => 1735, 'entidad_id' => 1735, 'par_tipo_institucion' => 1006, 'par_departamento' => 3006, 'denominacion' => 'Gobierno Autónomo Municipal de General Agustín Saavedra', 'sigla' => ''],
+                ['id' => 1736, 'entidad_id' => 1736, 'par_tipo_institucion' => 1006, 'par_departamento' => 3006, 'denominacion' => 'Gobierno Autónomo Municipal de Mineros', 'sigla' => ''],
+                ['id' => 1737, 'entidad_id' => 1737, 'par_tipo_institucion' => 1006, 'par_departamento' => 3006, 'denominacion' => 'Gobierno Autónomo Municipal de Concepción', 'sigla' => ''],
+                ['id' => 1738, 'entidad_id' => 1738, 'par_tipo_institucion' => 1006, 'par_departamento' => 3006, 'denominacion' => 'Gobierno Autónomo Municipal de San Javier', 'sigla' => ''],
+                ['id' => 1739, 'entidad_id' => 1739, 'par_tipo_institucion' => 1006, 'par_departamento' => 3006, 'denominacion' => 'Gobierno Autónomo Municipal de San Julián', 'sigla' => ''],
+                ['id' => 1740, 'entidad_id' => 1740, 'par_tipo_institucion' => 1006, 'par_departamento' => 3006, 'denominacion' => 'Gobierno Autónomo Municipal de San Matías', 'sigla' => ''],
+                ['id' => 1741, 'entidad_id' => 1741, 'par_tipo_institucion' => 1006, 'par_departamento' => 3006, 'denominacion' => 'Gobierno Autónomo Municipal de Comarapa', 'sigla' => ''],
+                ['id' => 1742, 'entidad_id' => 1742, 'par_tipo_institucion' => 1006, 'par_departamento' => 3006, 'denominacion' => 'Gobierno Autónomo Municipal de Saipina', 'sigla' => ''],
+                ['id' => 1743, 'entidad_id' => 1743, 'par_tipo_institucion' => 1006, 'par_departamento' => 3006, 'denominacion' => 'Gobierno Autónomo Municipal de Puerto Suárez', 'sigla' => ''],
+                ['id' => 1744, 'entidad_id' => 1744, 'par_tipo_institucion' => 1006, 'par_departamento' => 3006, 'denominacion' => 'Gobierno Autónomo Municipal de Puerto Quijarro', 'sigla' => ''],
+                ['id' => 1745, 'entidad_id' => 1745, 'par_tipo_institucion' => 1006, 'par_departamento' => 3006, 'denominacion' => 'Gobierno Autónomo Municipal de Ascensión de Guarayos', 'sigla' => ''],
+                ['id' => 1746, 'entidad_id' => 1746, 'par_tipo_institucion' => 1006, 'par_departamento' => 3006, 'denominacion' => 'Gobierno Autónomo Municipal de Urubicha', 'sigla' => ''],
+                ['id' => 1747, 'entidad_id' => 1747, 'par_tipo_institucion' => 1006, 'par_departamento' => 3006, 'denominacion' => 'Gobierno Autónomo Municipal de El Puente', 'sigla' => ''],
+                ['id' => 1748, 'entidad_id' => 1748, 'par_tipo_institucion' => 1006, 'par_departamento' => 3006, 'denominacion' => 'Gobierno Autónomo Municipal de Okinawa Uno', 'sigla' => ''],
+                ['id' => 1749, 'entidad_id' => 1749, 'par_tipo_institucion' => 1006, 'par_departamento' => 3006, 'denominacion' => 'Gobierno Autónomo Municipal de San Antonio de Lomerio', 'sigla' => ''],
+                ['id' => 1750, 'entidad_id' => 1750, 'par_tipo_institucion' => 1006, 'par_departamento' => 3006, 'denominacion' => 'Gobierno Autónomo Municipal de San Ramón', 'sigla' => ''],
+                ['id' => 1751, 'entidad_id' => 1751, 'par_tipo_institucion' => 1006, 'par_departamento' => 3006, 'denominacion' => 'Gobierno Autónomo Municipal de El Carmen Rivero Tórrez', 'sigla' => ''],
+
+
+                /* ******************************** */
+
+                ['id' => 1752, 'entidad_id' => 1752, 'par_tipo_institucion' => 1006, 'par_departamento' => 3006, 'denominacion' => 'Gobierno Autónomo Municipal de San Juan', 'sigla' => ''],
+                ['id' => 1753, 'entidad_id' => 1753, 'par_tipo_institucion' => 1006, 'par_departamento' => 3006, 'denominacion' => 'Gobierno Autónomo Municipal de Fernández Alonso', 'sigla' => ''],
+                ['id' => 1754, 'entidad_id' => 1754, 'par_tipo_institucion' => 1006, 'par_departamento' => 3006, 'denominacion' => 'Gobierno Autónomo Municipal de San Pedro', 'sigla' => ''],
+                ['id' => 1755, 'entidad_id' => 1755, 'par_tipo_institucion' => 1006, 'par_departamento' => 3006, 'denominacion' => 'Gobierno Autónomo Municipal de Cuatro Cañadas', 'sigla' => ''],
+                ['id' => 1756, 'entidad_id' => 1756, 'par_tipo_institucion' => 1006, 'par_departamento' => 3006, 'denominacion' => 'Gobierno Autónomo Municipal de Colpa Bélgica', 'sigla' => ''],
+                ['id' => 1802, 'entidad_id' => 1802, 'par_tipo_institucion' => 1006, 'par_departamento' => 3008, 'denominacion' => 'Gobierno Autónomo Municipal de San Javier', 'sigla' => ''],
+                ['id' => 1803, 'entidad_id' => 1803, 'par_tipo_institucion' => 1006, 'par_departamento' => 3008, 'denominacion' => 'Gobierno Autónomo Municipal de Riberalta', 'sigla' => ''],
+                ['id' => 1805, 'entidad_id' => 1805, 'par_tipo_institucion' => 1006, 'par_departamento' => 3008, 'denominacion' => 'Gobierno Autónomo Municipal de Puerto Guayaramerín', 'sigla' => ''],
+                ['id' => 1806, 'entidad_id' => 1806, 'par_tipo_institucion' => 1006, 'par_departamento' => 3008, 'denominacion' => 'Gobierno Autónomo Municipal de Reyes', 'sigla' => ''],
+                ['id' => 1807, 'entidad_id' => 1807, 'par_tipo_institucion' => 1006, 'par_departamento' => 3008, 'denominacion' => 'Gobierno Autónomo Municipal de Puerto Rurrenabaque', 'sigla' => ''],
+                ['id' => 1808, 'entidad_id' => 1808, 'par_tipo_institucion' => 1006, 'par_departamento' => 3008, 'denominacion' => 'Gobierno Autónomo Municipal de San Borja', 'sigla' => ''],
+                ['id' => 1809, 'entidad_id' => 1809, 'par_tipo_institucion' => 1006, 'par_departamento' => 3008, 'denominacion' => 'Gobierno Autónomo Municipal de Santa Rosa', 'sigla' => ''],
+                ['id' => 1810, 'entidad_id' => 1810, 'par_tipo_institucion' => 1006, 'par_departamento' => 3008, 'denominacion' => 'Gobierno Autónomo Municipal de Santa Ana', 'sigla' => ''],
+                ['id' => 1811, 'entidad_id' => 1811, 'par_tipo_institucion' => 1006, 'par_departamento' => 3008, 'denominacion' => 'Gobierno Autónomo Municipal de San Ignacio', 'sigla' => ''],
+                ['id' => 1812, 'entidad_id' => 1812, 'par_tipo_institucion' => 1006, 'par_departamento' => 3008, 'denominacion' => 'Gobierno Autónomo Municipal de Loreto', 'sigla' => ''],
+                ['id' => 1813, 'entidad_id' => 1813, 'par_tipo_institucion' => 1006, 'par_departamento' => 3008, 'denominacion' => 'Gobierno Autónomo Municipal de San Andrés', 'sigla' => ''],
+                ['id' => 1814, 'entidad_id' => 1814, 'par_tipo_institucion' => 1006, 'par_departamento' => 3008, 'denominacion' => 'Gobierno Autónomo Municipal de San Joaquín', 'sigla' => ''],
+                ['id' => 1815, 'entidad_id' => 1815, 'par_tipo_institucion' => 1006, 'par_departamento' => 3008, 'denominacion' => 'Gobierno Autónomo Municipal de San Ramón', 'sigla' => ''],
+
+                /* ******************************** */
+                ['id' => 1816, 'entidad_id' => 1816, 'par_tipo_institucion' => 1006, 'par_departamento' => 3008, 'denominacion' => 'Gobierno Autónomo Municipal de Puerto Síles', 'sigla' => ''],
+                ['id' => 1801, 'entidad_id' => 1801, 'par_tipo_institucion' => 1006, 'par_departamento' => 3008, 'denominacion' => 'Gobierno Autónomo Municipal de Trinidad', 'sigla' => 'TRI'],
+                ['id' => 1817, 'entidad_id' => 1817, 'par_tipo_institucion' => 1006, 'par_departamento' => 3008, 'denominacion' => 'Gobierno Autónomo Municipal de Magdalena', 'sigla' => ''],
+                ['id' => 1818, 'entidad_id' => 1818, 'par_tipo_institucion' => 1006, 'par_departamento' => 3008, 'denominacion' => 'Gobierno Autónomo Municipal de Baures', 'sigla' => ''],
+                ['id' => 1819, 'entidad_id' => 1819, 'par_tipo_institucion' => 1006, 'par_departamento' => 3008, 'denominacion' => 'Gobierno Autónomo Municipal de Huacaraje', 'sigla' => ''],
+                ['id' => 1820, 'entidad_id' => 1820, 'par_tipo_institucion' => 1006, 'par_departamento' => 3008, 'denominacion' => 'Gobierno Autónomo Municipal de Exaltación', 'sigla' => ''],
+                ['id' => 1902, 'entidad_id' => 1902, 'par_tipo_institucion' => 1006, 'par_departamento' => 3009, 'denominacion' => 'Gobierno Autónomo Municipal de Porvenir', 'sigla' => ''],
+                ['id' => 1903, 'entidad_id' => 1903, 'par_tipo_institucion' => 1006, 'par_departamento' => 3009, 'denominacion' => 'Gobierno Autónomo Municipal de Bolpebra', 'sigla' => ''],
+                ['id' => 1904, 'entidad_id' => 1904, 'par_tipo_institucion' => 1006, 'par_departamento' => 3009, 'denominacion' => 'Gobierno Autónomo Municipal de Bella Flor', 'sigla' => ''],
+                ['id' => 1905, 'entidad_id' => 1905, 'par_tipo_institucion' => 1006, 'par_departamento' => 3009, 'denominacion' => 'Gobierno Autónomo Municipal de Puerto Rico', 'sigla' => ''],
+                ['id' => 1906, 'entidad_id' => 1906, 'par_tipo_institucion' => 1006, 'par_departamento' => 3009, 'denominacion' => 'Gobierno Autónomo Municipal de San Pedro', 'sigla' => ''],
+                ['id' => 1907, 'entidad_id' => 1907, 'par_tipo_institucion' => 1006, 'par_departamento' => 3009, 'denominacion' => 'Gobierno Autónomo Municipal de Filadelfia', 'sigla' => ''],
+                ['id' => 1908, 'entidad_id' => 1908, 'par_tipo_institucion' => 1006, 'par_departamento' => 3009, 'denominacion' => 'Gobierno Autónomo Municipal de Puerto Gonzalo Moreno', 'sigla' => ''],
+                ['id' => 1909, 'entidad_id' => 1909, 'par_tipo_institucion' => 1006, 'par_departamento' => 3009, 'denominacion' => 'Gobierno Autónomo Municipal de San Lorenzo', 'sigla' => ''],
+                ['id' => 1911, 'entidad_id' => 1911, 'par_tipo_institucion' => 1006, 'par_departamento' => 3009, 'denominacion' => 'Gobierno Autónomo Municipal de Santa Rosa del Abuná', 'sigla' => ''],
+                ['id' => 1912, 'entidad_id' => 1912, 'par_tipo_institucion' => 1006, 'par_departamento' => 3009, 'denominacion' => 'Gobierno Autónomo Municipal de Ingavi (Humaita)', 'sigla' => ''],
+                ['id' => 1913, 'entidad_id' => 1913, 'par_tipo_institucion' => 1006, 'par_departamento' => 3009, 'denominacion' => 'Gobierno Autónomo Municipal de Nueva Esperanza', 'sigla' => ''],
+                ['id' => 1914, 'entidad_id' => 1914, 'par_tipo_institucion' => 1006, 'par_departamento' => 3009, 'denominacion' => 'Gobierno Autónomo Municipal de Villa Nueva (Loma Alta)', 'sigla' => ''],
+                ['id' => 1915, 'entidad_id' => 1915, 'par_tipo_institucion' => 1006, 'par_departamento' => 3009, 'denominacion' => 'Gobierno Autónomo Municipal de Santos Mercado', 'sigla' => ''],
+                ['id' => 1268, 'entidad_id' => 1268, 'par_tipo_institucion' => 1006, 'par_departamento' => 3001, 'denominacion' => 'Gobierno Autónomo Municipal de San Buenaventura', 'sigla' => ''],
+                ['id' => 1274, 'entidad_id' => 1274, 'par_tipo_institucion' => 1006, 'par_departamento' => 3001, 'denominacion' => 'Gobierno Autónomo Municipal de Santiago de Machaca', 'sigla' => ''],
+                ['id' => 1505, 'entidad_id' => 1505, 'par_tipo_institucion' => 1006, 'par_departamento' => 3004, 'denominacion' => 'Gobierno Autónomo Municipal de Uncía', 'sigla' => ''],
+                ['id' => 1511, 'entidad_id' => 1511, 'par_tipo_institucion' => 1006, 'par_departamento' => 3004, 'denominacion' => 'Gobierno Autónomo Municipal de Colquechaca', 'sigla' => ''],
+                ['id' => 1517, 'entidad_id' => 1517, 'par_tipo_institucion' => 1006, 'par_departamento' => 3004, 'denominacion' => 'Gobierno Autónomo Municipal de Cotagaita', 'sigla' => ''],
+                ['id' => 1523, 'entidad_id' => 1523, 'par_tipo_institucion' => 1006, 'par_departamento' => 3004, 'denominacion' => 'Gobierno Autónomo Municipal de San Pablo de Lípez', 'sigla' => ''],
+                ['id' => 1529, 'entidad_id' => 1529, 'par_tipo_institucion' => 1006, 'par_departamento' => 3004, 'denominacion' => 'Gobierno Autónomo Municipal de Caiza', 'sigla' => ''],
+                ['id' => 1535, 'entidad_id' => 1535, 'par_tipo_institucion' => 1006, 'par_departamento' => 3004, 'denominacion' => 'Gobierno Autónomo Municipal de Llica', 'sigla' => ''],
+                ['id' => 1223, 'entidad_id' => 1223, 'par_tipo_institucion' => 1006, 'par_departamento' => 3001, 'denominacion' => 'Gobierno Autónomo Municipal de Licoma Pampa', 'sigla' => ''],
+                ['id' => 1244, 'entidad_id' => 1244, 'par_tipo_institucion' => 1006, 'par_departamento' => 3001, 'denominacion' => 'Gobierno Autónomo Municipal de Nazacara de Pacajes', 'sigla' => ''],
+                ['id' => 1269, 'entidad_id' => 1269, 'par_tipo_institucion' => 1006, 'par_departamento' => 3001, 'denominacion' => 'Gobierno Autónomo Municipal de General Juan José Pérez (Charazani)', 'sigla' => ''],
+
+                /* ******************************** */
+                ['id' => 1122, 'entidad_id' => 1122, 'par_tipo_institucion' => 1006, 'par_departamento' => 3002, 'denominacion' => 'Gobierno Autónomo Municipal de Villa Serrano', 'sigla' => ''],
+                ['id' => 1410, 'entidad_id' => 1410, 'par_tipo_institucion' => 1006, 'par_departamento' => 3003, 'denominacion' => 'Gobierno Autónomo Municipal de Antequera', 'sigla' => ''],
+                ['id' => 1430, 'entidad_id' => 1430, 'par_tipo_institucion' => 1006, 'par_departamento' => 3003, 'denominacion' => 'Gobierno Autónomo Municipal de Carangas', 'sigla' => ''],
+                ['id' => 1518, 'entidad_id' => 1518, 'par_tipo_institucion' => 1006, 'par_departamento' => 3004, 'denominacion' => 'Gobierno Autónomo Municipal de Vitichi', 'sigla' => ''],
+                ['id' => 1305, 'entidad_id' => 1305, 'par_tipo_institucion' => 1006, 'par_departamento' => 3005, 'denominacion' => 'Gobierno Autónomo Municipal de Vinto', 'sigla' => ''],
+                ['id' => 1324, 'entidad_id' => 1324, 'par_tipo_institucion' => 1006, 'par_departamento' => 3005, 'denominacion' => 'Gobierno Autónomo Municipal de Cliza', 'sigla' => ''],
+                ['id' => 1343, 'entidad_id' => 1343, 'par_tipo_institucion' => 1006, 'par_departamento' => 3005, 'denominacion' => 'Gobierno Autónomo Municipal de Vila Vila', 'sigla' => ''],
+                ['id' => 138, 'entidad_id' => 138, 'par_tipo_institucion' => 1003, 'par_departamento' => 3002, 'denominacion' => 'Universidad Mayor Real y Pontificia de San Francisco Xavier', 'sigla' => 'UMSX'],
+                ['id' => 139, 'entidad_id' => 139, 'par_tipo_institucion' => 1003, 'par_departamento' => 3001, 'denominacion' => 'Universidad Mayor de San Andrés', 'sigla' => 'UMSA'],
+                ['id' => 140, 'entidad_id' => 140, 'par_tipo_institucion' => 1003, 'par_departamento' => 3001, 'denominacion' => 'Universidad Pública de El Alto', 'sigla' => 'UPEA'],
+                ['id' => 141, 'entidad_id' => 141, 'par_tipo_institucion' => 1003, 'par_departamento' => 3005, 'denominacion' => 'Universidad Mayor de San Simón', 'sigla' => 'UMSS'],
+                ['id' => 142, 'entidad_id' => 142, 'par_tipo_institucion' => 1003, 'par_departamento' => 3003, 'denominacion' => 'Universidad Técnica de Oruro', 'sigla' => 'UTO'],
+                ['id' => 143, 'entidad_id' => 143, 'par_tipo_institucion' => 1003, 'par_departamento' => 3004, 'denominacion' => 'Universidad Autónoma Tomás Frías', 'sigla' => 'UATF'],
+                ['id' => 144, 'entidad_id' => 144, 'par_tipo_institucion' => 1003, 'par_departamento' => 3004, 'denominacion' => 'Universidad Nacional Siglo XX', 'sigla' => 'UNSXX'],
+                ['id' => 1126, 'entidad_id' => 1126, 'par_tipo_institucion' => 1006, 'par_departamento' => 3002, 'denominacion' => 'Gobierno Autónomo Municipal de Villa Vaca Guzmán', 'sigla' => ''],
+                ['id' => 1127, 'entidad_id' => 1127, 'par_tipo_institucion' => 1006, 'par_departamento' => 3002, 'denominacion' => 'Gobierno Autónomo Municipal de Villa de Huacaya', 'sigla' => ''],
+
+                /* ******************************** */
+                ['id' => 1128, 'entidad_id' => 1128, 'par_tipo_institucion' => 1006, 'par_departamento' => 3002, 'denominacion' => 'Gobierno Autónomo Municipal de Machareti', 'sigla' => ''],
+                ['id' => 1202, 'entidad_id' => 1202, 'par_tipo_institucion' => 1006, 'par_departamento' => 3001, 'denominacion' => 'Gobierno Autónomo Municipal de Palca', 'sigla' => ''],
+                ['id' => 1203, 'entidad_id' => 1203, 'par_tipo_institucion' => 1006, 'par_departamento' => 3001, 'denominacion' => 'Gobierno Autónomo Municipal de Mecapaca', 'sigla' => ''],
+                ['id' => 1204, 'entidad_id' => 1204, 'par_tipo_institucion' => 1006, 'par_departamento' => 3001, 'denominacion' => 'Gobierno Autónomo Municipal de Achocalla', 'sigla' => ''],
+                ['id' => 1206, 'entidad_id' => 1206, 'par_tipo_institucion' => 1006, 'par_departamento' => 3001, 'denominacion' => 'Gobierno Autónomo Municipal de Viacha', 'sigla' => ''],
+                ['id' => 1207, 'entidad_id' => 1207, 'par_tipo_institucion' => 1006, 'par_departamento' => 3001, 'denominacion' => 'Gobierno Autónomo Municipal de Guaqui', 'sigla' => ''],
+                ['id' => 1208, 'entidad_id' => 1208, 'par_tipo_institucion' => 1006, 'par_departamento' => 3001, 'denominacion' => 'Gobierno Autónomo Municipal de Tiahuanacu', 'sigla' => ''],
+                ['id' => 1209, 'entidad_id' => 1209, 'par_tipo_institucion' => 1006, 'par_departamento' => 3001, 'denominacion' => 'Gobierno Autónomo Municipal de Desaguadero', 'sigla' => ''],
+                ['id' => 1210, 'entidad_id' => 1210, 'par_tipo_institucion' => 1006, 'par_departamento' => 3001, 'denominacion' => 'Gobierno Autónomo Municipal de Caranavi', 'sigla' => ''],
+                ['id' => 1211, 'entidad_id' => 1211, 'par_tipo_institucion' => 1006, 'par_departamento' => 3001, 'denominacion' => 'Gobierno Autónomo Municipal de Sica Sica (Villa Aroma)', 'sigla' => ''],
+                ['id' => 1212, 'entidad_id' => 1212, 'par_tipo_institucion' => 1006, 'par_departamento' => 3001, 'denominacion' => 'Gobierno Autónomo Municipal de Umala', 'sigla' => ''],
+                ['id' => 1213, 'entidad_id' => 1213, 'par_tipo_institucion' => 1006, 'par_departamento' => 3001, 'denominacion' => 'Gobierno Autónomo Municipal de Ayo Ayo', 'sigla' => ''],
+                ['id' => 1214, 'entidad_id' => 1214, 'par_tipo_institucion' => 1006, 'par_departamento' => 3001, 'denominacion' => 'Gobierno Autónomo Municipal de Calamarca', 'sigla' => ''],
+                ['id' => 145, 'entidad_id' => 145, 'par_tipo_institucion' => 1003, 'par_departamento' => 3007, 'denominacion' => 'Universidad Autónoma Juan Misael Saracho', 'sigla' => 'UAJMS'],
+                ['id' => 146, 'entidad_id' => 146, 'par_tipo_institucion' => 1003, 'par_departamento' => 3006, 'denominacion' => 'Universidad Autónoma Gabriel René Moreno', 'sigla' => 'UAGRM'],
+                ['id' => 147, 'entidad_id' => 147, 'par_tipo_institucion' => 1003, 'par_departamento' => 3008, 'denominacion' => 'Universidad Técnica del Beni Mariscal José Ballivián', 'sigla' => 'UTBMJB'],
+                ['id' => 148, 'entidad_id' => 148, 'par_tipo_institucion' => 1003, 'par_departamento' => 3009, 'denominacion' => 'Universidad Amazónica de Pando', 'sigla' => 'UAP'],
+                ['id' => 901, 'entidad_id' => 901, 'par_tipo_institucion' => 1005, 'par_departamento' => 3002, 'denominacion' => 'Gobierno Autónomo Departamental de Chuquisaca', 'sigla' => 'GAD-CHU'],
+                ['id' => 906, 'entidad_id' => 906, 'par_tipo_institucion' => 1005, 'par_departamento' => 3007, 'denominacion' => 'Gobierno Autónomo Departamental de Tarija', 'sigla' => 'GAD-TAR'],
+                ['id' => 908, 'entidad_id' => 908, 'par_tipo_institucion' => 1005, 'par_departamento' => 3008, 'denominacion' => 'Gobierno Autónomo Departamental de Beni', 'sigla' => 'GAD-BEN'],
+                ['id' => 1301, 'entidad_id' => 1301, 'par_tipo_institucion' => 1006, 'par_departamento' => 3005, 'denominacion' => 'Gobierno Autónomo Municipal de Cochabamba', 'sigla' => 'CBB'],
+                ['id' => 1401, 'entidad_id' => 1401, 'par_tipo_institucion' => 1006, 'par_departamento' => 3003, 'denominacion' => 'Gobierno Autónomo Municipal de Oruro', 'sigla' => 'ORU'],
+                ['id' => 1701, 'entidad_id' => 1701, 'par_tipo_institucion' => 1006, 'par_departamento' => 3006, 'denominacion' => 'Gobierno Autónomo Municipal de Santa Cruz de La Sierra', 'sigla' => 'SCZ'],
+                ['id' => 1901, 'entidad_id' => 1901, 'par_tipo_institucion' => 1006, 'par_departamento' => 3009, 'denominacion' => 'Gobierno Autónomo Municipal de Cobija', 'sigla' => 'CBJ']
             ]);
         }
+
+        // DB::statement('SET IDENTITY_INSERT entidades OFF'); // Reactiva el autoincremento después de insertar
+        //DB::statement('ALTER SEQUENCE entidades_id_seq RESTART WITH 1');
+
     }
 }
