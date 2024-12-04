@@ -4,6 +4,7 @@ namespace App\Http\Services\Operador;
 
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class  ValorPresenteDeudaService
 {
@@ -69,7 +70,7 @@ class  ValorPresenteDeudaService
                             CREDITOS EXTERNOS Y OTROS .XLS
      ************************************************************/
 
- /*    public function sumatoriaDeudaCreditoExterno($tasaDescuento, $codigo_entidad)
+    /*    public function sumatoriaDeudaCreditoExterno($tasaDescuento, $codigo_entidad)
     {
         // Obtener fechas necesarias
         $diciembre31 = Carbon::now()->subYear()->endOfYear()->format('Y-m-d'); // 2023-12-31
@@ -128,7 +129,7 @@ class  ValorPresenteDeudaService
         INFORMACION DEUDA ENTIDADES  TERRITORIALES AUTONOMAS .XLS
      **************************************************************/
 
- /*    public function sumatoriaDeudaTerritoriales($tasaDescuento, $codigo_entidad)
+    /*    public function sumatoriaDeudaTerritoriales($tasaDescuento, $codigo_entidad)
     {
         // Obtener 31 de diciembre del año pasado
         $diciembre31 = Carbon::now()->subYear()->endOfYear()->format('Y-m-d'); // 2023-12-31
@@ -174,13 +175,13 @@ class  ValorPresenteDeudaService
                 ROUND(
                     SUM(
                         (
-                        CAST(interes AS DECIMAL) + 
+                        CAST(interes AS DECIMAL) +  
                         CAST(interes_diferido AS DECIMAL) + 
                         CAST(capital AS DECIMAL) + 
                         CAST(capital_diferido AS DECIMAL)
                         ) / 
                         POWER(1 + $tasaDescuento  / 365, 
-                            (TO_DATE(fecha_de_cuota, 'DD/MM/YYYY') - TO_DATE('$diciembre31Formateado', 'DD/MM/YYYY'))
+                            (TO_DATE('$diciembre31Formateado', 'DD/MM/YYYY') - TO_DATE(fecha_de_cuota, 'DD/MM/YYYY'))
                         )
                     ), 2
                 ) AS resultado_total_fndr")
@@ -244,5 +245,44 @@ class  ValorPresenteDeudaService
             ->value('total_saldo_convertido');
 
         return $totalSaldoConvertido;
+    }
+
+    public function obtenerValorPresenteDeudaTotal($codigo_entidad)
+    {
+        $tasa = 0.0299;
+
+        Log::debug('codigo_entidad' . $codigo_entidad);
+        $valorPresenteDeuda = new ValorPresenteDeudaService();
+        $deudaCreditoExterno = $valorPresenteDeuda->sumatoriaDeudaCreditoExterno($tasa, $codigo_entidad);
+
+
+        Log::debug("deudaCreditoExterno" . $deudaCreditoExterno);
+
+        $deudaCreditoTerritoriales = $valorPresenteDeuda->sumatoriaDeudaTerritoriales($tasa, $codigo_entidad);
+
+        Log::debug("deudaCreditoTerritoriales" . $deudaCreditoTerritoriales);
+
+        $pasivosSinCronogramas = $valorPresenteDeuda->cincuentaXcientoSinCronograma($codigo_entidad);
+
+        Log::debug("pasivosSinCronogramas" . $pasivosSinCronogramas);
+
+        $sumDeudas = $deudaCreditoExterno  +  $deudaCreditoTerritoriales + $pasivosSinCronogramas;
+
+        Log::debug("sumDeudas" . $sumDeudas);
+
+        // promedio icr eta
+        // Subconsulta para el cálculo de promedio_icr_eta
+        $promedioIcrEta = DB::table('icr_eta_rubro_total_excel')
+            ->where('entidad', $codigo_entidad)
+            ->where('nombre_total', 'ICR')
+            ->selectRaw('ROUND(AVG(monto::DECIMAL), 2) AS promedio_icr_eta')
+            ->first();
+
+        //$resultadofinal = ($sumDeudas / $promedioIcrEta->promedio_icr_eta)*100;
+        $resultadofinal = floor(($sumDeudas / $promedioIcrEta->promedio_icr_eta) * 100);
+
+        Log::debug("resultadofinal" . $resultadofinal);
+
+        return $resultadofinal;
     }
 }

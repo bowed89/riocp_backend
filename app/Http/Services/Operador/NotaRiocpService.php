@@ -12,8 +12,8 @@ use stdClass;
 
 class NotaRiocpService
 {
-    // GUARDAR CERTIFICADO RIOCP NO APROBADO
-    public function almacenarCertificadoReprobado($request)
+    // GUARDO CERTIFICADO RIOCP NO APROBADO
+    public function almacenarNota()
     {
         $user = Auth::user();
 
@@ -24,60 +24,16 @@ class NotaRiocpService
             ];
         }
 
-        $solicitud = Solicitud::where('id', $request['solicitud_id'])->first();
-        if (!$solicitud) {
-            return [
-                'status' => false,
-                'message' => 'No existe la solicitud requerida.'
-            ];
-        }
+        
 
-        // este es el formulario 1
-        $solicitudRiocp = SolicitudRiocp::where('solicitud_id', $request['solicitud_id'])
-            ->first();
-
-        if (!$solicitudRiocp) {
-            return [
-                'status' => false,
-                'message' => 'No existe el formulario de solicitud RIOCP con el número de solicitud.'
-            ];
-        }
-
-        // verifico si estoy dentro de rangos de 
-        // Servicio Deuda y Valor Presente Deuda Total
-        $interesAnual = $request['servicio_deuda'];
-        $interesAnual = (float) $interesAnual;
-        $valorPresenteDeuda = $request['valor_presente_deuda_total'];
-        $valorPresenteDeuda = (float) $valorPresenteDeuda;
-
-        $certificado = new CertificadoRiocp();
-        $certificado->fill($request);
-
-        // actualizo el campo objeto_operacion... de la tabla solicitud riocp,
-        // en caso de q se quiera corregir la tabla solicitada
-        $solicitudRiocp->objeto_operacion_credito = $request['objeto_operacion_credito'];
-        $solicitudRiocp->save();
-
-        if ($interesAnual > 20.00 && $valorPresenteDeuda > 200.00) {
-            // nuevo certificado RECHAZADO = 2
-            $certificado->estados_riocp_id = 2;
-            $certificado->nro_solicitud = 0;
-            $certificado->save();
-
-            // cambio de estado mi solicitud RECHAZADO = 2
-            $solicitud->estado_solicitud_id = 2;
-            $solicitud->save();
-
-            return [
-                'status' => true,
-                'message' => 'Certificado almacenado correctamente con valores de Servicio Deuda y Valor Presente Deuda Total fuera de los rangos.'
-            ];
-        }
+        
     }
 
     public function verNotas($solicitudId)
     {
         $servicioDeuda = new ServicioDeudaService();
+        $valorPresenteDeudaService = new ValorPresenteDeudaService();
+
         $user = Auth::user();
 
         if (!$user) {
@@ -103,12 +59,10 @@ class NotaRiocpService
         $codigo_entidad = $query['data'][0]->codigo;
         $sd = $servicioDeuda->obtenerServicioDeuda($codigo_entidad);
 
-        //DATO QUEMADO DE VPD
-        $vpd = $certificadoRiocpService->obtenerValorPresenteDeudaTotal($codigo_entidad);
+        // VPD
+        $vpd = $valorPresenteDeudaService->obtenerValorPresenteDeudaTotal($codigo_entidad);
+        Log::debug("vpd" . $vpd);
 
-        Log::debug("vpd" .$vpd);
-
-        
         $generarNota = new GenerarNotasRiocp();
 
         $body = new stdClass();
@@ -121,13 +75,13 @@ class NotaRiocpService
 
         $body->referencia = $generarNota->Referencia();
 
-        Log::debug("sd =>" .$sd);
-        Log::debug("vpd =>" .$vpd);
+        Log::debug("sd =>" . $sd);
+        Log::debug("vpd =>" . $vpd);
 
         $body->body = $generarNota->body($solicitudId, $sd, $vpd);
         $body->remitente = $generarNota->remitente();
         $body->revisado = $generarNota->revisado();
-        
+
         return [
             'status' => true,
             'data' => $body,

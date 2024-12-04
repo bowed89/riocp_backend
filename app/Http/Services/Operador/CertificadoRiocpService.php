@@ -43,6 +43,7 @@ class CertificadoRiocpService
     public function obtenerSolicitudCertificado($idSolicitud)
     {
         $servicioDeuda = new ServicioDeudaService();
+        $valorPresenteDeudaService = new ValorPresenteDeudaService();
         $user = Auth::user();
         if (!$user) {
             return [
@@ -65,8 +66,8 @@ class CertificadoRiocpService
         $resultados[0]->servicio_deuda = $servicioDeuda->obtenerServicioDeuda($codigo_entidad);
         $resultados[0]->nro_solicitud = $this->generarNumeroTramite($codigo_entidad);
 
-        //DATO QUEMADO DE VPD
-        $resultados[0]->valor_presente_deuda = $this->obtenerValorPresenteDeudaTotal($codigo_entidad);
+        //DATO VPD
+        $resultados[0]->valor_presente_deuda = $valorPresenteDeudaService->obtenerValorPresenteDeudaTotal($codigo_entidad);
 
         return [
             'status' => true,
@@ -116,8 +117,8 @@ class CertificadoRiocpService
         }
         // verifico si estoy dentro de rangos de 
         // Servicio Deuda y Valor Presente Deuda Total
-        $interesAnual = $request['servicio_deuda'];
-        $interesAnual = (float) $interesAnual;
+        $servicioDeuda = $request['servicio_deuda'];
+        $servicioDeuda = (float) $servicioDeuda;
         $valorPresenteDeuda = $request['valor_presente_deuda_total'];
         $valorPresenteDeuda = (float) $valorPresenteDeuda;
 
@@ -129,7 +130,7 @@ class CertificadoRiocpService
         $solicitudRiocp->objeto_operacion_credito = $request['objeto_operacion_credito'];
         $solicitudRiocp->save();
 
-        if ($interesAnual <= 20.00 && $valorPresenteDeuda <= 200.00) {
+        if ($servicioDeuda <= 20.00 && $valorPresenteDeuda <= 200.00) {
             // nuevo certificado APROBADO = 1
             $certificado->estados_riocp_id = 1;
             $certificado->save();
@@ -142,53 +143,29 @@ class CertificadoRiocpService
                 'status' => true,
                 'message' => 'Certificado almacenado correctamente con valores de Servicio Deuda y Valor Presente Deuda Total dentro de los rangos.'
             ];
+        } else {
+            // nuevo certificado RECHAZADO = 2
+            $certificado->estados_riocp_id = 2;
+            $certificado->nro_solicitud = 0;
+            $certificado->save();
+
+            // cambio de estado mi solicitud RECHAZADO = 2
+            $solicitud->estado_solicitud_id = 2;
+            $solicitud->save();
+
+            return [
+                'status' => true,
+                'message' => 'Certificado almacenado correctamente con valores de Servicio Deuda y Valor Presente Deuda Total fuera de los rangos.'
+            ];
         }
+
         return [
             'status' => false,
-            'message' => 'Error en los rangos de Servicio Deuda y Valor Presente Deuda Total.'
+            'message' => 'Error en los rangos SP y/o VPD superan los límites.'
         ];
     }
 
     //SERVICIO DE VALOR PRESENTE DE DEUDA TOTAL(LÍMITE 200%)
-    public function obtenerValorPresenteDeudaTotal($codigo_entidad)
-    {
-        $tasa = 0.0299;
-
-        Log::debug('codigo_entidad' . $codigo_entidad);
-        $valorPresenteDeuda = new ValorPresenteDeudaService();
-        $deudaCreditoExterno = $valorPresenteDeuda->sumatoriaDeudaCreditoExterno($tasa, $codigo_entidad);
-
-
-        Log::debug("deudaCreditoExterno" . $deudaCreditoExterno);
-
-        $deudaCreditoTerritoriales = $valorPresenteDeuda->sumatoriaDeudaTerritoriales($tasa, $codigo_entidad);
-
-        Log::debug("deudaCreditoTerritoriales" . $deudaCreditoTerritoriales);
-
-        $pasivosSinCronogramas = $valorPresenteDeuda->cincuentaXcientoSinCronograma($codigo_entidad);
-
-        Log::debug("pasivosSinCronogramas" . $pasivosSinCronogramas);
-
-        $sumDeudas = $deudaCreditoExterno  +  $deudaCreditoTerritoriales + $pasivosSinCronogramas;
-
-        Log::debug("sumDeudas" . $sumDeudas);
-
-        // promedio icr eta
-        // Subconsulta para el cálculo de promedio_icr_eta
-        $promedioIcrEta = DB::table('icr_eta_rubro_total_excel')
-            ->where('entidad', $codigo_entidad)
-            ->where('nombre_total', 'ICR')
-            ->selectRaw('ROUND(AVG(monto::DECIMAL), 2) AS promedio_icr_eta')
-            ->first();
-
-        //$resultadofinal = ($sumDeudas / $promedioIcrEta->promedio_icr_eta)*100;
-        $resultadofinal = floor(($sumDeudas / $promedioIcrEta->promedio_icr_eta) * 100);
-
-        Log::debug("resultadofinal" . $resultadofinal);
-
-        return $resultadofinal;
-    }
-
 
     //SERVICIO DE LA DEUDA(LÍMITE 20%)
     public function obtenerServicioDeuda($codigo_entidad)
@@ -210,7 +187,9 @@ class CertificadoRiocpService
             ->first();
 
         if ($sumCapInteres && $promedioIcrEta && $promedioIcrEta->promedio_icr_eta != 0) {
-            $resultadoFinal = round(($sumCapInteres->sum_cap_interes / $promedioIcrEta->promedio_icr_eta) * 100, 1);
+           // $resultadoFinal = round(($sumCapInteres->sum_cap_interes / $promedioIcrEta->promedio_icr_eta) * 100, 1);
+           $resultadoFinal = ($sumCapInteres->sum_cap_interes / $promedioIcrEta->promedio_icr_eta) * 100;
+
         } else {
             $resultadoFinal = 0;
         }

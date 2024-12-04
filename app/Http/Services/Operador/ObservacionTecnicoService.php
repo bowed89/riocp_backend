@@ -15,6 +15,14 @@ class ObservacionTecnicoService
 {
     public function guardarObservaciones($request)
     {
+        // agrergar en requests::: sd, spd, 
+        // para almacenarCertificadoAprobado agregar a requests:
+        // nro_solicitud, solicitud_id, servicio_deuda, 
+        // objeto_operacion_credito, valor_presente_deuda_total
+
+
+        $certificadoRiocpService = new CertificadoRiocpService();
+
         $user = Auth::user();
         if (!$user) {
             return [
@@ -65,6 +73,9 @@ class ObservacionTecnicoService
 
         // Actualizo segumiento y agrego nuevo seguimiento para el siguiente rol
         $this->asignarSeguimiento($request, $user);
+
+        // Almaceno REGISTRO CERTIFICADO RIOCP APROBADO O RECHAZADO
+        $certificadoRiocpService->almacenarCertificadoAprobado($request);
 
         // Event para notificaciones de nuevos tramites
         $this->emitNotificacion($user);
