@@ -7,7 +7,7 @@ use App\Models\SolicitudRiocp;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Log;
 
-class GenerarNotasRiocp
+class GenerarNotaRechazoRiocp
 {
 
     public function fechaActualNota()
@@ -42,8 +42,8 @@ class GenerarNotasRiocp
     {
         $solicitud = $this->queryObtenerDatosNota($solicitudId);
         return 'Señor' . "\n\n" .
-            $solicitud->nombre_completo  . "\n" .
-            $solicitud->cargo . "\n" .
+            $solicitud->declaracion_jurada  . "\n" .
+            'Alcalde' . "\n" .
             $solicitud->denominacion . "\n" .
             'Cuidad/Municipio - Departamento.-';
     }
@@ -116,6 +116,7 @@ class GenerarNotasRiocp
                 'cs.cargo',
                 'e.denominacion AS denominacion',
                 's.objeto_operacion_credito',
+                's.declaracion_jurada',
                 'a.nombre AS nombre_acreedor',
                 'f.cite_documento',
                 'f.created_at AS fecha_correspondencia'

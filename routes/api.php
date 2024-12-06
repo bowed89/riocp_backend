@@ -115,9 +115,13 @@ Route::middleware(['auth:sanctum'])->group(function () {
         Route::get('/cronograma-deuda/formulario/{id}', [CronogramaServicioDeudaController::class, 'getCronogramaById']);
         Route::get('/cronograma-desembolso-deuda/formulario/{id}', [CronogramaDesembolsoProgramadoController::class, 'getCronogramaDesembolso']);
         Route::get('/certificado-riocp/{idSolicitud}', [CertificadoRiocpController::class, 'obtenerDatosSolicitudes']);
-
         Route::post('/certificado-riocp/store', [CertificadoRiocpController::class, 'almacenarCertificadoAprobado']);
-        Route::get('/nota-certificado-riocp/{solicitudId}', [NotaRiocpController::class, 'obtenerDatosSolicitudes']);
+
+        /* Notas para certificado riocp */
+        Route::get('/nota-aprobado-certificado-riocp/{solicitudId}', [NotaRiocpController::class, 'obtenerDatosNotaAprobacion']);
+        Route::get('/nota-observacion-certificado-riocp/{solicitudId}', [NotaRiocpController::class, 'obtenerDatosNotaObervacion']);
+        Route::get('/nota-rechazo-certificado-riocp/{solicitudId}', [NotaRiocpController::class, 'obtenerDatosNotaRechazo']);
+    
     });
 
     // Revisor y Jefe Unidad

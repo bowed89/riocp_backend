@@ -14,6 +14,8 @@ class NotaCertificadoRiocp extends Model
         'header',
         'body',
         'footer',
-        'certificado_riocp_id'
+        'certificado_riocp_id',
+        'solicitud_id',
+        'tipo_notas_id'
     ];
 }

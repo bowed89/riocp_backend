@@ -9,11 +9,10 @@ use App\Models\SolicitudRiocp;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Log;
+
 
 class CertificadoRiocpService
 {
-
 
     public function obtenerSolicitudCertificadoQuery($idSolicitud)
     {
@@ -139,6 +138,10 @@ class CertificadoRiocpService
             $solicitud->estado_solicitud_id = 3;
             $solicitud->save();
 
+            // almaceno nota de aprobacion
+            
+
+            
             return [
                 'status' => true,
                 'message' => 'Certificado almacenado correctamente con valores de Servicio Deuda y Valor Presente Deuda Total dentro de los rangos.'
@@ -152,6 +155,8 @@ class CertificadoRiocpService
             // cambio de estado mi solicitud RECHAZADO = 2
             $solicitud->estado_solicitud_id = 2;
             $solicitud->save();
+
+            // almaceno notas
 
             return [
                 'status' => true,
@@ -187,9 +192,8 @@ class CertificadoRiocpService
             ->first();
 
         if ($sumCapInteres && $promedioIcrEta && $promedioIcrEta->promedio_icr_eta != 0) {
-           // $resultadoFinal = round(($sumCapInteres->sum_cap_interes / $promedioIcrEta->promedio_icr_eta) * 100, 1);
-           $resultadoFinal = ($sumCapInteres->sum_cap_interes / $promedioIcrEta->promedio_icr_eta) * 100;
-
+            // $resultadoFinal = round(($sumCapInteres->sum_cap_interes / $promedioIcrEta->promedio_icr_eta) * 100, 1);
+            $resultadoFinal = ($sumCapInteres->sum_cap_interes / $promedioIcrEta->promedio_icr_eta) * 100;
         } else {
             $resultadoFinal = 0;
         }

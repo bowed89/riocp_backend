@@ -16,6 +16,8 @@ return new class extends Migration
             $table->text('body');
             $table->text('footer');
             $table->foreignId('certificado_riocp_id')->nullable()->constrained('certificados_riocp')->onDelete('cascade');
+            $table->foreignId('solicitud_id')->nullable()->constrained('solicitudes')->onDelete('cascade');
+            $table->foreignId('tipo_notas_id')->nullable()->constrained('tipos_notas_riocp')->onDelete('cascade');
             $table->timestamps();
             $table->softDeletes();
         });

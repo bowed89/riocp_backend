@@ -8,10 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class TipoDocumentoAdjunto extends Model
 {
     use HasFactory;
-    protected $table = 'tipos_documentos_adjunto';
+    protected $table = 'tipos_notas_riocp';
     
     protected $fillable = [
         'tipo',
+        'obligatorio',
         'estado',
     ];
 
