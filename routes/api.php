@@ -120,7 +120,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
         /* Notas para certificado riocp */
         Route::get('/nota-aprobado-certificado-riocp/{solicitudId}', [NotaRiocpController::class, 'obtenerDatosNotaAprobacion']);
         Route::get('/nota-observacion-certificado-riocp/{solicitudId}', [NotaRiocpController::class, 'obtenerDatosNotaObervacion']);
-        Route::get('/nota-rechazo-certificado-riocp/{solicitudId}', [NotaRiocpController::class, 'obtenerDatosNotaRechazo']);
+        Route::get('/nota-rechazo-certificado-riocp/{solicitudId}/{sd}/{vpd}', [NotaRiocpController::class, 'obtenerDatosNotaRechazo']);
     
     });
 

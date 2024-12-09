@@ -6,7 +6,6 @@ use App\Models\IcrEtaEpreExcel;
 use App\Models\IcrEtaEpreTotalExcel;
 use App\Models\IcrEtaRubroExcel;
 use App\Models\IcrEtaRubroTotalExcel;
-use Illuminate\Support\Facades\Log;
 use Maatwebsite\Excel\Concerns\ToArray;
 use PhpOffice\PhpSpreadsheet\IOFactory;
 
@@ -14,111 +13,72 @@ class IcrEtaRubroImport implements ToArray
 {
     public function __construct()
     {
-        /* IcrEtaRubroExcel::truncate();
+        IcrEtaRubroExcel::truncate();
         IcrEtaRubroTotalExcel::truncate();
         IcrEtaEpreExcel::truncate();
         IcrEtaEpreTotalExcel::truncate();
-         */
     }
 
 
     public function loadFileAndProcess($filePath)
     {
+
         try {
             // Cargar el archivo Excel
             $spreadsheet = IOFactory::load($filePath);
             $sheet = $spreadsheet->getActiveSheet();
-            $arrayAgrupado = $this->agruparPorEntidades($sheet);
-            $quitarPuntos = $this->quitarPuntosDeRubro($arrayAgrupado);
 
-            // Filtrar solo los elementos que contengan "11"por entidad
-            foreach ($quitarPuntos as $value) {
-                Log::debug("quitarPuntosDeRubro: " . json_encode($value));
-            }
+            /* ALMACENAR RUBRO */
+            // Rango de las filas.
+            $startRow = 4;
+            $endRow = 21;
+            // obtengo el array con los datos
+            $rubro = $this->iterateArray($sheet, $startRow, $endRow);
+            // almaceno el array con los datos
+            $this->storeRubro($rubro);
+
+            /* ALMACENAR TOTAL RUBRO */
+            // Rango de las filas.
+            $startRow = 22;
+            $endRow = 25;
+            // obtengo el array con los datos
+            $totalRubro = $this->iterateArray($sheet, $startRow, $endRow);
+            // almaceno el array con los datos
+            $this->storeTotalRubro($totalRubro);
+
+            /* ALMACENAR EPRE */
+            // Rango de las filas.
+            $startRow = 28;
+            $endRow = 49;
+            // obtengo el array con los datos
+            $epre = $this->iterateArray($sheet, $startRow, $endRow);
+            // almaceno el array con los datos
+            $this->storeEpre($epre);
+
+            /* ALMACENAR TOTAL EPRE */
+            // Rango de las filas.
+            $startRow = 50;
+            $endRow = 50;
+            // obtengo el array con los datos
+            $totalEpre = $this->iterateArray($sheet, $startRow, $endRow);
+            // almaceno el array con los datos
+            $this->storeTotalEpre($totalEpre);
 
             return 200;
+
         } catch (\Exception $e) {
             // Capturar errores y retornar el mensaje de error
             return 'Error durante el procesamiento: ' . $e->getMessage();
         }
+
+
         //  $this->processedData = $rubro;
-    }
-
-    private function agruparPorEntidades($sheet)
-    {
-
-        /* 
-            [
-                [
-                    ["138", "...", "...", "..."],
-                    ["138", "...", "...", "..."]
-                ],
-                [
-                    ["139", "...", "...", "..."],
-                    ["139", "...", "...", "..."]
-                ],
-                ..................................
-            ]    
-        */
-
-        $result = [];
-        // Obtener la última fila con datos
-        $highestRow = $sheet->getHighestRow();
-        $highestColumn = $sheet->getHighestColumn();
-
-        // Crear un array auxiliar para agrupar las filas por código de entidad
-        $groupedByEntidad = [];
-
-        // Recorrer todas las filas desde la segunda
-        for ($row = 2; $row <= $highestRow; $row++) {
-            // Obtener el valor de la columna 'A' (código de entidad) de la fila actual
-            $entidadCodigo = $sheet->getCell("A$row")->getValue();
-            // Borrar rubro que tiene string
-
-            // Obtener los datos de la fila actual
-            $rowData = $sheet->rangeToArray("A$row:$highestColumn$row", null, true, false)[0];
-
-            // Agrupar los datos según el código de entidad
-            if (!isset($groupedByEntidad[$entidadCodigo])) {
-                // Crear un nuevo grupo si no existe
-                $groupedByEntidad[$entidadCodigo] = [];
-            }
-
-            // Añadir la fila actual al grupo correspondiente
-            $groupedByEntidad[$entidadCodigo][] = $rowData;
-        }
-
-        // Convertir los grupos a un array de arrays
-        foreach ($groupedByEntidad as $grupo) {
-            $result[] = $grupo;
-        }
-
-        // Quitar los puntos de la columna RUBROS(ej. 12.1.2 a 1212)
-        return $result;
-    }
-
-    private function quitarPuntosDeRubro($arrays)
-    {
-        $newArray = [];
-        foreach ($arrays as $res) {
-
-
-            // $newArray = [str_replace('.', '', $res[4])];
-            for ($i = 0; $i < count($res); $i++) {
-                $rubro = str_replace('.', '', $res[$i][4]);
-                $res[$i][4] = $rubro;
-            }
-            $newArray[] = $res;
-        }
-
-        return $newArray;
     }
 
     private function iterateArray($sheet, $startRow, $endRow)
     {
         $result = [];
         $auxFilaEntidad = null;
-
         // Columnas inicio
         $inicioColumn = 'B';
         $inicioColumnIndex = \PhpOffice\PhpSpreadsheet\Cell\Coordinate::columnIndexFromString($inicioColumn);

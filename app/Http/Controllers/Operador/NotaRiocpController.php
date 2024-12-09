@@ -14,9 +14,9 @@ class NotaRiocpController extends Controller
         $this->notaRiocpService = $notaRiocpService;
     }
 
-    public function obtenerDatosNotaRechazo($solicitudId)
+    public function obtenerDatosNotaRechazo($solicitudId, $sd, $vpd)
     {
-        $response = $this->notaRiocpService->verNotaRechazo($solicitudId);
+        $response = $this->notaRiocpService->verNotaRechazo($solicitudId, $sd, $vpd);
         return response()->json($response, $response['status'] ? 200 : 403);
     }
     public function obtenerDatosNotaAprobacion($solicitudId)

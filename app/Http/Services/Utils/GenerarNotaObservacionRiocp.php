@@ -5,7 +5,6 @@ namespace App\Http\Services\Utils;
 
 use App\Models\SolicitudRiocp;
 use Carbon\Carbon;
-use Illuminate\Support\Facades\Log;
 
 class GenerarNotaObservacionRiocp
 {
